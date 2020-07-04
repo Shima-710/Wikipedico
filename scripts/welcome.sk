@@ -1,0 +1,32 @@
+#on join 関係はここ
+#鯖にプレイヤーの存在が確認されると実行
+#==============================================================================================================================================================================================
+
+on join:
+    set the join message to "&eお祭りへようこそ、%player% ！"
+    set {sidebar.%player%} to 1
+
+on first join:
+    message "&7リソースパックは正しく導入されていますか？駅構内に提灯が見えていれば正常です。" to player
+    message "&7対抗戦参加者の方は右手側で参加チームを選択してください。" to player
+    set {team.%player%} to "未所属"
+    set {sidebar.%player%} to 1
+
+on load:
+    set {kimo} to "&c調整中"
+
+#肝試しの状態について
+#&c調整中
+#&2利用可能
+#&c利用中
+
+
+    
+
+#あらかじめlpでguestっていうグループを作っておく。以下該当の事前実行コマンド
+#lp user ShimaShima_710 permission set luckperms.*
+#lp creategroup guest
+#lp group guest permission set minecraft.command.function true
+
+on join:
+    execute console command "lp user %player% parent add guest"
