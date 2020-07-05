@@ -13,19 +13,13 @@
         gamerule doMobSpawning false
     #延焼の無効
         gamerule doFireTick false
-    #落下ダメージの無効化
-        #gamerule fallDamage false
-    #炎上ダメージ無効化
-        #gamerule fireDamage false
-    #溺死無効化
-        #gamerule drowningDamage false
     #モブによる破壊・アイテム取得の無効化
         gamerule mobGriefing false
-    #ランダムチックスピード＜設定値：０＝成長はしない＞（デバッグ用に制作終了まで有効化すること）
+    #ランダムチックスピード＜設定値：０＝成長はしない＞
         gamerule randomTickSpeed 0
-    #デバッグ情報の簡素化（デバッグ用に制作終了まで有効化すること）
+    #デバッグ情報の簡素化
         gamerule reducedDebugInfo true
-    #手打ちコマンド実行結果表示の無効（デバッグ用に制作終了まで有効化すること）
+    #手打ちコマンド実行結果表示の無効
         gamerule sendCommandFeedback false
     #初期スポーン範囲の設定＜設定値：１＞
         gamerule spawnRadius 1
@@ -33,7 +27,7 @@
         gamerule showDeathMessages false
     #時刻の固定・設定＜設定値：6000(太陽がほぼ真上)＞
         gamerule doDaylightCycle false
-        time set 15000
+        time set 6000
     #天気の固定・設定＜設定値：晴れ＞
         gamerule doWeatherCycle false
         weather clear
