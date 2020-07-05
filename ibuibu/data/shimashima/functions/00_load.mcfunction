@@ -38,10 +38,34 @@
 #=========================================================================================================================
 #チームの追加・編集
 
+# Admin
+    team add admin
+    team modify adimn collisionRule never
+    team modify adimn color dark_red
+
+# A
+    team add A
+    team modify A color red
+
+# B
+    team add B
+    team modify B color blue
+
+# C
+    team add C
+    team modify C color yellow
+
+# D
+    team add D
+    team modify D color green
+
+# E
+    team add E
+    team modify E color black
 
 
 #=========================================================================================================================
-#スコアボードの追加（基本的には追加後数値がnullになるのを防ぐために0にセット。その場合のダミーユーザーの名前はスコア名と同一。）
+#スコアボードの追加
 
 
 
