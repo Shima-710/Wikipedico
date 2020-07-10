@@ -16,13 +16,15 @@ every 1 second:
         if {sidebar.%loop-player%} is 0:
             set score "&aしばらくお待ちください" in sidebar of loop-player to -1
         if {sidebar.%loop-player%} is 1:
-            set score "&a残り人数  &r: %{surviver}}%人" in sidebar of loop-player to -1
-            set score "&a残り時間  &r: %{time}%秒" in sidebar of loop-player to -2
+            set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
+            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
         if {sidebar.%loop-player%} is 2:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
-            set score "&a残り時間  &r: %{time}%秒" in sidebar of loop-player to -2
+            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
         if {sidebar.%loop-player%} is 9:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
-            set score "&a残り時間  &r: %{time}%秒" in sidebar of loop-player to -2
+            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
             set score "&a=======================" in sidebar of loop-player to -3
-            set score "&a参加人数  &r: %{time}%秒" in sidebar of loop-player to -4
+            set score "&a鯖内人数  &r: %online player count%秒" in sidebar of loop-player to -4
+            set score "&aplayer  &r: %{surviver}%秒" in sidebar of loop-player to -4
+            set score "&aadmin  &r: %{qua.admin}%秒" in sidebar of loop-player to -4

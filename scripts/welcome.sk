@@ -7,14 +7,12 @@ on join:
     message "&7[注意事項]" to player
     message "&7ゲーム開始前に確実にルールを把握してください。" to player
     message "&7軽量化MOD以外のMODの導入は認められていません。" to player
+    set player's gamemode to adventure
     set {sidebar.%player%} to 0
 
     
 
-#あらかじめlpでguestっていうグループを作っておく。以下該当の事前実行コマンド
-#lp user ShimaShima_710 permission set luckperms.*
-#lp creategroup guest
-#lp group guest permission set minecraft.command.function true
+#playerという権限グループを作っておく。使うかは今後。
 
-on join:
-    execute console command "lp user %player% parent add guest"
+on first join:
+    execute console command "lp user %player% parent add player"
