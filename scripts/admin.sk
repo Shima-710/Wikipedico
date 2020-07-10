@@ -25,6 +25,7 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode creative %arg-2%"
                     make player execute command "/team join admin %arg-2%"
                     execute console command "lp user %arg-2% parent add skript.admin"
+                    execute console command "op %arg-2%"
                     message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
                     message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
                     set {admin.%arg-2%} to "true"
@@ -33,6 +34,7 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode creative %player%"
                     make player execute command "/team join admin %player%"
                     execute console command "lp user %player% parent add skript.admin"
+                    execute console command "op %player%"
                     message "&b[admin] &r%player%をAdminに追加しました。" to player
                     set {admin.%player%} to "true"
                     add 1 to {qua.admin}
@@ -44,6 +46,7 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode adventure %arg-2%"
                     make player execute command "/effect clear %arg-2% minecraft:night_vision"
                     make player execute command "/team leave %arg-2%"
+                    execute console command "deop %arg-2%"
                     message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                     message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
                     set {admin.%arg-2%} to "false"
@@ -53,6 +56,7 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode adventure %player%"
                     make player execute command "/effect clear @s minecraft:night_vision"
                     make player execute command "/team leave %player%"
+                    execute console command "deop %player%"
                     message "&b[admin] &r%player%をAdminから除外しました。" to player
                     set {admin.%player%} to "false"
                     set {sidebar.%player%} to 0
@@ -85,12 +89,15 @@ command /game <text> [<number>]:
                 set {sidebar.%loop-player%} to 0
 
 
-command /timer <number>:
+command /timer <text> <number>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
-    usage:/timer <number>
+    usage:/timer <set/add> <時間>
     trigger:
-        add arg-1 to {timer}
+        if arg-1 is "set":
+            set {timer} to arg-2
+        if arg-1 is "add":
+            add arg-2 to {timer}
 
 command /debug <text>:
     permission: skript.admin

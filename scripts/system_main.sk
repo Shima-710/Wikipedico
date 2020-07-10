@@ -23,12 +23,21 @@ on death:
 
 #
 # ブロック掘削の可否
-on break of stone:
+#on break of stone:
     cancel event
 
-on break of dirt:
+#on break of grass block:
     cancel event
 
-on mine of any ore:
+#on break of dirt:
     cancel event
 
+#on mine of any ore:
+    cancel event
+
+on break:
+    if event-block is log:
+        stop
+    if event-block is planks:
+    else:
+        cancel event
