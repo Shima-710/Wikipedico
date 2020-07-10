@@ -69,7 +69,7 @@
 
 # ゲーム中/外を判定(ゲーム中＝1/ゲーム外＝0｜初期値0)
     scoreboard objectives add on_game dummy
-    scoreboard players set @a on_game 0
+    scoreboard players set on_game on_game 0
 
 # プレイヤーの参加/非参加を判定(参加＝1/非参加＝0｜初期値0)
     scoreboard objectives add play dummy
@@ -78,6 +78,13 @@
 # 死亡判定(死亡＝1/生存＝0｜初期値0)
     scoreboard objectives add death deathCount
     scoreboard players set @a death 0
+
+# エリトラ使用検知
+    scoreboard objectives add fly custom:aviate_one_cm
+    scoreboard objectives add flied dummy
+
+# エリトラ使用後に歩いたこと検知
+    scoreboard objectives add walk custom:walk_one_cm
 
 
 #=========================================================================================================================

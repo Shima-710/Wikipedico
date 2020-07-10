@@ -26,6 +26,8 @@ every 1 second:
         set {switch.timer} to "off"
 
 
+
+
 # 死亡時処理
 on death:
     set {sidebar.%player%} to 2
