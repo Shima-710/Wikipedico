@@ -67,15 +67,16 @@ command /admin <text> [<player>]:
                     reduce {qua.admin} by 1
 
 
-command /debug <text>:
+command /debug:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
-        if arg-1 is "reset":
-            make player execute command "/admin leave"
-            set {surviver} to 0
-            set {qua.admin} to 0
-            set {qua.player} to 0
-            set {timer} to 0
-            set {switch.timer} to "off"
+        make player execute command "/admin leave"
+        set {surviver} to 0
+        set {qua.admin} to 0
+        set {qua.player} to 0
+        set {timer} to 0
+        set {switch.timer} to "off"
+        execute console command "function shimashima:01_replay"
+
  

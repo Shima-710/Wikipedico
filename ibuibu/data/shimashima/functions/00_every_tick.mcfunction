@@ -12,13 +12,14 @@ effect give @a[team=admin,gamemode=spectator] night_vision 1000000 255 true
 # ---for player---
 #
 # ロビー状態では耐性・満腹度回復を付与
-effect give @a[scores={on_game=0}] resistance 1000000 255 true
-effect give @a[scores={on_game=0}] saturation 1000000 255 true
+execute if score on_game on_game matches 1 run effect give @a night_vision 1000000 255 true
+execute if score on_game on_game matches 1 run effect give @a saturation 1000000 255 true
 
-# エリトラで飛んだよ検知
-execute as @a[scores={fly=1}] run scoreboard players add @s flied 1
-execute as @a[scores={fly=1}] run scoreboard players set @s walk 0
-execute as @a[scores={flied=1},scores={walk=1}] run clear @s elytra
+# エリトラで飛んだよ検知からの消去
+execute as @a[scores={fly=1..}] run scoreboard players set @s flied 1
+execute as @a[scores={fly=1..}] run scoreboard players set @s walk 0
+execute as @a[scores={fly=1..}] run scoreboard players set @s fly 0
+execute if entity @a[scores={flied=1}] as @a[scores={flied=1}] run execute if entity @a[scores={walk=1..}] as @a[scores={walk=1..}] run clear @s elytra
 
 
 
