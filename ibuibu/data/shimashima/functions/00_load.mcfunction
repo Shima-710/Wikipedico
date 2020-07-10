@@ -67,6 +67,17 @@
 #=========================================================================================================================
 #スコアボードの追加
 
+# ゲーム中/外を判定(ゲーム中＝1/ゲーム外＝0｜初期値0)
+    scoreboard objectives add on_game dummy
+    scoreboard players set @a on_game 0
+
+# プレイヤーの参加/非参加を判定(参加＝1/非参加＝0｜初期値0)
+    scoreboard objectives add play dummy
+    scoreboard players set @a play 0
+
+# 死亡判定(死亡＝1/生存＝0｜初期値0)
+    scoreboard objectives add death deathCount
+    scoreboard players set @a death 0
 
 
 
