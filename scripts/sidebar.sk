@@ -14,7 +14,7 @@ every 1 second:
         set name of sidebar of loop-player to "&l%loop-player's name%"
         if {sidebar.%loop-player%} is 0:
             set score "&a状態      &r: 準備中" in sidebar of loop-player to 0
-            set score "&aしばらくお待ちください" in sidebar of loop-player to -1
+            set score "しばらくお待ちください" in sidebar of loop-player to -1
         if {sidebar.%loop-player%} is 1:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
             set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
@@ -29,8 +29,8 @@ every 1 second:
             set score "&a==========================" in sidebar of loop-player to -3
             set score "&astatus     &r: &cadmin" in sidebar of loop-player to -4
             set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -5
-            set score "&aplayer     &r: %{qua.player}%人" in sidebar of loop-player to -6
-            set score "&aadmin      &r: %{qua.admin}%人" in sidebar of loop-player to -7
+            set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -6
+            set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -7
             if {sidebar.%loop-player%} is 0:
                 stop
             else:
