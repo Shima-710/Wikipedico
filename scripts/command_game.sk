@@ -1,0 +1,40 @@
+# ゲーム用
+#==============================================================================================================================================================================================            
+
+command /game <text> [<number>]:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    usage:/game <start/end/reset> [<時間>] ※時間未設定の場合は900秒になります
+    trigger:
+        loop all players:
+            if arg-1 is "start":
+                make player execute command "function shimashima:01_game_start"
+                set {sidebar.%loop-player%} to 1
+                set {switch.timer} to "on"
+                set {qua.player} to online player count
+                reduce {qua.player} by {qua.admin}
+                set {surviver} to {qua.player}
+                if arg-2 is set:
+                    set {timer} to arg-2
+                if arg-2 is not set:
+                    set {timer} to 900
+            if arg-1 is "end":
+                make player execute command "function shimashima:01_game_end"
+                set {switch.timer} to "off"
+            if arg-1 is "reset":
+                make player execute command "function shimashima:01_game_reset"
+                set {switch.timer} to "off"
+                set {sidebar.%loop-player%} to 0
+
+
+command /timer <text> <number>:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    usage:/timer <set/add> <時間>
+    trigger:
+        if arg-1 is "set":
+            set {timer} to arg-2
+        if arg-1 is "add":
+            add arg-2 to {timer}
+
+

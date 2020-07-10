@@ -18,10 +18,10 @@ command /admin <text> [<player>]:
     usage:/admin <join/leave> [<プレイヤー>] ※プレイヤー未指定の場合は自身を操作します
     trigger:
         if arg-1 is "join":
-            if {admin.%player%} is "true":
-                message "すでにadminです" to player
-            else:
-                if arg-2 is set:
+            if arg-2 is set:
+                if {admin.%arg-2%} is "true":
+                    message "&b[admin] &r%arg-2%はすでにadminです" to player
+                else:
                     execute console command "op %arg-2%"
                     make player execute command "/gamemode creative %arg-2%"
                     make player execute command "/team join admin %arg-2%"
@@ -30,7 +30,10 @@ command /admin <text> [<player>]:
                     message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
                     set {admin.%arg-2%} to "true"
                     add 1 to {qua.admin}
-                if arg-2 is not set:
+            if arg-2 is not set:
+                if {admin.%player%} is "true":
+                    message "&b[admin] &rあなたはすでにadminです" to player
+                else:
                     execute console command "op %player%"
                     make player execute command "/gamemode creative %player%"
                     make player execute command "/team join admin %player%"
@@ -39,10 +42,10 @@ command /admin <text> [<player>]:
                     set {admin.%player%} to "true"
                     add 1 to {qua.admin}
         if arg-1 is "leave":
-            if {admin.%player%} is "false":
-                message "すでにadminではありません" to player
-            else:
-                if arg-2 is set:
+            if arg-2 is set:
+                if {admin.%arg-2%} is "false":
+                    message "&b[admin] &r%arg-2%はすでにadminではありません" to player
+                else:
                     make player execute command "/gamemode adventure %arg-2%"
                     make player execute command "/effect clear %arg-2% minecraft:night_vision"
                     make player execute command "/team leave %arg-2%"
@@ -50,54 +53,19 @@ command /admin <text> [<player>]:
                     message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                     message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
                     set {admin.%arg-2%} to "false"
-                    set {sidebar.%arg-2%} to 0
                     reduce {qua.admin} by 1
-                if arg-2 is not set:
+            if arg-2 is not set:
+                if {admin.%player%} is "false":
+                    message "&b[admin] &rあなたはすでにadminではありません" to player
+                else:
                     make player execute command "/gamemode adventure %player%"
                     make player execute command "/effect clear @s minecraft:night_vision"
                     make player execute command "/team leave %player%"
                     execute console command "deop %player%"
                     message "&b[admin] &r%player%をAdminから除外しました。" to player
                     set {admin.%player%} to "false"
-                    set {sidebar.%player%} to 0
                     reduce {qua.admin} by 1
 
-
-command /game <text> [<number>]:
-    permission: skript.admin
-    permission message:Admin専用コマンドです。
-    usage:/game <start/end/reset> [<時間>] ※時間未設定の場合は900秒になります
-    trigger:
-        loop all players:
-            if arg-1 is "start":
-                make player execute command "function shimashima:01_game_start"
-                set {sidebar.%loop-player%} to 1
-                set {switch.timer} to "on"
-                set {qua.player} to online player count
-                reduce {qua.player} by {qua.admin}
-                set {surviver} to {qua.player}
-                if arg-2 is set:
-                    set {timer} to arg-2
-                if arg-2 is not set:
-                    set {timer} to 900
-            if arg-1 is "end":
-                make player execute command "function shimashima:01_game_end"
-                set {switch.timer} to "off"
-            if arg-1 is "reset":
-                make player execute command "function shimashima:01_game_reset"
-                set {switch.timer} to "off"
-                set {sidebar.%loop-player%} to 0
-
-
-command /timer <text> <number>:
-    permission: skript.admin
-    permission message:Admin専用コマンドです。
-    usage:/timer <set/add> <時間>
-    trigger:
-        if arg-1 is "set":
-            set {timer} to arg-2
-        if arg-1 is "add":
-            add arg-2 to {timer}
 
 command /debug <text>:
     permission: skript.admin
@@ -107,3 +75,7 @@ command /debug <text>:
             make player execute command "/admin leave"
             set {surviver} to 0
             set {qua.admin} to 0
+            set {qua.player} to 0
+            set {timer} to 0
+            set {switch.timer} to "off"
+ 

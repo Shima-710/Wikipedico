@@ -1,10 +1,21 @@
-#メインのゲームシステム
+# メインのゲームシステム
 #
 #==============================================================================================================================================================================================
+
+# ブロック掘削の可否
+on break:
+    if event-block is log:
+        stop
+    if event-block is planks:
+    else:
+        cancel event
+
 
 # ゲームを待機状態に設定(ゲーム中＝1/ゲーム外＝0)
 on load:
     set {status.%player%} to "待機中"
+    set {surviver} to 0
+
 
 # タイマー({switch.timer}が"on"でタイマー作動)
 every 1 second:
@@ -14,6 +25,8 @@ every 1 second:
         make player execute command "function shimashima:01_game_end"
         set {switch.timer} to "off"
 
+
+# 死亡時処理
 on death:
     set {sidebar.%player%} to 2
     reduce {surviver} by 1
@@ -21,23 +34,4 @@ on death:
 
 
 
-#
-# ブロック掘削の可否
-#on break of stone:
-    cancel event
 
-#on break of grass block:
-    cancel event
-
-#on break of dirt:
-    cancel event
-
-#on mine of any ore:
-    cancel event
-
-on break:
-    if event-block is log:
-        stop
-    if event-block is planks:
-    else:
-        cancel event

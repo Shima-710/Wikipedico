@@ -10,6 +10,7 @@ on join:
     set player's gamemode to adventure
     set {sidebar.%player%} to 0
 
+
     
 
 #playerという権限グループを作っておく。使うかは今後。
