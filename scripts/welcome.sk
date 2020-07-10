@@ -7,8 +7,8 @@ on join:
     message "&7[注意事項]" to player
     message "&7ゲーム開始前に確実にルールを把握してください。" to player
     message "&7軽量化MOD以外のMODの導入は認められていません。" to player
+    message "&7ver.:1.0(alpha)" to player
     set player's gamemode to adventure
-    set {sidebar.%player%} to 0
 
 
     
@@ -17,3 +17,4 @@ on join:
 
 on first join:
     execute console command "lp user %player% parent add player"
+    set {sidebar.%player%} to 0
