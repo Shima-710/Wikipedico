@@ -17,16 +17,16 @@ every 1 second:
             set score "しばらくお待ちください" in sidebar of loop-player to -1
         if {sidebar.%loop-player%} is 1:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
-            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
             if {admin.%loop-player%} is not "true":
                 set score "&a状態      &r: 生存" in sidebar of loop-player to 0
         if {sidebar.%loop-player%} is 2:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
-            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
             if {admin.%loop-player%} is not "true":
                 set score "&a状態      &r: 死亡" in sidebar of loop-player to 0
+                set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
         if {admin.%loop-player%} is "true":
-            set score "&a==========================" in sidebar of loop-player to -3
+            set score "&a==========================" in sidebar of loop-player to -2
+            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -3
             set score "&astatus     &r: &cadmin" in sidebar of loop-player to -4
             set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -5
             set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -6

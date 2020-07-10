@@ -13,6 +13,9 @@ on break:
         else:
             cancel event
 
+on craft of crafting table:
+    cancel event
+
 
 # ゲームを待機状態に設定(ゲーム中＝1/ゲーム外＝0)
 on load:
