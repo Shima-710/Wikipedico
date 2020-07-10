@@ -26,5 +26,3 @@ execute if entity @a[scores={flied=1}] as @a[scores={flied=1}] run execute if en
 # -----------------
 # ---game system---
 #
-# 死亡スコア＝1でスペクテイター
-execute if entity @a[scores={death=1}] run gamemode spectator

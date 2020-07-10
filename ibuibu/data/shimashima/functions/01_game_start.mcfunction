@@ -49,7 +49,7 @@ spreadplayers ~ ~ 10 100 false @e[type=armor_stand,team=spread]
 # んで狭める中心をランダムで決める
 execute at @r[team=spread,limit=1] as @r[team=spread,limit=1] run worldborder center ~ ~ 
 # いざ狭める
-worldborder set 5 900
+worldborder set 1 900
 # その他設定
 worldborder damage amount 0.1
 worldborder damage buffer 0
