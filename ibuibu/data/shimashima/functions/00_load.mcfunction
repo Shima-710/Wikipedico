@@ -88,6 +88,12 @@
 # エリトラ使用後に歩いたこと検知
     scoreboard objectives add walk custom:walk_one_cm
 
+# ワールドボーダーの範囲決定用のスコアぼ
+    scoreboard objectives add wb_range dummy
+
+# ワールドボーダーの時間用のスコアぼ
+    scoreboard objectives add wb_time dummy
+
 
 #=========================================================================================================================
 #

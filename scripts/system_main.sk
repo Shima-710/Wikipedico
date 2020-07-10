@@ -24,12 +24,12 @@ on load:
 
 
 # タイマー({switch.timer}が"on"でタイマー作動)
-every 1 second:
-    if {switch.timer} is "on":
-        reduce {timer} by 1
-    if {timer} is 0:
-        make player execute command "function shimashima:01_game_end"
-        set {switch.timer} to "off"
+#every 1 second:
+    #if {switch.timer} is "on":
+        #reduce {timer} by 1
+    #if {timer} is 0:
+        #make player execute command "function shimashima:01_game_end"
+        #set {switch.timer} to "off"
 
 
 
@@ -40,14 +40,13 @@ on death of player:
     set {rank.%player%} to {rank.dummy}
     reduce {rank.dummy} by 1
     reduce {surviver} by 1
-    add {kills.%attaker%} to 1
+    add 1 to {kills.%attaker%}
     set player's gamemode to spectator
-    if attacker is not player:
-        broadcast "&c%victim% &rdead"
-        stop
-    else:
+    if {rank.dummy} is 1:
+        execute console command "function shimashima:01_game_end"
+    if attacker is player:
         broadcast "&b%attacker% &r✈► &c%victim%"
-
-
+    else:
+        broadcast "&c%victim% &rdead"
 
 

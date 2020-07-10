@@ -8,7 +8,7 @@ command /game <text> [<number>]:
     trigger:
         loop all players:
             if arg-1 is "start":
-                make player execute command "function shimashima:01_game_start"
+                execute console command "function shimashima:cd_3"
                 set {sidebar.%loop-player%} to 1
                 set {switch.timer} to "on"
                 set {qua.player} to online player count
@@ -20,10 +20,10 @@ command /game <text> [<number>]:
                 if arg-2 is not set:
                     set {timer} to 900
             if arg-1 is "end":
-                make player execute command "function shimashima:01_game_end"
+                execute console command "function shimashima:01_game_end"
                 set {switch.timer} to "off"
             if arg-1 is "reset":
-                make player execute command "function shimashima:01_game_reset"
+                execute console command "function shimashima:01_game_reset"
                 set {switch.timer} to "off"
                 set {sidebar.%loop-player%} to 0
 

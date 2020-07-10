@@ -19,21 +19,19 @@ every 1 second:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
             if {admin.%loop-player%} is not "true":
                 set score "&a状態      &r: 生存" in sidebar of loop-player to 0
-                set score "&aキル数    &r: %{kills.%player%}%人" in sidebar of loop-player to -2
+                set score "&aキル数    &r: %{kills.%loop-player%}%人" in sidebar of loop-player to -2
         if {sidebar.%loop-player%} is 2:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
             if {admin.%loop-player%} is not "true":
                 set score "&a状態      &r: 死亡" in sidebar of loop-player to 0
-                set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -2
-                set score "&a順位      &r: %{rank.%player%}%位" in sidebar of loop-player to -3
-                set score "&aキル数    &r: %{kills.%player%}%人" in sidebar of loop-player to -4
+                set score "&a順位      &r: %{rank.%loop-player%}%位" in sidebar of loop-player to -2
+                set score "&aキル数    &r: %{kills.%loop-player%}%人" in sidebar of loop-player to -3
         if {admin.%loop-player%} is "true":
             set score "&a==========================" in sidebar of loop-player to -90
-            set score "&a残り時間  &r: %{timer}%秒" in sidebar of loop-player to -91
-            set score "&astatus     &r: &cadmin" in sidebar of loop-player to -92
-            set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -93
-            set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -94
-            set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -95
+            set score "&astatus     &r: &cadmin" in sidebar of loop-player to -91
+            set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -92
+            set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -93
+            set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -94
             if {sidebar.%loop-player%} is 0:
                 stop
             else:
