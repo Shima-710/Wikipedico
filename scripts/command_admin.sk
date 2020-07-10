@@ -67,6 +67,24 @@ command /admin <text> [<player>]:
                     reduce {qua.admin} by 1
 
 
+command /destroyable <text>:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        if arg-1 is "true":
+            set {destroyable} to "true"
+            message "ブロックの破壊が可能になりました" to player
+        if arg-1 is "false":
+            set {destroyable} to "false"
+            message "ブロックの破壊が不可能になりました" to player
+        if arg-1 is not set:
+            if {destroyable} is "true":
+                message "ブロックの破壊は可能です" to player
+            else:
+                message "ブロックの破壊は不可能です" to player
+
+
+
 command /debug:
     permission: skript.admin
     permission message:Admin専用コマンドです。

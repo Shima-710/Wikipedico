@@ -12,8 +12,8 @@ effect give @a[team=admin,gamemode=spectator] night_vision 1000000 255 true
 # ---for player---
 #
 # ロビー状態では耐性・満腹度回復を付与
-execute if score on_game on_game matches 1 run effect give @a night_vision 1000000 255 true
-execute if score on_game on_game matches 1 run effect give @a saturation 1000000 255 true
+execute if score on_game on_game matches 0 run effect give @a resistance 1000000 255 true
+execute if score on_game on_game matches 0 run effect give @a saturation 1000000 255 true
 
 # エリトラで飛んだよ検知からの消去
 execute as @a[scores={fly=1..}] run scoreboard players set @s flied 1

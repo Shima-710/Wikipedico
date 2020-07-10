@@ -4,11 +4,14 @@
 
 # ブロック掘削の可否
 on break:
-    if event-block is log:
+    if {destroyable} is "true":
         stop
-    if event-block is planks:
     else:
-        cancel event
+        if event-block is log:
+            stop
+        if event-block is planks:
+        else:
+            cancel event
 
 
 # ゲームを待機状態に設定(ゲーム中＝1/ゲーム外＝0)
