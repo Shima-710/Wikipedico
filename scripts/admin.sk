@@ -24,14 +24,14 @@ command /admin <text> [<player>]:
                 execute console command "lp user %arg-2% parent add skript.admin"
                 message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
                 message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
-                set {sidebar.%arg-2%} to 9
+                set {admin.%arg-2%} to "true"
                 add 1 to {qua.admin}
             if arg-2 is not set:
                 make player execute command "/gamemode creative %player%"
                 make player execute command "/team join admin %player%"
                 execute console command "lp user %player% parent add skript.admin"
                 message "&b[admin] &r%player%をAdminに追加しました。" to player
-                set {sidebar.%player%} to 9
+                set {admin.%player%} to "true"
                 add 1 to {qua.admin}
             
             stop
@@ -42,6 +42,7 @@ command /admin <text> [<player>]:
                 make player execute command "/team leave %arg-2%"
                 message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                 message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
+                set {admin.%arg-2%} to "false"
                 set {sidebar.%arg-2%} to 0
                 reduce {qua.admin} by 1
             if arg-2 is not set:
@@ -49,6 +50,7 @@ command /admin <text> [<player>]:
                 make player execute command "/effect clear @s minecraft:night_vision"
                 make player execute command "/team leave %player%"
                 message "&b[admin] &r%player%をAdminから除外しました。" to player
+                set {admin.%player%} to "false"
                 set {sidebar.%player%} to 0
                 reduce {qua.admin} by 1
             stop
@@ -59,25 +61,28 @@ command /game <text> [<number>]:
     permission message:Admin専用コマンドです。
     usage:/game <start/end/reset> [<時間>] ※時間未設定の場合は900秒になります
     trigger:
-        if arg-1 is "start":
-            make player execute command "function shimashima:01_game_start"
-            set {switch.timer} to "on"
-            set {qua.player} to %online player count%
-            reduce {qua.player} by {qua.admin}
-            set {surviver} to {qua.player}
-            if arg-2 is set:
-                set {timer} to arg-2
-            if arg-2 is not set:
-                set {timer} to 900
-        if arg-1 is "end":
-            make player execute command "function shimashima:01_game_end"
-            set {switch.timer} to "off"
-        if arg-1 is "reset":
-            make player execute command "function shimashima:01_game_reset"
-            set {switch.timer} to "off"
+        loop all players:
+            if arg-1 is "start":
+                make player execute command "function shimashima:01_game_start"
+                set {sidebar.%loop-player%} to 1
+                set {switch.timer} to "on"
+                set {qua.player} to online player count
+                reduce {qua.player} by {qua.admin}
+                set {surviver} to {qua.player}
+                if arg-2 is set:
+                    set {timer} to arg-2
+                if arg-2 is not set:
+                    set {timer} to 900
+            if arg-1 is "end":
+                make player execute command "function shimashima:01_game_end"
+                set {switch.timer} to "off"
+            if arg-1 is "reset":
+                make player execute command "function shimashima:01_game_reset"
+                set {switch.timer} to "off"
+                set {sidebar.%loop-player%} to 0
 
 
-command /timer <number>
+command /timer <number>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     usage:/timer <number>
