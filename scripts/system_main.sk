@@ -10,6 +10,7 @@ on break:
         if event-block is log:
             stop
         if event-block is planks:
+            stop
         else:
             cancel event
 
@@ -39,7 +40,7 @@ on death of player:
     set {rank.%player%} to {rank.dummy}
     reduce {rank.dummy} by 1
     reduce {surviver} by 1
-    add 1 to {kills.%attaker%}
+    add 1 to {kills.%attacker%}
     set player's gamemode to spectator
     if {rank.dummy} is 1:
         execute console command "function shimashima:01_game_end"

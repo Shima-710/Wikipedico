@@ -34,7 +34,7 @@ command /destroyable <text>:
 command /annti <number> <number>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
-    usage:/range <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
+    usage:/annti <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
     trigger:
         execute console command "worldborder set %arg-1%"
         message "&b[admin] &r安地のサイズを%arg-1%に変更しました" to player

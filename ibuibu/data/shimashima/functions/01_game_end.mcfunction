@@ -13,4 +13,4 @@ playsound ui.toast.challenge_complete master @a ~ ~ ~
 effect give @a[gamemode=survival] glowing 20 255 true
 
 # ロビー戻ります
-schedule function shimashima:go_lobby 3s
+schedule function shimashima:go_lobby 5s
