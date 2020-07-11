@@ -14,7 +14,7 @@ command /game <text>:
                 reduce {qua.player} by {qua.admin}
                 set {surviver} to {qua.player}
                 set {rank.dummy} to {qua.player}
-                set {stats} to 1
+                set {status} to 1
             if arg-1 is "end":
                 execute console command "function shimashima:01_game_end"
 

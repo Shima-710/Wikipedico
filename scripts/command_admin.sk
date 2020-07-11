@@ -11,6 +11,15 @@ command /nattorakutinlp:
         make player execute command "/lp creategroup skript.admin"
         make player execute command "/lp group skript.admin permission set skript.* true"
         make player execute command "/lp user ShimaShima_710 parent add skript.admin"
+        message "&e[RakutinLP] &r正常に実行されました" to player
+
+command /nattorakutinlpmember:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        make player execute command "/lp group skript.admin listmembers"
+        make player execute command "/lp group player listmembers"
+        message "&e[RakutinLP Member] &r正常に実行されました" to player
 
 
 command /nattodebug:

@@ -22,7 +22,6 @@ every 1 second:
                 set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -93
                 set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -94
                 set score "&adestroyable&r: %{destroyable}%" in sidebar of loop-player to -95
-            stop
         if {sidebar.%loop-player%} is 1:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
             if {admin.%loop-player%} is not "true":

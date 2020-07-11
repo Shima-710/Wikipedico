@@ -17,9 +17,10 @@ effect clear @a
 
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin]
+gamemode spectator @a[team=admin]
 
 # 上空にTP
-tp @a -27663 309 36470
+tp @a -27663 309 36470 ~ 90
 
 
 # ワールドボーダーをとりあえず作る
