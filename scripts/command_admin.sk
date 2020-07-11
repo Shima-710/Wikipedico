@@ -97,3 +97,9 @@ command /book:
     permission message:Admin専用コマンドです。
     trigger:
         make player execute command "function shimashima:02_admin-book"
+
+command /murabito:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        make player execute command "function shimashima:02_murabito"

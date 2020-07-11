@@ -25,7 +25,7 @@ tp @a -27663 309 36470 ~ 90
 
 # ワールドボーダーをとりあえず作る
 worldborder center -27663 36470 
-worldborder add 50000
+worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 10s
 # その他設定

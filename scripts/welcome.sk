@@ -1,5 +1,5 @@
-#on join 関係はここ
-#鯖にプレイヤーの存在が確認されると実行
+# on join 関係はここ
+#
 #==============================================================================================================================================================================================
 
 on first join:
@@ -12,7 +12,8 @@ on join:
     message "&7[注意事項]" to player
     message "&7ゲーム開始前に確実にルールを把握してください。" to player
     message "&7軽量化MOD以外のMODの導入は認められていません。" to player
-    message "&7ver.:1.0(alpha)" to player
+    message "&7[ver.]" to player
+    message "&71.0(alpha)" to player
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0

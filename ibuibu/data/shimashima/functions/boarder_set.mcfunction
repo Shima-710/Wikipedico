@@ -7,7 +7,7 @@ tellraw @a ["",{"text":"[\u904b\u55b6] ","color":"aqua"},{"text":"\u5883\u754c\u
 playsound block.note_block.basedrum master @a ~ ~ ~ 
 
 # 範囲
-worldborder set 500
+worldborder set 1000
 execute if score wb_range wb_range matches 100 run worldborder set 100
 execute if score wb_range wb_range matches 200 run worldborder set 200
 execute if score wb_range wb_range matches 300 run worldborder set 300
@@ -20,7 +20,7 @@ execute if score wb_range wb_range matches 900 run worldborder set 900
 execute if score wb_range wb_range matches 1000 run worldborder set 1000
 
 # 縮小開始
-worldborder set 1 900
+worldborder set 1 500
 execute if score wb_time wb_time matches 100 run worldborder set 1 100
 execute if score wb_time wb_time matches 200 run worldborder set 1 200
 execute if score wb_time wb_time matches 300 run worldborder set 1 300

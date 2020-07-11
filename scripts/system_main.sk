@@ -36,15 +36,16 @@ on craft of crafting table:
 
 # 死亡時処理
 on death of player:
-    set {sidebar.%player%} to 2
-    set {rank.%player%} to {rank.dummy}
-    reduce {rank.dummy} by 1
-    reduce {surviver} by 1
-    add 1 to {kills.%attacker%}
-    set player's gamemode to spectator
-    if {rank.dummy} is 1:
-        execute console command "function shimashima:01_game_end"
-    if attacker is player:
-        broadcast "&b%attacker% &r✈► &c%victim%"
-    else:
-        broadcast "&c%victim% &rdead (%{rank.%player%}%位)"
+    if {status} is 1:
+        set {sidebar.%player%} to 2
+        set {rank.%player%} to {rank.dummy}
+        reduce {rank.dummy} by 1
+        reduce {surviver} by 1
+        add 1 to {kills.%attacker%}
+        set player's gamemode to spectator
+        if {rank.dummy} is 1:
+            execute console command "function shimashima:01_game_end"
+        if attacker is player:
+            broadcast "&b%attacker% &r✈► &c%victim%"
+        else:
+            broadcast "&c%victim% &rdead (%{rank.%player%}%位)"
