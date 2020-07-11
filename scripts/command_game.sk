@@ -1,41 +1,50 @@
 # ゲーム用
 #==============================================================================================================================================================================================            
 
-command /game <text> [<number>]:
+command /game <text>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
-    usage:/game <start/end/reset> [<時間>] ※時間未設定の場合は900秒になります
+    usage:/game <start/end/reset>
     trigger:
         loop all players:
             if arg-1 is "start":
                 execute console command "function shimashima:cd_3"
                 set {sidebar.%loop-player%} to 1
-                set {switch.timer} to "on"
                 set {qua.player} to online player count
                 reduce {qua.player} by {qua.admin}
                 set {surviver} to {qua.player}
                 set {rank.dummy} to {qua.player}
-                if arg-2 is set:
-                    set {timer} to arg-2
-                if arg-2 is not set:
-                    set {timer} to 900
+                set {stats} to 1
             if arg-1 is "end":
                 execute console command "function shimashima:01_game_end"
-                set {switch.timer} to "off"
-            if arg-1 is "reset":
-                execute console command "function shimashima:01_game_reset"
-                set {switch.timer} to "off"
-                set {sidebar.%loop-player%} to 0
 
 
-command /timer <text> <number>:
+command /destroyable <text>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
-    usage:/timer <set/add> <時間>
     trigger:
-        if arg-1 is "set":
-            set {timer} to arg-2
-        if arg-1 is "add":
-            add arg-2 to {timer}
+        if arg-1 is "true":
+            set {destroyable} to "true"
+            broadcast "&b[運営] &rブロックの破壊が可能になりました"
+        if arg-1 is "false":
+            set {destroyable} to "false"
+            broadcast "&b[運営] &rブロックの破壊が不可能になりました"
 
 
+command /annti <number> <number>:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    usage:/range <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
+    trigger:
+        execute console command "worldborder set %arg-1%"
+        message "&b[admin] &r安地のサイズを%arg-1%に変更しました" to player
+        execute console command "worldborder set 1 %arg-2%"
+        message "&b[admin] &r収縮完了までの時間を%arg-1%に変更しました" to player
+
+command /anntispeed <number>:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    usage:/speed <速度> ※速度の値は最終安地までの残り時間に同じ
+    trigger:
+        execute console command "worldborder set 1 %arg-1%"
+        message "&b[admin] &r収縮完了までの時間を%arg-1%に変更しました" to player

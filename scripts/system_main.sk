@@ -15,12 +15,11 @@ on break:
 
 on craft of crafting table:
     cancel event
+    message "&b[運営] &r作業台の作成はできません" to player
 
 
 # ゲームを待機状態に設定(ゲーム中＝1/ゲーム外＝0)
-on load:
-    set {status.%player%} to "待機中"
-    set {surviver} to 0
+
 
 
 # タイマー({switch.timer}が"on"でタイマー作動)
@@ -47,6 +46,4 @@ on death of player:
     if attacker is player:
         broadcast "&b%attacker% &r✈► &c%victim%"
     else:
-        broadcast "&c%victim% &rdead"
-
-
+        broadcast "&c%victim% &rdead (%{rank.%player%}%位)"

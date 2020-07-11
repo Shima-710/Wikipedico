@@ -3,6 +3,8 @@
 
 # いざ狭める
 execute at @r[team=!admin,limit=1] run worldborder center ~ ~ 
+tellraw @a ["",{"text":"[\u904b\u55b6] ","color":"aqua"},{"text":"\u5883\u754c\u306e\u53ce\u7e2e\u304c\u59cb\u307e\u308a\u307e\u3057\u305f","color":"white"}]
+playsound block.note_block.basedrum master @a ~ ~ ~ 
 
 # 範囲
 worldborder set 500

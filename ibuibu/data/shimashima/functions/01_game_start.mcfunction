@@ -23,12 +23,15 @@ tp @a -27663 309 36470
 
 
 # ワールドボーダーをとりあえず作る
-worldborder center ~ ~ 
+worldborder center -27663 36470 
 worldborder add 50000
 # んで狭める中心をランダムで決める
-schedule function shimashima:boarder_set 15s
+schedule function shimashima:boarder_set 10s
 # その他設定
 worldborder damage amount 0.5
 worldborder damage buffer 0
 worldborder warning distance 0
 worldborder warning time 10
+
+# ibuibu mode
+execute if score ibuibumode ibuibumode matches 1 run effect give iibukuro glowing 1000000 255 true

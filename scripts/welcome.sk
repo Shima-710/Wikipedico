@@ -2,6 +2,11 @@
 #鯖にプレイヤーの存在が確認されると実行
 #==============================================================================================================================================================================================
 
+on first join:
+    execute console command "lp user %player% parent add player"
+    set {sidebar.%player%} to 0
+
+
 on join:
     set the join message to "&e%player% が参加しました！"
     message "&7[注意事項]" to player
@@ -9,12 +14,15 @@ on join:
     message "&7軽量化MOD以外のMODの導入は認められていません。" to player
     message "&7ver.:1.0(alpha)" to player
     set player's gamemode to adventure
+    set {kills.%player%} to 0
+    set {rank.%player%} to "--"
 
 
-    
-
-#playerという権限グループを作っておく。使うかは今後。
-
-on first join:
-    execute console command "lp user %player% parent add player"
-    set {sidebar.%player%} to 0
+on load:
+    set {status} to 0
+    set {surviver} to 0
+    set {qua.admin} to 0
+    set {qua.player} to 0
+    set {timer} to 0
+    set {switch.timer} to "off"
+    execute console command "function shimashima:01_replay"

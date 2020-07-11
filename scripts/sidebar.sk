@@ -3,18 +3,26 @@
 #==============================================================================================================================================================================================
 
 # {sidebar.%player%}について
-# 0 -> ゲーム外
+# 0 -> ゲーム外＜廃止＞
 # 1 -> ゲーム中（生存）
 # 2 -> ゲーム中（死亡）
-# 9 -> ゲームマスター
+# 9 -> ゲームマスター＜廃止＞
 
 every 1 second:
     loop all players:
         wipe loop-player's sidebar
         set name of sidebar of loop-player to "&l%loop-player's name%"
-        if {sidebar.%loop-player%} is 0:
+        if {status} is 0:
             set score "&a状態      &r: 準備中" in sidebar of loop-player to 0
             set score "しばらくお待ちください" in sidebar of loop-player to -1
+            if {admin.%loop-player%} is "true":
+                set score "&a==========================" in sidebar of loop-player to -90
+                set score "&astatus     &r: &cadmin" in sidebar of loop-player to -91
+                set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -92
+                set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -93
+                set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -94
+                set score "&adestroyable&r: %{destroyable}%" in sidebar of loop-player to -95
+            stop
         if {sidebar.%loop-player%} is 1:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
             if {admin.%loop-player%} is not "true":
@@ -32,6 +40,7 @@ every 1 second:
             set score "&aonline     &r: %online player count%人" in sidebar of loop-player to -92
             set score "&aqua.player &r: %{qua.player}%人" in sidebar of loop-player to -93
             set score "&aqua.admin  &r: %{qua.admin}%人" in sidebar of loop-player to -94
+            set score "&adestroyable&r: %{destroyable}%" in sidebar of loop-player to -95
             if {sidebar.%loop-player%} is 0:
                 stop
             else:

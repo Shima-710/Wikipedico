@@ -94,6 +94,10 @@
 # ワールドボーダーの時間用のスコアぼ
     scoreboard objectives add wb_time dummy
 
+# ibuibu mode
+    scoreboard objectives add ibuibumode dummy
+    scoreboard players set ibuibumode ibuibumode 0
+
 
 #=========================================================================================================================
 #

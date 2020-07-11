@@ -1,7 +1,8 @@
 # admin用
+# 頭にnattoがついてるコマンドは基本使わない
 #==============================================================================================================================================================================================
 
-command /rakutinlp:
+command /nattorakutinlp:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
@@ -10,6 +11,20 @@ command /rakutinlp:
         make player execute command "/lp creategroup skript.admin"
         make player execute command "/lp group skript.admin permission set skript.* true"
         make player execute command "/lp user ShimaShima_710 parent add skript.admin"
+
+
+command /nattodebug:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        make player execute command "/admin leave"
+        set {surviver} to 0
+        set {qua.admin} to 0
+        set {qua.player} to 0
+        set {timer} to 0
+        set {switch.timer} to "off"
+        execute console command "function shimashima:01_replay"
+
 
 
 command /admin <text> [<player>]:
@@ -67,34 +82,4 @@ command /admin <text> [<player>]:
                     reduce {qua.admin} by 1
 
 
-command /destroyable <text>:
-    permission: skript.admin
-    permission message:Admin専用コマンドです。
-    trigger:
-        if arg-1 is "true":
-            set {destroyable} to "true"
-            message "ブロックの破壊が可能になりました" to player
-        if arg-1 is "false":
-            set {destroyable} to "false"
-            message "ブロックの破壊が不可能になりました" to player
-        if arg-1 is not set:
-            if {destroyable} is "true":
-                message "ブロックの破壊は可能です" to player
-            else:
-                message "ブロックの破壊は不可能です" to player
 
-
-
-command /debug:
-    permission: skript.admin
-    permission message:Admin専用コマンドです。
-    trigger:
-        make player execute command "/admin leave"
-        set {surviver} to 0
-        set {qua.admin} to 0
-        set {qua.player} to 0
-        set {timer} to 0
-        set {switch.timer} to "off"
-        execute console command "function shimashima:01_replay"
-
- 
