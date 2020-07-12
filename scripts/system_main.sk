@@ -18,6 +18,14 @@ on craft of crafting table:
     cancel event
     message "&b[運営] &r作業台の作成はできません" to player
 
+on click on armor stand:
+    if {destroyable} is "false":
+        cancel event
+    
+on left click on item flame:
+    if {destroyable} is "false":
+        cancel event
+
 
 # ゲームを待機状態に設定(ゲーム中＝1/ゲーム外＝0)
 
@@ -37,6 +45,7 @@ on craft of crafting table:
 # 死亡時処理
 on death of player:
     if {status} is 1:
+        execute console command "spawnpoint %plauer% -27663 309 36470"
         set {sidebar.%player%} to 2
         set {rank.%player%} to {rank.dummy}
         reduce {rank.dummy} by 1

@@ -23,8 +23,22 @@ command /game <text>:
                 set {surviver} to {qua.player}
                 set {rank.dummy} to {qua.player}
                 set {status} to 1
+                broadcast "&b[運営] &rゲームを開始します..."
+                wait 1 seconds
+                execute console command "function shimashima:cd_3"
+                play sound "block.note_block.harp" to loop-player
+                wait 1 seconds
+                execute console command "function shimashima:cd_2"
+                play sound "block.note_block.harp" to loop-player
+                wait 1 seconds
+                execute console command "function shimashima:cd_1"
+                play sound "block.note_block.harp" to loop-player
+                wait 1 seconds
+                execute console command "function shimashima:01_game_start"
+                play sound "block.anvil.place" to loop-player
             if arg-1 is "end":
                 execute console command "function shimashima:01_game_end"
+                play sound "ui.toast.challenge_complete" to loop-player
 
 
 command /destroyable <text>:
@@ -47,7 +61,8 @@ command /annti <number> <number>:
         execute console command "worldborder set %arg-1%"
         broadcast "&b[運営] &r安地のサイズを%arg-1%に変更しました"
         execute console command "worldborder set 10 %arg-2%"
-        broadcast "&b[運営] &r収縮完了までの時間を%arg-1%に変更しました"
+        broadcast "&b[運営] &r収縮完了までの時間を%arg-2%に変更しました"
+        
 
 command /anntispeed <number>:
     permission: skript.admin

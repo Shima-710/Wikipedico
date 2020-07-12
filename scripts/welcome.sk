@@ -15,7 +15,7 @@ on join:
     message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
     message " " to player
     message "&7[ver.]" to player
-    message "&7 1.1.3(alpha)" to player
+    message "&7 1.1.4(alpha)" to player
     message " " to player
     if {status} is 0:
         set player's gamemode to adventure
@@ -41,6 +41,7 @@ on quit:
 
 on server start:
     execute console command "function shimashima:01_replay"
+    execute console command "worldborder set 50000"
     set {status} to 0
     set {surviver} to 0
     set {qua.admin} to 0

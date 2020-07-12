@@ -3,6 +3,7 @@
 
 # ゲーム中に設定
 scoreboard players set on_game on_game 1
+scoreboard players set @a[team=!admin] play 1
 
 # 参加者のエフェクトをクリアー
 effect clear @a
@@ -10,7 +11,6 @@ effect clear @a
 # タイトル
 title @a times 0 40 20
 title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
-playsound block.anvil.place master @a ~ ~ ~
 
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra
