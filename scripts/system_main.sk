@@ -14,6 +14,14 @@ on break:
         else:
             cancel event
 
+on place:
+    if event-block is log:
+        wait 5 seconds
+        break event-block
+    if event-block is planks:
+        wait 5 seconds
+        break event-block
+
 on craft of crafting table:
     cancel event
     close player'S inventory

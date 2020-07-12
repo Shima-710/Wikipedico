@@ -8,6 +8,9 @@ scoreboard players set @a[team=!admin] play 1
 # 参加者のエフェクトをクリアー
 effect clear @a
 
+# さよならいぶいぶブック
+clear @a written_book
+
 # タイトル
 title @a times 0 40 20
 title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
@@ -34,7 +37,7 @@ worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 10s
 # その他設定
-worldborder damage amount 0.5
+worldborder damage amount 0.05
 worldborder damage buffer 0
 worldborder warning distance 0
 worldborder warning time 10

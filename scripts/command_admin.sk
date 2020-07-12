@@ -33,6 +33,14 @@ command /nattodebug:
         execute console command "function shimashima:01_replay"
 
 
+command /nattoreset:
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        loop all players:
+            execute console command "co rollback time: 1d radius: ##world user:%loop-player%"
+
+
 
 command /admin <text> [<player>]:
     permission: skript.admin
@@ -77,7 +85,6 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode adventure %arg-2%"
                     make player execute command "/effect clear %arg-2% minecraft:night_vision"
                     make player execute command "/team leave %arg-2%"
-                    execute console command "deop %arg-2%"
                     message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                     message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
                     set {admin.%arg-2%} to "false"
@@ -92,7 +99,6 @@ command /admin <text> [<player>]:
                     make player execute command "/gamemode adventure %player%"
                     make player execute command "/effect clear @s minecraft:night_vision"
                     make player execute command "/team leave %player%"
-                    execute console command "deop %player%"
                     message "&b[admin] &r%player%をAdminから除外しました。" to player
                     set {admin.%player%} to "false"
                     set the player's tab name to "%name of player%"

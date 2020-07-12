@@ -21,7 +21,7 @@ on join:
     message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
     message " " to player
     message "&7[ver.]" to player
-    message "&7 1.1.5(alpha)" to player
+    message "&7 1.2.5(alpha)" to player
     message " " to player
     if {status} is 0:
         set player's gamemode to adventure
@@ -32,17 +32,21 @@ on join:
     if {status} is 1:
         set player's gamemode to spectator
         set {sidebar.%player%} to 2
+        set {play} to "not"
         message "&b[運営] &7現在ゲームが進行中のため状態が死亡に設定されました。"
 
 
 on quit:
     set the quit message to "&e%player% がログアウトしました"
     if {status} is 1:
-        set {sidebar.%player%} to 2
-        set {rank.%player%} to {rank.dummy}
-        reduce {rank.dummy} by 1
-        reduce {surviver} by 1
-        set player's gamemode to spectator
+        if {admin.%player%} is not "true":
+            if {sidebar.%player%} is not 2:
+                if {play} is not "not":
+                    set {sidebar.%player%} to 2
+                    set {rank.%player%} to {rank.dummy}
+                    reduce {rank.dummy} by 1
+                    reduce {surviver} by 1
+                    set player's gamemode to spectator
 
 
 on server start:
@@ -56,6 +60,8 @@ on server start:
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
         set {sidebar.%loop-player%} to 0
+        set {kills.%loop-player%} to 0
+        set {rank.%loop-player%} to "--"
         set the loop-player's tab name to "%name of loop-player%"
         set the loop-player's chat name to "%name of loop-player%"
         set the loop-player's display name to "%name of loop-player%"

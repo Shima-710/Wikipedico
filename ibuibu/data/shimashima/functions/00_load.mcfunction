@@ -95,9 +95,11 @@
 
 # ワールドボーダーの範囲決定用のスコアぼ
     scoreboard objectives add wb_range dummy
+    scoreboard players set wb_range wb_range 0
 
 # ワールドボーダーの時間用のスコアぼ
     scoreboard objectives add wb_time dummy
+    scoreboard players set wb_time wb_time 0
 
 # ibuibu mode
     scoreboard objectives add ibuibumode dummy
