@@ -9,17 +9,21 @@ on first join:
 
 on join:
     set the join message to "&e%player% が参加しました！"
+    message " " to player
     message "&7[注意事項]" to player
-    message "&7ゲーム開始前に確実にルールを把握してください。" to player
-    message "&7軽量化MOD以外のMODの導入は認められていません。" to player
+    message "&7 ゲーム開始前に確実にルールを把握してください。" to player
+    message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
+    message " " to player
     message "&7[ver.]" to player
-    message "&71.0(alpha)" to player
+    message "&7 1.1.3(alpha)" to player
+    message " " to player
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
         set {kills.%player%} to 0
         set {rank.%player%} to "--"
-    else:
+        stop
+    if {status} is 1:
         set player's gamemode to spectator
         set {sidebar.%player%} to 2
         message "&b[運営] &7現在ゲームが進行中のため状態が死亡に設定されました。"
@@ -35,13 +39,13 @@ on quit:
         set player's gamemode to spectator
 
 
-on load:
+on server start:
     execute console command "function shimashima:01_replay"
+    set {status} to 0
+    set {surviver} to 0
+    set {qua.admin} to 0
+    set {qua.player} to 0
     loop all players:
-        set {status} to 0
-        set {surviver} to 0
-        set {qua.admin} to 0
-        set {qua.player} to 0
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
-        
+        set {sidebar.%loop-player%} to 0

@@ -1,6 +1,12 @@
 # ゲームスタートするよお
 #=========================================================================================================================
 
+# ゲーム中に設定
+scoreboard players set on_game on_game 1
+
+# 参加者のエフェクトをクリアー
+effect clear @a
+
 # タイトル
 title @a times 0 40 20
 title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
@@ -8,16 +14,15 @@ playsound block.anvil.place master @a ~ ~ ~
 
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra
-
-# ゲーム中に設定
-scoreboard players set on_game on_game 1
-
-# 参加者のエフェクトをクリアー
-effect clear @a
+# エリトラ落下死防止
+effect give @a[team=!admin] resistance 6 255 true
 
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin]
 gamemode spectator @a[team=admin]
+
+# 参加者のネームタグを隠す
+team join nametag @a[team=!admin]
 
 # 上空にTP
 tp @a -27663 309 36470 ~ 90

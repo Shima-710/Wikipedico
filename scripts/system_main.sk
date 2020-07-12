@@ -43,8 +43,6 @@ on death of player:
         reduce {surviver} by 1
         add 1 to {kills.%attacker%}
         set player's gamemode to spectator
-        if {rank.dummy} is 1:
-            execute console command "function shimashima:01_game_end"
         if attacker is player:
             broadcast "&b%attacker% &r✈► &c%victim%"
         else:

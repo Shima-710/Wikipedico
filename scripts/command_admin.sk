@@ -30,8 +30,6 @@ command /nattodebug:
         set {surviver} to 0
         set {qua.admin} to 0
         set {qua.player} to 0
-        set {timer} to 0
-        set {switch.timer} to "off"
         execute console command "function shimashima:01_replay"
 
 

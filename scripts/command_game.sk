@@ -2,6 +2,13 @@
 #
 #==============================================================================================================================================================================================            
 
+command /sidebar:
+    trigger:
+        if {status} is 0:
+            set {sidebar.%player%} to 0
+
+
+
 command /game <text>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
@@ -38,14 +45,14 @@ command /annti <number> <number>:
     usage:/annti <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
     trigger:
         execute console command "worldborder set %arg-1%"
-        message "&b[admin] &r安地のサイズを%arg-1%に変更しました" to player
-        execute console command "worldborder set 1 %arg-2%"
-        message "&b[admin] &r収縮完了までの時間を%arg-1%に変更しました" to player
+        broadcast "&b[運営] &r安地のサイズを%arg-1%に変更しました"
+        execute console command "worldborder set 10 %arg-2%"
+        broadcast "&b[運営] &r収縮完了までの時間を%arg-1%に変更しました"
 
 command /anntispeed <number>:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     usage:/speed <速度> ※速度の値は最終安地までの残り時間に同じ
     trigger:
-        execute console command "worldborder set 1 %arg-1%"
-        message "&b[admin] &r収縮完了までの時間を%arg-1%に変更しました" to player
+        execute console command "worldborder set 10 %arg-1%"
+        broadcast "&b[運営] &r収縮完了までの時間を%arg-1%に変更しました"

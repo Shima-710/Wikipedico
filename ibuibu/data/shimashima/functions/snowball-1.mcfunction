@@ -1,6 +1,5 @@
-#tettesuto
+#雪玉用-1
 #=========================================================================================================================
 
-tp @a -27599 95 37043 0 0
-
-gamemode adventure @a[team=!admin]
+execute at @a[tag=usesb] run tag @e[type=snowball,limit=1,sort=nearest] add imsb
+function shimashima:snowball-2

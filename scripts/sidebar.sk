@@ -8,8 +8,18 @@
 # 2 -> ゲーム中（死亡）
 # 9 -> ゲームマスター＜廃止＞
 
+# {status}について
+# 0 -> 開始前
+# 1 -> ゲーム中
+# 2 -> ゲーム終了後
+
 every 1 second:
+    if {surviver} is 1:
+        execute console command "function shimashima:01_game_end"
+        set {status} to 2
+        set {surviver} to 0
     loop all players:
+        set {emerald.%loop-player%} to amount of emerald in loop-player's inventory
         wipe loop-player's sidebar
         set name of sidebar of loop-player to "&l%loop-player's name%"
         if {status} is 0:
@@ -24,6 +34,7 @@ every 1 second:
                 set score "&adestroyable&r: %{destroyable}%" in sidebar of loop-player to -95
         if {sidebar.%loop-player%} is 1:
             set score "&a残り人数  &r: %{surviver}%人" in sidebar of loop-player to -1
+            set score "&aエメラルド  &r: %{emerald.%loop-player%}%個" in sidebar of loop-player to -3
             if {admin.%loop-player%} is not "true":
                 set score "&a状態      &r: 生存" in sidebar of loop-player to 0
                 set score "&aキル数    &r: %{kills.%loop-player%}%人" in sidebar of loop-player to -2

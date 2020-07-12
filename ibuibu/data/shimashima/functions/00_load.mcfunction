@@ -35,12 +35,13 @@
     #難易度
         difficulty hard
 
+
 #=========================================================================================================================
 #チームの追加・編集
 
 # Admin
     team add admin
-    team modify adimn collisionRule never
+    team modify nametag nametagVisibility never
     team modify adimn color dark_red
 
 # A
@@ -65,6 +66,10 @@
 
 # spread
     team add spread
+
+# nametag
+    team add nametag
+    team modify nametag nametagVisibility never
 
 #=========================================================================================================================
 #スコアボードの追加
@@ -97,6 +102,10 @@
 # ibuibu mode
     scoreboard objectives add ibuibumode dummy
     scoreboard players set ibuibumode ibuibumode 0
+
+# 雪玉爆弾
+    scoreboard objectives add sb used:snowball
+    scoreboard players set @a sb 0
 
 
 #=========================================================================================================================
