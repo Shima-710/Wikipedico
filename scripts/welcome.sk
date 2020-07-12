@@ -7,6 +7,12 @@ on first join:
     set {sidebar.%player%} to 0
 
 
+# ver.管理について
+# 0.0.xはいぶさんに渡すたびに増加
+# 0.x.0は人いれてデバッグするたびに増加
+# x.0.0は大型のアップデート入れたら増加
+# alphaは配信前。配信開始でbetaへ
+
 on join:
     set the join message to "&e%player% が参加しました！"
     message " " to player
@@ -15,7 +21,7 @@ on join:
     message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
     message " " to player
     message "&7[ver.]" to player
-    message "&7 1.1.4(alpha)" to player
+    message "&7 1.1.5(alpha)" to player
     message " " to player
     if {status} is 0:
         set player's gamemode to adventure
@@ -50,3 +56,6 @@ on server start:
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
         set {sidebar.%loop-player%} to 0
+        set the loop-player's tab name to "%name of loop-player%"
+        set the loop-player's chat name to "%name of loop-player%"
+        set the loop-player's display name to "%name of loop-player%"

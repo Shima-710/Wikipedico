@@ -51,6 +51,9 @@ command /admin <text> [<player>]:
                     message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
                     message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
                     set {admin.%arg-2%} to "true"
+                    set the arg-2's tab name to "&c[運営] &r%name of arg-2%"
+                    set the arg-2's chat name to "&c%name of arg-2%"
+                    set the arg-2's display name to "&c%name of arg-2%"
                     add 1 to {qua.admin}
             if arg-2 is not set:
                 if {admin.%player%} is "true":
@@ -62,6 +65,9 @@ command /admin <text> [<player>]:
                     execute console command "lp user %player% parent add skript.admin"
                     message "&b[admin] &r%player%をAdminに追加しました。" to player
                     set {admin.%player%} to "true"
+                    set the player's tab name to "&c[運営] &r%name of player%"
+                    set the player's chat name to "&c%name of player%"
+                    set the player's display name to "&c%name of player%"
                     add 1 to {qua.admin}
         if arg-1 is "leave":
             if arg-2 is set:
@@ -75,6 +81,9 @@ command /admin <text> [<player>]:
                     message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                     message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
                     set {admin.%arg-2%} to "false"
+                    set the arg-2's tab name to "%name of arg-2%"
+                    set the arg-2's chat name to "%name of arg-2%"
+                    set the arg-2's display name to "%name of arg-2%"
                     reduce {qua.admin} by 1
             if arg-2 is not set:
                 if {admin.%player%} is "false":
@@ -86,6 +95,9 @@ command /admin <text> [<player>]:
                     execute console command "deop %player%"
                     message "&b[admin] &r%player%をAdminから除外しました。" to player
                     set {admin.%player%} to "false"
+                    set the player's tab name to "%name of player%"
+                    set the player's chat name to "%name of player%"
+                    set the player's display name to "%name of player%"
                     reduce {qua.admin} by 1
 
 

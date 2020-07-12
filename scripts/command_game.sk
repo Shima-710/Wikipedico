@@ -16,7 +16,6 @@ command /game <text>:
     trigger:
         loop all players:
             if arg-1 is "start":
-                execute console command "function shimashima:cd_3"
                 set {sidebar.%loop-player%} to 1
                 set {qua.player} to online player count
                 reduce {qua.player} by {qua.admin}
@@ -35,10 +34,10 @@ command /game <text>:
                 play sound "block.note_block.harp" to loop-player
                 wait 1 seconds
                 execute console command "function shimashima:01_game_start"
-                play sound "block.anvil.place" to loop-player
+                play sound "entity.enderman.teleport" to loop-player
             if arg-1 is "end":
                 execute console command "function shimashima:01_game_end"
-                play sound "ui.toast.challenge_complete" to loop-player
+                play sound "ui.toast.challenge_complete" with volume 0.8 to loop-player
 
 
 command /destroyable <text>:
