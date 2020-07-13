@@ -26,7 +26,7 @@ mcfunction | Minecraft
 
 Visual Studio Code | Microsoft
 
-  **Extension** : SkriptVS, Datapack Helper Plus
+   **Extension** : SkriptVS, Datapack Helper Plus
 
 **Required Plugins** :
 
