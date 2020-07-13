@@ -8,7 +8,8 @@ Latest Update : 13/07/2020 | Written by ShimaShima_710
 
 Minecraft Plugins  and Datapack for ibuibu
 
-### Developing environment
+
+### Developing Environment
 
 ---
 
@@ -22,11 +23,13 @@ Skript 2.4.1 | Bukkit Plugins
 
 mcfunction | Minecraft
 
-**Editor :**
+**Editor** :
 
 Visual Studio Code | Microsoft
 
-   **Extension** : SkriptVS, Datapack Helper Plus
+**Editor Extension** : 
+
+SkriptVS, Datapack Helper Plus
 
 **Required Plugins** :
 
