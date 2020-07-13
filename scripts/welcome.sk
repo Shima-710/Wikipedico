@@ -1,58 +1,35 @@
-# on join 関係はここ
+# ===============================================================================================================================================================================================
+# on server start/join/quit
 #
-#==============================================================================================================================================================================================
-
-on first join:
-    execute console command "lp user %player% parent add player"
-    set {sidebar.%player%} to 0
+# ===============================================================================================================================================================================================
 
 
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ver.管理について
+# 変数{ver}で管理
 # 0.0.xはいぶさんに渡すたびに増加
 # 0.x.0は人いれてデバッグするたびに増加
 # x.0.0は大型のアップデート入れたら増加
-# alphaは配信前。配信開始でbetaへ
-
-on join:
-    set the join message to "&e%player% が参加しました！"
-    message " " to player
-    message "&7[注意事項]" to player
-    message "&7 ゲーム開始前に確実にルールを把握してください。" to player
-    message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
-    message " " to player
-    message "&7[ver.]" to player
-    message "&7 1.2.5(alpha)" to player
-    message " " to player
-    if {status} is 0:
-        set player's gamemode to adventure
-        set {sidebar.%player%} to 0
-        set {kills.%player%} to 0
-        set {rank.%player%} to "--"
-        stop
-    if {status} is 1:
-        set player's gamemode to spectator
-        set {sidebar.%player%} to 2
-        set {play} to "not"
-        message "&b[運営] &7現在ゲームが進行中のため状態が死亡に設定されました。"
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-on quit:
-    set the quit message to "&e%player% がログアウトしました"
-    if {status} is 1:
-        if {admin.%player%} is not "true":
-            if {sidebar.%player%} is not 2:
-                if {play} is not "not":
-                    set {sidebar.%player%} to 2
-                    set {rank.%player%} to {rank.dummy}
-                    reduce {rank.dummy} by 1
-                    reduce {surviver} by 1
-                    set player's gamemode to spectator
-
-
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# サーバー起動時に(正確にはSkriptが動き始めたら)
+# /reload でも実行
+# 以下実行内容
+# データパック内スコアのリセット
+# ワールドボーダーの拡張
+# 全変数のリセット
+# 全プレイヤーをチームから外す
+# adminを抜けさせる
+# ネームの設定をリセットする
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on server start:
     execute console command "function shimashima:01_replay"
     execute console command "worldborder set 50000"
+    set {ver} to "1.2.5(alpha)"
     set {status} to 0
+    set {destroyable} to "false"
     set {surviver} to 0
     set {qua.admin} to 0
     set {qua.player} to 0
@@ -65,3 +42,78 @@ on server start:
         set the loop-player's tab name to "%name of loop-player%"
         set the loop-player's chat name to "%name of loop-player%"
         set the loop-player's display name to "%name of loop-player%"
+
+
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 初回ログイン時に権限グループ"player"に追加
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on first join:
+    execute console command "lp user %player% parent add player"
+    set {sidebar.%player%} to 0
+
+
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# サーバー参加で実行
+# ゲーム開始前({status}=0)はプレイヤーのキル数・ランクをリセット，ゲーム中({status}=1)の場合は死亡状態に設定
+# {play}="not" はゲーム中に入ってきた変態が出て行った時にバグるのを防いでる．参加状態を補助的に定義
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on join:
+    set the join message to "&e%player% が参加しました！"
+    message " " to player
+    message "&7[注意事項]" to player
+    message "&7 ゲーム開始前に確実にルールを把握してください。" to player
+    message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
+    message " " to player
+    message "&7[ver.]" to player
+    message "&7 %{ver}%" to player
+    message " " to player
+    if {status} is 0:
+        set player's gamemode to adventure
+        set {sidebar.%player%} to 0
+        set {kills.%player%} to 0
+        set {rank.%player%} to "--"
+        stop
+    if {status} is 1:
+        set player's gamemode to spectator
+        set {sidebar.%player%} to 2
+        set {play} to "not"
+        message "&b[運営] &7現在ゲームが進行中のため状態が死亡に設定されました。"
+    if {status} is 2:
+        kick the player due to "ゲームはすでに終了しています。ワールドの入れ替え完了までしばらくお待ちください。"
+
+
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ログアウトした時に実行
+# 条件文は上から
+#   もしゲーム中だったら
+#       もしadminではなかったら
+#           もし死亡状態でなかったら
+#               もし途中参加した人だったら
+#                   残り人数を減らす
+# つまり減らすのはゲーム参加者が生きたままログアウトしたときのみ
+# 以下の条件でログアウトしても残り人数は減らない
+# ・ゲーム外
+# ・ゲーム中にadminが
+# ・ゲーム中に死亡したプレイヤーが
+# ・ゲーム中に参加してなかったプレイヤーが
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on quit:
+    set the quit message to "&e%player% がログアウトしました"
+    if {status} is 1:
+        if {admin.%player%} is not "true":
+            if {sidebar.%player%} is not 2:
+                if {play} is not "not":
+                    set {sidebar.%player%} to 2
+                    set {rank.%player%} to {rank.dummy}
+                    reduce {rank.dummy} by 1
+                    reduce {surviver} by 1
+                    set player's gamemode to spectator

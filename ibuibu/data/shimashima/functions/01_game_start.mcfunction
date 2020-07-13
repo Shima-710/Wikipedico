@@ -18,7 +18,7 @@ title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"c
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra
 # エリトラ落下死防止
-effect give @a[team=!admin] resistance 6 255 true
+effect give @a[team=!admin] resistance 8 255 true
 
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin]
