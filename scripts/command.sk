@@ -73,6 +73,28 @@ command /game <text>:
             execute console command "function shimashima:01_game_end"
             loop all players:
                 play sound "ui.toast.challenge_complete" with volume 0.8 to loop-player
+            wait 11 seconds
+            broadcast "&7======================================================"
+            broadcast "&l&b[試合結果]"
+            broadcast "&e1位 -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
+            broadcast "&62位 -- %{ranking.name.2}% -- %{ranking.kills.2}%kill"
+            broadcast "&63位 -- %{ranking.name.3}% -- %{ranking.kills.3}%kill"
+            broadcast "&64位 -- %{ranking.name.4}% -- %{ranking.kills.4}%kill"
+            broadcast "&65位 -- %{ranking.name.5}% -- %{ranking.kills.5}%kill"
+            broadcast "&66位 -- %{ranking.name.6}% -- %{ranking.kills.6}%kill"
+            broadcast "&67位 -- %{ranking.name.7}% -- %{ranking.kills.7}%kill"
+            broadcast "&68位 -- %{ranking.name.8}% -- %{ranking.kills.8}%kill"
+            broadcast "&69位 -- %{ranking.name.9}% -- %{ranking.kills.9}%kill"
+            broadcast "&610位 -- %{ranking.name.10}% -- %{ranking.kills.10}%kill"
+            broadcast "&7======================================================"
+            wait 1 seconds
+            broadcast "&b[運営] &rキル数ランキングを生成しています..."
+            set {killranking::*} to sorted {killranking.sorted::*}
+            wait 3 seconds
+            broadcast "&7======================================================"
+            broadcast "&l&b[キル数ランキング]"
+            broadcast "%{killranking.sorted::*}%"
+            broadcast "&7======================================================"
 
 
 

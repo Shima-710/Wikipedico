@@ -15,6 +15,9 @@ on death of player:
         reduce {rank.dummy} by 1
         reduce {surviver} by 1
         add 1 to {kills.%attacker%}
+        set {ranking.name.%{rank.%player%}%} to name of player
+        set {ranking.kills.%{rank.%player%}%} to {kills.%player%}
+        set {killranking::*} to "%{kills.%player%}% -- %name of player%"
         set player's gamemode to spectator
         if attacker is player:
             broadcast "&b%attacker% &r✈► &c%victim%"
