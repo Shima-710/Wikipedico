@@ -35,6 +35,6 @@ SkriptVS, Datapack Helper Plus
 
 Skript 2.4.1
 
-LuckPerms
+LuckPerms 5.1.45
 
-skRayFall
+skRayFall 1.9.20

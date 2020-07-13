@@ -43,12 +43,12 @@ on break:
 # ブロック設置後に削除
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #on place:
-    if event-block is log:
-        wait 5 seconds
-        break event-block
-    if event-block is planks:
-        wait 5 seconds
-        break event-block
+    #if event-block is log:
+        #wait 5 seconds
+        #break event-block
+    #if event-block is planks:
+        #wait 5 seconds
+        #break event-block
 
 
 
@@ -102,11 +102,11 @@ on inventory click:
 # タイマー({switch.timer}が"on"でタイマー作動)
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #every 1 second:
-    if {switch.timer} is "on":
-        reduce {timer} by 1
-    if {timer} is 0:
-        make player execute command "function shimashima:01_game_end"
-        set {switch.timer} to "off"
+    #if {switch.timer} is "on":
+        #reduce {timer} by 1
+    #if {timer} is 0:
+        #make player execute command "function shimashima:01_game_end"
+        #set {switch.timer} to "off"
 
 
 

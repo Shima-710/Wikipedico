@@ -23,10 +23,11 @@
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 every 1 second:
     if {surviver} is 1:
-        execute console command "game end"
-        set {status} to 2
-        set {surviver} to 0
-        set {rank.alive} to 1
+        if {status} is 1:
+            execute console command "game end"
+            set {status} to 2
+            set {surviver} to 0
+            set {rank.alive} to 1
     loop all players:
         set {emerald.%loop-player%} to amount of emerald in loop-player's inventory
         wipe loop-player's sidebar
