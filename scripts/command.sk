@@ -13,8 +13,15 @@
 command /sidebar:
     description:Wipe sidebar
     trigger:
-        if {status} is 0:
+        if {sidebar.%player%} is 0:
             set {sidebar.%player%} to 0
+        if {sidebar.%player%} is 1:
+            set {sidebar.%player%} to 1
+        if {sidebar.%player%} is 2:
+            set {sidebar.%player%} to 2
+        if {sidebar.%player%} is 9:
+            set {sidebar.%player%} to 9
+        message "&b[システム] &rサイドバーをリフレッシュしました" to player
 
 
 
@@ -44,7 +51,10 @@ command /game <text>:
     trigger:
         if arg-1 is "start":
             loop all players:
-                set {sidebar.%loop-player%} to 1
+                if {admin.%loop-player%} is "true":
+                    set {sidebar.%loop-player%} to 9
+                else: 
+                    set {sidebar.%loop-player%} to 1
             set {qua.player} to online player count
             reduce {qua.player} by {qua.admin}
             set {surviver} to {qua.player}
@@ -76,15 +86,15 @@ command /game <text>:
             wait 11 seconds
             broadcast "&7======================================================"
             broadcast "&l&b[試合結果]"
-            broadcast "&e1位 -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
-            broadcast "&62位 -- %{ranking.name.2}% -- %{ranking.kills.2}%kill"
-            broadcast "&63位 -- %{ranking.name.3}% -- %{ranking.kills.3}%kill"
-            broadcast "&64位 -- %{ranking.name.4}% -- %{ranking.kills.4}%kill"
-            broadcast "&65位 -- %{ranking.name.5}% -- %{ranking.kills.5}%kill"
-            broadcast "&66位 -- %{ranking.name.6}% -- %{ranking.kills.6}%kill"
-            broadcast "&67位 -- %{ranking.name.7}% -- %{ranking.kills.7}%kill"
-            broadcast "&68位 -- %{ranking.name.8}% -- %{ranking.kills.8}%kill"
-            broadcast "&69位 -- %{ranking.name.9}% -- %{ranking.kills.9}%kill"
+            broadcast "&e1位  -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
+            broadcast "&62位  -- %{ranking.name.2}% -- %{ranking.kills.2}%kill"
+            broadcast "&63位  -- %{ranking.name.3}% -- %{ranking.kills.3}%kill"
+            broadcast "&64位  -- %{ranking.name.4}% -- %{ranking.kills.4}%kill"
+            broadcast "&65位  -- %{ranking.name.5}% -- %{ranking.kills.5}%kill"
+            broadcast "&66位  -- %{ranking.name.6}% -- %{ranking.kills.6}%kill"
+            broadcast "&67位  -- %{ranking.name.7}% -- %{ranking.kills.7}%kill"
+            broadcast "&68位  -- %{ranking.name.8}% -- %{ranking.kills.8}%kill"
+            broadcast "&69位  -- %{ranking.name.9}% -- %{ranking.kills.9}%kill"
             broadcast "&610位 -- %{ranking.name.10}% -- %{ranking.kills.10}%kill"
             broadcast "&7======================================================"
             wait 1 seconds

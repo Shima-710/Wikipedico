@@ -109,6 +109,9 @@
     scoreboard objectives add sb used:snowball
     scoreboard players set @a sb 0
 
+# なんかリストに表示されよるからぐっばい
+    scoreboard objectives setdisplay list
+
 
 #=========================================================================================================================
 #
