@@ -5,12 +5,12 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "weight": 90,
+          "weight": 99,
           "name": "shimashima:normal"
         },
         {
           "type": "minecraft:loot_table",
-          "weight": 10,
+          "weight": 1,
           "name": "shimashima:rare"
         }
       ]

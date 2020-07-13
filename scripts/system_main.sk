@@ -67,22 +67,10 @@ on craft of crafting table:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on rightclick on villager:
     cancel event
-    open chest inventory with 1 row named "&2Shop" to player
-    set slot 2 of player's current inventory to diamond sword named "売る"
-    set slot 6 of player's current inventory to emerald named "買う"
+    open chest inventory with 1 row named "&0Shop" to player
+    set slot 2 of player's current inventory to diamond sword named "&d売る"
+    set slot 6 of player's current inventory to emerald named "&a買う"
 on inventory click:
-    if name of player's current inventory contain "Shop":
-        cancel event
-    if name of player's current inventory contain "売る":
-        cancel event
-    if name of player's current inventory contain "買う":
-        cancel event
-    if name of player's current inventory contain "武器を売る":
-        cancel event
-    if name of player's current inventory contain "防具を売る":
-        cancel event
-    if name of player's current inventory contain "食糧を売る":
-        cancel event
     if event-item is black stained glass pane named " ":
         cancel event
     if event-item is barrier block named "&r&c閉じる":

@@ -81,11 +81,12 @@ command /game <text>:
 # adminは変数{admin.%player%}またはチーム"admin"で判別
 # 一度でもadminになればLP権限グループ"skript.admin"に追加され，OP出なくともコマンドの実行は可能になります
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /admin <text> [<player>]:
+command /admin [<text>] [<player>]:
     description:Make specific user to admin
     permission: skript.admin
     permission message:Admin専用コマンドです。
     usage:/admin <join/leave> [<プレイヤー>] ※プレイヤー未指定の場合は自身を操作します
+    aliases:/ad
     trigger:
         if arg-1 is "join":
             if arg-2 is set:
@@ -145,6 +146,29 @@ command /admin <text> [<player>]:
                     set the player's chat name to "%name of player%"
                     set the player's display name to "%name of player%"
                     reduce {qua.admin} by 1
+        if arg-1 is not set:
+            if {admin.%player%} is "true":
+                make player execute command "/gamemode adventure %player%"
+                make player execute command "/effect clear @s minecraft:night_vision"
+                make player execute command "/team leave %player%"
+                message "&b[admin] &r%player%をAdminから除外しました。" to player
+                set {admin.%player%} to "false"
+                set the player's tab name to "%name of player%"
+                set the player's chat name to "%name of player%"
+                set the player's display name to "%name of player%"
+                reduce {qua.admin} by 1
+                stop
+            if {admin.%player%} is "false":
+                execute console command "op %player%"
+                make player execute command "/gamemode creative %player%"
+                make player execute command "/team join admin %player%"
+                execute console command "lp user %player% parent add skript.admin"
+                message "&b[admin] &r%player%をAdminに追加しました。" to player
+                set {admin.%player%} to "true"
+                set the player's tab name to "&c[運営] &r%name of player%"
+                set the player's chat name to "&c%name of player%"
+                set the player's display name to "&c%name of player%"
+                add 1 to {qua.admin}
 
 
 
@@ -169,11 +193,11 @@ command /destroyable <text>:
 # 安地の範囲を設定しなおします．これはゲーム開始後に設定する場合のコマンドです．
 # 速度の設定は必須です
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /annti <number> <number>:
+command /anntirange <number> <number>:
     description:Define SafeZone range and speed
     permission: skript.admin
     permission message:Admin専用コマンドです。
-    usage:/annti <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
+    usage:/anntirange <範囲> <速度> ※速度の値は最終安地までの残り時間に同じ
     trigger:
         execute console command "worldborder set %arg-1%"
         broadcast "&b[運営] &r安地のサイズを%arg-1%に変更しました"
@@ -217,3 +241,15 @@ command /murabito:
     permission message:Admin専用コマンドです。
     trigger:
         make player execute command "function shimashima:02_murabito"
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# エメラルドを渡します.
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /emerald <number>:
+    description:Give Emeralds
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        give arg-1 of emerald to player
