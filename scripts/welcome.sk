@@ -78,6 +78,7 @@ on join:
         set {sidebar.%player%} to 0
         set {kills.%player%} to 0
         set {rank.%player%} to "--"
+        clear {killranking::*}
         stop
     if {status} is 1:
         set player's gamemode to spectator
