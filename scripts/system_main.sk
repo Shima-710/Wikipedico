@@ -19,10 +19,18 @@ on death of player:
         set {ranking.kills.%{rank.%player%}%} to {kills.%player%}
         set {killranking::*} to "%{kills.%player%}% -- %name of player%"
         set player's gamemode to spectator
-        if attacker is player:
-            broadcast "&b%attacker% &r✈► &c%victim%"
+        if damage cause is fall:
+            broadcast "&c%victim% &rは高所から落下して死亡した (%{rank.%victim%}%位)"
+            stop
+        if damage cause is suffocation:
+            broadcast "&c%victim% &rは安地へ逃げられずに死亡した (%{rank.%victim%}%位)"
+            stop
+        if damage cause is drown:
+            broadcast "&c%victim% &rは溺れて死亡した (%{rank.%victim%}%位)"
+            stop
         else:
-            broadcast "&c%victim% &rdead (%{rank.%player%}%位)"
+            broadcast "&b%attacker% &r✈► &c%victim% &r(%{rank.%victim%}%位)"
+            stop
 
 
 
@@ -87,7 +95,9 @@ on inventory click:
 
 
 # ===============================================================================================================================================================================================
+#
 # ===Legacy System===
+#
 # ===============================================================================================================================================================================================
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # タイマー({switch.timer}が"on"でタイマー作動)

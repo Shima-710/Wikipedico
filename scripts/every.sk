@@ -32,6 +32,9 @@ every 1 second:
             loop all players:
                 if {sidebar.%loop-player%} is 1:
                     set {sidebar.%loop-player%} to 3
+                    set {ranking.name.1} to name of loop-player
+                    set {ranking.kills.1} to {kills.%loop-player%}
+                    set {killranking::*} to "%{kills.%loop-player%}% -- %name of loop-player%"
     loop all players:
         set {emerald.%loop-player%} to amount of emerald in loop-player's inventory
         wipe loop-player's sidebar
