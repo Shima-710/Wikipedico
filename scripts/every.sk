@@ -51,6 +51,7 @@ every 1 second:
                 set score "  : %{qua.admin}%人(qua.admin)" in sidebar of loop-player to -98
                 set score "&a掘削の可否" in sidebar of loop-player to -99
                 set score "  : %{destroyable}%" in sidebar of loop-player to -100
+                stop
         if {sidebar.%loop-player%} is 1:
             set score "&a状態" in sidebar of loop-player to 0
             set score "  : 生存" in sidebar of loop-player to -1
@@ -61,6 +62,7 @@ every 1 second:
             set score "  : %{kills.%loop-player%}%kill" in sidebar of loop-player to -6
             set score "&aエメラルド" in sidebar of loop-player to -7
             set score "  : %{emerald.%loop-player%}%個" in sidebar of loop-player to -8
+            stop
         if {sidebar.%loop-player%} is 2:
             set score "&c===You're dead... :( ===" in sidebar of loop-player to 6
             set score "&a順位" in sidebar of loop-player to 5
@@ -70,6 +72,7 @@ every 1 second:
             set score "&c====================" in sidebar of loop-player to 1
             set score "&a残り人数" in sidebar of loop-player to -1
             set score "  : %{surviver}%人" in sidebar of loop-player to -2
+            stop
         if {sidebar.%loop-player%} is 3:
             set score "&e==Congratulations！ :D ==" in sidebar of loop-player to 6
             set score "&a順位" in sidebar of loop-player to 5
@@ -77,6 +80,7 @@ every 1 second:
             set score "&aキル数" in sidebar of loop-player to 3
             set score "  : %{kills.%loop-player%}%kill" in sidebar of loop-player to 2
             set score "&e====================" in sidebar of loop-player to 1
+            stop
         if {sidebar.%loop-player%} is 9:
             if {status} is 1:
                 set score "&c====Monitor Mode====" in sidebar of loop-player to -90
@@ -90,6 +94,7 @@ every 1 second:
                 set score "  : %{qua.admin}%人(qua.admin)" in sidebar of loop-player to -98
                 set score "&a掘削の可否" in sidebar of loop-player to -99
                 set score "  : %{destroyable}%" in sidebar of loop-player to -100
+                stop
             
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
