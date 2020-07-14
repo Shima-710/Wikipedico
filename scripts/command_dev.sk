@@ -11,13 +11,26 @@ command /natto---dev:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
-        broadcast "&b[admin] &r開発モードに移行します.終了する際はリロードしてください."
+        broadcast "&e[Dev] &r開発モードに移行します.終了する際はリロードしてください."
         execute console command "destroyable true"
         execute console command "gamerule sendCommandFeedback true"
         execute console command "gamerule reducedDebugInfo false"
         set {status} to 0
         loop all players:
             set loop-player's gamemode to creative
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# それっぽい理由でサーバーを一時的にクローズします.
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /natto---close:
+    description:Close server
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        broadcast "&e[Dev] &rサーバーを一時的にクローズします.再開の際はリロードしてください."
+        set {status} to 2
 
 
 
@@ -32,9 +45,9 @@ command /natto---monitor:
         if {status} is 1:
             if {admin.%player%} is "true":
                 set {sidebar.%player%} to 9
-                message "&b[admin] &r監視モードに移行しました"
+                message "&e[Dev] &r監視モードに移行しました"
         else:
-            message "&b[admin] &r現在監視モードに移行することはできません"
+            message "&e[Dev] &r現在監視モードに移行することはできません"
 
 
 

@@ -15,6 +15,8 @@ on server start:
     set {price.buy.diamond_sword} to 100
     set {price.buy.bow} to 10
     set {price.buy.arrow} to 10
+    set {price.buy.stone_axe} to 10
+    set {price.buy.golden_axe} to 60
         # 防具
     set {price.buy.iron_armor} to 30
     set {price.buy.golden_armor} to 60
@@ -85,6 +87,8 @@ on inventory click:
         set slot 31 of player's current inventory to diamond sword named "&a[$%{price.buy.diamond_sword}%] &rダイヤモンドの剣を買う"
         set slot 32 of player's current inventory to bow named "&a[$%{price.buy.bow}%] &r弓を買う"
         set slot 33 of player's current inventory to {amount.buy.arrow} of arrow named "&a[$%{price.buy.arrow}%] &r矢を買う"
+        set slot 38 of player's current inventory to stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う"
+        set slot 39 of player's current inventory to golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う"
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"武器を買う"内の商品
@@ -135,6 +139,26 @@ on inventory click:
             play sound "entity.player.levelup" to player
             give {amount.buy.arrow} of arrow to player
             remove {price.buy.arrow} of emerald from player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "エメラルドが足りません" to player
+
+    if event-item is stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う":
+        cancel event
+        if player has {price.buy.stone_axe} of emerald:
+            play sound "entity.player.levelup" to player
+            give 1 of stone axe to player
+            remove {price.buy.stone_axe} of emerald from player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "エメラルドが足りません" to player
+
+    if event-item is golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う":
+        cancel event
+        if player has {price.buy.golden_axe} of emerald:
+            play sound "entity.player.levelup" to player
+            give 1 of golden axe to player
+            remove {price.buy.golden_axe} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
             message "エメラルドが足りません" to player

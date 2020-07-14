@@ -8,8 +8,9 @@ scoreboard players set @a[team=!admin] play 1
 # 参加者のエフェクトをクリアー
 effect clear @a
 
-# さよならいぶいぶブック
-clear @a written_book
+# さよならTPアイテム
+clear @a player_head
+
 
 # タイトル
 title @a times 0 40 20

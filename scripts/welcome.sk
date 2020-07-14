@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ver.管理について
 on server start:
-    set {ver} to "1.2.6(alpha)"
+    set {ver} to "1.2.7(alpha)"
 # 0.0.xはいぶさんに渡すたびに増加
 # 0.x.0は人いれてデバッグするたびに増加
 # x.0.0は大型のアップデート入れたら増加
@@ -33,6 +33,26 @@ on server start:
     set {surviver} to 0
     set {qua.admin} to 0
     set {qua.player} to 0
+    clear {ranking.name.1}
+    clear {ranking.name.2}
+    clear {ranking.name.3}
+    clear {ranking.name.4}
+    clear {ranking.name.5}
+    clear {ranking.name.6}
+    clear {ranking.name.7}
+    clear {ranking.name.8}
+    clear {ranking.name.9}
+    clear {ranking.name.10}
+    clear {ranking.kills.1}
+    clear {ranking.kills.2}
+    clear {ranking.kills.3}
+    clear {ranking.kills.4}
+    clear {ranking.kills.5}
+    clear {ranking.kills.6}
+    clear {ranking.kills.7}
+    clear {ranking.kills.8}
+    clear {ranking.kills.9}
+    clear {ranking.kills.10}
     loop all players:
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
@@ -78,7 +98,9 @@ on join:
         set {sidebar.%player%} to 0
         set {kills.%player%} to 0
         set {rank.%player%} to "--"
+        clear {asure.sign.%player%}
         clear {killranking::*}
+        set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
         stop
     if {status} is 1:
         set player's gamemode to spectator

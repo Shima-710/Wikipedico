@@ -17,6 +17,8 @@ on server start:
     set {price.sell.diamond_sword} to 50
     set {price.sell.bow} to 5
     set {price.sell.arrow} to 10
+    set {price.sell.stone_axe} to 5
+    set {price.sell.golden_axe} to 30
         # 防具
     set {price.sell.leather_armor} to 3
     set {price.sell.chainmail_armor} to 5
@@ -91,6 +93,8 @@ on inventory click:
         set slot 32 of player's current inventory to diamond sword named "&d[$%{price.sell.diamond_sword}%] &rダイヤモンドの剣を売る"
         set slot 33 of player's current inventory to bow named "&d[$%{price.sell.bow}%] &r弓を売る"
         set slot 34 of player's current inventory to {amount.sell.arrow} of arrow named "&d[$%{price.sell.arrow}%] &r矢を売る"
+        set slot 38 of player's current inventory to stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る"
+        set slot 40 of player's current inventory to golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る"
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"武器を売る"内の商品
@@ -165,6 +169,25 @@ on inventory click:
             play sound "block.note_block.banjo" to player
             message "該当のアイテムを持っていません" to player
 
+    if event-item is stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る":
+        cancel event
+        if player has stone axe:
+            play sound "entity.player.levelup" to player
+            remove 1 of stone axe from player
+            give {price.sell.stone_axe} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "該当のアイテムを持っていません" to player
+
+    if event-item is golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る":
+        cancel event
+        if player has golden axe:
+            play sound "entity.player.levelup" to player
+            remove 1 of golden axe from player
+            give {price.sell.golden_axe} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "該当のアイテムを持っていません" to player
 
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
