@@ -209,10 +209,11 @@ command /admin [<text>] [<player>]:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 掘削の可否を設定します
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /destroyable <text>:
+command /destroyable [<text>]:
     description:Define destroyable
     permission: skript.admin
     permission message:Admin専用コマンドです。
+    aliases:/des
     trigger:
         if arg-1 is "true":
             set {destroyable} to "true"
@@ -220,7 +221,14 @@ command /destroyable <text>:
         if arg-1 is "false":
             set {destroyable} to "false"
             broadcast "&b[運営] &rブロックの破壊が不可能になりました"
-
+        if arg-1 is not set:
+            if {destroyable} is "false":
+                set {destroyable} to "true"
+                broadcast "&b[運営] &rブロックの破壊が可能になりました"
+                stop
+            if {destroyable} is "true":
+                set {destroyable} to "false"
+                broadcast "&b[運営] &rブロックの破壊が不可能になりました"
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -250,6 +258,24 @@ command /anntispeed <number>:
     trigger:
         execute console command "worldborder set 10 %arg-1%"
         broadcast "&b[運営] &r収縮完了までの時間を%arg-1%に変更しました"
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ibuibu Mode
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /ibuibu <text>:
+    description:Switch ibuibu Mode
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        if arg-1 is "true":
+            execute console command "scoreboard players set ibuibumode ibuibumode 1"
+            broadcast "&b[運営] &ribuibu Modeがオンになりました"
+        if arg-1 is "false":
+            execute console command "scoreboard players set ibuibumode ibuibumode 0"
+            broadcast "&b[運営] &ribuibu Modeがオフになりました"
+
 
 
 
@@ -303,7 +329,7 @@ command /onigokko:
         else:
             set {mode.onigokko} to "true"
             set {status} to 4
-            loop all player:
+            loop all players:
                 clear {sidebar.%loop-player%}
             execute console command "datapack disable file/ibuibu"
             execute console command "datapack enable file/fillesces_tag_games"

@@ -23,20 +23,8 @@
 # 毎秒実行.内容説明は長いので下に．
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 every 1 second:
-    if {status} is 4;
+    if {status} is 4:
         stop
-    if {surviver} is 1:
-        if {status} is 1:
-            execute console command "game end"
-            set {status} to 2
-            set {surviver} to 0
-            set {rank.alive} to 1
-            loop all players:
-                if {sidebar.%loop-player%} is 1:
-                    set {sidebar.%loop-player%} to 3
-                    set {ranking.name.1} to name of loop-player
-                    set {ranking.kills.1} to {kills.%loop-player%}
-                    set {killranking::*} to "%{kills.%loop-player%}% -- %name of loop-player%"
     loop all players:
         set {emerald.%loop-player%} to amount of emerald in loop-player's inventory
         wipe loop-player's sidebar
@@ -57,21 +45,12 @@ every 1 second:
                 set score "&a掘削の可否" in sidebar of loop-player to -99
                 set score "  : %{destroyable}%" in sidebar of loop-player to -100
         if {status} is 2:
-            set score "&a状態        &r: 準備中" in sidebar of loop-player to 0
-            set score "しばらくお待ちください" in sidebar of loop-player to -1
             if {admin.%loop-player%} is "true":
-                set score "&c====Admin Mode====" in sidebar of loop-player to -90
+                set score "&c***Server Closing***" in sidebar of loop-player to -90
                 set score "&aオンライン" in sidebar of loop-player to -91
                 set score "  : %online player count%人(online player)" in sidebar of loop-player to -92
-                set score "&a試合参加人数" in sidebar of loop-player to -93
-                set score "  : %{qua.player}%人(qua.player)" in sidebar of loop-player to -94
-                set score "&a生存人数" in sidebar of loop-player to -95
-                set score "  : %{surviver}%人(surviver)" in sidebar of loop-player to -96
                 set score "&aAdmin人数" in sidebar of loop-player to -97
                 set score "  : %{qua.admin}%人(qua.admin)" in sidebar of loop-player to -98
-                set score "&a掘削の可否" in sidebar of loop-player to -99
-                set score "  : %{destroyable}%" in sidebar of loop-player to -100
-                set score "&c***Server Closing***" in sidebar of loop-player to -200
         if {sidebar.%loop-player%} is 1:
             set score "&a状態" in sidebar of loop-player to 0
             set score "  : 生存" in sidebar of loop-player to -1
