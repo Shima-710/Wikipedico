@@ -38,3 +38,5 @@ Skript 2.4.1
 LuckPerms 5.1.45
 
 skRayFall 1.9.20
+
+skQuery 3.6.5
