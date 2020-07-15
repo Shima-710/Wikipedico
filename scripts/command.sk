@@ -82,6 +82,9 @@ command /game <text>:
             execute console command "function shimashima:01_game_start"
             loop all players:
                 play sound "entity.enderman.teleport" to loop-player
+            if {mode.daruma} is "true":
+                wait 60 seconds
+                set {daruma.count} to "true"
             stop
         if arg-1 is "end":
             execute console command "function shimashima:01_game_end"
@@ -276,6 +279,22 @@ command /ibuibu <text>:
             execute console command "scoreboard players set ibuibumode ibuibumode 0"
             broadcast "&b[運営] &ribuibu Modeがオフになりました"
 
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Darumasanngakoronnda Mode
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /daruma <text>:
+    description:Switch Darumasanngakoronnda Mode
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        if arg-1 is "true":
+            set {mode.daruma} to "true"
+            broadcast "&b[運営] &r「だるまさんが転んだモード」がオンになりました"
+        if arg-1 is "false":
+            set {mode.daruma} to "false"
+            broadcast "&b[運営] &r「だるまさんが転んだモード」がオフになりました"
 
 
 

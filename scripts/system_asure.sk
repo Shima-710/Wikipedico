@@ -31,3 +31,15 @@ on right click with player skull:
             cancel event
             message "&6[アスレ] &rチェックポイントが設定されていません" to player
             play sound "block.note_block.banjo" to player
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# クリアー看板
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on right click on birch sign:
+    if {status} is not 1:
+        execute console command "tp %player% -27598.50 95 37043.53"
+        execute console command "effect give %player% glowing 10 255 true"
+        add 1 to {asure.clearcount.%player%}
+        broadcast "&6[アスレ] &r%player% クリアおめでとう!!!（%{asure.clearcount.%player%}%回目）"
