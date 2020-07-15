@@ -297,4 +297,16 @@ command /onigokko:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
-        
+        if {status} is not 0:
+            message "&b[admin] &r鬼ごっこモードへの移行に失敗しました。サーバーをリロードしてください。" to player
+            stop
+        else:
+            set {mode.onigokko} to "true"
+            set {status} to 4
+            loop all player:
+                clear {sidebar.%loop-player%}
+            execute console command "datapack disable file/ibuibu"
+            execute console command "datapack enable file/fillesces_tag_games"
+            execute console command "effect clear @a"
+            broadcast "&b[運営] &r鬼ごっこモードへ移行しました。"
+            message "&b[admin] &rサーバーをリロードすると終了します。" to player

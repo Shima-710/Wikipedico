@@ -26,6 +26,7 @@ on server start:
 # ネームの設定をリセットする
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #on server start:
+    execute console command "datapack enable file/ibuibu"
     execute console command "function shimashima:01_replay"
     execute console command "worldborder set 50000"
     set {status} to 0
@@ -62,6 +63,9 @@ on server start:
         set the loop-player's tab name to "%name of loop-player%"
         set the loop-player's chat name to "%name of loop-player%"
         set the loop-player's display name to "%name of loop-player%"
+    if {degubMode} is "true":
+        execute console command "gamerule reducedDebugInfo false"
+        execute console command "gamerule sendCommandFeedback true"
 
 
 
