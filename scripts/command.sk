@@ -97,9 +97,9 @@ command /admin [<text>] [<player>]:
                     message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
                     message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
                     set {admin.%arg-2%} to "false"
-                    set the arg-2's tab name to "%name of arg-2%"
-                    set the arg-2's chat name to "%name of arg-2%"
-                    set the arg-2's display name to "%name of arg-2%"
+                    set the arg-2's tab name to name of arg-2
+                    set the arg-2's chat name to name of arg-2
+                    set the arg-2's display name to name of arg-2
                     reduce {qua.admin} by 1
             if arg-2 is not set:
                 if {admin.%player%} is "false":
@@ -110,9 +110,9 @@ command /admin [<text>] [<player>]:
                     make player execute command "/team leave %player%"
                     message "&b[admin] &r%player%をAdminから除外しました。" to player
                     set {admin.%player%} to "false"
-                    set the player's tab name to "%name of player%"
-                    set the player's chat name to "%name of player%"
-                    set the player's display name to "%name of player%"
+                    set the player's tab name to name of player
+                    set the player's chat name to name of player
+                    set the player's display name to name of player
                     reduce {qua.admin} by 1
         if arg-1 is not set:
             if {admin.%player%} is "true":
@@ -121,9 +121,9 @@ command /admin [<text>] [<player>]:
                 make player execute command "/team leave %player%"
                 message "&b[admin] &r%player%をAdminから除外しました。" to player
                 set {admin.%player%} to "false"
-                set the player's tab name to "%name of player%"
-                set the player's chat name to "%name of player%"
-                set the player's display name to "%name of player%"
+                set the player's tab name to name of player
+                set the player's chat name to name of player
+                set the player's display name to name of player
                 reduce {qua.admin} by 1
                 stop
             if {admin.%player%} is "false":

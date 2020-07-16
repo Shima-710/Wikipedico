@@ -43,9 +43,9 @@ on server start:
         set {sidebar.%loop-player%} to 0
         set {kills.%loop-player%} to 0
         set {rank.%loop-player%} to "--"
-        set the loop-player's tab name to "%name of loop-player%"
-        set the loop-player's chat name to "%name of loop-player%"
-        set the loop-player's display name to "%name of loop-player%"
+        set the loop-player's tab name to name of loop-player
+        set the loop-player's chat name to name of loop-player
+        set the loop-player's display name to name of loop-player
     if {debugMode} is "true":
         wait 1 seconds
         execute console command "gamerule sendCommandFeedback true"
