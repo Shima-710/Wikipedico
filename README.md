@@ -6,7 +6,7 @@ Latest Update : 16/07/2020 | Written by ShimaShima_710
 
 ---
 
-Minecraft Plugins  and Datapack for ibuibu
+Minecraft Plugins  and Datapack for ibuibu.
 
 
 ### Developing Environment
