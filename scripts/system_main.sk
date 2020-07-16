@@ -1,6 +1,6 @@
 # ===============================================================================================================================================================================================
 # Main Game System
-# メイン言うてもサブとかないけどね
+# https://skriptlang.github.io/Skript/events.html
 # ==============================================================================================================================================================================================
 
 
@@ -26,15 +26,6 @@ on death of player:
                     give a snowball to loop-player
         if {surviver} is 1:
             execute console command "game end"
-            set {status} to 2
-            set {surviver} to 0
-            set {rank.alive} to 1
-            loop all players:
-                if {sidebar.%loop-player%} is 1:
-                    set {sidebar.%loop-player%} to 3
-                    set {ranking.name.1} to name of loop-player
-                    set {ranking.kills.1} to {kills.%loop-player%}
-                    set {killranking::*} to "%{kills.%loop-player%}% -- %name of loop-player%"
         if damage cause is fall:
             broadcast "&c%victim% &rは高所から落下して死亡した (%{rank.%victim%}%位)"
             stop
@@ -132,9 +123,9 @@ on projectile hit:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # アイテム消滅（負荷軽減措置）
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-on item spawn:
-    wait 10 seconds
-    execute console command "kill @e[type=item]"
+#on item spawn:
+    #wait 60 seconds
+    #execute console command "kill @e[type=item]"
 
 
 

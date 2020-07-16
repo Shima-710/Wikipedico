@@ -148,6 +148,8 @@ on quit:
                     reduce {rank.dummy} by 1
                     reduce {surviver} by 1
                     set player's gamemode to spectator
+                    if {surviver} is 1:
+                        execute console command "game end"
     else:
         if {admin.%player%} is "true":
             make player execute command "admin leave"

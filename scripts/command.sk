@@ -68,29 +68,36 @@ command /game <text>:
             broadcast "&b[運営] &rゲームを開始します..."
             wait 1 seconds
             execute console command "function shimashima:cd_3"
-            loop all players:
-                play sound "block.note_block.harp" to loop-player
+            play sound "block.note_block.harp" to all players
             wait 1 seconds
             execute console command "function shimashima:cd_2"
-            loop all players:
-                play sound "block.note_block.harp" to loop-player
+            play sound "block.note_block.harp" to all players
             wait 1 seconds
             execute console command "function shimashima:cd_1"
-            loop all players:
-                play sound "block.note_block.harp" to loop-player
+            play sound "block.note_block.harp" to all players
             wait 1 seconds
             execute console command "function shimashima:01_game_start"
-            loop all players:
-                play sound "entity.enderman.teleport" to loop-player
+            play sound "entity.enderman.teleport" to all players
             if {mode.daruma} is "true":
                 wait 60 seconds
                 set {daruma.count} to "true"
             stop
         if arg-1 is "end":
             execute console command "function shimashima:01_game_end"
+            play sound "ui.toast.challenge_complete" with volume 0.8 to all players
+            set {status} to 2
+            set {surviver} to 0
+            set {rank.alive} to 1
+            set {daruma.count} to "false"
             loop all players:
-                play sound "ui.toast.challenge_complete" with volume 0.8 to loop-player
-            wait 11 seconds
+                if {sidebar.%loop-player%} is 1:
+                    set {sidebar.%loop-player%} to 3
+                    set {ranking.name.1} to name of loop-player
+                    set {ranking.kills.1} to {kills.%loop-player%}
+                    set {killranking::*} to "%{kills.%loop-player%}% -- %name of loop-player%"
+            wait 12 seconds
+            broadcast "&b[運営] &r試合結果を集計しています..."
+            wait 3 seconds
             broadcast "&7======================================================"
             broadcast "&l&b[試合結果]"
             broadcast "&e1位  -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
@@ -104,14 +111,14 @@ command /game <text>:
             broadcast "&69位  -- %{ranking.name.9}% -- %{ranking.kills.9}%kill"
             broadcast "&610位 -- %{ranking.name.10}% -- %{ranking.kills.10}%kill"
             broadcast "&7======================================================"
-            wait 1 seconds
-            broadcast "&b[運営] &rキル数ランキングを生成しています..."
-            set {killranking::*} to sorted {killranking.sorted::*}
-            wait 3 seconds
-            broadcast "&7======================================================"
-            broadcast "&l&b[キル数ランキング]"
-            broadcast "%{killranking.sorted::*}%"
-            broadcast "&7======================================================"
+            #wait 1 seconds
+            #broadcast "&b[運営] &rキル数ランキングを生成しています..."
+            #set {killranking::*} to sorted {killranking.sorted::*}
+            #wait 3 seconds
+            #broadcast "&7======================================================"
+            #broadcast "&l&b[キル数ランキング]"
+            #broadcast "%{killranking.sorted::*}%"
+            #broadcast "&7======================================================"
 
 
 
@@ -133,6 +140,7 @@ command /admin [<text>] [<player>]:
                     execute console command "op %arg-2%"
                     make player execute command "/gamemode creative %arg-2%"
                     make player execute command "/team join admin %arg-2%"
+                    make arg-2 execute command "/book"
                     execute console command "lp user %arg-2% parent add skript.admin"
                     message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
                     message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
@@ -148,6 +156,7 @@ command /admin [<text>] [<player>]:
                     execute console command "op %player%"
                     make player execute command "/gamemode creative %player%"
                     make player execute command "/team join admin %player%"
+                    make player execute command "/book"
                     execute console command "lp user %player% parent add skript.admin"
                     message "&b[admin] &r%player%をAdminに追加しました。" to player
                     set {admin.%player%} to "true"
@@ -199,6 +208,7 @@ command /admin [<text>] [<player>]:
                 execute console command "op %player%"
                 make player execute command "/gamemode creative %player%"
                 make player execute command "/team join admin %player%"
+                make player execute command "/book"
                 execute console command "lp user %player% parent add skript.admin"
                 message "&b[admin] &r%player%をAdminに追加しました。" to player
                 set {admin.%player%} to "true"

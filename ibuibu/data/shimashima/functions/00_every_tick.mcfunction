@@ -29,7 +29,7 @@ execute if score on_game on_game matches 0 run effect give @a night_vision 10000
 #execute if entity @a[tag=usesb] run function shimashima:snowball-1
 
 # いぶいぶブックは渡さねえ！
-clear @a[team=!admin] writable_book
+execute if score on_game on_game matches 1 run clear @a[team=!admin] written_book
 
 
 
