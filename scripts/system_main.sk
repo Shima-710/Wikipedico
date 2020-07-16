@@ -38,9 +38,8 @@ command /game <text>:
             wait 1 seconds
             execute console command "function shimashima:01_game_start"
             play sound "entity.enderman.teleport" to all players
-            if {mode.daruma} is "true":
-                wait 60 seconds
-                set {daruma.count} to "true"
+            wait 60 seconds
+            set {daruma.count} to "true"
             stop
         if arg-1 is "end":
             execute console command "function shimashima:01_game_end"
@@ -59,7 +58,7 @@ command /game <text>:
             broadcast "&b[運営] &r試合結果を集計しています..."
             set {loop.rank} to 1
             wait 3 seconds
-            broadcast "&7======================================================"
+            broadcast "&7====================================================="
             broadcast "&l&b[試合結果]"
             loop {qua.player} times:
                 if {loop.rank} is 1:
@@ -67,14 +66,14 @@ command /game <text>:
                 else:
                     broadcast "&6%{loop.rank}%位  -- %{ranking.name.%{loop.rank}%}% -- %{ranking.kills.%{loop.rank}%}%kill"
                 add 1 to {loop.rank}
-            broadcast "&7======================================================"
+            broadcast "&7====================================================="
             wait 2 seconds
             broadcast "&b[運営] &rキル数ランキングを生成しています..."
             set {killranking.sorted::*} to sorted {killranking::*}
             set {killranking.dummy} to {qua.player}
             set {loop.kill} to 1
             wait 3 seconds
-            broadcast "&7======================================================"
+            broadcast "&7====================================================="
             broadcast "&l&b[キル数ランキング]"
             loop {qua.player} times:
                 if {loop.kill} is 1:
@@ -83,7 +82,7 @@ command /game <text>:
                     broadcast "&6%{loop.kill}%位 -- %{killranking.sorted::%{killranking.dummy}%}%"
                 add 1 to {loop.kill}
                 reduce {killranking.dummy} by 1
-            broadcast "&7======================================================"
+            broadcast "&7====================================================="
             set {loop.rank} to 1
             loop {qua.player} times:
                 clear {ranking.name.%{loop.rank}%}

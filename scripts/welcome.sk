@@ -73,7 +73,7 @@ on join:
     message " " to player
     message "&7[注意事項]" to player
     message "&7 ゲーム開始前に確実にルールを把握してください。" to player
-    message "&7 ルール：https://www.notion.so/Wikipedico-9aeaf0fdd14d45e6b3e08991e895d430" to player
+    message "&7 ルール： （クリックで開きます）&r&n&7https://www.notion.so/Wikipedico-9aeaf0fdd14d45e6b3e08991e895d430" to player
     message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
     message " " to player
     message "&7[ver.]" to player
