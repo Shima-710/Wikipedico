@@ -1,6 +1,6 @@
 # -DatapackAndSkript-ibuibu-kikaku
 
-Latest Update : 13/07/2020 | Written by ShimaShima_710
+Latest Update : 16/07/2020 | Written by ShimaShima_710
 
 ### Overview
 
