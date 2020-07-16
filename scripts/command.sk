@@ -113,11 +113,11 @@ command /game <text>:
             broadcast "&7======================================================"
             wait 1 seconds
             broadcast "&b[運営] &rキル数ランキングを生成しています..."
-            set {killranking::*} to sorted {killranking.sorted::*}
+            set {killranking.sorted::*} to sorted {killranking::*}
             wait 3 seconds
             broadcast "&7======================================================"
             broadcast "&l&b[キル数ランキング]"
-            broadcast "%{killranking.sorted::*}%"
+            broadcast "&6%{killranking.sorted::*}%"
             broadcast "&7======================================================"
 
 

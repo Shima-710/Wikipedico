@@ -17,7 +17,7 @@ on death of player:
         add 1 to {kills.%attacker%}
         set {ranking.name.%{rank.%player%}%} to name of player
         set {ranking.kills.%{rank.%player%}%} to {kills.%player%}
-        set {killranking::*} to "%{kills.%player%}% -- %name of player%"
+        add "%{kills.%player%}%kill -- %name of player%" to {killranking::*}
         set player's gamemode to spectator
         if {surviver} is 2:
             wait 60 seconds

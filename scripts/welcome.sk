@@ -56,6 +56,7 @@ on server start:
     clear {ranking.kills.8}
     clear {ranking.kills.9}
     clear {ranking.kills.10}
+    clear {killranking::*}
     loop all players:
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
