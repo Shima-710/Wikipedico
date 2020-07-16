@@ -63,4 +63,3 @@ every 51.5 seconds:
                 play sound "block.note_block.bell" to all players
                 set {daruma.da} to "false"
                 reset the titles of all players
-
