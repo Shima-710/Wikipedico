@@ -97,28 +97,37 @@ command /game <text>:
                     add "%{kills.%loop-player%}%kill -- %name of loop-player%" to {killranking::*}
             wait 12 seconds
             broadcast "&b[運営] &r試合結果を集計しています..."
+            set {loop.rank} to 1
             wait 3 seconds
             broadcast "&7======================================================"
             broadcast "&l&b[試合結果]"
-            broadcast "&e1位  -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
-            broadcast "&62位  -- %{ranking.name.2}% -- %{ranking.kills.2}%kill"
-            broadcast "&63位  -- %{ranking.name.3}% -- %{ranking.kills.3}%kill"
-            broadcast "&64位  -- %{ranking.name.4}% -- %{ranking.kills.4}%kill"
-            broadcast "&65位  -- %{ranking.name.5}% -- %{ranking.kills.5}%kill"
-            broadcast "&66位  -- %{ranking.name.6}% -- %{ranking.kills.6}%kill"
-            broadcast "&67位  -- %{ranking.name.7}% -- %{ranking.kills.7}%kill"
-            broadcast "&68位  -- %{ranking.name.8}% -- %{ranking.kills.8}%kill"
-            broadcast "&69位  -- %{ranking.name.9}% -- %{ranking.kills.9}%kill"
-            broadcast "&610位 -- %{ranking.name.10}% -- %{ranking.kills.10}%kill"
+            loop {qua.player} times:
+                if {loop.rank} is 1:
+                    broadcast "&e%{loop.rank}%位  -- %{ranking.name.%{loop.rank}%}% -- %{ranking.kills.%{loop.rank}%}%kill"
+                else:
+                    broadcast "&6%{loop.rank}%位  -- %{ranking.name.%{loop.rank}%}% -- %{ranking.kills.%{loop.rank}%}%kill"
+                add 1 to {loop.rank}
             broadcast "&7======================================================"
-            wait 1 seconds
+            wait 2 seconds
             broadcast "&b[運営] &rキル数ランキングを生成しています..."
             set {killranking.sorted::*} to sorted {killranking::*}
+            set {loop.kill} to 1
             wait 3 seconds
             broadcast "&7======================================================"
             broadcast "&l&b[キル数ランキング]"
-            broadcast "&6%{killranking.sorted::*}%"
+            loop {qua.player} times:
+                if {loop.kill} is 1:
+                    broadcast "&e%{loop.kill}%位 -- %{killranking.sorted::%{loop.kill}%}%"
+                else:
+                    broadcast "&6%{loop.kill}%位 -- %{killranking.sorted::%{loop.kill}%}%"
+                add 1 to {loop.kill}
             broadcast "&7======================================================"
+            set {loop.rank} to 1
+            loop {qua.player} times:
+                clear {ranking.name.%{loop.rank}%}
+                clear {ranking.kills.%{loop.rank}%}
+                add 1 to {loop.rank}
+
 
 
 

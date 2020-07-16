@@ -36,26 +36,6 @@ on server start:
     set {qua.player} to 0
     set {mode.daruma} to "false"
     clear {mode.onigokko}
-    clear {ranking.name.1}
-    clear {ranking.name.2}
-    clear {ranking.name.3}
-    clear {ranking.name.4}
-    clear {ranking.name.5}
-    clear {ranking.name.6}
-    clear {ranking.name.7}
-    clear {ranking.name.8}
-    clear {ranking.name.9}
-    clear {ranking.name.10}
-    clear {ranking.kills.1}
-    clear {ranking.kills.2}
-    clear {ranking.kills.3}
-    clear {ranking.kills.4}
-    clear {ranking.kills.5}
-    clear {ranking.kills.6}
-    clear {ranking.kills.7}
-    clear {ranking.kills.8}
-    clear {ranking.kills.9}
-    clear {ranking.kills.10}
     clear {killranking::*}
     loop all players:
         execute console command "/team leave %loop-player%"
