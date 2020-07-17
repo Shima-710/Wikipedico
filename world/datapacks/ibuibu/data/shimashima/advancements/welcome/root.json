@@ -1,0 +1,18 @@
+{
+    "display": {
+        "title": "ようこそ！  進捗を確認してみよう！",
+        "description": "いざ勝負！",
+        "icon": {
+            "item": "minecraft:diamond_sword"
+        },
+        "frame":"goal",
+        "background": "minecraft:textures/block/diorite.png",
+        "show_toast":"true",
+        "announce_to_chat":"false"
+    },
+    "criteria": {
+        "test": {
+            "trigger": "minecraft:impossible"
+            }
+      }
+}
