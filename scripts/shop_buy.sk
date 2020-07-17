@@ -17,6 +17,7 @@ on server start:
     set {price.buy.arrow} to 10
     set {price.buy.stone_axe} to 10
     set {price.buy.golden_axe} to 60
+    set {price.buy.snowball} to 60
         # 防具
     set {price.buy.iron_armor} to 30
     set {price.buy.golden_armor} to 60
@@ -89,6 +90,7 @@ on inventory click:
         set slot 33 of player's current inventory to {amount.buy.arrow} of arrow named "&a[$%{price.buy.arrow}%] &r矢を買う"
         set slot 38 of player's current inventory to stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う"
         set slot 39 of player's current inventory to golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う"
+        set slot 40 of player's current inventory to snowball named "&a[$%{price.buy.snowball}%] &r雪玉を買う"
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"武器を買う"内の商品
@@ -159,6 +161,16 @@ on inventory click:
             play sound "entity.player.levelup" to player
             give 1 of golden axe to player
             remove {price.buy.golden_axe} of emerald from player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "エメラルドが足りません" to player
+
+    if event-item is snowball named "&a[$%{price.buy.snowball}%] &r雪玉を買う":
+        cancel event
+        if player has {price.buy.snowball} of emerald:
+            play sound "entity.player.levelup" to player
+            give 1 of snowball to player
+            remove {price.buy.snowball} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
             message "エメラルドが足りません" to player

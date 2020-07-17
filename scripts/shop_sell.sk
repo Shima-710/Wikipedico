@@ -19,6 +19,7 @@ on server start:
     set {price.sell.arrow} to 10
     set {price.sell.stone_axe} to 5
     set {price.sell.golden_axe} to 30
+    set {price.sell.snowball} to 30
         # 防具
     set {price.sell.leather_armor} to 3
     set {price.sell.chainmail_armor} to 5
@@ -93,8 +94,9 @@ on inventory click:
         set slot 32 of player's current inventory to diamond sword named "&d[$%{price.sell.diamond_sword}%] &rダイヤモンドの剣を売る"
         set slot 33 of player's current inventory to bow named "&d[$%{price.sell.bow}%] &r弓を売る"
         set slot 34 of player's current inventory to {amount.sell.arrow} of arrow named "&d[$%{price.sell.arrow}%] &r矢を売る"
-        set slot 38 of player's current inventory to stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る"
-        set slot 40 of player's current inventory to golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る"
+        set slot 37 of player's current inventory to stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る"
+        set slot 38 of player's current inventory to golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る"
+        set slot 39 of player's current inventory to snowball named "&d[$%{price.sell.snowball}%] &r雪玉を売る"
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"武器を売る"内の商品
@@ -189,6 +191,15 @@ on inventory click:
             play sound "block.note_block.banjo" to player
             message "該当のアイテムを持っていません" to player
 
+    if event-item is snowball named "&d[$%{price.sell.snowball}%] &r雪玉を売る":
+        cancel event
+        if player has snowball:
+            play sound "entity.player.levelup" to player
+            remove 1 of snowball from player
+            give {price.sell.snowball} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "該当のアイテムを持っていません" to player
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"防具を売る"
