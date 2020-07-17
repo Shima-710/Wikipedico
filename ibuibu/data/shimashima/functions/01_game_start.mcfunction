@@ -19,7 +19,7 @@ title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"c
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra
 # エリトラ落下死防止
-effect give @a[team=!admin] resistance 8 255 true
+effect give @a[team=!admin] resistance 10 255 true
 
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin]
@@ -28,8 +28,9 @@ gamemode spectator @a[team=admin]
 # 参加者のネームタグを隠す
 team join nametag @a[team=!admin]
 
-# 上空にTP
-tp @a -27663 309 36470 ~ 90
+# 上空にTP -> 変更
+# tp @a -27663 309 36470 ~ 90
+fill 
 
 
 # ワールドボーダーをとりあえず作る

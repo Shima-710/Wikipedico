@@ -295,8 +295,8 @@ command /onigokko:
             set {status} to 4
             loop all players:
                 clear {sidebar.%loop-player%}
-            execute console command "datapack disable file/ibuibu"
-            execute console command "datapack enable file/fillesces_tag_games"
+            execute console command "datapack disable ""file/ibuibu"""
+            execute console command "datapack enable ""file/fillesces_tag_games"""
             execute console command "effect clear @a"
             broadcast "&b[運営] &r鬼ごっこモードへ移行しました。"
             message "&b[admin] &rサーバーをリロードすると終了します。" to player

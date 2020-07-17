@@ -25,8 +25,9 @@ command /game <text>:
             set {rank.dummy} to {qua.player}
             set {rank.alive} to "--"
             set {status} to 1
-            broadcast "&b[運営] &rゲームを開始します..."
-            wait 1 seconds
+            broadcast "&b[運営] &r10秒後にゲームを開始します..."
+            execute console command "tp @a -27663 309 36470"
+            wait 10 seconds
             execute console command "function shimashima:cd_3"
             play sound "block.note_block.harp" to all players
             wait 1 seconds
@@ -96,7 +97,7 @@ command /game <text>:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on death of player:
     if {status} is 1:
-        execute console command "spawnpoint %player% -27663 309 36470"
+        execute console command "spawnpoint %player% -27663 82 36470"
         set {sidebar.%player%} to 2
         set {rank.%player%} to {rank.dummy}
         reduce {rank.dummy} by 1
@@ -106,6 +107,34 @@ on death of player:
         set {ranking.kills.%{rank.%player%}%} to {kills.%player%}
         add "%{kills.%player%}%kill -- %name of player%" to {killranking::*}
         set player's gamemode to spectator
+        if damage cause is fall:
+            broadcast "&c%victim% &rは高所から落下して死亡した (%{rank.%victim%}%位)"
+            stop
+        else if damage cause is suffocation:
+            broadcast "&c%victim% &rは安地へ逃げられずに死亡した (%{rank.%victim%}%位)"
+            stop
+        else if damage cause is drown:
+            broadcast "&c%victim% &rは溺れて死亡した (%{rank.%victim%}%位)"
+            stop
+        else if damage cause is TNT:
+            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した (%{rank.%victim%}%位)"
+            stop
+        else if damage cause is creeper:
+            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した (%{rank.%victim%}%位)"
+            stop
+        else if damage cause is a block explosion:
+            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した (%{rank.%victim%}%位)"
+            add 1 to {kills.%{lastuse.snowball}%}
+            stop
+        else if damage cause is attack:
+            broadcast "&b%attacker% &r✈► &c%victim% &r(%{rank.%victim%}%位)"
+            stop
+        else:
+            broadcast "&c%victim% &rはなんか知らんが死亡した &r(%{rank.%victim%}%位)"
+            stop
+
+on death of player:
+    if {status} is 1:
         if {surviver} is 2:
             wait 60 seconds
             loop all players:
@@ -113,27 +142,6 @@ on death of player:
                     give a snowball to loop-player
         if {surviver} is 1:
             execute console command "game end"
-        if damage cause is fall:
-            broadcast "&c%victim% &rは高所から落下して死亡した (%{rank.%victim%}%位)"
-            stop
-        if damage cause is suffocation:
-            broadcast "&c%victim% &rは安地へ逃げられずに死亡した (%{rank.%victim%}%位)"
-            stop
-        if damage cause is drown:
-            broadcast "&c%victim% &rは溺れて死亡した (%{rank.%victim%}%位)"
-            stop
-        if damage cause is TNT:
-            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した (%{rank.%victim%}%位)"
-            stop
-        if damage cause is creeper:
-            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した (%{rank.%victim%}%位)"
-            stop
-        if damage cause is attack:
-            broadcast "&b%attacker% &r✈► &c%victim% &r(%{rank.%victim%}%位)"
-            stop
-        else:
-            broadcast "&c%victim% &rはなんか知らんが死亡した &r(%{rank.%victim%}%位)"
-            stop
 
 
 
@@ -191,6 +199,7 @@ on projectile hit:
     if {use.snowball.%shooter%} is 1:
         create an explosion of force 2 at the projectile
     set {use.snowball.%shooter%} to 0
+    set {lastuse.snowball} to shooter
 
 
 
@@ -237,4 +246,4 @@ on projectile hit:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #on item spawn:
     #wait 60 seconds
-    #execute console command "kill @e[type=item]"
+    #clear drops
