@@ -103,7 +103,7 @@ on inventory click:
             remove {price.buy.iron_sword} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is golden sword named "&a[$%{price.buy.golden_sword}%] &r金の剣を買う":
         cancel event
@@ -113,7 +113,7 @@ on inventory click:
             remove {price.buy.golden_sword} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is diamond sword named "&a[$%{price.buy.diamond_sword}%] &rダイヤモンドの剣を買う":
         cancel event
@@ -123,7 +123,7 @@ on inventory click:
             remove {price.buy.diamond_sword} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is bow named "&a[$%{price.buy.bow}%] &r弓を買う":
         cancel event
@@ -133,7 +133,7 @@ on inventory click:
             remove {price.buy.bow} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is arrow named "&a[$%{price.buy.arrow}%] &r矢を買う":
         cancel event
@@ -143,7 +143,7 @@ on inventory click:
             remove {price.buy.arrow} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う":
         cancel event
@@ -153,7 +153,7 @@ on inventory click:
             remove {price.buy.stone_axe} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う":
         cancel event
@@ -163,7 +163,7 @@ on inventory click:
             remove {price.buy.golden_axe} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is snowball named "&a[$%{price.buy.snowball}%] &r雪玉を買う":
         cancel event
@@ -173,7 +173,7 @@ on inventory click:
             remove {price.buy.snowball} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
 
 
@@ -228,7 +228,7 @@ on inventory click:
             remove {price.buy.iron_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     
     if event-item is golden helmet named "&a[$%{price.buy.golden_armor}%] &r金のヘルメットを買う":
         cancel event
@@ -238,7 +238,7 @@ on inventory click:
             remove {price.buy.golden_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is diamond helmet named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのヘルメットを買う":
         cancel event
@@ -248,7 +248,7 @@ on inventory click:
             remove {price.buy.diamond_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     # ヘルメット
     # -------------
     # チェストプレート
@@ -260,7 +260,7 @@ on inventory click:
             remove {price.buy.iron_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     
     if event-item is golden chestplate named "&a[$%{price.buy.golden_armor}%] &r金のチェストプレートを買う":
         cancel event
@@ -270,7 +270,7 @@ on inventory click:
             remove {price.buy.golden_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is diamond chestplate named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのチェストプレートを買う":
         cancel event
@@ -280,7 +280,7 @@ on inventory click:
             remove {price.buy.diamond_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     # チェストプレート
     # -------------
     # レギンス
@@ -292,7 +292,7 @@ on inventory click:
             remove {price.buy.iron_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     
     if event-item is golden leggings named "&a[$%{price.buy.golden_armor}%] &r金のレギンスを買う":
         cancel event
@@ -302,7 +302,7 @@ on inventory click:
             remove {price.buy.golden_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is diamond leggings named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのレギンスを買う":
         cancel event
@@ -312,7 +312,7 @@ on inventory click:
             remove {price.buy.diamond_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     # レギンス
     # -------------
     # ブーツ
@@ -324,7 +324,7 @@ on inventory click:
             remove {price.buy.iron_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     
     if event-item is golden boots named "&a[$%{price.buy.golden_armor}%] &r金のブーツを買う":
         cancel event
@@ -334,7 +334,7 @@ on inventory click:
             remove {price.buy.golden_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is diamond boots named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのブーツを買う":
         cancel event
@@ -344,7 +344,7 @@ on inventory click:
             remove {price.buy.diamond_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
     # ブーツ
     # -------------
     # その他
@@ -356,7 +356,7 @@ on inventory click:
             remove {price.buy.shield} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
 
 
@@ -397,7 +397,7 @@ on inventory click:
             remove {price.buy.cooked_beef} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is golden apple named "&a[$%{price.buy.golden_apple}%] &r金のリンゴを買う":
         cancel event
@@ -407,7 +407,7 @@ on inventory click:
             remove {price.buy.golden_apple} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
 
     if event-item is enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う":
         cancel event
@@ -417,4 +417,4 @@ on inventory click:
             remove {price.buy.enchanted_golden_apple} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
-            message "エメラルドが足りません" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player

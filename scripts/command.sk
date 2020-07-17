@@ -33,7 +33,7 @@ command /sidebar:
 command /ver:
     description:Show version now working
     trigger:
-        message "&r現在のバージョンは &c%{ver}% &rです" to player
+        message "&b[システム] &r現在のバージョンは &c%{ver}% &rです" to player
 
 
 

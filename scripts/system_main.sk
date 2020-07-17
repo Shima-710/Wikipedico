@@ -159,7 +159,7 @@ on break:
 on craft of crafting table:
     cancel event
     close player'S inventory
-    message "&b[運営] &r作業台の作成はできません" to player
+    message "&b[システム] &r作業台の作成はできません" to player
 
 
 
