@@ -26,7 +26,7 @@ command /game <text>:
             set {rank.alive} to "--"
             set {status} to 1
             broadcast "&b[運営] &r10秒後にゲームを開始します..."
-            execute console command "tp @a -27663 309 36470"
+            execute console command "tp @a -27663 255 36470"
             wait 10 seconds
             execute console command "function shimashima:cd_3"
             play sound "block.note_block.harp" to all players
