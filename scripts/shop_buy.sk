@@ -322,7 +322,7 @@ on inventory click:
         cancel event
         if player has {price.buy.iron_armor} of emerald:
             play sound "entity.player.levelup" to player
-            give 1 of iron leggings to player
+            give 1 of iron boots to player
             remove {price.buy.iron_armor} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
