@@ -107,7 +107,7 @@ on join:
     if {status} is 1:
         set player's gamemode to spectator
         set {sidebar.%player%} to 2
-        set {play} to "not"
+        set {play.%player%} to "not"
         message "&b[システム] &7現在ゲームが進行中のため状態が死亡に設定されました。"
     if {status} is 2:
         kick the player due to "ゲームはすでに終了しています。ワールドの入れ替え完了までしばらくお待ちください。"
@@ -134,7 +134,7 @@ on quit:
     if {status} is 1:
         if {admin.%player%} is not "true":
             if {sidebar.%player%} is not 2:
-                if {play} is not "not":
+                if {play.%player%} is not set:
                     set {sidebar.%player%} to 2
                     set {rank.%player%} to {rank.dummy}
                     reduce {rank.dummy} by 1
