@@ -263,7 +263,7 @@ command /chest:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
-        make player execute command "function shimashima:02_prepareo"
+        make player execute command "function shimashima:02_prepare"
 
 
 

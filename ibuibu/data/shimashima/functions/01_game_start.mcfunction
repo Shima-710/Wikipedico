@@ -30,7 +30,7 @@ team modify players nametagVisibility never
 
 # 上空にTP -> 変更
 # tp @a -27663 309 36470 ~ 90
-fill 
+fill -27678 252 36485 -27648 254 36455 air destroy
 
 
 # ワールドボーダーをとりあえず作る
