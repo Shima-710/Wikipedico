@@ -25,9 +25,9 @@ command /game <text>:
             set {rank.dummy} to {qua.player}
             set {rank.alive} to "--"
             set {status} to 1
-            broadcast "&b[運営] &r10秒後にゲームを開始します..."
+            broadcast "&b[運営] &r15秒後にゲームを開始します..."
             execute console command "tp @a -27663 255 36470"
-            wait 10 seconds
+            wait 15 seconds
             execute console command "function shimashima:cd_3"
             play sound "block.note_block.harp" to all players
             wait 1 seconds
