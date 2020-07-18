@@ -49,8 +49,9 @@ every 1 second:
                 set score "&c***Server Closing***" in sidebar of loop-player to -90
                 set score "&aオンライン" in sidebar of loop-player to -91
                 set score "  : %online player count%人(online player)" in sidebar of loop-player to -92
-                set score "&aAdmin人数" in sidebar of loop-player to -97
-                set score "  : %{qua.admin}%人(qua.admin)" in sidebar of loop-player to -98
+                set score "&aAdmin人数" in sidebar of loop-player to -93
+                set score "  : %{qua.admin}%人(qua.admin)" in sidebar of loop-player to -94
+                set score "&c***鯖を閉じる前にadminを抜けてください***" in sidebar of loop-player to -100
         if {sidebar.%loop-player%} is 1:
             set score "&a状態" in sidebar of loop-player to 0
             set score "  : 生存" in sidebar of loop-player to -1

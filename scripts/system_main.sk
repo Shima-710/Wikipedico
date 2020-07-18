@@ -89,6 +89,10 @@ command /game <text>:
                 clear {ranking.name.%{loop.rank}%}
                 clear {ranking.kills.%{loop.rank}%}
                 add 1 to {loop.rank}
+            loop all players:
+                if {admin.%loop-player%} is "true":
+                    make loop-player execute command "admin leave"
+                    set loop-player's gamemode to creative
 
 
 
