@@ -95,6 +95,7 @@ on join:
     message " " to player
     set {use.snowball.%player%} to 0
     set {cooltime.snowball.%player%} to 0
+    clear {play.%player%}
     execute console command "tema join players %player%"
     if {status} is 0:
         set player's gamemode to adventure
