@@ -197,7 +197,7 @@ on right click with snowball:
 
 on projectile hit:
     if {use.snowball.%shooter%} is 1:
-        create an explosion of force 2 at the projectile
+        create an explosion of force 1.5 at the projectile
     set {use.snowball.%shooter%} to 0
     set {lastuse.snowball} to shooter
 
