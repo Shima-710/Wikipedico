@@ -106,6 +106,7 @@ on join:
         set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
         stop
     if {status} is 1:
+        execute console command "team join dead %player%"
         set player's gamemode to spectator
         set {sidebar.%player%} to 2
         set {play.%player%} to "not"

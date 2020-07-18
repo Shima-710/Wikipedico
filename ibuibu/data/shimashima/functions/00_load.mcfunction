@@ -72,6 +72,9 @@
     team modify players nametagVisibility always
     team modify players collisionRule never
 
+# dead
+    team add dead
+
 #=========================================================================================================================
 #スコアボードの追加
 

@@ -22,7 +22,7 @@ replaceitem entity @a[team=!admin] armor.chest elytra
 effect give @a[team=!admin] resistance 10 255 true
 
 # 参加者のゲームモードを変更
-gamemode survival @a[team=!admin]
+gamemode survival @a[team=!admin,team=!dead]
 gamemode spectator @a[team=admin]
 
 # 参加者のネームタグを隠す
