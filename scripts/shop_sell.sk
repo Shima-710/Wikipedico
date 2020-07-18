@@ -27,7 +27,7 @@ on server start:
     set {price.sell.golden_armor} to 30
     set {price.sell.diamond_armor} to 50
     set {price.sell.shield} to 15
-    set {price.sell.elytra} to 30
+    set {price.sell.elytra} to 10
         # 食糧
     set {price.sell.cooked_beef} to 3
     set {price.sell.golden_apple} to 5

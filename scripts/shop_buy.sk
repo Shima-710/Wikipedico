@@ -23,7 +23,7 @@ on server start:
     set {price.buy.golden_armor} to 60
     set {price.buy.diamond_armor} to 100
     set {price.buy.shield} to 30
-    set {price.buy.elytra} to 60
+    set {price.buy.elytra} to 20
         # 食糧
     set {price.buy.cooked_beef} to 15
     set {price.buy.golden_apple} to 10
