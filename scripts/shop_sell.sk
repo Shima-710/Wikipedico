@@ -27,6 +27,7 @@ on server start:
     set {price.sell.golden_armor} to 30
     set {price.sell.diamond_armor} to 50
     set {price.sell.shield} to 15
+    set {price.sell.elytra} to 30
         # 食糧
     set {price.sell.cooked_beef} to 3
     set {price.sell.golden_apple} to 5
@@ -248,6 +249,7 @@ on inventory click:
         set slot 51 of player's current inventory to diamond boots named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのブーツを売る"
 
         set slot 25 of player's current inventory to a shield named "&d[$%{price.sell.shield}%] &r盾を売る"
+        set slot 34 of player's current inventory to elytra named "&d[$%{price.sell.elytra}%] &rエリトラを売る"
 
     # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"防具を売る"内の商品
@@ -255,6 +257,11 @@ on inventory click:
     if event-item is leather helmet named "&d[$%{price.sell.leather_armor}%] &r皮のヘルメットを売る":
         cancel event
         if player has leather helmet:
+            if amount of leather helmet in player's inventory is 1:
+                if player is wearing leather helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of leather helmet from player
             give {price.sell.leather_armor} of emerald to player
@@ -265,6 +272,11 @@ on inventory click:
     if event-item is chainmail helmet named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのヘルメットを売る":
         cancel event
         if player has chainmail helmet:
+            if amount of chainmail helmet in player's inventory is 1:
+                if player is wearing chainmail helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of chainmail helmet from player
             give {price.sell.chainmail_armor} of emerald to player
@@ -275,6 +287,11 @@ on inventory click:
     if event-item is iron helmet named "&d[$%{price.sell.iron_armor}%] &r鉄のヘルメットを売る":
         cancel event
         if player has iron helmet:
+            if amount of iron helmet in player's inventory is 1:
+                if player is wearing iron helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of iron helmet from player
             give {price.sell.iron_armor} of emerald to player
@@ -285,6 +302,11 @@ on inventory click:
     if event-item is golden helmet named "&d[$%{price.sell.golden_armor}%] &r金のヘルメットを売る":
         cancel event
         if player has golden helmet:
+            if amount of golden helmet in player's inventory is 1:
+                if player is wearing golden helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of golden helmet from player
             give {price.sell.golden_armor} of emerald to player
@@ -295,6 +317,11 @@ on inventory click:
     if event-item is diamond helmet named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのヘルメットを売る":
         cancel event
         if player has diamond helmet:
+            if amount of diamond helmet in player's inventory is 1:
+                if player is wearing diamond helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of diamond helmet from player
             give {price.sell.diamond_armor} of emerald to player
@@ -307,6 +334,11 @@ on inventory click:
     if event-item is leather chestplate named "&d[$%{price.sell.leather_armor}%] &r皮のチェストプレートを売る":
         cancel event
         if player has leather chestplate:
+            if amount of leather chestplate in player's inventory is 1:
+                if player is wearing leather chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of leather chestplate from player
             give {price.sell.leather_armor} of emerald to player
@@ -317,6 +349,11 @@ on inventory click:
     if event-item is chainmail chestplate named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのチェストプレートを売る":
         cancel event
         if player has chainmail chestplate:
+            if amount of chainmail chestplate in player's inventory is 1:
+                if player is wearing chainmail chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of chainmail chestplate from player
             give {price.sell.chainmail_armor} of emerald to player
@@ -327,6 +364,11 @@ on inventory click:
     if event-item is iron chestplate named "&d[$%{price.sell.iron_armor}%] &r鉄のチェストプレートを売る":
         cancel event
         if player has iron chestplate:
+            if amount of iron chestplate in player's inventory is 1:
+                if player is wearing iron chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of iron chestplate from player
             give {price.sell.iron_armor} of emerald to player
@@ -337,6 +379,11 @@ on inventory click:
     if event-item is golden chestplate named "&d[$%{price.sell.golden_armor}%] &r金のチェストプレートを売る":
         cancel event
         if player has golden chestplate:
+            if amount of golden chestplate in player's inventory is 1:
+                if player is wearing golden chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of golden chestplate from player
             give {price.sell.golden_armor} of emerald to player
@@ -347,6 +394,11 @@ on inventory click:
     if event-item is diamond chestplate named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのチェストプレートを売る":
         cancel event
         if player has diamond chestplate:
+            if amount of diamond chestplate in player's inventory is 1:
+                if player is wearing diamond chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of diamond chestplate from player
             give {price.sell.diamond_armor} of emerald to player
@@ -359,6 +411,11 @@ on inventory click:
     if event-item is leather leggings named "&d[$%{price.sell.leather_armor}%] &r皮のレギンスを売る":
         cancel event
         if player has leather leggings:
+            if amount of leather leggings in player's inventory is 1:
+                if player is wearing leather leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of leather leggings from player
             give {price.sell.leather_armor} of emerald to player
@@ -369,6 +426,11 @@ on inventory click:
     if event-item is chainmail leggings named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのレギンスを売る":
         cancel event
         if player has chainmail leggings:
+            if amount of chainmail leggings in player's inventory is 1:
+                if player is wearing chainmail leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of chainmail leggings from player
             give {price.sell.chainmail_armor} of emerald to player
@@ -379,6 +441,11 @@ on inventory click:
     if event-item is iron leggings named "&d[$%{price.sell.iron_armor}%] &r鉄のレギンスを売る":
         cancel event
         if player has iron leggings:
+            if amount of iron leggings in player's inventory is 1:
+                if player is wearing iron leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of iron leggings from player
             give {price.sell.iron_armor} of emerald to player
@@ -389,6 +456,11 @@ on inventory click:
     if event-item is golden leggings named "&d[$%{price.sell.golden_armor}%] &r金のレギンスを売る":
         cancel event
         if player has golden leggings:
+            if amount of golden leggings in player's inventory is 1:
+                if player is wearing golden leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of golden leggings from player
             give {price.sell.golden_armor} of emerald to player
@@ -399,6 +471,11 @@ on inventory click:
     if event-item is diamond leggings named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのレギンスを売る":
         cancel event
         if player has diamond leggings:
+            if amount of diamond leggings in player's inventory is 1:
+                if player is wearing diamond leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of diamond leggings from player
             give {price.sell.diamond_armor} of emerald to player
@@ -411,6 +488,11 @@ on inventory click:
     if event-item is leather boots named "&d[$%{price.sell.leather_armor}%] &r皮のブーツを売る":
         cancel event
         if player has leather boots:
+            if amount of leather boots in player's inventory is 1:
+                if player is wearing leather boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of leather boots from player
             give {price.sell.leather_armor} of emerald to player
@@ -421,6 +503,11 @@ on inventory click:
     if event-item is chainmail boots named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのブーツを売る":
         cancel event
         if player has chainmail boots:
+            if amount of chainmail boots in player's inventory is 1:
+                if player is wearing chainmail boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of chainmail boots from player
             give {price.sell.chainmail_armor} of emerald to player
@@ -431,6 +518,11 @@ on inventory click:
     if event-item is iron boots named "&d[$%{price.sell.iron_armor}%] &r鉄のブーツを売る":
         cancel event
         if player has iron boots:
+            if amount of iron boots in player's inventory is 1:
+                if player is wearing iron boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of iron boots from player
             give {price.sell.iron_armor} of emerald to player
@@ -441,6 +533,11 @@ on inventory click:
     if event-item is golden boots named "&d[$%{price.sell.golden_armor}%] &r金のブーツを売る":
         cancel event
         if player has golden boots:
+            if amount of golden boots in player's inventory is 1:
+                if player is wearing golden boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of golden boots from player
             give {price.sell.golden_armor} of emerald to player
@@ -451,6 +548,11 @@ on inventory click:
     if event-item is diamond boots named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのブーツを売る":
         cancel event
         if player has diamond boots:
+            if amount of diamond boots in player's inventory is 1:
+                if player is wearing diamond boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
             play sound "entity.player.levelup" to player
             remove 1 of diamond boots from player
             give {price.sell.diamond_armor} of emerald to player
@@ -464,6 +566,18 @@ on inventory click:
             play sound "entity.player.levelup" to player
             remove 1 of shield from player
             give {price.sell.shield} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    # ブーツ
+    # -------------
+    # その他
+    if event-item is elytra named "&d[$%{price.sell.elytra}%] &rエリトラを売る":
+        cancel event
+        if player has elytra:
+            play sound "entity.player.levelup" to player
+            remove 1 of elytra from player
+            give {price.sell.elytra} of emerald to player
         else:
             play sound "block.note_block.banjo" to player
             message "&b[商人] &rそのアイテムは持ってないようだな..." to player
