@@ -23,7 +23,7 @@ effect give @a[team=!admin] resistance 10 255 true
 
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin,team=!dead]
-gamemode spectator @a[team=admin]
+gamemode spectator @a[team=admin,team=dead]
 
 # 参加者のネームタグを隠す
 team modify players nametagVisibility never
