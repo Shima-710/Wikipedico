@@ -26,7 +26,7 @@ gamemode survival @a[team=!admin]
 gamemode spectator @a[team=admin]
 
 # 参加者のネームタグを隠す
-team join nametag @a[team=!admin]
+team modify players nametagVisibility never
 
 # 上空にTP -> 変更
 # tp @a -27663 309 36470 ~ 90

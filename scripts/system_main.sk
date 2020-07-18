@@ -197,7 +197,17 @@ on inventory click:
 # 雪玉爆弾
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click with snowball:
-    set {use.snowball.%player%} to 1
+    if {cooltime.snowball.%player%} is 0:
+        set {use.snowball.%player%} to 1
+        set {cooltime.snowball.%player%} to 5
+        loop 5 times:
+            send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
+            wait 1 seconds
+            reduce {cooltime.snowball.%player%} by 1
+            if {cooltime.snowball.%player%} is 0:
+                send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
+    else:
+        cancel event
 
 on projectile hit:
     if {use.snowball.%shooter%} is 1:

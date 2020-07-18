@@ -41,7 +41,7 @@
 
 # Admin
     team add admin
-    team modify nametag nametagVisibility never
+    team modify admin nametagVisibility always
     team modify adimn color dark_red
 
 # A
@@ -67,9 +67,10 @@
 # spread
     team add spread
 
-# nametag
-    team add nametag
-    team modify nametag nametagVisibility never
+# players
+    team add players
+    team modify players nametagVisibility always
+    team modify players collisionRule never
 
 #=========================================================================================================================
 #スコアボードの追加
