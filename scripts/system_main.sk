@@ -133,11 +133,8 @@ on death of player:
         else if damage cause is attack:
             broadcast "&b%attacker% &r✈► &c%victim% &r(%{rank.%victim%}%位)"
             stop
-        else if damage cause is arrow:
-            broadcast "&b%shooter% &r✈► &c%victim% &r(%{rank.%victim%}%位)"
-            stop
         else:
-            broadcast "&c%victim% &rはなんか知らんが死亡した &r(%{rank.%victim%}%位)"
+            broadcast "&c%victim% &rは死亡した &r(%{rank.%victim%}%位)"
             stop
 
 on death of player:
