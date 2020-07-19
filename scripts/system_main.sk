@@ -101,6 +101,8 @@ command /game <text>:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on death of player:
     if {status} is 1:
+        if {sidebar.%player%} is not 1:
+            stop
         execute console command "spawnpoint %player% -27663 82 36470"
         set {sidebar.%player%} to 2
         set {rank.%player%} to {rank.dummy}
