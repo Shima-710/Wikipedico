@@ -218,7 +218,9 @@ on projectile hit:
     set {use.snowball.%shooter%} to 0
     set {lastuse.snowball} to shooter
 
-
+on item spawn:
+    if event-item is snowball:
+        cancel event
 
 
 
