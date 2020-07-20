@@ -1,0 +1,19 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "weight": 99,
+          "name": "shimashima:normal"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "weight": 1,
+          "name": "shimashima:rare"
+        }
+      ]
+    }
+  ]
+}
