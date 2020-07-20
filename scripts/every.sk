@@ -30,8 +30,23 @@ every 1 second:
         wipe loop-player's sidebar
         set name of sidebar of loop-player to "&l%loop-player's name%"
         if {status} is 0:
-            set score "&a状態        &r: 準備中" in sidebar of loop-player to 0
-            set score "しばらくお待ちください" in sidebar of loop-player to -1
+            set score "しばらくお待ちください" in sidebar of loop-player to 1
+            set score "&a状態" in sidebar of loop-player to 0
+            set score "  : 準備中" in sidebar of loop-player to -1
+            set score "&a現在有効なモード" in sidebar of loop-player to -2
+            if {mode.daruma} is "false":
+                if {mode.yumi} is "false":
+                    if {mode.yukidama} is "false":
+                        if {mode.ibuibu} is "false":
+                            set score "  : ノーマル" in sidebar of loop-player to -3
+            if {mode.daruma} is "true":
+                set score "  : だるまさん" in sidebar of loop-player to -3
+            if {mode.yumi} is "true":
+                set score "  : 弓のみ" in sidebar of loop-player to -4
+            if {mode.yukidama} is "true":
+                set score "  : 雪玉のみ" in sidebar of loop-player to -5
+            if {mode.ibuibu} is "true":
+                set score "  : いぶいぶ" in sidebar of loop-player to -6
             if {admin.%loop-player%} is "true":
                 set score "&c====Admin Mode====" in sidebar of loop-player to -90
                 set score "&aオンライン" in sidebar of loop-player to -91
