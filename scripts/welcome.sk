@@ -46,7 +46,10 @@ on server start:
     set {surviver} to 0
     set {qua.admin} to 0
     set {qua.player} to 0
+    set {mode.ibuibu} to "false"
     set {mode.daruma} to "false"
+    set {mode.yumi} to "false"
+    set {mode.yukidama} to "false"
     set {admin.%offline players%} to "false"
     clear {mode.onigokko}
     clear {killranking::*}

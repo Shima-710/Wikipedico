@@ -232,6 +232,54 @@ command /daruma <text>:
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Mode Change
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /mode <text>:
+    description:Switch Mode
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        if arg-1 is "ibuibu":
+            if {mode.ibuibu} is "true":
+                set {mode.ibuibu} to "false"
+                execute console command "scoreboard players set ibuibumode ibuibumode 0"
+                broadcast "&b[運営] &r「ibuibu Mode」がオフになりました"
+            else:
+                set {mode.ibuibu} to "true"
+                execute console command "scoreboard players set ibuibumode ibuibumode 1"
+                broadcast "&b[運営] &r「ibuibu Mode」がオンになりました"
+
+        if arg-1 is "daruma":
+            if {mode.daruma} is "true":
+                set {mode.daruma} to "false"
+                broadcast "&b[運営] &r「だるまさんが転んだモード」がオフになりました"
+                stop
+            else:
+                set {mode.daruma} to "true"
+                broadcast "&b[運営] &r「だるまさんが転んだモード」がオンになりました"
+
+    if arg-1 is "yumi":
+            if {mode.yumi} is "true":
+                set {mode.yumi} to "false"
+                broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオフになりました"
+                stop
+            else:
+                set {mode.yumi} to "true"
+                broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオンになりました"
+
+    if arg-1 is "yukidama":
+            if {mode.yukidama} is "true":
+                set {mode.yukidama} to "false"
+                broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオフになりました"
+                stop
+            else:
+                set {mode.yukidama} to "true"
+                broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオンになりました"
+            
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 本を渡します．
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 command /book:
