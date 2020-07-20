@@ -19,6 +19,7 @@ command /game <text>:
                     set {sidebar.%loop-player%} to 9
                 else: 
                     set {sidebar.%loop-player%} to 1
+                    execute console command "baibainametag %loop-player%"
             set {qua.player} to online player count
             reduce {qua.player} by {qua.admin}
             set {surviver} to {qua.player}
