@@ -569,6 +569,14 @@ on inventory click:
 
     if event-item is enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う":
         cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない売り切れなんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない売り切れなんだ..." to player
+            stop
         if player has {price.buy.enchanted_golden_apple} of emerald:
             play sound "entity.player.levelup" to player
             give 1 of enchanted golden apple to player
