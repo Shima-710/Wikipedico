@@ -261,19 +261,27 @@ command /mode <text>:
     if arg-1 is "yumi":
             if {mode.yumi} is "true":
                 set {mode.yumi} to "false"
+                execute console command "datapack disable ""file/ibuibu-yumi-"""
+                execute console command "datapack enable ""file/ibuibu"""
                 broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオフになりました"
                 stop
             else:
                 set {mode.yumi} to "true"
+                execute console command "datapack disable ""file/ibuibu"""
+                execute console command "datapack enable ""file/ibuibu-yumi-"""
                 broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオンになりました"
 
     if arg-1 is "yukidama":
             if {mode.yukidama} is "true":
                 set {mode.yukidama} to "false"
+                execute console command "datapack disable ""file/ibuibu-yukidama-"""
+                execute console command "datapack enable ""file/ibuibu"""
                 broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオフになりました"
                 stop
             else:
                 set {mode.yukidama} to "true"
+                execute console command "datapack disable ""file/ibuibu"""
+                execute console command "datapack enable ""file/ibuibu-yukidama-"""
                 broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオンになりました"
             
 

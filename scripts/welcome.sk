@@ -38,6 +38,8 @@ on server start:
 # ネームの設定をリセットする
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #on server start:
+    execute console command "datapack disable ""file/ibuibu-yukidama-"""
+    execute console command "datapack disable ""file/ibuibu-yumi-"""
     execute console command "datapack enable ""file/ibuibu"""
     execute console command "function shimashima:01_replay"
     execute console command "worldborder set 50000"
