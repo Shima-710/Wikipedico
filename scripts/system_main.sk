@@ -90,6 +90,7 @@ command /game <text>:
                 clear {ranking.name.%{loop.rank}%}
                 clear {ranking.kills.%{loop.rank}%}
                 add 1 to {loop.rank}
+            wait 2 seconds
             loop all players:
                 if {admin.%loop-player%} is "true":
                     make loop-player execute command "admin leave"
