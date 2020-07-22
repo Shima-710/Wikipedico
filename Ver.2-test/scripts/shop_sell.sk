@@ -1,0 +1,880 @@
+# ===============================================================================================================================================================================================
+# Shop System
+# 買取編
+# ==============================================================================================================================================================================================
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 買取価格・買取量 ここで変えると全て一括で変更されます
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on server start:
+    # 価格
+        # 武器
+    set {price.sell.wooden_sword} to 3
+    set {price.sell.stone_sword} to 5
+    set {price.sell.iron_sword} to 15
+    set {price.sell.golden_sword} to 30
+    set {price.sell.diamond_sword} to 50
+    set {price.sell.bow} to 5
+    set {price.sell.arrow} to 10
+    set {price.sell.stone_axe} to 5
+    set {price.sell.golden_axe} to 30
+    set {price.sell.snowball} to 30
+        # 防具
+    set {price.sell.leather_armor} to 3
+    set {price.sell.chainmail_armor} to 5
+    set {price.sell.iron_armor} to 15
+    set {price.sell.golden_armor} to 30
+    set {price.sell.diamond_armor} to 50
+    set {price.sell.shield} to 15
+    set {price.sell.elytra} to 10
+        # 食糧
+    set {price.sell.cooked_beef} to 3
+    set {price.sell.golden_apple} to 5
+    set {price.sell.enchanted_golden_apple} to 30
+    # 買取量
+    set {amount.sell.arrow} to 10
+    set {amount.sell.cooked_beef} to 1
+
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#　該当インベントリを操作したときの挙動
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on inventory click:
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"売る"をクリック
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is diamond sword named "&d売る":
+        play sound "block.stone_button.click_on" to player
+        open chest inventory with 6 row named "&d売る" to player
+        set slot 0 of player's current inventory to diamond sword named "&d売る"
+        set slot 2 of player's current inventory to wooden sword named "&d武器を売る"
+        set slot 4 of player's current inventory to leather chestplate named "&d防具を売る"
+        set slot 6 of player's current inventory to cooked beef named "&d食糧を売る"
+        set slot 8 of player's current inventory to emerald named "&a買う"
+        set slot 9 of player's current inventory to black stained glass pane named " "
+        set slot 10 of player's current inventory to black stained glass pane named " "
+        set slot 11 of player's current inventory to black stained glass pane named " "
+        set slot 12 of player's current inventory to black stained glass pane named " "
+        set slot 13 of player's current inventory to black stained glass pane named " "
+        set slot 14 of player's current inventory to black stained glass pane named " "
+        set slot 15 of player's current inventory to black stained glass pane named " "
+        set slot 16 of player's current inventory to black stained glass pane named " "
+        set slot 17 of player's current inventory to black stained glass pane named " "
+        set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
+
+
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"武器を売る"
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is wooden sword named "&d武器を売る":
+        play sound "block.stone_button.click_on" to player
+        open chest inventory with 6 row named "&d武器を売る" to player
+        set slot 0 of player's current inventory to diamond sword named "&d売る"
+        set slot 2 of player's current inventory to wooden sword named "&d武器を売る"
+        set slot 4 of player's current inventory to leather chestplate named "&d防具を売る"
+        set slot 6 of player's current inventory to cooked beef named "&d食糧を売る"
+        set slot 8 of player's current inventory to emerald named "&a買う"
+        set slot 9 of player's current inventory to black stained glass pane named " "
+        set slot 10 of player's current inventory to black stained glass pane named " "
+        set slot 11 of player's current inventory to black stained glass pane named " "
+        set slot 12 of player's current inventory to black stained glass pane named " "
+        set slot 13 of player's current inventory to black stained glass pane named " "
+        set slot 14 of player's current inventory to black stained glass pane named " "
+        set slot 15 of player's current inventory to black stained glass pane named " "
+        set slot 16 of player's current inventory to black stained glass pane named " "
+        set slot 17 of player's current inventory to black stained glass pane named " "
+        set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
+
+        set slot 28 of player's current inventory to wooden sword named "&d[$%{price.sell.wooden_sword}%] &r木の剣を売る"
+        set slot 29 of player's current inventory to stone sword named "&d[$%{price.sell.stone_sword}%] &r石の剣を売る"
+        set slot 30 of player's current inventory to iron sword named "&d[$%{price.sell.iron_sword}%] &r鉄の剣を売る"
+        set slot 31 of player's current inventory to golden sword named "&d[$%{price.sell.golden_sword}%] &r金の剣を売る"
+        set slot 32 of player's current inventory to diamond sword named "&d[$%{price.sell.diamond_sword}%] &rダイヤモンドの剣を売る"
+        set slot 33 of player's current inventory to bow named "&d[$%{price.sell.bow}%] &r弓を売る"
+        set slot 34 of player's current inventory to {amount.sell.arrow} of arrow named "&d[$%{price.sell.arrow}%] &r矢を売る"
+        set slot 37 of player's current inventory to stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る"
+        set slot 38 of player's current inventory to golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る"
+        set slot 39 of player's current inventory to snowball named "&d[$%{price.sell.snowball}%] &r雪玉を売る"
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"武器を売る"内の商品
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is wooden sword named "&d[$%{price.sell.wooden_sword}%] &r木の剣を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has wooden sword:
+            play sound "entity.player.levelup" to player
+            remove 1 of wooden sword from player
+            give {price.sell.wooden_sword} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is stone sword named "&d[$%{price.sell.stone_sword}%] &r石の剣を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has stone sword:
+            play sound "entity.player.levelup" to player
+            remove 1 of stone sword from player
+            give {price.sell.stone_sword} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is iron sword named "&d[$%{price.sell.iron_sword}%] &r鉄の剣を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has iron sword:
+            play sound "entity.player.levelup" to player
+            remove 1 of iron sword from player
+            give {price.sell.iron_sword} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is golden sword named "&d[$%{price.sell.golden_sword}%] &r金の剣を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden sword:
+            play sound "entity.player.levelup" to player
+            remove 1 of golden sword from player
+            give {price.sell.golden_sword} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is diamond sword named "&d[$%{price.sell.diamond_sword}%] &rダイヤモンドの剣を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has diamond sword:
+            play sound "entity.player.levelup" to player
+            remove 1 of diamond sword from player
+            give {price.sell.diamond_sword} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is bow named "&d[$%{price.sell.bow}%] &r弓を売る":
+        cancel event
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has bow:
+            play sound "entity.player.levelup" to player
+            remove 1 of bow from player
+            give {price.sell.bow} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is arrow named "&d[$%{price.sell.arrow}%] &r矢を売る":
+        cancel event
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has {amount.sell.arrow} of arrow:
+            play sound "entity.player.levelup" to player
+            remove {amount.sell.arrow} of arrow from player
+            give {price.sell.arrow} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is stone axe named "&d[$%{price.sell.stone_axe}%] &r石の斧を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has stone axe:
+            play sound "entity.player.levelup" to player
+            remove 1 of stone axe from player
+            give {price.sell.stone_axe} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is golden axe named "&d[$%{price.sell.golden_axe}%] &r金の斧を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden axe:
+            play sound "entity.player.levelup" to player
+            remove 1 of golden axe from player
+            give {price.sell.golden_axe} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is snowball named "&d[$%{price.sell.snowball}%] &r雪玉を売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has snowball:
+            play sound "entity.player.levelup" to player
+            remove 1 of snowball from player
+            give {price.sell.snowball} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"防具を売る"
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is leather chestplate named "&d防具を売る":
+        play sound "block.stone_button.click_on" to player
+        open chest inventory with 6 row named "&d防具を売る" to player
+        set slot 0 of player's current inventory to diamond sword named "&d売る"
+        set slot 2 of player's current inventory to wooden sword named "&d武器を売る"
+        set slot 4 of player's current inventory to leather chestplate named "&d防具を売る"
+        set slot 6 of player's current inventory to cooked beef named "&d食糧を売る"
+        set slot 8 of player's current inventory to emerald named "&a買う"
+        set slot 9 of player's current inventory to black stained glass pane named " "
+        set slot 10 of player's current inventory to black stained glass pane named " "
+        set slot 11 of player's current inventory to black stained glass pane named " "
+        set slot 12 of player's current inventory to black stained glass pane named " "
+        set slot 13 of player's current inventory to black stained glass pane named " "
+        set slot 14 of player's current inventory to black stained glass pane named " "
+        set slot 15 of player's current inventory to black stained glass pane named " "
+        set slot 16 of player's current inventory to black stained glass pane named " "
+        set slot 17 of player's current inventory to black stained glass pane named " "
+        set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
+
+        set slot 20 of player's current inventory to leather helmet named "&d[$%{price.sell.leather_armor}%] &r皮のヘルメットを売る"
+        set slot 21 of player's current inventory to chainmail helmet named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのヘルメットを売る"
+        set slot 22 of player's current inventory to iron helmet named "&d[$%{price.sell.iron_armor}%] &r鉄のヘルメットを売る"
+        set slot 23 of player's current inventory to golden helmet named "&d[$%{price.sell.golden_armor}%] &r金のヘルメットを売る"
+        set slot 24 of player's current inventory to diamond helmet named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのヘルメットを売る"
+
+        set slot 29 of player's current inventory to leather chestplate named "&d[$%{price.sell.leather_armor}%] &r皮のチェストプレートを売る"
+        set slot 30 of player's current inventory to chainmail chestplate named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのチェストプレートを売る"
+        set slot 31 of player's current inventory to iron chestplate named "&d[$%{price.sell.iron_armor}%] &r鉄のチェストプレートを売る"
+        set slot 32 of player's current inventory to golden chestplate named "&d[$%{price.sell.golden_armor}%] &r金のチェストプレートを売る"
+        set slot 33 of player's current inventory to diamond chestplate named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのチェストプレートを売る"
+
+        set slot 38 of player's current inventory to leather leggings named "&d[$%{price.sell.leather_armor}%] &r皮のレギンスを売る"
+        set slot 39 of player's current inventory to chainmail leggings named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのレギンスを売る"
+        set slot 40 of player's current inventory to iron leggings named "&d[$%{price.sell.iron_armor}%] &r鉄のレギンスを売る"
+        set slot 41 of player's current inventory to golden leggings named "&d[$%{price.sell.golden_armor}%] &r金のレギンスを売る"
+        set slot 42 of player's current inventory to diamond leggings named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのレギンスを売る"
+
+        set slot 47 of player's current inventory to leather boots named "&d[$%{price.sell.leather_armor}%] &r皮のブーツを売る"
+        set slot 48 of player's current inventory to chainmail boots named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのブーツを売る"
+        set slot 49 of player's current inventory to iron boots named "&d[$%{price.sell.iron_armor}%] &r鉄のブーツを売る"
+        set slot 50 of player's current inventory to golden boots named "&d[$%{price.sell.golden_armor}%] &r金のブーツを売る"
+        set slot 51 of player's current inventory to diamond boots named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのブーツを売る"
+
+        set slot 25 of player's current inventory to a shield named "&d[$%{price.sell.shield}%] &r盾を売る"
+        set slot 34 of player's current inventory to elytra named "&d[$%{price.sell.elytra}%] &rエリトラを売る"
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"防具を売る"内の商品
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is leather helmet named "&d[$%{price.sell.leather_armor}%] &r皮のヘルメットを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has leather helmet:
+            if amount of leather helmet in player's inventory is 1:
+                if player is wearing leather helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of leather helmet from player
+            give {price.sell.leather_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is chainmail helmet named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのヘルメットを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has chainmail helmet:
+            if amount of chainmail helmet in player's inventory is 1:
+                if player is wearing chainmail helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of chainmail helmet from player
+            give {price.sell.chainmail_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+        
+    if event-item is iron helmet named "&d[$%{price.sell.iron_armor}%] &r鉄のヘルメットを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has iron helmet:
+            if amount of iron helmet in player's inventory is 1:
+                if player is wearing iron helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of iron helmet from player
+            give {price.sell.iron_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is golden helmet named "&d[$%{price.sell.golden_armor}%] &r金のヘルメットを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden helmet:
+            if amount of golden helmet in player's inventory is 1:
+                if player is wearing golden helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of golden helmet from player
+            give {price.sell.golden_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is diamond helmet named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのヘルメットを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has diamond helmet:
+            if amount of diamond helmet in player's inventory is 1:
+                if player is wearing diamond helmet:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of diamond helmet from player
+            give {price.sell.diamond_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    # ヘルメット
+    # -------------
+    # チェストプレート
+    if event-item is leather chestplate named "&d[$%{price.sell.leather_armor}%] &r皮のチェストプレートを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has leather chestplate:
+            if amount of leather chestplate in player's inventory is 1:
+                if player is wearing leather chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of leather chestplate from player
+            give {price.sell.leather_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is chainmail chestplate named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのチェストプレートを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has chainmail chestplate:
+            if amount of chainmail chestplate in player's inventory is 1:
+                if player is wearing chainmail chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of chainmail chestplate from player
+            give {price.sell.chainmail_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+        
+    if event-item is iron chestplate named "&d[$%{price.sell.iron_armor}%] &r鉄のチェストプレートを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has iron chestplate:
+            if amount of iron chestplate in player's inventory is 1:
+                if player is wearing iron chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of iron chestplate from player
+            give {price.sell.iron_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is golden chestplate named "&d[$%{price.sell.golden_armor}%] &r金のチェストプレートを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden chestplate:
+            if amount of golden chestplate in player's inventory is 1:
+                if player is wearing golden chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of golden chestplate from player
+            give {price.sell.golden_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is diamond chestplate named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのチェストプレートを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has diamond chestplate:
+            if amount of diamond chestplate in player's inventory is 1:
+                if player is wearing diamond chestplate:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of diamond chestplate from player
+            give {price.sell.diamond_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    # チェストプレート
+    # -------------
+    # レギンス
+    if event-item is leather leggings named "&d[$%{price.sell.leather_armor}%] &r皮のレギンスを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has leather leggings:
+            if amount of leather leggings in player's inventory is 1:
+                if player is wearing leather leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of leather leggings from player
+            give {price.sell.leather_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is chainmail leggings named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのレギンスを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has chainmail leggings:
+            if amount of chainmail leggings in player's inventory is 1:
+                if player is wearing chainmail leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of chainmail leggings from player
+            give {price.sell.chainmail_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+        
+    if event-item is iron leggings named "&d[$%{price.sell.iron_armor}%] &r鉄のレギンスを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has iron leggings:
+            if amount of iron leggings in player's inventory is 1:
+                if player is wearing iron leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of iron leggings from player
+            give {price.sell.iron_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is golden leggings named "&d[$%{price.sell.golden_armor}%] &r金のレギンスを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden leggings:
+            if amount of golden leggings in player's inventory is 1:
+                if player is wearing golden leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of golden leggings from player
+            give {price.sell.golden_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is diamond leggings named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのレギンスを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has diamond leggings:
+            if amount of diamond leggings in player's inventory is 1:
+                if player is wearing diamond leggings:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of diamond leggings from player
+            give {price.sell.diamond_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    # レギンス
+    # -------------
+    # ブーツ
+    if event-item is leather boots named "&d[$%{price.sell.leather_armor}%] &r皮のブーツを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has leather boots:
+            if amount of leather boots in player's inventory is 1:
+                if player is wearing leather boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of leather boots from player
+            give {price.sell.leather_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is chainmail boots named "&d[$%{price.sell.chainmail_armor}%] &rチェーンのブーツを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has chainmail boots:
+            if amount of chainmail boots in player's inventory is 1:
+                if player is wearing chainmail boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of chainmail boots from player
+            give {price.sell.chainmail_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+        
+    if event-item is iron boots named "&d[$%{price.sell.iron_armor}%] &r鉄のブーツを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has iron boots:
+            if amount of iron boots in player's inventory is 1:
+                if player is wearing iron boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of iron boots from player
+            give {price.sell.iron_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    
+    if event-item is golden boots named "&d[$%{price.sell.golden_armor}%] &r金のブーツを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has golden boots:
+            if amount of golden boots in player's inventory is 1:
+                if player is wearing golden boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of golden boots from player
+            give {price.sell.golden_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is diamond boots named "&d[$%{price.sell.diamond_armor}%] &rダイヤモンドのブーツを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has diamond boots:
+            if amount of diamond boots in player's inventory is 1:
+                if player is wearing diamond boots:
+                    play sound "block.note_block.banjo" to player
+                    message "&b[商人] &rお前さん、それ今着てるぞ？" to player
+                    stop
+            play sound "entity.player.levelup" to player
+            remove 1 of diamond boots from player
+            give {price.sell.diamond_armor} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is a shield named "&d[$%{price.sell.shield}%] &r盾を売る":
+        cancel event
+        if player has a shield:
+            play sound "entity.player.levelup" to player
+            remove 1 of shield from player
+            give {price.sell.shield} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+    # ブーツ
+    # -------------
+    # その他
+    if event-item is elytra named "&d[$%{price.sell.elytra}%] &rエリトラを売る":
+        cancel event
+        if player has elytra:
+            play sound "entity.player.levelup" to player
+            remove 1 of elytra from player
+            give {price.sell.elytra} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"食糧を売る"
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is cooked beef named "&d食糧を売る":
+        play sound "block.stone_button.click_on" to player
+        open chest inventory with 6 row named "&d食糧を売る" to player
+        set slot 0 of player's current inventory to diamond sword named "&d売る"
+        set slot 2 of player's current inventory to wooden sword named "&d武器を売る"
+        set slot 4 of player's current inventory to leather chestplate named "&d防具を売る"
+        set slot 6 of player's current inventory to cooked beef named "&d食糧を売る"
+        set slot 8 of player's current inventory to emerald named "&a買う"
+        set slot 9 of player's current inventory to black stained glass pane named " "
+        set slot 10 of player's current inventory to black stained glass pane named " "
+        set slot 11 of player's current inventory to black stained glass pane named " "
+        set slot 12 of player's current inventory to black stained glass pane named " "
+        set slot 13 of player's current inventory to black stained glass pane named " "
+        set slot 14 of player's current inventory to black stained glass pane named " "
+        set slot 15 of player's current inventory to black stained glass pane named " "
+        set slot 16 of player's current inventory to black stained glass pane named " "
+        set slot 17 of player's current inventory to black stained glass pane named " "
+        set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
+
+        set slot 29 of player's current inventory to {amount.sell.cooked_beef} of cooked beef named "&d[$%{price.sell.cooked_beef}%] &rステーキを売る"
+        set slot 31 of player's current inventory to golden apple named "&d[$%{price.sell.golden_apple}%] &r金のリンゴを売る"
+        set slot 33 of player's current inventory to enchanted golden apple named "&d[$%{price.sell.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを売る"
+
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #　"食糧を売る"内の商品
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if event-item is cooked beef named "&d[$%{price.sell.cooked_beef}%] &rステーキを売る":
+        cancel event
+        if player has cooked beef:
+            play sound "entity.player.levelup" to player
+            remove {amount.sell.cooked_beef} of cooked beef from player
+            give {price.sell.cooked_beef} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is golden apple named "&d[$%{price.sell.golden_apple}%] &r金のリンゴを売る":
+        cancel event
+        if player has golden apple:
+            play sound "entity.player.levelup" to player
+            remove 1 of golden apple from player
+            give {price.sell.golden_apple} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
+
+    if event-item is enchanted golden apple named "&d[$%{price.sell.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを売る":
+        cancel event
+        if {mode.yumi} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if {mode.yukidama} is "true":
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rすまない今は取り扱ってないんだ..." to player
+            stop
+        if player has enchanted golden apple:
+            play sound "entity.player.levelup" to player
+            remove 1 of enchanted golden apple from player
+            give {price.sell.enchanted_golden_apple} of emerald to player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rそのアイテムは持ってないようだな..." to player
