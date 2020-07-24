@@ -102,6 +102,7 @@ on join:
     set {cooltime.snowball.%player%} to 0
     clear {play.%player%}
     execute console command "tema join players %player%"
+    execute console command "lp user %player% permission set sneak.use false"
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
