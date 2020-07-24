@@ -19,7 +19,12 @@ command /game <text>:
                     set {sidebar.%loop-player%} to 9
                 else:
                     set {sidebar.%loop-player%} to 1
-                    make player execute command "sneak toggle"
+                    execute console command "lp user %loop-player% permission set sneak.use true"
+                    wait 1 tick
+                    make loop-player execute command "sneak toggle"
+                    wait 1 tick
+                    execute console command "lp user %loop-player% permission set sneak.use false"
+                    wait 1 tick
             set {qua.player} to online player count
             reduce {qua.player} by {qua.admin}
             set {surviver} to {qua.player}
@@ -51,6 +56,13 @@ command /game <text>:
             set {rank.alive} to 1
             set {daruma.count} to "false"
             loop all players:
+                if {admin.%loop-player%} is not "true":
+                    execute console command "lp user %loop-player% permission set sneak.use true"
+                    wait 1 tick
+                    make loop-player execute command "sneak toggle"
+                    wait 1 tick
+                    execute console command "lp user %loop-player% permission set sneak.use false"
+                    wait 1 tick
                 if {sidebar.%loop-player%} is 1:
                     set {sidebar.%loop-player%} to 3
                     set {ranking.name.1} to name of loop-player

@@ -155,8 +155,6 @@ command /natto-rakutinlp:
         make player execute command "/lp creategroup player"
         make player execute command "/lp creategroup skript.admin"
         make player execute command "/lp group skript.admin permission set skript.* true"
-        make player execute command "/lp group player permission set sneak true"
-        make player execute command "/lp group player permission set sneak.use true"
         make player execute command "/lp user ShimaShima_710 parent add skript.admin"
         message "&e[RakutinLP] &r正常に実行されました" to player
 
