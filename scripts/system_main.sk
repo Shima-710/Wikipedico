@@ -81,7 +81,7 @@ command /game <text>:
                     broadcast "&6%{loop.rank}%位  -- %{ranking.name.%{loop.rank}%}% -- %{ranking.kills.%{loop.rank}%}%kill"
                 add 1 to {loop.rank}
             broadcast "&7====================================================="
-            wait 2 seconds
+            wait 3 seconds
             broadcast "&b[運営] &rキル数ランキングを生成しています..."
             set {killranking.sorted::*} to sorted {killranking::*}
             set {killranking.dummy} to {qua.player}
