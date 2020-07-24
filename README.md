@@ -13,7 +13,7 @@ Minecraft Plugins  and Datapack for ibuibu.
 
 ---
 
-**OS** : 
+**OS** :
 
 macOS 10.15.5 Catalina
 
@@ -21,7 +21,7 @@ Windows 10
 
 **Language** :
 
-Skript 2.4.1 | Bukkit Plugins 
+Skript 2.4.1 | Bukkit Plugins
 
 mcfunction | Minecraft
 
@@ -29,7 +29,7 @@ mcfunction | Minecraft
 
 Visual Studio Code | Microsoft
 
-**Editor Extension** : 
+**Editor Extension** :
 
 SkriptVS, Datapack Helper Plus
 

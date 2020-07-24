@@ -5,7 +5,7 @@
 scoreboard players set on_game on_game 1
 scoreboard players set @a[team=!admin] play 1
 
-# 参加者のエフェクトをクリアー
+# 参加者のエフェクトをクリア
 effect clear @a
 
 # さよならTPアイテム
@@ -34,7 +34,7 @@ fill -27678 252 36485 -27648 254 36455 air destroy
 
 
 # ワールドボーダーをとりあえず作る
-worldborder center -27663 36470 
+worldborder center -27663 36470
 worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 15s
