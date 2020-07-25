@@ -10,7 +10,7 @@ on server start:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ver.管理について
 #
-    set {ver} to "1.5.1"
+    set {ver} to "2.0.0(alpha)"
 #
 # 0.0.xはいぶさんに渡すたびに増加
 # 0.x.0は人いれてデバッグするたびに増加
@@ -46,8 +46,10 @@ on server start:
     set {status} to 0
     set {destroyable} to "false"
     set {surviver} to 0
+    set {survive.team} to 0
     set {qua.admin} to 0
     set {qua.player} to 0
+    set {qua.team} to 0
     set {mode.ibuibu} to "false"
     set {mode.daruma} to "false"
     set {mode.yumi} to "false"
@@ -55,12 +57,65 @@ on server start:
     set {admin.%offline players%} to "false"
     clear {mode.onigokko}
     clear {killranking::*}
+    clear {team.red::*}
+    clear {team.blue::*}
+    clear {team.yellow::*}
+    clear {team.green::*}
+    clear {team.orange::*}
+    clear {team.purple::*}
+    clear {team.gray::*}
+    set {qua.team.red} to 0
+    set {qua.team.blue} to 0
+    set {qua.team.yellow} to 0
+    set {qua.team.green} to 0
+    set {qua.team.orange} to 0
+    set {qua.team.purple} to 0
+    set {qua.team.gray} to 0
+    set {team.alive.red} to "true"
+    set {team.alive.blue} to "true"
+    set {team.alive.yellow} to "true"
+    set {team.alive.green} to "true"
+    set {team.alive.orange} to "true"
+    set {team.alive.purple} to "true"
+    set {team.alive.gray} to "true"
+    set {teamkills.red} to 0
+    set {teamkills.blue} to 0
+    set {teamkills.yellow} to 0
+    set {teamkills.green} to 0
+    set {teamkills.orange} to 0
+    set {teamkills.purple} to 0
+    set {teamkills.gray} to 0
+    clear {rank.team.red}
+    clear {rank.team.blue}
+    clear {rank.team.yellow}
+    clear {rank.team.green}
+    clear {rank.team.orange}
+    clear {rank.team.purple}
+    clear {rank.team.gray}
+    clear {ranking.team.1}
+    clear {ranking.team.2}
+    clear {ranking.team.3}
+    clear {ranking.team.4}
+    clear {ranking.team.5}
+    clear {ranking.team.6}
+    clear {ranking.team.7}
+    clear {ranking.teamkills.1}
+    clear {ranking.teamkills.2}
+    clear {ranking.teamkills.3}
+    clear {ranking.teamkills.4}
+    clear {ranking.teamkills.5}
+    clear {ranking.teamkills.6}
+    clear {ranking.teamkills.7}
+
     loop all players:
         execute console command "/team leave %loop-player%"
         set {admin.%loop-player%} to "false"
         set {sidebar.%loop-player%} to 0
         set {kills.%loop-player%} to 0
         set {rank.%loop-player%} to "--"
+        set {team.joined.%loop-player%} to "false"
+        clear {play.%loop-player%}
+        clear {team.which.%loop-player%}
         set the loop-player's tab name to name of loop-player
         set the loop-player's chat name to name of loop-player
         set the loop-player's display name to name of loop-player
@@ -89,20 +144,20 @@ on first join:
 on join:
     set the join message to "&e%player% が参加しました！"
     message " " to player
-    message "&7[注意事項]" to player
-    message "&7 軽量化MOD以外のMODの導入は認められていません。" to player
-    message "&7 ゲーム開始前に確実にルールを把握してください。" to player
+    message "&l&7[注意事項]" to player
+    message " " to player
+    message "&7 ・軽量化MOD以外のMODの導入は認められていません。" to player
+    message "&7 ・ゲーム開始前に確実にルールを把握してください。" to player
     message " " to player
     message "&7 ルール： （クリックで開きます）&r&n&7https://www.notion.so/Wikipedico-9aeaf0fdd14d45e6b3e08991e895d430" to player
     message " " to player
-    message "&7[ver.]" to player
+    message "&l&7[ver.]" to player
     message "&7 %{ver}%" to player
     message " " to player
     set {use.snowball.%player%} to 0
     set {cooltime.snowball.%player%} to 0
     clear {play.%player%}
     execute console command "tema join players %player%"
-    execute console command "lp user %player% permission set sneak.use false"
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
@@ -139,16 +194,96 @@ on join:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on quit:
     set the quit message to "&e%player% がログアウトしました"
+    set {team.joined.%player%} to "false"
+    clear {team.which.%player%}
     if {status} is 1:
         if {admin.%player%} is not "true":
             if {sidebar.%player%} is not 2:
                 if {play.%player%} is not set:
                     set {sidebar.%player%} to 2
-                    set {rank.%player%} to {rank.dummy}
-                    reduce {rank.dummy} by 1
                     reduce {surviver} by 1
                     set player's gamemode to spectator
-                    if {surviver} is 1:
+
+                    if {team.which.%player%} is "red":
+                        reduce {surviver.team.red} by 1
+                        add {kills.%player%} to {teamkills.red}
+                    if {team.which.%player%} is "blue":
+                        reduce {surviver.team.blue} by 1
+                        add {kills.%player%} to {teamkills.blue}
+                    if {team.which.%player%} is "yellow":
+                        reduce {surviver.team.yellow} by 1
+                        add {kills.%player%} to {teamkills.yellow}
+                    if {team.which.%player%} is "green":
+                        reduce {surviver.team.green} by 1
+                        add {kills.%player%} to {teamkills.green}
+                    if {team.which.%player%} is "orange":
+                        reduce {surviver.team.orange} by 1
+                        add {kills.%player%} to {teamkills.orange}
+                    if {team.which.%player%} is "purple":
+                        reduce {surviver.team.purple} by 1
+                        add {kills.%player%} to {teamkills.purple}
+                    if {team.which.%player%} is "gray":
+                        reduce {surviver.team.gray} by 1
+                        add {kills.%player%} to {teamkills.gray}
+
+                    if {surviver.team.red} is 0:
+                        set {rank.team.red} to {rank.dummy}
+                        set {ranking.team.%{rank.team.red}%} to "[Red]:%{team.red::*}%"
+                        set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.red} to "false"
+                        broadcast "&c赤チームが全滅しました"
+                    if {surviver.team.blue} is 0:
+                        set {rank.team.blue} to {rank.dummy}
+                        set {ranking.team.%{rank.team.blue}%} to "[Blue]:%{team.blue::*}%"
+                        set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.blue} to "false"
+                        broadcast "&c青チームが全滅しました"
+                    if {surviver.team.yellow} is 0:
+                        set {rank.team.yellow} to {rank.dummy}
+                        set {ranking.team.%{rank.team.yellow}%} to "[Yellow]:%{team.yellow::*}%"
+                        set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.yellow} to "false"
+                        broadcast "&c黄色チームが全滅しました"
+                    if {surviver.team.green} is 0:
+                        set {rank.team.green} to {rank.dummy}
+                        set {ranking.team.%{rank.team.green}%} to "[Green]:%{team.green::*}%"
+                        set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.green} to "false"
+                        broadcast "&c緑チームが全滅しました"
+                    if {surviver.team.orange} is 0:
+                        set {rank.team.orange} to {rank.dummy}
+                        set {ranking.team.%{rank.team.orange}%} to "[Orange]:%{team.orange::*}%"
+                        set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.orange} to "false"
+                        broadcast "&cオレンジチームが全滅しました"
+                    if {surviver.team.purple} is 0:
+                        set {rank.team.purple} to {rank.dummy}
+                        set {ranking.team.%{rank.team.purple}%} to "[Purple]:%{team.purple::*}%"
+                        set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.purple} to "false"
+                        broadcast "&c紫チームが全滅しました"
+                    if {surviver.team.gray} is 0:
+                        set {rank.team.gray} to {rank.dummy}
+                        set {ranking.team.%{rank.team.gray}%} to "[Gray]:%{team.gray::*}%"
+                        set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
+                        reduce {rank.dummy} by 1
+                        reduce {survive.team} by 1
+                        set {team.alive.gray} to "false"
+                        broadcast "&cグレーチームが全滅しました"
+
+                    if {survive.team} is 1:
                         execute console command "game end"
     else:
         if {admin.%player%} is "true":

@@ -1,0 +1,374 @@
+# =====================================================================================================================================================================================
+# System for Team
+# チェスト右クリ
+# ====================================================================================================================================================================================
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# チェスト右クリ
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on right click with chest:
+    if {status} is 0:
+        cancel event
+        open chest inventory with 6 row named "&0チームを選んでください" to player
+        set {team.openingchest.%player%} to "true"
+        set slot 1 of player's current inventory to red stained glass pane named " "
+        set slot 2 of player's current inventory to blue stained glass pane named " "
+        set slot 3 of player's current inventory to yellow stained glass pane named " "
+        set slot 4 of player's current inventory to green stained glass pane named " "
+        set slot 5 of player's current inventory to orange stained glass pane named " "
+        set slot 6 of player's current inventory to purple stained glass pane named " "
+        set slot 7 of player's current inventory to gray stained glass pane named " "
+        set slot 46 of player's current inventory to red stained glass pane named " "
+        set slot 47 of player's current inventory to blue stained glass pane named " "
+        set slot 48 of player's current inventory to yellow stained glass pane named " "
+        set slot 49 of player's current inventory to green stained glass pane named " "
+        set slot 50 of player's current inventory to orange stained glass pane named " "
+        set slot 51 of player's current inventory to purple stained glass pane named " "
+        set slot 52 of player's current inventory to gray stained glass pane named " "
+
+every 1 tick:
+    if {status} is 0:
+        loop all players:
+            if {team.openingchest.%loop-player%} is "true":
+                set slot 10 of loop-player's current inventory to red wool named "&lJoin Red Team" with lore "&5%{qua.team.red}%/3" and "&7%{team.red::1}%" and "&7%{team.red::2}%" and "&7%{team.red::3}%"
+                if {team.red::1} is set:
+                    set slot 19 of loop-player's current inventory to skull of {team.red::1} named "&r%{team.red::1}%"
+                else:
+                    set slot 19 of loop-player's current inventory to air
+                if {team.red::2} is set:
+                    set slot 28 of loop-player's current inventory to skull of {team.red::2} named "&r%{team.red::2}%"
+                else:
+                    set slot 28 of loop-player's current inventory to air
+                if {team.red::3} is set:
+                    set slot 37 of loop-player's current inventory to skull of {team.red::3} named "&r%{team.red::3}%"
+                else:
+                    set slot 37 of loop-player's current inventory to air
+
+                set slot 11 of loop-player's current inventory to blue wool named "&lJoin Blue Team" with lore "&5%{qua.team.blue}%/3" and "&7%{team.blue::1}%" and "&7%{team.blue::2}%" and "&7%{team.blue::3}%"
+                if {team.blue::1} is set:
+                    set slot 20 of loop-player's current inventory to skull of {team.blue::1} named "&r%{team.blue::1}%"
+                else:
+                    set slot 20 of loop-player's current inventory to air
+                if {team.blue::2} is set:
+                    set slot 29 of loop-player's current inventory to skull of {team.blue::2} named "&r%{team.blue::2}%"
+                else:
+                    set slot 29 of loop-player's current inventory to air
+                if {team.blue::3} is set:
+                    set slot 38 of loop-player's current inventory to skull of {team.blue::3} named "&r%{team.blue::3}%"
+                else:
+                    set slot 38 of loop-player's current inventory to air
+
+                set slot 12 of loop-player's current inventory to yellow wool named "&lJoin Yellow Team" with lore "&5%{qua.team.yellow}%/3" and "&7%{team.yellow::1}%" and "&7%{team.yellow::2}%" and "&7%{team.yellow::3}%"
+                if {team.yellow::1} is set:
+                    set slot 21 of loop-player's current inventory to skull of {team.yellow::1} named "&r%{team.yellow::1}%"
+                else:
+                    set slot 21 of loop-player's current inventory to air
+                if {team.yellow::2} is set:
+                    set slot 30 of loop-player's current inventory to skull of {team.yellow::2} named "&r%{team.yellow::2}%"
+                else:
+                    set slot 30 of loop-player's current inventory to air
+                if {team.yellow::3} is set:
+                    set slot 39 of loop-player's current inventory to skull of {team.yellow::3} named "&r%{team.yellow::3}%"
+                else:
+                    set slot 39 of loop-player's current inventory to air
+
+                set slot 13 of loop-player's current inventory to green wool named "&lJoin Green Team" with lore "&5%{qua.team.green}%/3" and "&7%{team.green::1}%" and "&7%{team.green::2}%" and "&7%{team.green::3}%"
+                if {team.green::1} is set:
+                    set slot 22 of loop-player's current inventory to skull of {team.green::1} named "&r%{team.green::1}%"
+                else:
+                    set slot 22 of loop-player's current inventory to air
+                if {team.green::2} is set:
+                    set slot 31 of loop-player's current inventory to skull of {team.green::2} named "&r%{team.green::2}%"
+                else:
+                    set slot 31 of loop-player's current inventory to air
+                if {team.green::3} is set:
+                    set slot 40 of loop-player's current inventory to skull of {team.green::3} named "&r%{team.green::3}%"
+                else:
+                    set slot 40 of loop-player's current inventory to air
+
+                set slot 14 of loop-player's current inventory to orange wool named "&lJoin Orange Team" with lore "&5%{qua.team.orange}%/3" and "&7%{team.orange::1}%" and "&7%{team.orange::2}%" and "&7%{team.orange::3}%"
+                if {team.orange::1} is set:
+                    set slot 23 of loop-player's current inventory to skull of {team.orange::1} named "&r%{team.orange::1}%"
+                else:
+                    set slot 23 of loop-player's current inventory to air
+                if {team.orange::2} is set:
+                    set slot 32 of loop-player's current inventory to skull of {team.orange::2} named "&r%{team.orange::2}%"
+                else:
+                    set slot 32 of loop-player's current inventory to air
+                if {team.orange::3} is set:
+                    set slot 41 of loop-player's current inventory to skull of {team.orange::3} named "&r%{team.orange::3}%"
+                else:
+                    set slot 41 of loop-player's current inventory to air
+
+                set slot 15 of loop-player's current inventory to purple wool named "&lJoin Purple Team" with lore "&5%{qua.team.purple}%/3" and "&7%{team.purple::1}%" and "&7%{team.purple::2}%" and "&7%{team.purple::3}%"
+                if {team.purple::1} is set:
+                    set slot 24 of loop-player's current inventory to skull of {team.purple::1} named "&r%{team.purple::1}%"
+                else:
+                    set slot 24 of loop-player's current inventory to air
+                if {team.purple::2} is set:
+                    set slot 33 of loop-player's current inventory to skull of {team.purple::2} named "&r%{team.purple::2}%"
+                else:
+                    set slot 33 of loop-player's current inventory to air
+                if {team.purple::3} is set:
+                    set slot 42 of loop-player's current inventory to skull of {team.purple::3} named "&r%{team.purple::3}%"
+                else:
+                    set slot 42 of loop-player's current inventory to air
+
+                set slot 16 of loop-player's current inventory to gray wool named "&lJoin Gray Team" with lore "&5%{qua.team.gray}%/3" and "&7%{team.gray::1}%" and "&7%{team.gray::2}%" and "&7%{team.gray::3}%"
+                if {team.gray::1} is set:
+                    set slot 25 of loop-player's current inventory to skull of {team.gray::1} named "&r%{team.gray::1}%"
+                else:
+                    set slot 25 of loop-player's current inventory to air
+                if {team.gray::2} is set:
+                    set slot 34 of loop-player's current inventory to skull of {team.gray::2} named "&r%{team.gray::2}%"
+                else:
+                    set slot 34 of loop-player's current inventory to air
+                if {team.gray::3} is set:
+                    set slot 43 of loop-player's current inventory to skull of {team.gray::3} named "&r%{team.gray::3}%"
+                else:
+                    set slot 43 of loop-player's current inventory to air
+
+on inventory close:
+    set {team.openingchest.%player%} to "false"
+
+
+on inventory click:
+    if {status} is 0:
+        if event-item is red wool:
+            cancel event
+            if {team.which.%player%} is "red":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.red::*}
+            set {team.which.%player%} to "red"
+            add 1 to {qua.team.red}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&c[red]&r%name of player%"
+            set the player's chat name to "&c%name of player%"
+            set the player's display name to "&c%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &r赤チームに入りました！" to player
+
+        if event-item is blue wool:
+            cancel event
+            if {team.which.%player%} is "blue":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.blue::*}
+            set {team.which.%player%} to "blue"
+            add 1 to {qua.team.blue}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&9[blue]&r%name of player%"
+            set the player's chat name to "&9%name of player%"
+            set the player's display name to "&9%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &r青チームに入りました！" to player
+
+        if event-item is yellow wool:
+            cancel event
+            if {team.which.%player%} is "yellow":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.yellow::*}
+            set {team.which.%player%} to "yellow"
+            add 1 to {qua.team.yellow}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&e[yellow]&r%name of player%"
+            set the player's chat name to "&e%name of player%"
+            set the player's display name to "&e%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &r黄色チームに入りました！" to player
+
+        if event-item is green wool:
+            cancel event
+            if {team.which.%player%} is "green":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.green::*}
+            set {team.which.%player%} to "green"
+            add 1 to {qua.team.green}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&a[green]&r%name of player%"
+            set the player's chat name to "&a%name of player%"
+            set the player's display name to "&a%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &r緑チームに入りました！" to player
+
+        if event-item is orange wool:
+            cancel event
+            if {team.which.%player%} is "orange":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.orange::*}
+            set {team.which.%player%} to "orange"
+            add 1 to {qua.team.orange}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&6[orange]&r%name of player%"
+            set the player's chat name to "&6%name of player%"
+            set the player's display name to "&6%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &rオレンジチームに入りました！" to player
+
+        if event-item is purple wool:
+            cancel event
+            if {team.which.%player%} is "purple":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "gray":
+                reduce {qua.team.gray} by 1
+                remove player from {team.gray::*}
+            add player to {team.purple::*}
+            set {team.which.%player%} to "purple"
+            add 1 to {qua.team.purple}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&d[purple]&r%name of player%"
+            set the player's chat name to "&d%name of player%"
+            set the player's display name to "&d%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &r紫チームに入りました！" to player
+
+        if event-item is gray wool:
+            cancel event
+            if {team.which.%player%} is "gray":
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
+                stop
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+            if {team.which.%player%} is "blue":
+                reduce {qua.team.blue} by 1
+                remove player from {team.blue::*}
+            if {team.which.%player%} is "yellow":
+                reduce {qua.team.yellow} by 1
+                remove player from {team.yellow::*}
+            if {team.which.%player%} is "green":
+                reduce {qua.team.green} by 1
+                remove player from {team.green::*}
+            if {team.which.%player%} is "orange":
+                reduce {qua.team.orange} by 1
+                remove player from {team.orange::*}
+            if {team.which.%player%} is "purple":
+                reduce {qua.team.purple} by 1
+                remove player from {team.purple::*}
+            add player to {team.gray::*}
+            set {team.which.%player%} to "gray"
+            add 1 to {qua.team.gray}
+            set {team.joined.%player%} to "true"
+            set the player's tab name to "&7[gray]&r%name of player%"
+            set the player's chat name to "&7%name of player%"
+            set the player's display name to "&7%name of player%"
+            play sound "entity.player.levelup" to player
+            message "&b[システム] &rグレーチームに入りました！" to player

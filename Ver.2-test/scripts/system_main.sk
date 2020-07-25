@@ -19,16 +19,49 @@ command /game <text>:
                     set {sidebar.%loop-player%} to 9
                 else:
                     set {sidebar.%loop-player%} to 1
-                    execute console command "lp user %loop-player% permission set sneak.use true"
-                    wait 1 tick
-                    make loop-player execute command "sneak toggle"
-                    wait 1 tick
-                    execute console command "lp user %loop-player% permission set sneak.use false"
-                    wait 1 tick
+
+            if {team.red::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.red} to amount of {team.red::*}
+            if {team.blue::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.blue} to amount of {team.blue::*}
+            if {team.yellow::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.yellow} to amount of {team.yellow::*}
+            if {team.green::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.green} to amount of {team.green::*}
+            if {team.orange::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.orange} to amount of {team.orange::*}
+            if {team.purple::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.purple} to amount of {team.purple::*}
+            if {team.gray::*} is set:
+                add 1 to {qua.team}
+                set {surviver.team.gray} to amount of {team.gray::*}
+
+            if {team.red::*} is not set:
+                set {team.alive.red} to "false"
+            if {team.blue::*} is not set:
+                set {team.alive.blue} to "false"
+            if {team.yellow::*} is not set:
+                set {team.alive.yellow} to "false"
+            if {team.green::*} is not set:
+                set {team.alive.green} to "false"
+            if {team.orange::*} is not set:
+                set {team.alive.orange} to "false"
+            if {team.purple::*} is not set:
+                set {team.alive.purple} to "false"
+            if {team.gray::*} is not set:
+                set {team.alive.gray} to "false"
+
+            set {survive.team} to {qua.team}
+            set {runk.dummy} to {qua.team}
             set {qua.player} to online player count
             reduce {qua.player} by {qua.admin}
             set {surviver} to {qua.player}
-            set {rank.dummy} to {qua.player}
             set {rank.alive} to "--"
             set {status} to 1
             broadcast "&b[運営] &r15秒後にゲームを開始します..."
@@ -56,18 +89,32 @@ command /game <text>:
             set {rank.alive} to 1
             set {daruma.count} to "false"
             loop all players:
-                if {admin.%loop-player%} is not "true":
-                    execute console command "lp user %loop-player% permission set sneak.use true"
-                    wait 1 tick
-                    make loop-player execute command "sneak toggle"
-                    wait 1 tick
-                    execute console command "lp user %loop-player% permission set sneak.use false"
-                    wait 1 tick
                 if {sidebar.%loop-player%} is 1:
                     set {sidebar.%loop-player%} to 3
-                    set {ranking.name.1} to name of loop-player
-                    set {ranking.kills.1} to {kills.%loop-player%}
                     add "%{kills.%loop-player%}%kill -- %name of loop-player%" to {killranking::*}
+                    #set {ranking.name.1} to name of loop-player
+                    #set {ranking.kills.1} to {kills.%loop-player%}
+            if {team.alive.red} is "true":
+                set {ranking.team.1} to "[Red] : %{team.red::*}%"
+                set {ranking.teamkills.1} to {teamkills.red}
+            if {team.alive.blue} is "true":
+                set {ranking.team.1} to "[Blue] : %{team.blue::*}%"
+                set {ranking.teamkills.1} to {teamkills.blue}
+            if {team.alive.yellow} is "true":
+                set {ranking.team.1} to "[Yellow] : %{team.yellow::*}%"
+                set {ranking.teamkills.1} to {teamkills.yellow}
+            if {team.alive.green} is "true":
+                set {ranking.team.1} to "[Green] : %{team.green::*}%"
+                set {ranking.teamkills.1} to {teamkills.green}
+            if {team.alive.orange} is "true":
+                set {ranking.team.1} to "[Orange] : %{team.orange::*}%"
+                set {ranking.teamkills.1} to {teamkills.orange}
+            if {team.alive.purple} is "true":
+                set {ranking.team.1} to "[Purple] : %{team.purple::*}%"
+                set {ranking.teamkills.1} to {teamkills.purple}
+            if {team.alive.gray} is "true":
+                set {ranking.team.1} to "[Gray] : %{team.gray::*}%"
+                set {ranking.teamkills.1} to {teamkills.gray}
             wait 12 seconds
             broadcast "&b[運営] &r試合結果を集計しています..."
             set {loop.rank} to 1
@@ -76,20 +123,20 @@ command /game <text>:
             broadcast "&l&b[試合結果]"
             loop {qua.player} times:
                 if {loop.rank} is 1:
-                    broadcast "&e1位  -- %{ranking.name.1}% -- %{ranking.kills.1}%kill"
+                    broadcast "&e1位  -- %{ranking.team.1}% -- 計%{ranking.teamkills.1}%kill"
                 else:
-                    broadcast "&6%{loop.rank}%位  -- %{ranking.name.%{loop.rank}%}% -- %{ranking.kills.%{loop.rank}%}%kill"
+                    broadcast "&6%{loop.rank}%位  -- %{ranking.team.%{loop.rank}%}% -- 計%{ranking.teamkills.%{loop.rank}%}%kill"
                 add 1 to {loop.rank}
             broadcast "&7====================================================="
             wait 3 seconds
-            broadcast "&b[運営] &rキル数ランキングを生成しています..."
+            broadcast "&b[運営] &r個人別キル数ランキングを生成しています..."
             set {killranking.sorted::*} to sorted {killranking::*}
             set {killranking.dummy} to {qua.player}
             set {loop.kill} to 1
             wait 3 seconds
             broadcast "&7====================================================="
-            broadcast "&l&b[キル数ランキング]"
-            loop {qua.player} times:
+            broadcast "&l&b[個人別キル数ランキング]"
+            loop 5 times:
                 if {loop.kill} is 1:
                     broadcast "&e1位 -- %{killranking.sorted::%{killranking.dummy}%}%"
                 else:
@@ -119,12 +166,87 @@ on death of player:
             stop
         execute console command "spawnpoint %player% -27663 82 36470"
         set {sidebar.%player%} to 2
-        set {rank.%player%} to {rank.dummy}
-        reduce {rank.dummy} by 1
+        if {team.which.%player%} is "red":
+            reduce {surviver.team.red} by 1
+            add {kills.%player%} to {teamkills.red}
+        if {team.which.%player%} is "blue":
+            reduce {surviver.team.blue} by 1
+            add {kills.%player%} to {teamkills.blue}
+        if {team.which.%player%} is "yellow":
+            reduce {surviver.team.yellow} by 1
+            add {kills.%player%} to {teamkills.yellow}
+        if {team.which.%player%} is "green":
+            reduce {surviver.team.green} by 1
+            add {kills.%player%} to {teamkills.green}
+        if {team.which.%player%} is "orange":
+            reduce {surviver.team.orange} by 1
+            add {kills.%player%} to {teamkills.orange}
+        if {team.which.%player%} is "purple":
+            reduce {surviver.team.purple} by 1
+            add {kills.%player%} to {teamkills.purple}
+        if {team.which.%player%} is "gray":
+            reduce {surviver.team.gray} by 1
+            add {kills.%player%} to {teamkills.gray}
+
+        if {surviver.team.red} is 0:
+            set {rank.team.red} to {rank.dummy}
+            set {ranking.team.%{rank.team.red}%} to "[Red]:%{team.red::*}%"
+            set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.red} to "false"
+            broadcast "&c赤チームが全滅しました"
+        if {surviver.team.blue} is 0:
+            set {rank.team.blue} to {rank.dummy}
+            set {ranking.team.%{rank.team.blue}%} to "[Blue]:%{team.blue::*}%"
+            set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.blue} to "false"
+            broadcast "&c青チームが全滅しました"
+        if {surviver.team.yellow} is 0:
+            set {rank.team.yellow} to {rank.dummy}
+            set {ranking.team.%{rank.team.yellow}%} to "[Yellow]:%{team.yellow::*}%"
+            set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.yellow} to "false"
+            broadcast "&c黄色チームが全滅しました"
+        if {surviver.team.green} is 0:
+            set {rank.team.green} to {rank.dummy}
+            set {ranking.team.%{rank.team.green}%} to "[Green]:%{team.green::*}%"
+            set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.green} to "false"
+            broadcast "&c緑チームが全滅しました"
+        if {surviver.team.orange} is 0:
+            set {rank.team.orange} to {rank.dummy}
+            set {ranking.team.%{rank.team.orange}%} to "[Orange]:%{team.orange::*}%"
+            set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.orange} to "false"
+            broadcast "&cオレンジチームが全滅しました"
+        if {surviver.team.purple} is 0:
+            set {rank.team.purple} to {rank.dummy}
+            set {ranking.team.%{rank.team.purple}%} to "[Purple]:%{team.purple::*}%"
+            set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.purple} to "false"
+            broadcast "&c紫チームが全滅しました"
+        if {surviver.team.gray} is 0:
+            set {rank.team.gray} to {rank.dummy}
+            set {ranking.team.%{rank.team.gray}%} to "[Gray]:%{team.gray::*}%"
+            set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
+            reduce {rank.dummy} by 1
+            reduce {survive.team} by 1
+            set {team.alive.gray} to "false"
+            broadcast "&cグレーチームが全滅しました"
+        #set {ranking.name.%{rank.%player%}%} to name of player
         reduce {surviver} by 1
         add 1 to {kills.%attacker%}
-        set {ranking.name.%{rank.%player%}%} to name of player
-        set {ranking.kills.%{rank.%player%}%} to {kills.%player%}
         add "%{kills.%player%}%kill -- %name of player%" to {killranking::*}
         set player's gamemode to spectator
         if damage cause is fall:
@@ -153,12 +275,12 @@ on death of player:
 
 on death of player:
     if {status} is 1:
-        if {surviver} is 2:
+        if {survive.team} is 2:
             wait 60 seconds
             loop all players:
                 if {sidebar.%loop-player%} is 1:
                     give a snowball to loop-player
-        if {surviver} is 1:
+        if {survive.team} is 1:
             execute console command "game end"
 
 
