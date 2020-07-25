@@ -165,6 +165,7 @@ on join:
         set {rank.%player%} to "--"
         clear {killranking::*}
         set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
+        set slot 8 of player's inventory to a chest named "&dチーム選択"
         stop
     if {status} is 1:
         execute console command "team join dead %player%"

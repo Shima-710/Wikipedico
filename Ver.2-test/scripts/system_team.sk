@@ -372,3 +372,19 @@ on inventory click:
             set the player's display name to "&7%name of player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &rグレーチームに入りました！" to player
+
+
+        if event-item is red stained glass pane named " ":
+            cancel event
+        if event-item is blue stained glass pane named " ":
+            cancel event
+        if event-item is yellow stained glass pane named " ":
+            cancel event
+        if event-item is green stained glass pane named " ":
+            cancel event
+        if event-item is purple stained glass pane named " ":
+            cancel event
+        if event-item is orange stained glass pane named " ":
+            cancel event
+        if event-item is gray stained glass pane named " ":
+            cancel event
