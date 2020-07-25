@@ -121,7 +121,7 @@ command /game <text>:
             wait 3 seconds
             broadcast "&7====================================================="
             broadcast "&l&b[試合結果]"
-            loop {qua.player} times:
+            loop {qua.team} times:
                 if {loop.rank} is 1:
                     broadcast "&e1位  -- %{ranking.team.1}% -- 計%{ranking.teamkills.1}%kill"
                 else:
@@ -282,6 +282,7 @@ on death of player:
                     give a snowball to loop-player
         if {survive.team} is 1:
             execute console command "game end"
+            set {survive.team} to 0
 
 
 

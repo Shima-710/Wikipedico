@@ -208,81 +208,80 @@ on quit:
                     if {team.which.%player%} is "red":
                         reduce {surviver.team.red} by 1
                         add {kills.%player%} to {teamkills.red}
+                        if {surviver.team.red} is 0:
+                            set {rank.team.red} to {rank.dummy}
+                            set {ranking.team.%{rank.team.red}%} to "[Red]:%{team.red::*}%"
+                            set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.red} to "false"
+                            broadcast "&c赤チームが全滅しました"
                     if {team.which.%player%} is "blue":
                         reduce {surviver.team.blue} by 1
                         add {kills.%player%} to {teamkills.blue}
+                        if {surviver.team.blue} is 0:
+                            set {rank.team.blue} to {rank.dummy}
+                            set {ranking.team.%{rank.team.blue}%} to "[Blue]:%{team.blue::*}%"
+                            set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.blue} to "false"
+                            broadcast "&c青チームが全滅しました"
                     if {team.which.%player%} is "yellow":
                         reduce {surviver.team.yellow} by 1
                         add {kills.%player%} to {teamkills.yellow}
+                        if {surviver.team.yellow} is 0:
+                            set {rank.team.yellow} to {rank.dummy}
+                            set {ranking.team.%{rank.team.yellow}%} to "[Yellow]:%{team.yellow::*}%"
+                            set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.yellow} to "false"
+                            broadcast "&c黄色チームが全滅しました"
                     if {team.which.%player%} is "green":
                         reduce {surviver.team.green} by 1
                         add {kills.%player%} to {teamkills.green}
+                        if {surviver.team.green} is 0:
+                            set {rank.team.green} to {rank.dummy}
+                            set {ranking.team.%{rank.team.green}%} to "[Green]:%{team.green::*}%"
+                            set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.green} to "false"
+                            broadcast "&c緑チームが全滅しました"
                     if {team.which.%player%} is "orange":
                         reduce {surviver.team.orange} by 1
                         add {kills.%player%} to {teamkills.orange}
+                        if {surviver.team.orange} is 0:
+                            set {rank.team.orange} to {rank.dummy}
+                            set {ranking.team.%{rank.team.orange}%} to "[Orange]:%{team.orange::*}%"
+                            set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.orange} to "false"
+                            broadcast "&cオレンジチームが全滅しました"
                     if {team.which.%player%} is "purple":
                         reduce {surviver.team.purple} by 1
                         add {kills.%player%} to {teamkills.purple}
+                        if {surviver.team.purple} is 0:
+                            set {rank.team.purple} to {rank.dummy}
+                            set {ranking.team.%{rank.team.purple}%} to "[Purple]:%{team.purple::*}%"
+                            set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.purple} to "false"
+                            broadcast "&c紫チームが全滅しました"
                     if {team.which.%player%} is "gray":
                         reduce {surviver.team.gray} by 1
                         add {kills.%player%} to {teamkills.gray}
-
-                    if {surviver.team.red} is 0:
-                        set {rank.team.red} to {rank.dummy}
-                        set {ranking.team.%{rank.team.red}%} to "[Red]:%{team.red::*}%"
-                        set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.red} to "false"
-                        broadcast "&c赤チームが全滅しました"
-                    if {surviver.team.blue} is 0:
-                        set {rank.team.blue} to {rank.dummy}
-                        set {ranking.team.%{rank.team.blue}%} to "[Blue]:%{team.blue::*}%"
-                        set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.blue} to "false"
-                        broadcast "&c青チームが全滅しました"
-                    if {surviver.team.yellow} is 0:
-                        set {rank.team.yellow} to {rank.dummy}
-                        set {ranking.team.%{rank.team.yellow}%} to "[Yellow]:%{team.yellow::*}%"
-                        set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.yellow} to "false"
-                        broadcast "&c黄色チームが全滅しました"
-                    if {surviver.team.green} is 0:
-                        set {rank.team.green} to {rank.dummy}
-                        set {ranking.team.%{rank.team.green}%} to "[Green]:%{team.green::*}%"
-                        set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.green} to "false"
-                        broadcast "&c緑チームが全滅しました"
-                    if {surviver.team.orange} is 0:
-                        set {rank.team.orange} to {rank.dummy}
-                        set {ranking.team.%{rank.team.orange}%} to "[Orange]:%{team.orange::*}%"
-                        set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.orange} to "false"
-                        broadcast "&cオレンジチームが全滅しました"
-                    if {surviver.team.purple} is 0:
-                        set {rank.team.purple} to {rank.dummy}
-                        set {ranking.team.%{rank.team.purple}%} to "[Purple]:%{team.purple::*}%"
-                        set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.purple} to "false"
-                        broadcast "&c紫チームが全滅しました"
-                    if {surviver.team.gray} is 0:
-                        set {rank.team.gray} to {rank.dummy}
-                        set {ranking.team.%{rank.team.gray}%} to "[Gray]:%{team.gray::*}%"
-                        set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
-                        reduce {rank.dummy} by 1
-                        reduce {survive.team} by 1
-                        set {team.alive.gray} to "false"
-                        broadcast "&cグレーチームが全滅しました"
+                        if {surviver.team.gray} is 0:
+                            set {rank.team.gray} to {rank.dummy}
+                            set {ranking.team.%{rank.team.gray}%} to "[Gray]:%{team.gray::*}%"
+                            set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
+                            reduce {rank.dummy} by 1
+                            reduce {survive.team} by 1
+                            set {team.alive.gray} to "false"
+                            broadcast "&cグレーチームが全滅しました"
 
                     if {survive.team} is 1:
                         execute console command "game end"

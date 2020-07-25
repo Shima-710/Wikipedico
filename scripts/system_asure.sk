@@ -43,3 +43,4 @@ on right click on birch sign:
         execute console command "effect give %player% glowing 10 255 true"
         add 1 to {asure.clearcount.%player%}
         broadcast "&6[アスレ] &r%player% クリアおめでとう!!!（%{asure.clearcount.%player%}%回目）"
+        clear {asure.sign.%player%}
