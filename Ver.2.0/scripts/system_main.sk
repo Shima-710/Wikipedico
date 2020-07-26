@@ -183,7 +183,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.red} to "false"
-                broadcast "&c赤チームが全滅しました"
+                broadcast "&b[運営] &4赤チームが全滅しました"
 
         if {team.which.%player%} is "blue":
             reduce {surviver.team.blue} by 1
@@ -195,7 +195,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.blue} to "false"
-                broadcast "&c青チームが全滅しました"
+                broadcast "&b[運営] &4青チームが全滅しました"
 
         if {team.which.%player%} is "yellow":
             reduce {surviver.team.yellow} by 1
@@ -207,7 +207,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.yellow} to "false"
-                broadcast "&c黄色チームが全滅しました"
+                broadcast "&b[運営] &4黄色チームが全滅しました"
 
         if {team.which.%player%} is "green":
             reduce {surviver.team.green} by 1
@@ -219,7 +219,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.green} to "false"
-                broadcast "&c緑チームが全滅しました"
+                broadcast "&b[運営] &4緑チームが全滅しました"
 
         if {team.which.%player%} is "orange":
             reduce {surviver.team.orange} by 1
@@ -231,7 +231,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.orange} to "false"
-                broadcast "&cオレンジチームが全滅しました"
+                broadcast "&b[運営] &4オレンジチームが全滅しました"
 
         if {team.which.%player%} is "purple":
             reduce {surviver.team.purple} by 1
@@ -243,7 +243,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.purple} to "false"
-                broadcast "&c紫チームが全滅しました"
+                broadcast "&b[運営] &4紫チームが全滅しました"
 
         if {team.which.%player%} is "gray":
             reduce {surviver.team.gray} by 1
@@ -255,7 +255,7 @@ on death of player:
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
                 set {team.alive.gray} to "false"
-                broadcast "&cグレーチームが全滅しました"
+                broadcast "&b[運営] &4グレーチームが全滅しました"
 
         if damage cause is fall:
             broadcast "&c%victim% &rは高所から落下して死亡した"
