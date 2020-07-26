@@ -177,8 +177,7 @@ on join:
         set {sidebar.%player%} to 2
         set {play.%player%} to "not"
         message "&b[システム] &7現在ゲームが進行中のため状態が死亡に設定されました。"
-    if {status} is 2:
-        kick the player due to "ゲームはすでに終了しています。ワールドの入れ替え完了までしばらくお待ちください。"
+
 
 
 

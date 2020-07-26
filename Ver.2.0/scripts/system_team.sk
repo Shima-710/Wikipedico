@@ -133,7 +133,6 @@ on inventory close:
     set {team.openingchest.%player%} to "false"
     set {team.openingrevival.%player%} to "false"
 
-
 on inventory click:
     if {status} is 0:
         if event-item is red wool:
@@ -389,7 +388,8 @@ on inventory click:
             cancel event
         if event-item is gray stained glass pane named " ":
             cancel event
-
+        if event-item is player skull:
+            cancel event
 
 
 on right click with cyan glazed terracotta:
@@ -441,6 +441,21 @@ on right click with cyan glazed terracotta:
         message "&b[システム] &rあなたは現在チームに所属していません"
 
 on inventory click:
+    if event-item is red wool named "&lRed Team":
+        cancel event
+    if event-item is blue wool named "&lBlue Team":
+        cancel event
+    if event-item is yellow wool named "&lYellow Team":
+        cancel event
+    if event-item is green wool named "&lGreen Team":
+        cancel event
+    if event-item is orange wool named "&lOrange Team":
+        cancel event
+    if event-item is purple wool named "&lPurple Team":
+        cancel event
+    if event-item is gray wool named "&lGray Team":
+        cancel event
+
     if event-item is skull of {team.red::1} named "&l%{team.red::1}% &rを復活":
         cancel event
         if {sidebar.%{team.red::1}%} is 2:
@@ -453,6 +468,36 @@ on inventory click:
             teleport {team.red::1} to player
             play sound "entity.player.levelup" to player
             broadcast "&b[運営] &r%{team.red::1}%が復活しました"
+        else:
+            message "&b[システム] &rそのプレイヤーは復活させられません" to player
+            play sound "block.note_block.banjo" to player
+    if event-item is skull of {team.red::2} named "&l%{team.red::2}% &rを復活":
+        cancel event
+        if {sidebar.%{team.red::2}%} is 2:
+            add 1 to {surviver}
+            set {sidebar.%{team.red::2}%} to 1
+            add 1 to {surviver.team.red}
+            reduce {teamkills.red} by {kills.%{team.red::2}%}
+            remove "&6%{kills.%{team.red::2}%}%kill &8-- &6%name of {team.red::12}%" from {killranking::*}
+            set gamemode of {team.red::2} to survival
+            teleport {team.red::2} to player
+            play sound "entity.player.levelup" to player
+            broadcast "&b[運営] &r%{team.red::2}%が復活しました"
+        else:
+            message "&b[システム] &rそのプレイヤーは復活させられません" to player
+            play sound "block.note_block.banjo" to player
+    if event-item is skull of {team.red::3} named "&l%{team.red::3}% &rを復活":
+        cancel event
+        if {sidebar.%{team.red::3}%} is 2:
+            add 1 to {surviver}
+            set {sidebar.%{team.red::3}%} to 1
+            add 1 to {surviver.team.red}
+            reduce {teamkills.red} by {kills.%{team.red::3}%}
+            remove "&6%{kills.%{team.red::3}%}%kill &8-- &6%name of {team.red::3}%" from {killranking::*}
+            set gamemode of {team.red::3} to survival
+            teleport {team.red::3} to player
+            play sound "entity.player.levelup" to player
+            broadcast "&b[運営] &r%{team.red::3}%が復活しました"
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player
