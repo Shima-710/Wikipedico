@@ -84,7 +84,6 @@ command /game <text>:
             stop
         if arg-1 is "end":
             execute console command "function shimashima:01_game_end"
-            play sound "ui.toast.challenge_complete" with volume 0.8 to all players
             set {status} to 2
             set {surviver} to 0
             set {rank.alive} to 1
@@ -92,30 +91,32 @@ command /game <text>:
             loop all players:
                 if {sidebar.%loop-player%} is 1:
                     set {sidebar.%loop-player%} to 3
-                    add "%{kills.%loop-player%}%kill -- %name of loop-player%" to {killranking::*}
+                    add "&6%{kills.%loop-player%}%kill &8-- &6%name of loop-player%" to {killranking::*}
                     #set {ranking.name.1} to name of loop-player
                     #set {ranking.kills.1} to {kills.%loop-player%}
             if {team.alive.red} is "true":
-                set {ranking.team.1} to "[Red] : %{team.red::*}%"
+                set {ranking.team.1} to "&c[Red]&r : %{team.red::*}%"
                 set {ranking.teamkills.1} to {teamkills.red}
             if {team.alive.blue} is "true":
-                set {ranking.team.1} to "[Blue] : %{team.blue::*}%"
+                set {ranking.team.1} to "&9[Blue]&r : %{team.blue::*}%"
                 set {ranking.teamkills.1} to {teamkills.blue}
             if {team.alive.yellow} is "true":
-                set {ranking.team.1} to "[Yellow] : %{team.yellow::*}%"
+                set {ranking.team.1} to "&e[Yellow]&r : %{team.yellow::*}%"
                 set {ranking.teamkills.1} to {teamkills.yellow}
             if {team.alive.green} is "true":
-                set {ranking.team.1} to "[Green] : %{team.green::*}%"
+                set {ranking.team.1} to "&a[Green]&r : %{team.green::*}%"
                 set {ranking.teamkills.1} to {teamkills.green}
             if {team.alive.orange} is "true":
-                set {ranking.team.1} to "[Orange] : %{team.orange::*}%"
+                set {ranking.team.1} to "&6[Orange]&r : %{team.orange::*}%"
                 set {ranking.teamkills.1} to {teamkills.orange}
             if {team.alive.purple} is "true":
-                set {ranking.team.1} to "[Purple] : %{team.purple::*}%"
+                set {ranking.team.1} to "&d[Purple]&r : %{team.purple::*}%"
                 set {ranking.teamkills.1} to {teamkills.purple}
             if {team.alive.gray} is "true":
-                set {ranking.team.1} to "[Gray] : %{team.gray::*}%"
+                set {ranking.team.1} to "&7[Gray]&r : %{team.gray::*}%"
                 set {ranking.teamkills.1} to {teamkills.gray}
+            send title "&e勝利&r &8|&r %{ranking.team.1}%" to all players for 3 seconds with fade in 0 second and fade out 1 second
+            play sound "ui.toast.challenge_complete" with volume 0.8 to all players
             wait 12 seconds
             broadcast "&b[運営] &r試合結果を集計しています..."
             set {loop.rank} to 1
@@ -124,9 +125,9 @@ command /game <text>:
             broadcast "&l&b[試合結果]"
             loop {qua.team} times:
                 if {loop.rank} is 1:
-                    broadcast "&e1位  -- %{ranking.team.1}% -- 計%{ranking.teamkills.1}%kill"
+                    broadcast "&e1位  &8-- %{ranking.team.1}% &8-- &e計%{ranking.teamkills.1}%kill"
                 else:
-                    broadcast "&6%{loop.rank}%位  -- %{ranking.team.%{loop.rank}%}% -- 計%{ranking.teamkills.%{loop.rank}%}%kill"
+                    broadcast "&6%{loop.rank}%位  &8-- %{ranking.team.%{loop.rank}%}% &8-- &6計%{ranking.teamkills.%{loop.rank}%}%kill"
                 add 1 to {loop.rank}
             broadcast "&7====================================================="
             wait 3 seconds
@@ -139,9 +140,9 @@ command /game <text>:
             broadcast "&l&b[個人別キル数ランキング]"
             loop 5 times:
                 if {loop.kill} is 1:
-                    broadcast "&e1位 -- %{killranking.sorted::%{killranking.dummy}%}%"
+                    broadcast "&e%{loop.kill}%位 &8-- %{killranking.sorted::%{killranking.dummy}%}%"
                 else:
-                    broadcast "&6%{loop.kill}%位 -- %{killranking.sorted::%{killranking.dummy}%}%"
+                    broadcast "&6%{loop.kill}%位 &8-- %{killranking.sorted::%{killranking.dummy}%}%"
                 add 1 to {loop.kill}
                 reduce {killranking.dummy} by 1
             broadcast "&7====================================================="
@@ -168,7 +169,7 @@ on death of player:
         execute console command "spawnpoint %player% -27663 82 36470"
         reduce {surviver} by 1
         add 1 to {kills.%attacker%}
-        add "%{kills.%player%}%kill -- %name of player%" to {killranking::*}
+        add "&6%{kills.%player%}%kill &8-- &6%name of player%" to {killranking::*}
         set player's gamemode to spectator
         set {sidebar.%victim%} to 2
 
@@ -177,7 +178,7 @@ on death of player:
             add {kills.%player%} to {teamkills.red}
             if {surviver.team.red} is 0:
                 set {rank.team.red} to {rank.dummy}
-                set {ranking.team.%{rank.team.red}%} to "[Red]:%{team.red::*}%"
+                set {ranking.team.%{rank.team.red}%} to "&c[Red]&r:%{team.red::*}%"
                 set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -189,7 +190,7 @@ on death of player:
             add {kills.%player%} to {teamkills.blue}
             if {surviver.team.blue} is 0:
                 set {rank.team.blue} to {rank.dummy}
-                set {ranking.team.%{rank.team.blue}%} to "[Blue]:%{team.blue::*}%"
+                set {ranking.team.%{rank.team.blue}%} to "&9[Blue]&r:%{team.blue::*}%"
                 set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -201,7 +202,7 @@ on death of player:
             add {kills.%player%} to {teamkills.yellow}
             if {surviver.team.yellow} is 0:
                 set {rank.team.yellow} to {rank.dummy}
-                set {ranking.team.%{rank.team.yellow}%} to "[Yellow]:%{team.yellow::*}%"
+                set {ranking.team.%{rank.team.yellow}%} to "&e[Yellow]&r:%{team.yellow::*}%"
                 set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -213,7 +214,7 @@ on death of player:
             add {kills.%player%} to {teamkills.green}
             if {surviver.team.green} is 0:
                 set {rank.team.green} to {rank.dummy}
-                set {ranking.team.%{rank.team.green}%} to "[Green]:%{team.green::*}%"
+                set {ranking.team.%{rank.team.green}%} to "&a[Green]&r:%{team.green::*}%"
                 set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -225,7 +226,7 @@ on death of player:
             add {kills.%player%} to {teamkills.orange}
             if {surviver.team.orange} is 0:
                 set {rank.team.orange} to {rank.dummy}
-                set {ranking.team.%{rank.team.orange}%} to "[Orange]:%{team.orange::*}%"
+                set {ranking.team.%{rank.team.orange}%} to "&6[Orange]&r:%{team.orange::*}%"
                 set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -237,7 +238,7 @@ on death of player:
             add {kills.%player%} to {teamkills.purple}
             if {surviver.team.purple} is 0:
                 set {rank.team.purple} to {rank.dummy}
-                set {ranking.team.%{rank.team.purple}%} to "[Purple]:%{team.purple::*}%"
+                set {ranking.team.%{rank.team.purple}%} to "&d[Purple]&r:%{team.purple::*}%"
                 set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1
@@ -249,7 +250,7 @@ on death of player:
             add {kills.%player%} to {teamkills.gray}
             if {surviver.team.gray} is 0:
                 set {rank.team.gray} to {rank.dummy}
-                set {ranking.team.%{rank.team.gray}%} to "[Gray]:%{team.gray::*}%"
+                set {ranking.team.%{rank.team.gray}%} to "&7[Gray]&r:%{team.gray::*}%"
                 set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
                 reduce {rank.dummy} by 1
                 reduce {survive.team} by 1

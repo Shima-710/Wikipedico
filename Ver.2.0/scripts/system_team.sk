@@ -163,7 +163,7 @@ on inventory click:
             set {team.which.%player%} to "red"
             add 1 to {qua.team.red}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&c[red]&r%name of player%"
+            set the player's tab name to "&c&c[Red]&r&r%name of player%"
             set the player's chat name to "&c%name of player%"
             set the player's display name to "&c%name of player%"
             play sound "entity.player.levelup" to player
@@ -197,7 +197,7 @@ on inventory click:
             set {team.which.%player%} to "blue"
             add 1 to {qua.team.blue}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&9[blue]&r%name of player%"
+            set the player's tab name to "&9&9[Blue]&r&r%name of player%"
             set the player's chat name to "&9%name of player%"
             set the player's display name to "&9%name of player%"
             play sound "entity.player.levelup" to player
@@ -231,7 +231,7 @@ on inventory click:
             set {team.which.%player%} to "yellow"
             add 1 to {qua.team.yellow}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&e[yellow]&r%name of player%"
+            set the player's tab name to "&e&e[Yellow]&r&r%name of player%"
             set the player's chat name to "&e%name of player%"
             set the player's display name to "&e%name of player%"
             play sound "entity.player.levelup" to player
@@ -265,7 +265,7 @@ on inventory click:
             set {team.which.%player%} to "green"
             add 1 to {qua.team.green}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&a[green]&r%name of player%"
+            set the player's tab name to "&a&a[Green]&r&r%name of player%"
             set the player's chat name to "&a%name of player%"
             set the player's display name to "&a%name of player%"
             play sound "entity.player.levelup" to player
@@ -299,7 +299,7 @@ on inventory click:
             set {team.which.%player%} to "orange"
             add 1 to {qua.team.orange}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&6[orange]&r%name of player%"
+            set the player's tab name to "&6&6[Orange]&r&r%name of player%"
             set the player's chat name to "&6%name of player%"
             set the player's display name to "&6%name of player%"
             play sound "entity.player.levelup" to player
@@ -333,7 +333,7 @@ on inventory click:
             set {team.which.%player%} to "purple"
             add 1 to {qua.team.purple}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&d[purple]&r%name of player%"
+            set the player's tab name to "&d&d[Purple]&r&r%name of player%"
             set the player's chat name to "&d%name of player%"
             set the player's display name to "&d%name of player%"
             play sound "entity.player.levelup" to player
@@ -367,7 +367,7 @@ on inventory click:
             set {team.which.%player%} to "gray"
             add 1 to {qua.team.gray}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&7[gray]&r%name of player%"
+            set the player's tab name to "&7&7[Gray]&r&r%name of player%"
             set the player's chat name to "&7%name of player%"
             set the player's display name to "&7%name of player%"
             play sound "entity.player.levelup" to player
