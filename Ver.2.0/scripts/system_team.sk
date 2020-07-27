@@ -163,9 +163,9 @@ on inventory click:
             set {team.which.%player%} to "red"
             add 1 to {qua.team.red}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&c&c[Red]&r&r%name of player%"
-            set the player's chat name to "&c%name of player%"
-            set the player's display name to "&c%name of player%"
+            set the player's prefix to "&c[Red] "
+            execute console command "scoreboard players set %name of player% red 1"
+            execute console command "team join red %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &r赤チームに入りました！" to player
 
@@ -197,9 +197,10 @@ on inventory click:
             set {team.which.%player%} to "blue"
             add 1 to {qua.team.blue}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&9&9[Blue]&r&r%name of player%"
             set the player's chat name to "&9%name of player%"
-            set the player's display name to "&9%name of player%"
+            set the player's display name to "9[Blue] %name of player%"
+            execute console command "scoreboard players set %name of player% blue 1"
+            execute console command "team join blue %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &r青チームに入りました！" to player
 
@@ -231,9 +232,10 @@ on inventory click:
             set {team.which.%player%} to "yellow"
             add 1 to {qua.team.yellow}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&e&e[Yellow]&r&r%name of player%"
             set the player's chat name to "&e%name of player%"
-            set the player's display name to "&e%name of player%"
+            set the player's display name to "&e[Yellow] %name of player%"
+            execute console command "scoreboard players set %name of player% yellow 1"
+            execute console command "team join yellow %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &r黄色チームに入りました！" to player
 
@@ -265,9 +267,10 @@ on inventory click:
             set {team.which.%player%} to "green"
             add 1 to {qua.team.green}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&a&a[Green]&r&r%name of player%"
             set the player's chat name to "&a%name of player%"
-            set the player's display name to "&a%name of player%"
+            set the player's display name to "&a[Green] %name of player%"
+            execute console command "scoreboard players set %name of player% green 1"
+            execute console command "team join green %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &r緑チームに入りました！" to player
 
@@ -299,9 +302,10 @@ on inventory click:
             set {team.which.%player%} to "orange"
             add 1 to {qua.team.orange}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&6&6[Orange]&r&r%name of player%"
             set the player's chat name to "&6%name of player%"
-            set the player's display name to "&6%name of player%"
+            set the player's display name to "&6[Orange] %name of player%"
+            execute console command "scoreboard players set %name of player% orange 1"
+            execute console command "team join orange %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &rオレンジチームに入りました！" to player
 
@@ -333,9 +337,10 @@ on inventory click:
             set {team.which.%player%} to "purple"
             add 1 to {qua.team.purple}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&d&d[Purple]&r&r%name of player%"
             set the player's chat name to "&d%name of player%"
-            set the player's display name to "&d%name of player%"
+            set the player's display name to "&d[Purple] %name of player%"
+            execute console command "scoreboard players set %name of player% purple 1"
+            execute console command "team join purple %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &r紫チームに入りました！" to player
 
@@ -367,9 +372,11 @@ on inventory click:
             set {team.which.%player%} to "gray"
             add 1 to {qua.team.gray}
             set {team.joined.%player%} to "true"
-            set the player's tab name to "&7&7[Gray]&r&r%name of player%"
+
             set the player's chat name to "&7%name of player%"
-            set the player's display name to "&7%name of player%"
+            set the player's display name to "&7[Gray] %name of player%"
+            execute console command "scoreboard players set %name of player% gray 1"
+            execute console command "team join gray %player%"
             play sound "entity.player.levelup" to player
             message "&b[システム] &rグレーチームに入りました！" to player
 
@@ -393,6 +400,7 @@ on inventory click:
 
 
 on right click with cyan glazed terracotta:
+    cancel event
     if {team.joined.%player%} is "true":
         open chest inventory with 1 row named "&0復活させる人を選んでください" to player
         if {team.which.%player%} is "red":
@@ -438,7 +446,7 @@ on right click with cyan glazed terracotta:
             set slot 5 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}% &rを復活"
             set slot 6 of player's current inventory to gray wool named "&lGray Team"
     else:
-        message "&b[システム] &rあなたは現在チームに所属していません"
+        message "&b[システム] &rあなたは現在チームに所属していません" to player
 
 on inventory click:
     if event-item is red wool named "&lRed Team":

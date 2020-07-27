@@ -44,6 +44,8 @@ on server start:
     execute console command "datapack enable ""file/ibuibu"""
     execute console command "function shimashima:01_replay"
     execute console command "worldborder set 50000"
+    execute console command "scoreboard players set 状態：準備中 Info 0"
+    execute console command "scoreboard players set しばらくお待ちください Info -1"
     set {status} to 0
     set {destroyable} to "false"
     set {surviver} to 0
@@ -118,7 +120,6 @@ on server start:
         set {team.joined.%loop-player%} to "false"
         clear {play.%loop-player%}
         clear {team.which.%loop-player%}
-        set the loop-player's tab name to name of loop-player
         set the loop-player's chat name to name of loop-player
         set the loop-player's display name to name of loop-player
     if {debugMode} is "true":
@@ -161,7 +162,6 @@ on join:
     set {use.snowball.%player%} to 0
     set {cooltime.snowball.%player%} to 0
     clear {play.%player%}
-    execute console command "tema join players %player%"
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
@@ -208,82 +208,254 @@ on quit:
                     reduce {surviver} by 1
                     set player's gamemode to spectator
 
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+                    execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
+                    reduce {surviver} by 1
+
+                    execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+                    execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
+
                     if {team.which.%player%} is "red":
                         reduce {surviver.team.red} by 1
                         add {kills.%player%} to {teamkills.red}
                         if {surviver.team.red} is 0:
                             set {rank.team.red} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.red}%位 red -3"
                             set {ranking.team.%{rank.team.red}%} to "&c[Red]&r:%{team.red::*}%"
                             set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.red} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4赤チームが全滅しました"
+
                     if {team.which.%player%} is "blue":
                         reduce {surviver.team.blue} by 1
                         add {kills.%player%} to {teamkills.blue}
                         if {surviver.team.blue} is 0:
                             set {rank.team.blue} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.blue}%位 blue -3"
                             set {ranking.team.%{rank.team.blue}%} to "&9[Blue]&r:%{team.blue::*}%"
                             set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.blue} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4青チームが全滅しました"
+
                     if {team.which.%player%} is "yellow":
                         reduce {surviver.team.yellow} by 1
                         add {kills.%player%} to {teamkills.yellow}
                         if {surviver.team.yellow} is 0:
                             set {rank.team.yellow} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.yellow}%位 yellow -3"
                             set {ranking.team.%{rank.team.yellow}%} to "&e[Yellow]&r:%{team.yellow::*}%"
                             set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.yellow} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4黄色チームが全滅しました"
+
                     if {team.which.%player%} is "green":
                         reduce {surviver.team.green} by 1
                         add {kills.%player%} to {teamkills.green}
                         if {surviver.team.green} is 0:
                             set {rank.team.green} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.green}%位 green -3"
                             set {ranking.team.%{rank.team.green}%} to "&a[Green]&r:%{team.green::*}%"
                             set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.green} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4緑チームが全滅しました"
+
                     if {team.which.%player%} is "orange":
                         reduce {surviver.team.orange} by 1
                         add {kills.%player%} to {teamkills.orange}
                         if {surviver.team.orange} is 0:
                             set {rank.team.orange} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.orange}%位 orange -3"
                             set {ranking.team.%{rank.team.orange}%} to "&6[Orange]&r:%{team.orange::*}%"
                             set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.orange} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4オレンジチームが全滅しました"
+
                     if {team.which.%player%} is "purple":
                         reduce {surviver.team.purple} by 1
                         add {kills.%player%} to {teamkills.purple}
                         if {surviver.team.purple} is 0:
                             set {rank.team.purple} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.purple}%位 purple -3"
                             set {ranking.team.%{rank.team.purple}%} to "&d[Purple]&r:%{team.purple::*}%"
                             set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.purple} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4紫チームが全滅しました"
+
                     if {team.which.%player%} is "gray":
                         reduce {surviver.team.gray} by 1
                         add {kills.%player%} to {teamkills.gray}
                         if {surviver.team.gray} is 0:
                             set {rank.team.gray} to {rank.dummy}
+                            execute console command "scoreboard players set 順位：%{rank.team.gray}%位 gray -3"
                             set {ranking.team.%{rank.team.gray}%} to "&7[Gray]&r:%{team.gray::*}%"
                             set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
                             reduce {rank.dummy} by 1
-                            reduce {survive.team} by 1
                             set {team.alive.gray} to "false"
+
+                            execute console command "scoreboard players reset {survive.team}：%{survive.team}%チーム admin"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム red"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム blue"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム yellow"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム green"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム orange"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム purple"
+                            execute console command "scoreboard players reset 残りチーム数：%{survive.team}%チーム gray"
+
+                            reduce {survive.team} by 1
+
+                            execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム red -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム blue -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム yellow -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム green -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム orange -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
+                            execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
+
                             broadcast "&b[運営] &4グレーチームが全滅しました"
 
                     if {survive.team} is 1:
