@@ -100,6 +100,7 @@ command /natto---teamgoodbye:
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
+        execute console command "scoreboard objectives remove admin"
         execute console command "scoreboard objectives remove red"
         execute console command "scoreboard objectives remove blue"
         execute console command "scoreboard objectives remove yellow"
@@ -107,6 +108,7 @@ command /natto---teamgoodbye:
         execute console command "scoreboard objectives remove orange"
         execute console command "scoreboard objectives remove purple"
         execute console command "scoreboard objectives remove gray"
+        execute console command "team remove admin"
         execute console command "team remove red"
         execute console command "team remove blue"
         execute console command "team remove yellow"

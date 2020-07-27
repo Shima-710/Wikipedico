@@ -46,20 +46,6 @@ on skript load:
     execute console command "worldborder set 50000"
     execute console command "scoreboard players set 状態：準備中 Info 0"
     execute console command "scoreboard players set しばらくお待ちください Info -1"
-    execute console command "scoreboard players reset %name of player% red"
-    execute console command "scoreboard players reset %name of player% blue"
-    execute console command "scoreboard players reset %name of player% yellow"
-    execute console command "scoreboard players reset %name of player% green"
-    execute console command "scoreboard players reset %name of player% orange"
-    execute console command "scoreboard players reset %name of player% purple"
-    execute console command "scoreboard players reset %name of player% gray"
-    execute console command "scoreboard players reset 順位：%{rank.team.red}%位 red"
-    execute console command "scoreboard players reset 順位：%{rank.team.blue}%位 blue"
-    execute console command "scoreboard players reset 順位：%{rank.team.yellow}%位 yellow"
-    execute console command "scoreboard players reset 順位：%{rank.team.green}%位 green"
-    execute console command "scoreboard players reset 順位：%{rank.team.orange}%位 orange"
-    execute console command "scoreboard players reset 順位：%{rank.team.purple}%位 purple"
-    execute console command "scoreboard players reset 順位：%{rank.team.gray}%位 gray"
     set {status} to 0
     set {destroyable} to "false"
     set {surviver} to 0
@@ -146,6 +132,17 @@ on skript load:
     wait 1 tick
     execute console command "function shimashima:00_load"
 
+    execute console command "scoreboard players set ============== admin 0"
+    execute console command "scoreboard players set ============== red 0"
+    execute console command "scoreboard players set ============== blue 0"
+    execute console command "scoreboard players set ============== yellow 0"
+    execute console command "scoreboard players set ============== green 0"
+    execute console command "scoreboard players set ============== orange 0"
+    execute console command "scoreboard players set ============== purple 0"
+    execute console command "scoreboard players set ============== gray 0"
+    execute console command "scoreboard players set online：%online player count%人 admin -1"
+    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+
 
     broadcast ">Plugin &2Reloaded Successfully!"
 
@@ -181,6 +178,10 @@ on join:
     set {use.snowball.%player%} to 0
     set {cooltime.snowball.%player%} to 0
     clear {play.%player%}
+    set {qua.omline.dummy} to online player count
+    reduce {qua.omline.dummy} by 1
+    execute console command "scoreboard players reset online：%{qua.omline.dummy}%人 admin"
+    execute console command "scoreboard players set online：%online player count%人 admin -1"
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
@@ -227,6 +228,7 @@ on quit:
                     reduce {surviver} by 1
                     set player's gamemode to spectator
 
+                    execute console command "scoreboard players reset {surviver}：%{surviver}%人 admin"
                     execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
                     execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
                     execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"

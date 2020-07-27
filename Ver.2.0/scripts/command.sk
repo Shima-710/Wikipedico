@@ -69,7 +69,9 @@ command /admin [<text>] [<player>]:
                     set {admin.%arg-2%} to "true"
                     set the arg-2's chat name to "&4%name of arg-2%"
                     set the arg-2's display name to "&4[運営] %name of arg-2%"
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     add 1 to {qua.admin}
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
             if arg-2 is not set:
                 if {admin.%player%} is "true":
                     message "&b[admin] &rあなたはすでにadminです" to player
@@ -83,7 +85,9 @@ command /admin [<text>] [<player>]:
                     set {admin.%player%} to "true"
                     set the player's chat name to "&4%name of player%"
                     set the player's display name to "&4[運営] %name of player%"
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     add 1 to {qua.admin}
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
         if arg-1 is "leave":
             if arg-2 is set:
                 if {admin.%arg-2%} is "false":
@@ -97,7 +101,9 @@ command /admin [<text>] [<player>]:
                     set {admin.%arg-2%} to "false"
                     set the arg-2's chat name to name of arg-2
                     set the arg-2's display name to name of arg-2
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     reduce {qua.admin} by 1
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
             if arg-2 is not set:
                 if {admin.%player%} is "false":
                     message "&b[admin] &rあなたはすでにadminではありません" to player
@@ -109,7 +115,9 @@ command /admin [<text>] [<player>]:
                     set {admin.%player%} to "false"
                     set the player's chat name to name of player
                     set the player's display name to name of player
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     reduce {qua.admin} by 1
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
         if arg-1 is not set:
             if {admin.%player%} is "true":
                 make player execute command "/gamemode adventure %player%"
@@ -119,7 +127,9 @@ command /admin [<text>] [<player>]:
                 set {admin.%player%} to "false"
                 set the player's chat name to name of player
                 set the player's display name to name of player
+                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                 reduce {qua.admin} by 1
+                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
                 stop
             if {admin.%player%} is "false":
                 execute console command "op %player%"
@@ -131,7 +141,9 @@ command /admin [<text>] [<player>]:
                 set {admin.%player%} to "true"
                 set the player's chat name to "&4%name of player%"
                 set the player's display name to "&4[運営] %name of player%"
+                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                 add 1 to {qua.admin}
+                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
 
 
 

@@ -66,12 +66,10 @@ command /game <text>:
             set {rank.alive} to "--"
             set {status} to 1
 
-            execute console command "scoreboard players set online：%online player count%人 admin -1"
             execute console command "scoreboard players set {qua.player}：%{qua.player}%人 admin -2"
             execute console command "scoreboard players set {qua.team}：%{qua.team}%チーム admin -3"
             execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -4"
             execute console command "scoreboard players set {survive.team}：%{survive.team}%チーム admin -5"
-            execute console command "scoreboard players set {qua.admin}：%{qua.admin}%チーム admin -6"
 
             execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
             execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
@@ -213,6 +211,7 @@ on death of player:
         set player's gamemode to spectator
         set {sidebar.%victim%} to 2
 
+        execute console command "scoreboard players reset {surviver}：%{surviver}%人 admin"
         execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
         execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
         execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
