@@ -93,6 +93,32 @@ command /natto---repair-suviver <number>:
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# チームをリセットします．
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /natto---teamgoodbye:
+    description:Goodbye Team
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        execute console command "scoreboard objectives remove red"
+        execute console command "scoreboard objectives remove blue"
+        execute console command "scoreboard objectives remove yellow"
+        execute console command "scoreboard objectives remove green"
+        execute console command "scoreboard objectives remove orange"
+        execute console command "scoreboard objectives remove purple"
+        execute console command "scoreboard objectives remove gray"
+        execute console command "team remove red"
+        execute console command "team remove blue"
+        execute console command "team remove yellow"
+        execute console command "team remove green"
+        execute console command "team remove orange"
+        execute console command "team remove purple"
+        execute console command "team remove gray"
+        message "&e[Goodbye Team] &r正常に実行されました" to player
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 生者の気分を味わいます.
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 command /natto--ikiru:

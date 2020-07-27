@@ -238,7 +238,7 @@ on death of player:
             if {surviver.team.red} is 0:
                 set {rank.team.red} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.red}%位 red -3"
-                set {ranking.team.%{rank.team.red}%} to "&c[Red]&r:%{team.red::*}%"
+                set {ranking.team.%{rank.team.red}%} to "&c[Red]&r : %{team.red::*}%"
                 set {ranking.teamkills.%{rank.team.red}%} to {teamkills.red}
                 reduce {rank.dummy} by 1
                 set {team.alive.red} to "false"
@@ -271,7 +271,7 @@ on death of player:
             if {surviver.team.blue} is 0:
                 set {rank.team.blue} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.blue}%位 blue -3"
-                set {ranking.team.%{rank.team.blue}%} to "&9[Blue]&r:%{team.blue::*}%"
+                set {ranking.team.%{rank.team.blue}%} to "&9[Blue]&r : %{team.blue::*}%"
                 set {ranking.teamkills.%{rank.team.blue}%} to {teamkills.blue}
                 reduce {rank.dummy} by 1
                 set {team.alive.blue} to "false"
@@ -304,7 +304,7 @@ on death of player:
             if {surviver.team.yellow} is 0:
                 set {rank.team.yellow} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.yellow}%位 yellow -3"
-                set {ranking.team.%{rank.team.yellow}%} to "&e[Yellow]&r:%{team.yellow::*}%"
+                set {ranking.team.%{rank.team.yellow}%} to "&e[Yellow]&r : %{team.yellow::*}%"
                 set {ranking.teamkills.%{rank.team.yellow}%} to {teamkills.yellow}
                 reduce {rank.dummy} by 1
                 set {team.alive.yellow} to "false"
@@ -337,7 +337,7 @@ on death of player:
             if {surviver.team.green} is 0:
                 set {rank.team.green} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.green}%位 green -3"
-                set {ranking.team.%{rank.team.green}%} to "&a[Green]&r:%{team.green::*}%"
+                set {ranking.team.%{rank.team.green}%} to "&a[Green]&r : %{team.green::*}%"
                 set {ranking.teamkills.%{rank.team.green}%} to {teamkills.green}
                 reduce {rank.dummy} by 1
                 set {team.alive.green} to "false"
@@ -370,7 +370,7 @@ on death of player:
             if {surviver.team.orange} is 0:
                 set {rank.team.orange} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.orange}%位 orange -3"
-                set {ranking.team.%{rank.team.orange}%} to "&6[Orange]&r:%{team.orange::*}%"
+                set {ranking.team.%{rank.team.orange}%} to "&6[Orange]&r : %{team.orange::*}%"
                 set {ranking.teamkills.%{rank.team.orange}%} to {teamkills.orange}
                 reduce {rank.dummy} by 1
                 set {team.alive.orange} to "false"
@@ -403,7 +403,7 @@ on death of player:
             if {surviver.team.purple} is 0:
                 set {rank.team.purple} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.purple}%位 purple -3"
-                set {ranking.team.%{rank.team.purple}%} to "&d[Purple]&r:%{team.purple::*}%"
+                set {ranking.team.%{rank.team.purple}%} to "&d[Purple]&r : %{team.purple::*}%"
                 set {ranking.teamkills.%{rank.team.purple}%} to {teamkills.purple}
                 reduce {rank.dummy} by 1
                 set {team.alive.purple} to "false"
@@ -436,7 +436,7 @@ on death of player:
             if {surviver.team.gray} is 0:
                 set {rank.team.gray} to {rank.dummy}
                 execute console command "scoreboard players set 順位：%{rank.team.gray}%位 gray -3"
-                set {ranking.team.%{rank.team.gray}%} to "&7[Gray]&r:%{team.gray::*}%"
+                set {ranking.team.%{rank.team.gray}%} to "&7[Gray]&r : %{team.gray::*}%"
                 set {ranking.teamkills.%{rank.team.gray}%} to {teamkills.gray}
                 reduce {rank.dummy} by 1
                 set {team.alive.gray} to "false"

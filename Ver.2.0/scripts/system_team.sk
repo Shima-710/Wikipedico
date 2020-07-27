@@ -144,26 +144,32 @@ on inventory click:
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.red::*}
             set {team.which.%player%} to "red"
             add 1 to {qua.team.red}
             set {team.joined.%player%} to "true"
-            set the player's prefix to "&c[Red] "
+            set the player's display name to "&c[Red] &r%name of player%"
             execute console command "scoreboard players set %name of player% red 1"
             execute console command "team join red %player%"
             play sound "entity.player.levelup" to player
@@ -178,27 +184,32 @@ on inventory click:
             if {team.which.%player%} is "red":
                 reduce {qua.team.red} by 1
                 remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.blue::*}
             set {team.which.%player%} to "blue"
             add 1 to {qua.team.blue}
             set {team.joined.%player%} to "true"
-            set the player's chat name to "&9%name of player%"
-            set the player's display name to "9[Blue] %name of player%"
+            set the player's display name to "&9[Blue] &r%name of player%"
             execute console command "scoreboard players set %name of player% blue 1"
             execute console command "team join blue %player%"
             play sound "entity.player.levelup" to player
@@ -210,30 +221,35 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
                 stop
-            if {team.which.%player%} is "red":
-                reduce {qua.team.red} by 1
-                remove player from {team.red::*}
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.yellow::*}
             set {team.which.%player%} to "yellow"
             add 1 to {qua.team.yellow}
             set {team.joined.%player%} to "true"
-            set the player's chat name to "&e%name of player%"
-            set the player's display name to "&e[Yellow] %name of player%"
+            set the player's display name to "&e[Yellow] &r%name of player%"
             execute console command "scoreboard players set %name of player% yellow 1"
             execute console command "team join yellow %player%"
             play sound "entity.player.levelup" to player
@@ -245,30 +261,35 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
                 stop
-            if {team.which.%player%} is "red":
-                reduce {qua.team.red} by 1
-                remove player from {team.red::*}
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.green::*}
             set {team.which.%player%} to "green"
             add 1 to {qua.team.green}
             set {team.joined.%player%} to "true"
-            set the player's chat name to "&a%name of player%"
-            set the player's display name to "&a[Green] %name of player%"
+            set the player's display name to "&a[Green] &r%name of player%"
             execute console command "scoreboard players set %name of player% green 1"
             execute console command "team join green %player%"
             play sound "entity.player.levelup" to player
@@ -280,30 +301,35 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
                 stop
-            if {team.which.%player%} is "red":
-                reduce {qua.team.red} by 1
-                remove player from {team.red::*}
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.orange::*}
             set {team.which.%player%} to "orange"
             add 1 to {qua.team.orange}
             set {team.joined.%player%} to "true"
-            set the player's chat name to "&6%name of player%"
-            set the player's display name to "&6[Orange] %name of player%"
+            set the player's display name to "&6[Orange] &r%name of player%"
             execute console command "scoreboard players set %name of player% orange 1"
             execute console command "team join orange %player%"
             play sound "entity.player.levelup" to player
@@ -315,30 +341,35 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
                 stop
-            if {team.which.%player%} is "red":
-                reduce {qua.team.red} by 1
-                remove player from {team.red::*}
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             if {team.which.%player%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove player from {team.gray::*}
+                execute console command "scoreboard players reset %name of player% gray"
             add player to {team.purple::*}
             set {team.which.%player%} to "purple"
             add 1 to {qua.team.purple}
             set {team.joined.%player%} to "true"
-            set the player's chat name to "&d%name of player%"
-            set the player's display name to "&d[Purple] %name of player%"
+            set the player's display name to "&d[Purple] &r%name of player%"
             execute console command "scoreboard players set %name of player% purple 1"
             execute console command "team join purple %player%"
             play sound "entity.player.levelup" to player
@@ -350,31 +381,35 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rあなたはすでにそのチームに所属しています！" to player
                 stop
-            if {team.which.%player%} is "red":
-                reduce {qua.team.red} by 1
-                remove player from {team.red::*}
             if {team.which.%player%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove player from {team.blue::*}
+                execute console command "scoreboard players reset %name of player% blue"
             if {team.which.%player%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove player from {team.yellow::*}
+                execute console command "scoreboard players reset %name of player% yellow"
             if {team.which.%player%} is "green":
                 reduce {qua.team.green} by 1
                 remove player from {team.green::*}
+                execute console command "scoreboard players reset %name of player% green"
             if {team.which.%player%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove player from {team.orange::*}
+                execute console command "scoreboard players reset %name of player% orange"
             if {team.which.%player%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove player from {team.purple::*}
+                execute console command "scoreboard players reset %name of player% purple"
+            if {team.which.%player%} is "red":
+                reduce {qua.team.red} by 1
+                remove player from {team.red::*}
+                execute console command "scoreboard players reset %name of player% red"
             add player to {team.gray::*}
             set {team.which.%player%} to "gray"
             add 1 to {qua.team.gray}
             set {team.joined.%player%} to "true"
-
-            set the player's chat name to "&7%name of player%"
-            set the player's display name to "&7[Gray] %name of player%"
+            set the player's display name to "&7[Gray] &r%name of player%"
             execute console command "scoreboard players set %name of player% gray 1"
             execute console command "team join gray %player%"
             play sound "entity.player.levelup" to player
@@ -467,7 +502,24 @@ on inventory click:
     if event-item is skull of {team.red::1} named "&l%{team.red::1}% &rを復活":
         cancel event
         if {sidebar.%{team.red::1}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
             add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
             set {sidebar.%{team.red::1}%} to 1
             add 1 to {surviver.team.red}
             reduce {teamkills.red} by {kills.%{team.red::1}%}
@@ -482,11 +534,28 @@ on inventory click:
     if event-item is skull of {team.red::2} named "&l%{team.red::2}% &rを復活":
         cancel event
         if {sidebar.%{team.red::2}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
             add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
             set {sidebar.%{team.red::2}%} to 1
             add 1 to {surviver.team.red}
             reduce {teamkills.red} by {kills.%{team.red::2}%}
-            remove "&6%{kills.%{team.red::2}%}%kill &8-- &6%name of {team.red::12}%" from {killranking::*}
+            remove "&6%{kills.%{team.red::2}%}%kill &8-- &6%name of {team.red::2}%" from {killranking::*}
             set gamemode of {team.red::2} to survival
             teleport {team.red::2} to player
             play sound "entity.player.levelup" to player
@@ -497,7 +566,24 @@ on inventory click:
     if event-item is skull of {team.red::3} named "&l%{team.red::3}% &rを復活":
         cancel event
         if {sidebar.%{team.red::3}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
             add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
             set {sidebar.%{team.red::3}%} to 1
             add 1 to {surviver.team.red}
             reduce {teamkills.red} by {kills.%{team.red::3}%}

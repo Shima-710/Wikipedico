@@ -4,7 +4,7 @@
 # ===============================================================================================================================================================================================
 
 
-on server start:
+on skript load:
     broadcast ">Plugin &2Reloading..."
 
 
@@ -46,6 +46,20 @@ on server start:
     execute console command "worldborder set 50000"
     execute console command "scoreboard players set 状態：準備中 Info 0"
     execute console command "scoreboard players set しばらくお待ちください Info -1"
+    execute console command "scoreboard players reset %name of player% red"
+    execute console command "scoreboard players reset %name of player% blue"
+    execute console command "scoreboard players reset %name of player% yellow"
+    execute console command "scoreboard players reset %name of player% green"
+    execute console command "scoreboard players reset %name of player% orange"
+    execute console command "scoreboard players reset %name of player% purple"
+    execute console command "scoreboard players reset %name of player% gray"
+    execute console command "scoreboard players reset 順位：%{rank.team.red}%位 red"
+    execute console command "scoreboard players reset 順位：%{rank.team.blue}%位 blue"
+    execute console command "scoreboard players reset 順位：%{rank.team.yellow}%位 yellow"
+    execute console command "scoreboard players reset 順位：%{rank.team.green}%位 green"
+    execute console command "scoreboard players reset 順位：%{rank.team.orange}%位 orange"
+    execute console command "scoreboard players reset 順位：%{rank.team.purple}%位 purple"
+    execute console command "scoreboard players reset 順位：%{rank.team.gray}%位 gray"
     set {status} to 0
     set {destroyable} to "false"
     set {surviver} to 0
@@ -127,7 +141,12 @@ on server start:
         execute console command "gamerule sendCommandFeedback true"
         execute console command "gamerule reducedDebugInfo false"
 
-on skript load:
+    wait 1 tick
+    execute console command "natto---teamgoodbye"
+    wait 1 tick
+    execute console command "function shimashima:00_load"
+
+
     broadcast ">Plugin &2Reloaded Successfully!"
 
 

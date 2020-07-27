@@ -41,14 +41,14 @@
 
 # Admin
     team add admin
-    team modify adimn color dark_red
-    team modify adimn friendlyFire false
-    team modify adimn nametagVisibility hideForOtherTeams
-    team modify adimn collisionRule never
-    team modify adimn displayName "Adimn"
-    team modify adimn prefix "[Adimn]"
-    scoreboard objectives add adimn dummy
-    scoreboard objectives modify adimn displayname "Adimn"
+    team modify admin color dark_red
+    team modify admin friendlyFire false
+    team modify admin nametagVisibility hideForOtherTeams
+    team modify admin collisionRule never
+    team modify admin displayName "Admin"
+    team modify admin prefix "[Admin]"
+    scoreboard objectives add admin dummy
+    scoreboard objectives modify admin displayname "Admin"
     scoreboard objectives setdisplay sidebar.team.dark_red admin
 
 # red
