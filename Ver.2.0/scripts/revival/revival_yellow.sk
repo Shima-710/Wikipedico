@@ -1,0 +1,106 @@
+# =====================================================================================================================================================================================
+# System for Revival
+# Yellow
+# ====================================================================================================================================================================================
+
+
+on inventory click:
+    if event-item is yellow wool named "&lYellow Team":
+        cancel event
+
+    if event-item is skull of {team.yellow::1} named "&l%{team.yellow::1}% &rを復活":
+        cancel event
+        if {sidebar.%{team.yellow::1}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
+            add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
+            set {sidebar.%{team.yellow::1}%} to 1
+            add 1 to {surviver.team.yellow}
+            reduce {teamkills.yellow} by {kills.%{team.yellow::1}%}
+            remove "&6%{kills.%{team.yellow::1}%}%kill &8-- &6%name of {team.yellow::1}%" from {killranking::*}
+            set gamemode of {team.yellow::1} to survival
+            teleport {team.yellow::1} to player
+            play sound "entity.player.levelup" to player
+            broadcast "&b[運営] &r%{team.yellow::1}%が復活しました"
+        else:
+            message "&b[システム] &rそのプレイヤーは復活させられません" to player
+            play sound "block.note_block.banjo" to player
+    if event-item is skull of {team.yellow::2} named "&l%{team.yellow::2}% &rを復活":
+        cancel event
+        if {sidebar.%{team.yellow::2}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
+            add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
+            set {sidebar.%{team.yellow::2}%} to 1
+            add 1 to {surviver.team.yellow}
+            reduce {teamkills.yellow} by {kills.%{team.yellow::2}%}
+            remove "&6%{kills.%{team.yellow::2}%}%kill &8-- &6%name of {team.yellow::2}%" from {killranking::*}
+            set gamemode of {team.yellow::2} to survival
+            teleport {team.yellow::2} to player
+            play sound "entity.player.levelup" to player
+            broadcast "&b[運営] &r%{team.yellow::2}%が復活しました"
+        else:
+            message "&b[システム] &rそのプレイヤーは復活させられません" to player
+            play sound "block.note_block.banjo" to player
+    if event-item is skull of {team.yellow::3} named "&l%{team.yellow::3}% &rを復活":
+        cancel event
+        if {sidebar.%{team.yellow::3}%} is 2:
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 yellow"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 green"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 orange"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 purple"
+            execute console command "scoreboard players reset 残り人数：%{surviver}%人 gray"
+
+            add 1 to {surviver}
+
+            execute console command "scoreboard players set {surviver}：%{surviver}%人 admin -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 red -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 blue -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 yellow -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 green -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 orange -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 purple -1"
+            execute console command "scoreboard players set 残り人数：%{surviver}%人 gray -1"
+            set {sidebar.%{team.yellow::3}%} to 1
+            add 1 to {surviver.team.yellow}
+            reduce {teamkills.yellow} by {kills.%{team.yellow::3}%}
+            remove "&6%{kills.%{team.yellow::3}%}%kill &8-- &6%name of {team.yellow::3}%" from {killranking::*}
+            set gamemode of {team.yellow::3} to survival
+            teleport {team.yellow::3} to player
+            play sound "entity.player.levelup" to player
+            broadcast "&b[運営] &r%{team.yellow::3}%が復活しました"
+        else:
+            message "&b[システム] &rそのプレイヤーは復活させられません" to player
+            play sound "block.note_block.banjo" to player
