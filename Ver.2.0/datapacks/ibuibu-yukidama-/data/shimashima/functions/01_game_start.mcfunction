@@ -25,8 +25,6 @@ effect give @a[team=!admin] resistance 10 255 true
 gamemode survival @a[team=!admin,team=!dead]
 gamemode spectator @a[team=admin]
 
-# 参加者のネームタグを隠す
-team modify players nametagVisibility never
 
 # 上空にTP -> 変更
 # tp @a -27663 309 36470 ~ 90
@@ -34,7 +32,7 @@ fill -27678 252 36485 -27648 254 36455 air destroy
 
 
 # ワールドボーダーをとりあえず作る
-worldborder center -27663 36470 
+worldborder center -27663 36470
 worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 15s
