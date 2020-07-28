@@ -28,6 +28,7 @@ on server start:
     set {price.buy.cooked_beef} to 15
     set {price.buy.golden_apple} to 10
     set {price.buy.enchanted_golden_apple} to 50
+    set {price.buy.revival} to 100
     # 販売量
     set {amount.buy.arrow} to 5
     set {amount.buy.cooked_beef} to 5
@@ -502,7 +503,10 @@ on inventory click:
         cancel event
         if player has {price.buy.shield} of emerald:
             play sound "entity.player.levelup" to player
-            give a shield with damage value 330 to player
+            if {mode.yumi} is "true":
+                give a shield with damage value 315 to player
+            else:
+                give a shield with damage value 330 to player
             remove {price.buy.shield} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
@@ -540,9 +544,10 @@ on inventory click:
         set slot 17 of player's current inventory to black stained glass pane named " "
         set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
 
-        set slot 29 of player's current inventory to {amount.buy.cooked_beef} of cooked beef named "&a[$%{price.buy.cooked_beef}%] &rステーキを買う"
-        set slot 31 of player's current inventory to golden apple named "&a[$%{price.buy.golden_apple}%] &r金のリンゴを買う"
-        set slot 33 of player's current inventory to enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う"
+        set slot 28 of player's current inventory to {amount.buy.cooked_beef} of cooked beef named "&a[$%{price.buy.cooked_beef}%] &rステーキを買う"
+        set slot 30 of player's current inventory to golden apple named "&a[$%{price.buy.golden_apple}%] &r金のリンゴを買う"
+        set slot 32 of player's current inventory to enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う"
+        set slot 34 of player's current inventory to cyan glazed terracotta named "&a[$%{price.buy.revival}%] &r復活の石を買う"
 
     # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #　"食糧を買う"内の商品
@@ -581,6 +586,16 @@ on inventory click:
             play sound "entity.player.levelup" to player
             give 1 of enchanted golden apple to player
             remove {price.buy.enchanted_golden_apple} of emerald from player
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+    if event-item is cyan glazed terracotta named "&a[$%{price.buy.revival}%] &r復活の石を買う":
+        cancel event
+        if player has {price.buy.revival} of emerald:
+            play sound "entity.player.levelup" to player
+            give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
+            remove {price.buy.revival} of emerald from player
         else:
             play sound "block.note_block.banjo" to player
             message "&b[商人] &rエメラルドが足りないようだな..." to player

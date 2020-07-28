@@ -432,3 +432,25 @@ on inventory click:
             cancel event
         if event-item is player skull:
             cancel event
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# チームチャット
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on chat:
+    if {status} is 1:
+        cancel event
+        if {team.which.%player%} is "red":
+            message "&7[Team Chat] <%player% -> &cRed> &r%message%" to {team.red::*}
+        if {team.which.%player%} is "blue":
+            message "&7[Team Chat] <%player% -> &9Blue> &r%message%" to {team.blue::*}
+        if {team.which.%player%} is "yellow":
+            message "&7[Team Chat] <%player% -> &eYellow> &r%message%" to {team.yellow::*}
+        if {team.which.%player%} is "green":
+            message "&7[Team Chat] <%player% -> &aGreen> &r%message%" to {team.green::*}
+        if {team.which.%player%} is "orange":
+            message "&7[Team Chat] <%player% -> &6Orange> &r%message%" to {team.orange::*}
+        if {team.which.%player%} is "purple":
+            message "&7[Team Chat] <%player% -> &dPurple> &r%message%" to {team.purple::*}
+        if {team.which.%player%} is "gray":
+            message "&7[Team Chat] <%player% -> &7Gray> &r%message%" to {team.gray::*}

@@ -37,6 +37,16 @@ command /ver:
 
 
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ゲーム中に意図的に全体チャットを使用します。
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /z <text>:
+    description:ZE-NN-TYA
+    trigger:
+        broadcast "&7[ZE-NN-TYA] &r<%player%> %arg-1%"
+
+
+
 
 
 # =====================================================================================================================================================================================
@@ -72,6 +82,7 @@ command /admin [<text>] [<player>]:
                     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     add 1 to {qua.admin}
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    add player to {team.admin::*}
             if arg-2 is not set:
                 if {admin.%player%} is "true":
                     message "&b[admin] &rあなたはすでにadminです" to player
@@ -104,6 +115,7 @@ command /admin [<text>] [<player>]:
                     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     reduce {qua.admin} by 1
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    execute console command "natto---leaveteam"
             if arg-2 is not set:
                 if {admin.%player%} is "false":
                     message "&b[admin] &rあなたはすでにadminではありません" to player
@@ -118,6 +130,7 @@ command /admin [<text>] [<player>]:
                     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     reduce {qua.admin} by 1
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    execute console command "natto---leaveteam"
         if arg-1 is not set:
             if {admin.%player%} is "true":
                 make player execute command "/gamemode adventure %player%"
@@ -130,6 +143,7 @@ command /admin [<text>] [<player>]:
                 execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                 reduce {qua.admin} by 1
                 execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                execute console command "natto---leaveteam"
                 stop
             if {admin.%player%} is "false":
                 execute console command "op %player%"

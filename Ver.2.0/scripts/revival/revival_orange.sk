@@ -10,6 +10,7 @@ on inventory click:
 
     if event-item is skull of {team.orange::1} named "&l%{team.orange::1}% &rを復活":
         cancel event
+        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.orange::1}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
@@ -42,6 +43,7 @@ on inventory click:
             play sound "block.note_block.banjo" to player
     if event-item is skull of {team.orange::2} named "&l%{team.orange::2}% &rを復活":
         cancel event
+        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.orange::2}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
@@ -74,6 +76,7 @@ on inventory click:
             play sound "block.note_block.banjo" to player
     if event-item is skull of {team.orange::3} named "&l%{team.orange::3}% &rを復活":
         cancel event
+        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.orange::3}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"

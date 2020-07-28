@@ -21,6 +21,7 @@ command /game <text>:
                     set {sidebar.%loop-player%} to 1
             execute console command "scoreboard players reset しばらくお待ちください Info"
 
+            # チームいる
             if amount of {team.red::*} is not 0:
                 add 1 to {qua.team}
                 set {surviver.team.red} to amount of {team.red::*}
@@ -43,6 +44,7 @@ command /game <text>:
                 add 1 to {qua.team}
                 set {surviver.team.gray} to amount of {team.gray::*}
 
+            #　チームいない
             if {team.red::*} is not set:
                 set {team.alive.red} to "false"
             if {team.blue::*} is not set:
@@ -87,10 +89,10 @@ command /game <text>:
             execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
             execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
 
-            broadcast "&b[運営] &r15秒後にゲームを開始します..."
+            broadcast "&b[運営] &r20秒後にゲームを開始します..."
             execute console command "function shimashima:01_goodbye_item"
             execute console command "tp @a -27663 255 36470"
-            wait 15 seconds
+            wait 20 seconds
             execute console command "function shimashima:cd_3"
             play sound "block.note_block.harp" to all players
             wait 1 seconds

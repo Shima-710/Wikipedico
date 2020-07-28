@@ -37,7 +37,7 @@ worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 15s
 # その他設定
-worldborder damage amount 0.05
+worldborder damage amount 0.005
 worldborder damage buffer 0
 worldborder warning distance 0
 worldborder warning time 10
