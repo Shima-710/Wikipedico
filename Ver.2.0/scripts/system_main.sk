@@ -91,6 +91,8 @@ command /game <text>:
 
             broadcast "&b[運営] &r20秒後にゲームを開始します..."
             execute console command "function shimashima:01_goodbye_item"
+            execute console command "function shimashima:01_toggle_nametag"
+            execute console command "effect give @a[team=!admin] glowing 20 255 true"
             execute console command "tp @a -27663 255 36470"
             wait 20 seconds
             execute console command "function shimashima:cd_3"
@@ -133,30 +135,52 @@ command /game <text>:
                 if {sidebar.%loop-player%} is 1:
                     set {sidebar.%loop-player%} to 3
                     add "&6%{kills.%loop-player%}%kill &8-- &6%name of loop-player%" to {killranking::*}
+                    if {team.which.%loop-player%} is "red":
+                        add {kills.%loop-player%} to {teamkills.red}
+                    if {team.which.%loop-player%} is "blue":
+                        add {kills.%loop-player%} to {teamkills.blue}
+                    if {team.which.%loop-player%} is "yellow":
+                        add {kills.%loop-player%} to {teamkills.yellow}
+                    if {team.which.%loop-player%} is "green":
+                        add {kills.%loop-player%} to {teamkills.green}
+                    if {team.which.%loop-player%} is "orange":
+                        add {kills.%loop-player%} to {teamkills.orange}
+                    if {team.which.%loop-player%} is "green":
+                        add {kills.%loop-player%} to {teamkills.green}
+                    if {team.which.%loop-player%} is "purple":
+                        add {kills.%loop-player%} to {teamkills.purple}
+                    if {team.which.%loop-player%} is "gray":
+                        add {kills.%loop-player%} to {teamkills.gray}
                     #set {ranking.name.1} to name of loop-player
                     #set {ranking.kills.1} to {kills.%loop-player%}
             if {team.alive.red} is "true":
                 set {ranking.team.1} to "&c[Red]&r : %{team.red::*}%"
                 set {ranking.teamkills.1} to {teamkills.red}
+                send title "&l&e勝利&r &8|&r &c[Red Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.blue} is "true":
                 set {ranking.team.1} to "&9[Blue]&r : %{team.blue::*}%"
                 set {ranking.teamkills.1} to {teamkills.blue}
+                send title "&l&e勝利&r &8|&r &9[Blue Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.yellow} is "true":
                 set {ranking.team.1} to "&e[Yellow]&r : %{team.yellow::*}%"
                 set {ranking.teamkills.1} to {teamkills.yellow}
+                send title "&l&e勝利&r &8|&r &e[Yellow Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.green} is "true":
                 set {ranking.team.1} to "&a[Green]&r : %{team.green::*}%"
                 set {ranking.teamkills.1} to {teamkills.green}
+                send title "&l&l&e勝利&r &8|&r &a[Green Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.orange} is "true":
                 set {ranking.team.1} to "&6[Orange]&r : %{team.orange::*}%"
                 set {ranking.teamkills.1} to {teamkills.orange}
+                send title "&l&e勝利&r &8|&r &6[Orange Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.purple} is "true":
                 set {ranking.team.1} to "&d[Purple]&r : %{team.purple::*}%"
                 set {ranking.teamkills.1} to {teamkills.purple}
+                send title "&l&e勝利&r &8|&r &d[Purple Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             if {team.alive.gray} is "true":
                 set {ranking.team.1} to "&7[Gray]&r : %{team.gray::*}%"
                 set {ranking.teamkills.1} to {teamkills.gray}
-            send title "&e勝利&r &8|&r %{ranking.team.1}%" to all players for 3 seconds with fade in 0 second and fade out 1 second
+                send title "&l&e勝利&r &8|&r &7[Gray Team]" to all players for 3 seconds with fade in 0 second and fade out 1 second
             play sound "ui.toast.challenge_complete" with volume 0.8 to all players
             wait 12 seconds
             broadcast "&b[運営] &r試合結果を集計しています..."
@@ -576,6 +600,40 @@ on item spawn:
 
 
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# グラップリングフック useは0で使用不可，1で使用可能
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on fishing:
+    if {cooltime.grappling.%player%} is 0:
+        if {use.grappling.%player%} is 0:
+            set {use.grappling.%player%} to 1
+            stop
+        if {use.grappling.%player%} is 1:
+            set {cooltime.grappling.%player%} to 5
+            set {use.grappling.%player%} to 0
+            push player upwards at speed 1
+            push player forwards at speed 3
+            loop 5 times:
+                send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
+                wait 1 seconds
+                reduce {cooltime.grappling.%player%} by 1
+                if {cooltime.grappling.%player%} is 0:
+                    send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
+        else:
+            cancel event
+    if {cooltime.grappling.%player%} is not 0:
+        cancel event
+
+on damage:
+    if damage cause is fall:
+        if {cooltime.grappling.%victim%} is not 0:
+            cancel event
+
+every 1 tick in "world":
+    loop all players:
+        if {use.grappling.%loop-player%} is 1:
+            if loop-player is not holding fishing rod:
+                set {use.grappling.%loop-player%} to 0
 
 
 

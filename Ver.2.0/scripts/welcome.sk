@@ -177,6 +177,8 @@ on join:
     message " " to player
     set {use.snowball.%player%} to 0
     set {cooltime.snowball.%player%} to 0
+    set {use.grappling.%player%} to 0
+    set {cooltime.grappling.%player%} to 0
     clear {play.%player%}
     set {qua.omline.dummy} to online player count
     reduce {qua.omline.dummy} by 1
@@ -190,45 +192,45 @@ on join:
         clear {killranking::*}
         wait 3 tick
         if {team.which.%player%} is "red":
-            reduce {qua.team.red} by 1
             remove player from {team.red::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% red"
             execute console command "team leave %player%"
         if {team.which.%player%} is "blue":
-            reduce {qua.team.blue} by 1
             remove player from {team.blue::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% blue"
             execute console command "team leave %player%"
         if {team.which.%player%} is "yellow":
-            reduce {qua.team.yellow} by 1
             remove player from {team.yellow::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% yellow"
             execute console command "team leave %player%"
         if {team.which.%player%} is "green":
-            reduce {qua.team.green} by 1
             remove player from {team.green::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% green"
             execute console command "team leave %player%"
         if {team.which.%player%} is "orange":
-            reduce {qua.team.orange} by 1
             remove player from {team.orange::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% orange"
             execute console command "team leave %player%"
         if {team.which.%player%} is "purple":
-            reduce {qua.team.purple} by 1
             remove player from {team.purple::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% purple"
             execute console command "team leave %player%"
         if {team.which.%player%} is "gray":
-            reduce {qua.team.gray} by 1
             remove player from {team.gray::*}
             clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% gray"
             execute console command "team leave %player%"
         set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
@@ -522,6 +524,117 @@ on quit:
 
                     if {survive.team} is 1:
                         execute console command "game end"
+
+
+    if {status} is 0:
+        if {team.which.%player%} is "red":
+            reduce {qua.team.red} by 1
+            remove player from {team.red::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% red"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "blue":
+            reduce {qua.team.blue} by 1
+            remove player from {team.blue::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% blue"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "yellow":
+            reduce {qua.team.yellow} by 1
+            remove player from {team.yellow::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% yellow"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "green":
+            reduce {qua.team.green} by 1
+            remove player from {team.green::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% green"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "orange":
+            reduce {qua.team.orange} by 1
+            remove player from {team.orange::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% orange"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "purple":
+            reduce {qua.team.purple} by 1
+            remove player from {team.purple::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% purple"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "gray":
+            reduce {qua.team.gray} by 1
+            remove player from {team.gray::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% gray"
+            execute console command "team leave %player%"
+
+        if {admin.%player%} is "true":
+            make player execute command "admin leave"
+
+
+    if {status} is 2:
+        if {team.which.%player%} is "red":
+            reduce {qua.team.red} by 1
+            remove player from {team.red::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% red"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "blue":
+            reduce {qua.team.blue} by 1
+            remove player from {team.blue::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% blue"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "yellow":
+            reduce {qua.team.yellow} by 1
+            remove player from {team.yellow::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% yellow"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "green":
+            reduce {qua.team.green} by 1
+            remove player from {team.green::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% green"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "orange":
+            reduce {qua.team.orange} by 1
+            remove player from {team.orange::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% orange"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "purple":
+            reduce {qua.team.purple} by 1
+            remove player from {team.purple::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% purple"
+            execute console command "team leave %player%"
+        if {team.which.%player%} is "gray":
+            reduce {qua.team.gray} by 1
+            remove player from {team.gray::*}
+            clear {team.which.%player%}
+            set {team.joined.%player%} to "false"
+            execute console command "scoreboard players reset %name of player% gray"
+            execute console command "team leave %player%"
+
+        if {admin.%player%} is "true":
+            make player execute command "admin leave"
+
     else:
         if {admin.%player%} is "true":
             make player execute command "admin leave"

@@ -21,6 +21,9 @@ replaceitem entity @a[team=!admin] armor.chest elytra
 # エリトラ落下死防止
 effect give @a[team=!admin] resistance 10 255 true
 
+# 発光
+effect give @a[team=!admin] glowing 10 255 true
+
 # 参加者のゲームモードを変更
 gamemode survival @a[team=!admin,team=!dead]
 gamemode spectator @a[team=admin]
