@@ -47,11 +47,130 @@ command /z <text>:
 
 
 
+
+
+# =====================================================================================================================================================================================
+#
+# ===For Game Master===   OP保持者もしくはadmin経験者(LP権限グループ"Skript.admin")のみ実行可能
+#
+# =====================================================================================================================================================================================
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# チームに入ります。
+# adminに入ったり出たりします．adminは変数{admin.%player%}またはチーム"admin"で判別．一度でもadminになればLP権限グループ"skript.admin"に追加され，OP出なくともコマンドの実行は可能になります
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /admin [<text>] [<player>]:
+    description:Make specific user to admin
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    usage:/admin <join/leave> [<プレイヤー>] ※プレイヤー未指定の場合は自身を操作します
+    aliases:/ad
+    trigger:
+        if arg-1 is "join":
+            if arg-2 is set:
+                if {admin.%arg-2%} is "true":
+                    message "&b[admin] &r%arg-2%はすでにadminです" to player
+                else:
+                    execute console command "op %arg-2%"
+                    make player execute command "/gamemode creative %arg-2%"
+                    make arg-2 execute command "natto---leaveteam"
+                    make player execute command "/team join admin %arg-2%"
+                    make arg-2 execute command "/book"
+                    execute console command "lp user %arg-2% parent add skript.admin"
+                    message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
+                    message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
+                    set {admin.%arg-2%} to "true"
+                    set the arg-2's chat name to "&4%name of arg-2%"
+                    set the arg-2's display name to "&4[運営] %name of arg-2%"
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                    add 1 to {qua.admin}
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    add player to {team.admin::*}
+            if arg-2 is not set:
+                if {admin.%player%} is "true":
+                    message "&b[admin] &rあなたはすでにadminです" to player
+                else:
+                    execute console command "op %player%"
+                    make player execute command "/gamemode creative %player%"
+                    make player execute command "natto---leaveteam"
+                    make player execute command "/team join admin %player%"
+                    make player execute command "/book"
+                    execute console command "lp user %player% parent add skript.admin"
+                    message "&b[admin] &r%player%をAdminに追加しました。" to player
+                    set {admin.%player%} to "true"
+                    set the player's chat name to "&4%name of player%"
+                    set the player's display name to "&4[運営] %name of player%"
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                    add 1 to {qua.admin}
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+        if arg-1 is "leave":
+            if arg-2 is set:
+                if {admin.%arg-2%} is "false":
+                    message "&b[admin] &r%arg-2%はすでにadminではありません" to player
+                else:
+                    make player execute command "/gamemode adventure %arg-2%"
+                    make player execute command "/effect clear %arg-2% minecraft:night_vision"
+                    make player execute command "/team leave %arg-2%"
+                    message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
+                    message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
+                    set {admin.%arg-2%} to "false"
+                    set the arg-2's chat name to name of arg-2
+                    set the arg-2's display name to name of arg-2
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                    reduce {qua.admin} by 1
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    make arg-2 execute command "natto---leaveteam"
+            if arg-2 is not set:
+                if {admin.%player%} is "false":
+                    message "&b[admin] &rあなたはすでにadminではありません" to player
+                else:
+                    make player execute command "/gamemode adventure %player%"
+                    make player execute command "/effect clear @s minecraft:night_vision"
+                    make player execute command "/team leave %player%"
+                    message "&b[admin] &r%player%をAdminから除外しました。" to player
+                    set {admin.%player%} to "false"
+                    set the player's chat name to name of player
+                    set the player's display name to name of player
+                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                    reduce {qua.admin} by 1
+                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    make player execute command "natto---leaveteam"
+        if arg-1 is not set:
+            if {admin.%player%} is "true":
+                make player execute command "/gamemode adventure %player%"
+                make player execute command "/effect clear @s minecraft:night_vision"
+                make player execute command "/team leave %player%"
+                message "&b[admin] &r%player%をAdminから除外しました。" to player
+                set {admin.%player%} to "false"
+                set the player's chat name to name of player
+                set the player's display name to name of player
+                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                reduce {qua.admin} by 1
+                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                make player execute command "natto---leaveteam"
+                stop
+            if {admin.%player%} is "false":
+                execute console command "op %player%"
+                make player execute command "/gamemode creative %player%"
+                make player execute command "natto---leaveteam"
+                make player execute command "/team join admin %player%"
+                make player execute command "/book"
+                execute console command "lp user %player% parent add skript.admin"
+                message "&b[admin] &r%player%をAdminに追加しました。" to player
+                set {admin.%player%} to "true"
+                set the player's chat name to "&4%name of player%"
+                set the player's display name to "&4[運営] %name of player%"
+                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+                add 1 to {qua.admin}
+                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# チームに入ります。一般ユーザーのチームの出入りはこのコマンドに依存します。
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 command /join <text> <player>:
     description:Join Team
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
     trigger:
         if arg-1 is "red":
             if {team.which.%arg-2%} is "red":
@@ -329,10 +448,65 @@ command /join <text> <player>:
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# スキルに関するコマンドです。arg-1がchoiseでスキル選択画面を開きます。
+# admin権限でプレイヤーを復活させます。一般ユーザーによる復活はこのコマンドに依存しません。
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /revival:
+    description:Revival Someone
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
+    trigger:
+        open chest inventory with 5 row named "&0復活させる人を選んでください" to player
+        set slot 1 of player's current inventory to red wool named "&lRed Team"
+        set slot 10 of player's current inventory to skull of {team.red::1} named "&l%{team.red::1}% &rを復活"
+        set slot 19 of player's current inventory to skull of {team.red::2} named "&l%{team.red::2}% &rを復活"
+        set slot 28 of player's current inventory to skull of {team.red::3} named "&l%{team.red::3}% &rを復活"
+        set slot 37 of player's current inventory to red wool named "&lRed Team"
+
+        set slot 2 of player's current inventory to blue wool named "&lBlue Team"
+        set slot 11 of player's current inventory to skull of {team.blue::1} named "&l%{team.blue::1}% &rを復活"
+        set slot 20 of player's current inventory to skull of {team.blue::2} named "&l%{team.blue::2}% &rを復活"
+        set slot 29 of player's current inventory to skull of {team.blue::3} named "&l%{team.blue::3}% &rを復活"
+        set slot 38 of player's current inventory to blue wool named "&lBlue Team"
+
+        set slot 3 of player's current inventory to yellow wool named "&lYellow Team"
+        set slot 12 of player's current inventory to skull of {team.yellow::1} named "&l%{team.yellow::1}% &rを復活"
+        set slot 21 of player's current inventory to skull of {team.yellow::2} named "&l%{team.yellow::2}% &rを復活"
+        set slot 30 of player's current inventory to skull of {team.yellow::3} named "&l%{team.yellow::3}% &rを復活"
+        set slot 39 of player's current inventory to yellow wool named "&lYellow Team"
+
+        set slot 4 of player's current inventory to green wool named "&lGreen Team"
+        set slot 13 of player's current inventory to skull of {team.green::1} named "&l%{team.green::1}% &rを復活"
+        set slot 22 of player's current inventory to skull of {team.green::2} named "&l%{team.green::2}% &rを復活"
+        set slot 31 of player's current inventory to skull of {team.green::3} named "&l%{team.green::3}% &rを復活"
+        set slot 40 of player's current inventory to green wool named "&lGreen Team"
+
+        set slot 5 of player's current inventory to orange wool named "&lOrange Team"
+        set slot 14 of player's current inventory to skull of {team.orange::1} named "&l%{team.orange::1}% &rを復活"
+        set slot 23 of player's current inventory to skull of {team.orange::2} named "&l%{team.orange::2}% &rを復活"
+        set slot 32 of player's current inventory to skull of {team.orange::3} named "&l%{team.orange::3}% &rを復活"
+        set slot 41 of player's current inventory to orange wool named "&lOrange Team"
+
+        set slot 6 of player's current inventory to purple wool named "&lPurple Team"
+        set slot 15 of player's current inventory to skull of {team.purple::1} named "&l%{team.purple::1}% &rを復活"
+        set slot 24 of player's current inventory to skull of {team.purple::2} named "&l%{team.purple::2}% &rを復活"
+        set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}% &rを復活"
+        set slot 42 of player's current inventory to purple wool named "&lPurple Team"
+
+        set slot 7 of player's current inventory to gray wool named "&lGray Team"
+        set slot 16 of player's current inventory to skull of {team.gray::1} named "&l%{team.gray::1}% &rを復活"
+        set slot 25 of player's current inventory to skull of {team.gray::2} named "&l%{team.gray::2}% &rを復活"
+        set slot 34 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}% &rを復活"
+        set slot 43 of player's current inventory to gray wool named "&lGray Team"
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキルに関するコマンドです。arg-1がchoiseでスキル選択画面を開きます。一般ユーザーによるスキル選択はこのコマンドに依存します。
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 command /skill <text> <player>:
     description:Skill Command.
+    permission: skript.admin
+    permission message:Admin専用コマンドです。
     trigger:
         if arg-1 is "choise":
             set {skill.openingchest.%arg-2%} to "true"
@@ -344,123 +518,6 @@ command /skill <text> <player>:
             set slot 5 of arg-2's current inventory to orange dye named " "
             set slot 6 of arg-2's current inventory to bone meal named " "
             set slot 7 of arg-2's current inventory to gray stained glass pane named "キャンセルする"
-
-
-
-
-
-# =====================================================================================================================================================================================
-#
-# ===For Game Master===   OP保持者もしくはadmin経験者(LP権限グループ"Skript.admin")のみ実行可能
-#
-# =====================================================================================================================================================================================
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# adminに入ったり出たりします．adminは変数{admin.%player%}またはチーム"admin"で判別．一度でもadminになればLP権限グループ"skript.admin"に追加され，OP出なくともコマンドの実行は可能になります
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /admin [<text>] [<player>]:
-    description:Make specific user to admin
-    permission: skript.admin
-    permission message:Admin専用コマンドです。
-    usage:/admin <join/leave> [<プレイヤー>] ※プレイヤー未指定の場合は自身を操作します
-    aliases:/ad
-    trigger:
-        if arg-1 is "join":
-            if arg-2 is set:
-                if {admin.%arg-2%} is "true":
-                    message "&b[admin] &r%arg-2%はすでにadminです" to player
-                else:
-                    execute console command "op %arg-2%"
-                    make player execute command "/gamemode creative %arg-2%"
-                    make arg-2 execute command "natto---leaveteam"
-                    make player execute command "/team join admin %arg-2%"
-                    make arg-2 execute command "/book"
-                    execute console command "lp user %arg-2% parent add skript.admin"
-                    message "&b[admin] &r%arg-2%をAdminに追加しました。" to player
-                    message "&b[admin] &r%player%があなたをAdminに追加しました。" to arg-2
-                    set {admin.%arg-2%} to "true"
-                    set the arg-2's chat name to "&4%name of arg-2%"
-                    set the arg-2's display name to "&4[運営] %name of arg-2%"
-                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                    add 1 to {qua.admin}
-                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-                    add player to {team.admin::*}
-            if arg-2 is not set:
-                if {admin.%player%} is "true":
-                    message "&b[admin] &rあなたはすでにadminです" to player
-                else:
-                    execute console command "op %player%"
-                    make player execute command "/gamemode creative %player%"
-                    make player execute command "natto---leaveteam"
-                    make player execute command "/team join admin %player%"
-                    make player execute command "/book"
-                    execute console command "lp user %player% parent add skript.admin"
-                    message "&b[admin] &r%player%をAdminに追加しました。" to player
-                    set {admin.%player%} to "true"
-                    set the player's chat name to "&4%name of player%"
-                    set the player's display name to "&4[運営] %name of player%"
-                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                    add 1 to {qua.admin}
-                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-        if arg-1 is "leave":
-            if arg-2 is set:
-                if {admin.%arg-2%} is "false":
-                    message "&b[admin] &r%arg-2%はすでにadminではありません" to player
-                else:
-                    make player execute command "/gamemode adventure %arg-2%"
-                    make player execute command "/effect clear %arg-2% minecraft:night_vision"
-                    make player execute command "/team leave %arg-2%"
-                    message "&b[admin] &r%arg-2%をAdminから除外しました。" to player
-                    message "&b[admin] &r%player%があなたをAdminから除外しました。" to arg-2
-                    set {admin.%arg-2%} to "false"
-                    set the arg-2's chat name to name of arg-2
-                    set the arg-2's display name to name of arg-2
-                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                    reduce {qua.admin} by 1
-                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-                    make arg-2 execute command "natto---leaveteam"
-            if arg-2 is not set:
-                if {admin.%player%} is "false":
-                    message "&b[admin] &rあなたはすでにadminではありません" to player
-                else:
-                    make player execute command "/gamemode adventure %player%"
-                    make player execute command "/effect clear @s minecraft:night_vision"
-                    make player execute command "/team leave %player%"
-                    message "&b[admin] &r%player%をAdminから除外しました。" to player
-                    set {admin.%player%} to "false"
-                    set the player's chat name to name of player
-                    set the player's display name to name of player
-                    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                    reduce {qua.admin} by 1
-                    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-                    make player execute command "natto---leaveteam"
-        if arg-1 is not set:
-            if {admin.%player%} is "true":
-                make player execute command "/gamemode adventure %player%"
-                make player execute command "/effect clear @s minecraft:night_vision"
-                make player execute command "/team leave %player%"
-                message "&b[admin] &r%player%をAdminから除外しました。" to player
-                set {admin.%player%} to "false"
-                set the player's chat name to name of player
-                set the player's display name to name of player
-                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                reduce {qua.admin} by 1
-                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-                make player execute command "natto---leaveteam"
-                stop
-            if {admin.%player%} is "false":
-                execute console command "op %player%"
-                make player execute command "/gamemode creative %player%"
-                make player execute command "natto---leaveteam"
-                make player execute command "/team join admin %player%"
-                make player execute command "/book"
-                execute console command "lp user %player% parent add skript.admin"
-                message "&b[admin] &r%player%をAdminに追加しました。" to player
-                set {admin.%player%} to "true"
-                set the player's chat name to "&4%name of player%"
-                set the player's display name to "&4[運営] %name of player%"
-                execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
-                add 1 to {qua.admin}
-                execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
 
 
 
@@ -654,3 +711,5 @@ command /onigokko:
             execute console command "effect clear @a"
             broadcast "&b[運営] &r鬼ごっこモードへ移行しました。"
             message "&b[admin] &rサーバーをリロードすると終了します。" to player
+
+
