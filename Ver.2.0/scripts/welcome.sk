@@ -11,7 +11,7 @@ on skript load:
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ver.管理について
 #
-    set {ver} to "2.2.1(alpha)"
+    set {ver} to "2.3.0(beta)"
 #
 # 0.0.xはいぶさんに渡すたびに増加
 # 0.x.0は人いれてデバッグするたびに増加
@@ -179,6 +179,7 @@ on join:
     set {cooltime.snowball.%player%} to 0
     set {use.grappling.%player%} to 0
     set {cooltime.grappling.%player%} to 0
+    set {count.ans.%player%} to 0
     clear {play.%player%}
     set {qua.omline.dummy} to online player count
     reduce {qua.omline.dummy} by 1

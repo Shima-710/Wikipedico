@@ -15,6 +15,10 @@ command /game <text>:
     trigger:
         if arg-1 is "start":
             loop all players:
+                if {team.joined.%loop-player%} is "false":
+                    broadcast "&b[システム] &rチームに所属していないプレイヤーがいたためゲームを開始できませんでした。"
+                    stop
+            loop all players:
                 if {admin.%loop-player%} is "true":
                     set {sidebar.%loop-player%} to 9
                 else:
@@ -90,6 +94,7 @@ command /game <text>:
             execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
 
             broadcast "&b[運営] &r30秒後にゲームを開始します..."
+            execute console command "scoreboard players set on_game on_game 1"
             execute console command "function shimashima:01_goodbye_item"
             execute console command "function shimashima:01_toggle_nametag"
             execute console command "effect give @a[team=!admin] glowing 30 255 true"
@@ -642,6 +647,13 @@ every 1 tick in "world":
         if {use.grappling.%loop-player%} is 1:
             if loop-player is not holding fishing rod:
                 set {use.grappling.%loop-player%} to 0
+
+
+
+
+
+
+
 
 
 

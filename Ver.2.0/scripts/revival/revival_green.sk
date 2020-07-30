@@ -10,7 +10,6 @@ on inventory click:
 
     if event-item is skull of {team.green::1} named "&l%{team.green::1}% &rを復活":
         cancel event
-        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.green::1}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
@@ -38,12 +37,12 @@ on inventory click:
             teleport {team.green::1} to player
             play sound "entity.player.levelup" to player
             broadcast "&b[運営] &r%{team.green::1}%が復活しました"
+            remove 1 cyan glazed terracotta from player
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player
     if event-item is skull of {team.green::2} named "&l%{team.green::2}% &rを復活":
         cancel event
-        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.green::2}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
@@ -71,12 +70,12 @@ on inventory click:
             teleport {team.green::2} to player
             play sound "entity.player.levelup" to player
             broadcast "&b[運営] &r%{team.green::2}%が復活しました"
+            remove 1 cyan glazed terracotta from player
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player
     if event-item is skull of {team.green::3} named "&l%{team.green::3}% &rを復活":
         cancel event
-        remove 1 of cyan glazed terracotta from player
         if {sidebar.%{team.green::3}%} is 2:
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 red"
             execute console command "scoreboard players reset 残り人数：%{surviver}%人 blue"
@@ -104,6 +103,7 @@ on inventory click:
             teleport {team.green::3} to player
             play sound "entity.player.levelup" to player
             broadcast "&b[運営] &r%{team.green::3}%が復活しました"
+            remove 1 cyan glazed terracotta from player
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player

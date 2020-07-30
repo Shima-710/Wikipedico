@@ -47,6 +47,42 @@ command /z <text>:
 
 
 
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# プレイヤーヘッドとチェストがもらえます。
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /rirogu:
+    description:Give Player Head and Chest.
+    trigger:
+        if {status} is not 1:
+            set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
+            set slot 8 of player's inventory to a chest named "&dチーム選択"
+            play sound "block.note_block.bell" to player
+        else:
+            broadcast "&b[システム] &r現在利用できません"
+            play sound "block.note_block.banjo" to player
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 謎解きの回答を送信します。
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /answer <text>:
+    description:Answer question.
+    trigger:
+        if {count.ans.%player%} is 0:
+            add 1 to {count.ans.%player%}
+            if arg-1 is "0":
+                broadcast "&6[謎解き] &r%player% が謎解きをクリアしました！！おめでとう！！！！"
+                play sound "ui.toast.challenge_complete" to player
+            else:
+                message "&6[謎解き] &r残念不正解..." to player
+                play sound "entity.villager.no" to player
+        else:
+            message "&6[謎解き] &r回答出来るのは一試合につき一回までです" to player
+            play sound "block.note_block.banjo" to player
+
+
+
 
 
 # =====================================================================================================================================================================================
@@ -84,6 +120,7 @@ command /admin [<text>] [<player>]:
                     add 1 to {qua.admin}
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
                     add player to {team.admin::*}
+                    set {team.joined.%arg-2%} to "true"
             if arg-2 is not set:
                 if {admin.%player%} is "true":
                     message "&b[admin] &rあなたはすでにadminです" to player
@@ -101,6 +138,7 @@ command /admin [<text>] [<player>]:
                     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                     add 1 to {qua.admin}
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                    set {team.joined.%player%} to "true"
         if arg-1 is "leave":
             if arg-2 is set:
                 if {admin.%arg-2%} is "false":
@@ -118,6 +156,7 @@ command /admin [<text>] [<player>]:
                     reduce {qua.admin} by 1
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
                     make arg-2 execute command "natto---leaveteam"
+                    set {team.joined.%arg-2%} to "false"
             if arg-2 is not set:
                 if {admin.%player%} is "false":
                     message "&b[admin] &rあなたはすでにadminではありません" to player
@@ -133,6 +172,7 @@ command /admin [<text>] [<player>]:
                     reduce {qua.admin} by 1
                     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
                     make player execute command "natto---leaveteam"
+                    set {team.joined.%player%} to "false"
         if arg-1 is not set:
             if {admin.%player%} is "true":
                 make player execute command "/gamemode adventure %player%"
@@ -146,6 +186,7 @@ command /admin [<text>] [<player>]:
                 reduce {qua.admin} by 1
                 execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
                 make player execute command "natto---leaveteam"
+                set {team.joined.%player%} to "false"
                 stop
             if {admin.%player%} is "false":
                 execute console command "op %player%"
@@ -161,6 +202,7 @@ command /admin [<text>] [<player>]:
                 execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
                 add 1 to {qua.admin}
                 execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+                set {team.joined.%player%} to "true"
 
 
 
@@ -201,6 +243,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.red::*}
             set {team.which.%arg-2%} to "red"
             add 1 to {qua.team.red}
@@ -240,6 +284,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.blue::*}
             set {team.which.%arg-2%} to "blue"
             add 1 to {qua.team.blue}
@@ -279,6 +325,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.yellow::*}
             set {team.which.%arg-2%} to "yellow"
             add 1 to {qua.team.yellow}
@@ -318,6 +366,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.green::*}
             set {team.which.%arg-2%} to "green"
             add 1 to {qua.team.green}
@@ -357,6 +407,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.orange::*}
             set {team.which.%arg-2%} to "orange"
             add 1 to {qua.team.orange}
@@ -396,6 +448,8 @@ command /join <text> <player>:
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
                 execute console command "scoreboard players reset %name of arg-2% gray"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.purple::*}
             set {team.which.%arg-2%} to "purple"
             add 1 to {qua.team.purple}
@@ -435,6 +489,8 @@ command /join <text> <player>:
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
                 execute console command "scoreboard players reset %name of arg-2% red"
+            if {admin.%arg-2%} is "true":
+                make arg-2 execute command "admin leave"
             add arg-2 to {team.gray::*}
             set {team.which.%arg-2%} to "gray"
             add 1 to {qua.team.gray}
