@@ -237,13 +237,14 @@ on join:
             execute console command "team leave %player%"
         set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
         set slot 8 of player's inventory to a chest named "&dチーム選択"
+        message "&b[システム] &f現在""チーム戦""が有効です。チェストを右クリックしてチームへ入ってください。また、チーム所属後にリログした場合は所属状態がリセットされます。その場合は再度入りなおしてください。"
         stop
     if {status} is 1:
         execute console command "team join dead %player%"
         set player's gamemode to spectator
         set {sidebar.%player%} to 2
         set {play.%player%} to "not"
-        message "&b[システム] &7現在ゲームが進行中のため状態が死亡に設定されました。"
+        message "&b[システム] &f現在ゲームが進行中のため状態が死亡に設定されました。"
 
 
 

@@ -140,72 +140,72 @@ on inventory click:
         if event-item is red wool:
             cancel event
             if amount of {team.red::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join red %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is blue wool:
             cancel event
             if amount of {team.blue::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join blue %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is yellow wool:
             cancel event
             if amount of {team.yellow::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join yellow %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is green wool:
             cancel event
             if amount of {team.green::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join green %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is orange wool:
             cancel event
             if amount of {team.orange::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join orange %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is purple wool:
             cancel event
             if amount of {team.purple::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join purple %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
         if event-item is gray wool:
             cancel event
             if amount of {team.gray::*} is larger than 3:
-                play sound "block.note_block.banjo" to　player
-                message "&b[システム] &rすでに埋まっています！" to player
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
                 make player execute command "/join gray %player%"
-                make player execute command "/skill choise %player%"
+                #make player execute command "/skill choise %player%"
 
 
         if event-item is red stained glass pane:
