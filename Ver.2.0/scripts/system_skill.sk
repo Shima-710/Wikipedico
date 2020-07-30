@@ -1,0 +1,29 @@
+# =====================================================================================================================================================================================
+# System for Skill
+#
+# ====================================================================================================================================================================================
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# erabuyo
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+every 1 tick in "world":
+    if {status} is 0:
+        loop all players:
+            if {skill.openingchest.%loop-player%} is "true":
+                if {team.which.%loop-player%} is "red":
+                    if {skill.selected.tuyoi.red} is set:
+                        set slot 10 of loop-player's current inventory to skull of {skill.selected.tuyoi.red} named "&r%{skill.selected.tuyoi.red}%"
+                    else:
+                        set slot 10 of loop-player's current inventory to air
+
+
+on inventory close:
+    set {skill.openingchest.%player%} to "false"
+
+
+on inventory click:
+    if {status} is 0:
+        if event-item is red dye:
+            cancel event
+            set {skill.%player%} to "tuyoi"

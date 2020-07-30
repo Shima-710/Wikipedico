@@ -61,33 +61,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.red::*}
             set {team.which.%arg-2%} to "red"
             add 1 to {qua.team.red}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&c[Red] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% red 1"
+            execute console command "scoreboard players set %name of arg-2% red 1"
             execute console command "team join red %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r赤チームに入りました！" to arg-2
@@ -100,33 +100,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.blue::*}
             set {team.which.%arg-2%} to "blue"
             add 1 to {qua.team.blue}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&9[Blue] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% blue 1"
+            execute console command "scoreboard players set %name of arg-2% blue 1"
             execute console command "team join blue %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r青チームに入りました！" to arg-2
@@ -139,33 +139,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.yellow::*}
             set {team.which.%arg-2%} to "yellow"
             add 1 to {qua.team.yellow}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&e[Yellow] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% yellow 1"
+            execute console command "scoreboard players set %name of arg-2% yellow 1"
             execute console command "team join yellow %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r黄色チームに入りました！" to arg-2
@@ -178,33 +178,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.green::*}
             set {team.which.%arg-2%} to "green"
             add 1 to {qua.team.green}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&a[Green] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% green 1"
+            execute console command "scoreboard players set %name of arg-2% green 1"
             execute console command "team join green %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r緑チームに入りました！" to arg-2
@@ -217,33 +217,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.orange::*}
             set {team.which.%arg-2%} to "orange"
             add 1 to {qua.team.orange}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&6[Orange] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% orange 1"
+            execute console command "scoreboard players set %name of arg-2% orange 1"
             execute console command "team join orange %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &rオレンジチームに入りました！" to arg-2
@@ -256,33 +256,33 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             if {team.which.%arg-2%} is "gray":
                 reduce {qua.team.gray} by 1
                 remove arg-2 from {team.gray::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% gray"
+                execute console command "scoreboard players reset %name of arg-2% gray"
             add arg-2 to {team.purple::*}
             set {team.which.%arg-2%} to "purple"
             add 1 to {qua.team.purple}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&d[Purple] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% purple 1"
+            execute console command "scoreboard players set %name of arg-2% purple 1"
             execute console command "team join purple %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r紫チームに入りました！" to arg-2
@@ -295,36 +295,55 @@ command /join <text> <player>:
             if {team.which.%arg-2%} is "blue":
                 reduce {qua.team.blue} by 1
                 remove arg-2 from {team.blue::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% blue"
+                execute console command "scoreboard players reset %name of arg-2% blue"
             if {team.which.%arg-2%} is "yellow":
                 reduce {qua.team.yellow} by 1
                 remove arg-2 from {team.yellow::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% yellow"
+                execute console command "scoreboard players reset %name of arg-2% yellow"
             if {team.which.%arg-2%} is "green":
                 reduce {qua.team.green} by 1
                 remove arg-2 from {team.green::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% green"
+                execute console command "scoreboard players reset %name of arg-2% green"
             if {team.which.%arg-2%} is "orange":
                 reduce {qua.team.orange} by 1
                 remove arg-2 from {team.orange::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% orange"
+                execute console command "scoreboard players reset %name of arg-2% orange"
             if {team.which.%arg-2%} is "purple":
                 reduce {qua.team.purple} by 1
                 remove arg-2 from {team.purple::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% purple"
+                execute console command "scoreboard players reset %name of arg-2% purple"
             if {team.which.%arg-2%} is "red":
                 reduce {qua.team.red} by 1
                 remove arg-2 from {team.red::*}
-                execute console command "scoreboard arg-2s reset %name of arg-2% red"
+                execute console command "scoreboard players reset %name of arg-2% red"
             add arg-2 to {team.gray::*}
             set {team.which.%arg-2%} to "gray"
             add 1 to {qua.team.gray}
             set {team.joined.%arg-2%} to "true"
             set the arg-2's display name to "&7[Gray] &r%name of arg-2%"
-            execute console command "scoreboard arg-2s set %name of arg-2% gray 1"
+            execute console command "scoreboard players set %name of arg-2% gray 1"
             execute console command "team join gray %arg-2%"
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &rグレーチームに入りました！" to arg-2
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキルに関するコマンドです。arg-1がchoiseでスキル選択画面を開きます。
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /skill <text> <player>:
+    description:Skill Command.
+    trigger:
+        if arg-1 is "choise":
+            set {skill.openingchest.%arg-2%} to "true"
+            open chest inventory with 2 row named "&0スキルを選んでください" to arg-2
+            set slot 1 of arg-2's current inventory to red dye named "スキル1"
+            set slot 2 of arg-2's current inventory to lapis lazuli named " "
+            set slot 3 of arg-2's current inventory to yellow dye named " "
+            set slot 4 of arg-2's current inventory to green dye named " "
+            set slot 5 of arg-2's current inventory to orange dye named " "
+            set slot 6 of arg-2's current inventory to bone meal named " "
+            set slot 7 of arg-2's current inventory to gray stained glass pane named "キャンセルする"
 
 
 

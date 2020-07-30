@@ -184,6 +184,8 @@ on join:
     reduce {qua.omline.dummy} by 1
     execute console command "scoreboard players reset online：%{qua.omline.dummy}%人 admin"
     execute console command "scoreboard players set online：%online player count%人 admin -1"
+    set {team.openingchest.%player%} to "false"
+    set {skill.openingchest.%player%} to "false"
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
@@ -580,6 +582,8 @@ on quit:
         if {admin.%player%} is "true":
             make player execute command "admin leave"
 
+        clear {skill.%player%}
+
 
     if {status} is 2:
         if {team.which.%player%} is "red":
@@ -634,6 +638,8 @@ on quit:
 
         if {admin.%player%} is "true":
             make player execute command "admin leave"
+
+        clear {skill.%player%}
 
     else:
         if {admin.%player%} is "true":

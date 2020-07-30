@@ -89,23 +89,31 @@ command /game <text>:
             execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム purple -2"
             execute console command "scoreboard players set 残りチーム数：%{survive.team}%チーム gray -2"
 
-            broadcast "&b[運営] &r20秒後にゲームを開始します..."
+            broadcast "&b[運営] &r30秒後にゲームを開始します..."
             execute console command "function shimashima:01_goodbye_item"
             execute console command "function shimashima:01_toggle_nametag"
-            execute console command "effect give @a[team=!admin] glowing 20 255 true"
+            execute console command "effect give @a[team=!admin] glowing 30 255 true"
             execute console command "tp @a -27663 255 36470"
-            wait 20 seconds
-            execute console command "function shimashima:cd_3"
-            play sound "block.note_block.harp" to all players
-            wait 1 seconds
-            execute console command "function shimashima:cd_2"
-            play sound "block.note_block.harp" to all players
-            wait 1 seconds
-            execute console command "function shimashima:cd_1"
-            play sound "block.note_block.harp" to all players
-            wait 1 seconds
-            execute console command "function shimashima:01_game_start"
-            play sound "entity.enderman.teleport" to all players
+            set {loop_start} to 30
+            loop 30 times:
+                loop all players:
+                    set loop-player's level to {loop_start}
+                if {loop_start} is 3:
+                    execute console command "function shimashima:cd_3"
+                    play sound "block.note_block.harp" to all players
+                if {loop_start} is 2:
+                    execute console command "function shimashima:cd_2"
+                    play sound "block.note_block.harp" to all players
+                if {loop_start} is 1:
+                    execute console command "function shimashima:cd_1"
+                    play sound "block.note_block.harp" to all players
+                    wait 1 seconds
+                    execute console command "function shimashima:01_game_start"
+                    play sound "entity.enderman.teleport" to all players
+                    loop all players:
+                        set loop-player's level to 0
+                reduce {loop_start} by 1
+                wait 1 seconds
             wait 60 seconds
             set {daruma.count} to "true"
             stop

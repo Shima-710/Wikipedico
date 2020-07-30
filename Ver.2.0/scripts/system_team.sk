@@ -129,54 +129,86 @@ every 1 tick:
                 else:
                     set slot 43 of loop-player's current inventory to air
 
+            if {skill.openingchest.%loop-player%} is "true":
+
 on inventory close:
     set {team.openingchest.%player%} to "false"
-    set {team.openingrevival.%player%} to "false"
+
 
 on inventory click:
     if {status} is 0:
         if event-item is red wool:
             cancel event
-            make player execute command "/join red %player%"
+            if amount of {team.red::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join red %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is blue wool:
             cancel event
-            make player execute command "/join blue %player%"
+            if amount of {team.blue::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join blue %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is yellow wool:
             cancel event
-            make player execute command "/join yellow %player%"
+            if amount of {team.yellow::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join yellow %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is green wool:
             cancel event
-            make player execute command "/join green %player%"
+            if amount of {team.green::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join green %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is orange wool:
             cancel event
-            make player execute command "/join orange %player%"
+            if amount of {team.orange::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join orange %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is purple wool:
             cancel event
-            make player execute command "/join purple %player%"
+            if amount of {team.purple::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join purple %player%"
+                make player execute command "/skill choise %player%"
 
         if event-item is gray wool:
             cancel event
-            make player execute command "/join gray %player%"
+            if amount of {team.gray::*} is larger than 3:
+                stop
+            else:
+                make player execute command "/join gray %player%"
+                make player execute command "/skill choise %player%"
 
 
-        if event-item is red stained glass pane named " ":
+        if event-item is red stained glass pane:
             cancel event
-        if event-item is blue stained glass pane named " ":
+        if event-item is blue stained glass pane:
             cancel event
-        if event-item is yellow stained glass pane named " ":
+        if event-item is yellow stained glass pane:
             cancel event
-        if event-item is green stained glass pane named " ":
+        if event-item is green stained glass pane:
             cancel event
-        if event-item is purple stained glass pane named " ":
+        if event-item is purple stained glass pane:
             cancel event
-        if event-item is orange stained glass pane named " ":
+        if event-item is orange stained glass pane:
             cancel event
-        if event-item is gray stained glass pane named " ":
+        if event-item is gray stained glass pane:
+            cancel event
+        if event-item is gray stained glass pane:
             cancel event
         if event-item is player skull:
             cancel event
@@ -202,3 +234,5 @@ on chat:
             message "&7[Team Chat] <%player% -> &dPurple> &r%message%" to {team.purple::*}
         if {team.which.%player%} is "gray":
             message "&7[Team Chat] <%player% -> &7Gray> &r%message%" to {team.gray::*}
+        if {admin.%player%} is "true":
+            broadcast "&7[Admin] &r<%player%> &r%message%"
