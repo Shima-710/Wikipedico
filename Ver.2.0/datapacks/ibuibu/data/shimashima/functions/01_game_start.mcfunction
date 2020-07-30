@@ -31,7 +31,7 @@ gamemode spectator @a[team=admin]
 
 # 上空にTP -> 変更
 # tp @a -27663 309 36470 ~ 90
-fill -27678 252 36485 -27648 254 36455 air destroy
+fill -27678 252 36485 -27648 254 36455 air
 
 
 # ワールドボーダーをとりあえず作る

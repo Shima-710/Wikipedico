@@ -43,7 +43,6 @@
     team add admin
     team modify admin color dark_red
     team modify admin friendlyFire false
-    team modify admin nametagVisibility hideForOtherTeams
     team modify admin collisionRule never
     team modify admin displayName "Admin"
     team modify admin prefix "[Admin]"
@@ -55,7 +54,6 @@
     team add red
     team modify red color red
     team modify red friendlyFire false
-    team modify red nametagVisibility hideForOtherTeams
     team modify red collisionRule never
     team modify red displayName "Red Team"
     scoreboard objectives add red dummy
@@ -66,7 +64,6 @@
     team add blue
     team modify blue color blue
     team modify blue friendlyFire false
-    team modify blue nametagVisibility hideForOtherTeams
     team modify blue collisionRule never
     team modify blue displayName "Blue Team"
     scoreboard objectives add blue dummy
@@ -77,7 +74,6 @@
     team add yellow
     team modify yellow color yellow
     team modify yellow friendlyFire false
-    team modify yellow nametagVisibility hideForOtherTeams
     team modify yellow collisionRule never
     team modify yellow displayName "Yellow Team"
     scoreboard objectives add yellow dummy
@@ -88,7 +84,6 @@
     team add green
     team modify green color green
     team modify green friendlyFire false
-    team modify green nametagVisibility hideForOtherTeams
     team modify green collisionRule never
     team modify green displayName "Green Team"
     scoreboard objectives add green dummy
@@ -99,7 +94,6 @@
     team add orange
     team modify orange color gold
     team modify orange friendlyFire false
-    team modify orange nametagVisibility hideForOtherTeams
     team modify orange collisionRule never
     team modify orange displayName "Orange Team"
     scoreboard objectives add orange dummy
@@ -110,7 +104,6 @@
     team add purple
     team modify purple color light_purple
     team modify purple friendlyFire false
-    team modify purple nametagVisibility hideForOtherTeams
     team modify purple collisionRule never
     team modify purple displayName "Purple Team"
     scoreboard objectives add purple dummy
@@ -121,7 +114,6 @@
     team add gray
     team modify gray color gray
     team modify gray friendlyFire false
-    team modify gray nametagVisibility hideForOtherTeams
     team modify gray collisionRule never
     team modify gray displayName "Gray Team"
     scoreboard objectives add gray dummy
