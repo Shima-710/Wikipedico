@@ -139,7 +139,7 @@ on inventory click:
     if {status} is 0:
         if event-item is red wool:
             cancel event
-            if amount of {team.red::*} is larger than 3:
+            if {qua.team.red} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -149,7 +149,7 @@ on inventory click:
 
         if event-item is blue wool:
             cancel event
-            if amount of {team.blue::*} is larger than 3:
+            if {qua.team.blue} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -159,7 +159,7 @@ on inventory click:
 
         if event-item is yellow wool:
             cancel event
-            if amount of {team.yellow::*} is larger than 3:
+            if {qua.team.yellow} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -169,7 +169,7 @@ on inventory click:
 
         if event-item is green wool:
             cancel event
-            if amount of {team.green::*} is larger than 3:
+            if {qua.team.green} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -179,7 +179,7 @@ on inventory click:
 
         if event-item is orange wool:
             cancel event
-            if amount of {team.orange::*} is larger than 3:
+            if {qua.team.orange} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -189,7 +189,7 @@ on inventory click:
 
         if event-item is purple wool:
             cancel event
-            if amount of {team.purple::*} is larger than 3:
+            if {qua.team.purple} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
@@ -199,7 +199,7 @@ on inventory click:
 
         if event-item is gray wool:
             cancel event
-            if amount of {team.gray::*} is larger than 3:
+            if {qua.team.gray} is larger than 3:
                 play sound "block.note_block.banjo" to player
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop

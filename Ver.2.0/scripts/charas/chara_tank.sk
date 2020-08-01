@@ -1,0 +1,84 @@
+# ===============================================================================================================================================================================================
+# Chara_tank
+# タンク
+# ===============================================================================================================================================================================================
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 特徴
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキル
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on sneak toggle:
+    if player's tool is glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒":
+        if {skill.%player%} is "tank":
+            if {cooltime.barrier.%player%} is 0:
+                set {cooltime.barrier.%player%} to 20
+
+                set slot 0 of player's inventory to barrier named "クールタイム"
+                set the block at block around 10 blocks from player to glass
+                loop {cooltime.barrier.%player%} times:
+                    send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.barrier.%player%} by 1
+                    if {cooltime.barrier.%player%} is 0:
+                        send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on right click with anvil:
+    if player's tool is anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒":
+        cancel event
+        if {skill.%player%} is "tank":
+            if {cooltime.protect.%player%} is 0:
+                set {cooltime.protect.%player%} to 30
+                set slot 0 of player's inventory to barrier named "クールタイム"
+                if {team.which.%player%} is "red":
+                    execute console command "effect give @a[team=red] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.red::*}
+                if {team.which.%player%} is "blue":
+                    execute console command "effect give @a[team=blue] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.blue::*}
+                if {team.which.%player%} is "yellow":
+                    execute console command "effect give @a[team=yellow] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.yellow::*}
+                if {team.which.%player%} is "green":
+                    execute console command "effect give @a[team=green] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.green::*}
+                if {team.which.%player%} is "orange":
+                    execute console command "effect give @a[team=orange] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.orange::*}
+                if {team.which.%player%} is "purple":
+                    execute console command "effect give @a[team=purple] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.purple::*}
+                if {team.which.%player%} is "gray":
+                    execute console command "effect give @a[team=gray] resistance 10 3 false"
+                    play sound "block.note_block.bell" to {team.gray::*}
+                message "&b[タンク] &r味方の防御力を向上させました"
+                loop {cooltime.protect.%player%} times:
+                    send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.protect.%player%} by 1
+                    if {cooltime.protect.%player%} is 0:
+                        set slot 0 of player's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
+                        send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on inventory click:
+    if event-item is glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒":
+        cancel event
+    if event-item is anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒":
+        cancel event

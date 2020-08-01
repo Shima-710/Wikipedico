@@ -15,3 +15,57 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # スキル
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# エンダー
+on right click with ender pearl:
+    if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
+        if {skill.%player%} is "ninja":
+            if {cooltime.ender.%player%} is 0:
+                set {cooltime.ender.%player%} to 15
+                wait 3 ticks
+                set slot 0 of player's inventory to barrier named "クールタイム"
+                loop {cooltime.ender.%player%} times:
+                    send action bar "クールタイム：%{cooltime.ender.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.ender.%player%} by 1
+                    if {cooltime.ender.%player%} is 0:
+                        set slot 0 of player's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
+                        send action bar "クールタイム：%{cooltime.ender.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+
+on right click with sunflower:
+    if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
+        if {skill.%player%} is "ninja":
+            if {cooltime.invisible.%player%} is 0:
+                set {cooltime.invisible.%player%} to 30
+                set slot 1 of player's inventory to barrier named "クールタイム"
+                hide the player from all players
+                message "&b[忍者] &r姿を消しました"
+                loop {cooltime.invisible.%player%} times:
+                    send action bar "クールタイム：%{cooltime.invisible.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.invisible.%player%} by 1
+                    if {cooltime.invisible.%player%} is 20:
+                        reveal the player
+                        message "&b[忍者] &r姿が現れました"
+                    if {cooltime.invisible.%player%} is 0:
+                        set slot 1 of player's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
+                        send action bar "クールタイム：%{cooltime.invisible.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+
+
+on inventory click:
+    if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
+        cancel event
+    if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
+        cancel event

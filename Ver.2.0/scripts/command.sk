@@ -557,24 +557,150 @@ command /revival:
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# スキルに関するコマンドです。arg-1がchoiseでスキル選択画面を開きます。一般ユーザーによるスキル選択はこのコマンドに依存します。
+# キャラクターに関するコマンドです。arg-1がchoiseでキャラクター選択画面を開きます。一般ユーザーによるキャラクター選択はこのコマンドに依存します。
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /skill <text> <player>:
-    description:Skill Command.
+command /chara <text> <player>:
+    description:Charactor Command.
     permission: skript.admin
     permission message:Admin専用コマンドです。
     trigger:
         if arg-1 is "choise":
             set {skill.openingchest.%arg-2%} to "true"
-            open chest inventory with 2 row named "&0スキルを選んでください" to arg-2
-            set slot 1 of arg-2's current inventory to red dye named "スキル1"
-            set slot 2 of arg-2's current inventory to lapis lazuli named " "
-            set slot 3 of arg-2's current inventory to yellow dye named " "
-            set slot 4 of arg-2's current inventory to green dye named " "
-            set slot 5 of arg-2's current inventory to orange dye named " "
-            set slot 6 of arg-2's current inventory to bone meal named " "
+            open chest inventory with 2 row named "&0キャラクターを選んでください" to arg-2
+            set slot 1 of arg-2's current inventory to red dye named "&l忍者"
+            set slot 2 of arg-2's current inventory to lapis lazuli named "&l"
+            set slot 3 of arg-2's current inventory to yellow dye named "&l"
+            set slot 4 of arg-2's current inventory to green dye named "&l"
+            set slot 5 of arg-2's current inventory to orange dye named "&l"
+            set slot 6 of arg-2's current inventory to bone meal named "&l"
             set slot 7 of arg-2's current inventory to gray stained glass pane named "キャンセルする"
 
+        if arg-1 is "ninja":
+            set {skill.%arg-2%} to "ninja"
+            set {cooltime.ender.%player%} to 0
+            set {cooltime.invisible.%player%} to 0
+            set slot 0 of player's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
+            set slot 1 of player's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            execute console command "tag %player% add ninja"
+            set arg-2's max health to 5
+            message "&b[システム] &r&l""忍者""&rを選択しました"
+
+        if arg-1 is "gorilla":
+            set {skill.%arg-2%} to "gorilla"
+            set {cooltime.explo.%player%} to 0
+            set {during.druming.%player%} to "false"
+            set {skill.gorilla.drumming.%player%} to 0
+            set slot 0 of player's inventory to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒"
+            set slot 1 of player's inventory to composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            execute console command "tag %player% add gorilla"
+            set arg-2's max health to 15
+            message "&b[システム] &r&l""ゴリラ""&rを選択しました"
+
+        if arg-1 is "healer":
+            set {skill.%arg-2%} to "healer"
+            set {cooltime.heal.%player%} to 0
+            set {cooltime.resistance.%player%} to 0
+            set slot 0 of player's inventory to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒"
+            set slot 1 of player's inventory to end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            execute console command "tag %player% add healer"
+            message "&b[システム] &r&l""ヒーラー""&rを選択しました"
+
+        if arg-1 is "neet":
+            set {skill.%arg-2%} to "neet"
+
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            message "&b[システム] &r&l""ニート""&rを選択しました"
+
+        if arg-1 is "tyuuni":
+            set {skill.%arg-2%} to "tyuuni"
+            set {cooltime.charge.%player%} to 0
+            set {cooltime.migite.%player%} to 0
+            set {time.charge.%player%} to 0
+            set {during.charge.%player%} to "false"
+            set {skill.tyuuni.charge.%player%} to 0
+            set slot 0 of player's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
+            set slot 1 of player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            execute console command "tag %player% add tyuuni-bef"
+            message "&b[システム] &r&l""厨二病""&rを選択しました"
+
+        if arg-1 is "tank":
+            set {skill.%arg-2%} to "tank"
+            set {cooltime.barrier.%player%} to 0
+            set {cooltime.protect.%player%} to 0
+            set slot 0 of player's inventory to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒"
+            set slot 1 of player's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            message "&b[システム] &r&l""タンク""&rを選択しました"
+
+        if arg-1 is "robot":
+            set {skill.%arg-2%} to "robot"
+            set {cooltime.grappling.%player%} to 0
+            set {cooltime.snowball.%player%} to 0
+            set slot 0 of player's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
+            set slot 1 of player's inventory to fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒"
+            execute console command "effect clear %player%"
+            execute console command "tag %player% remove ninja"
+            execute console command "tag %player% remove gorilla"
+            execute console command "tag %player% remove healer"
+            execute console command "tag %player% remove neet"
+            execute console command "tag %player% remove tyuuni-bef"
+            execute console command "tag %player% remove tyuuni-aft"
+            execute console command "tag %player% remove tank"
+            execute console command "tag %player% remove robot"
+            execute console command "tag %player% add robot"
+            message "&b[システム] &r&l""ロボット""&rを選択しました"
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

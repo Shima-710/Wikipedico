@@ -26,4 +26,4 @@ on inventory click:
     if {status} is 0:
         if event-item is red dye:
             cancel event
-            set {skill.%player%} to "tuyoi"
+            execute console command "skill ninja %player%"

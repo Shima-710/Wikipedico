@@ -1,0 +1,102 @@
+# ===============================================================================================================================================================================================
+# Chara_tyuuni
+# 厨二病
+# ===============================================================================================================================================================================================
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 特徴
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキル
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+every 1 second in "world":
+    loop all players:
+        if {skill.%loop-player%} is "tyuuni":
+            if loop-player's tool is chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒":
+                if loop-player is sneaking:
+                    set {during.charge.%loop-player%} to "true"
+                    add 1 to {skill.tyuuni.charge.%loop-player%}
+                    send action bar "チャージ：%{skill.tyuuni.charge.%loop-player%}%" to loop-player
+                    if {skill.tyuuni.charge.%loop-player%} is 10:
+                        add 1 to {time.charge.%loop-player%}
+                        set {skill.tyuuni.charge.%loop-player%} to 0
+                        send action bar "チャージ完了！ %{time.charge.%loop-player%}%/10" to loop-player
+                        if {time.charge.%loop-player%} is 10:
+                            play sound "entity.player.levelup" to loop-player
+                            execute console command "tag %loop-player% remove tyuuni-bef"
+                            execute console command "tag %loop-player% add tyuuni-aft"
+                            set {tyuuni.kakusei.%loop-player%} to "true"
+                            set slot 0 of loop-player's inventory to chorus plant named "&r&5チャージは完了済みです"
+                            set slot 1 of loop-player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+                            stop
+                        play sound "block.note_block.bell" to loop-player
+                        set {cooltime.charge.%loop-player%} to 10
+                        set slot 0 of loop-player's inventory to barrier named "クールタイム"
+                        wait 1 second
+                        loop {cooltime.charge.%loop-player%} times:
+                            send action bar "クールタイム：%{cooltime.charge.%loop-player%}%" to loop-player
+                            wait 1 seconds
+                            reduce {cooltime.charge.%loop-player%} by 1
+                            if {cooltime.charge.%loop-player%} is 0:
+                                set slot 0 of loop-player's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
+                                send action bar "クールタイム：%{cooltime.charge.%loop-player%}%" to loop-player
+                                stop
+                else:
+                    set {during.charge.%loop-player%} to "false"
+                    set {skill.tyuuni.charge.%loop-player%} to 0
+
+on right click with dragon head:
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+        message "&b[厨二病] &r左クリックで殴って使用してください" to player
+        message "&b[厨二病] &rチャージが完了していません" to player
+
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+        message "&b[厨二病] &r左クリックで殴って使用してください" to player
+
+on left click with dragon head:
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+        message "&b[厨二病] &rチャージが完了していません" to player
+
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+        if {skill.%player%} is "tyuuni":
+            if {cooltime.migite.%player%} is 0:
+                set {cooltime.migite.%player%} to 100
+                set slot 1 of player's inventory to barrier named "クールタイム"
+                loop {cooltime.migite.%player%} times:
+                    send action bar "クールタイム：%{cooltime.migite.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.migite.%player%} by 1
+                    if {cooltime.migite.%player%} is 0:
+                        set slot 1 of player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+                        send action bar "クールタイム：%{cooltime.migite.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1
+                cancel event
+
+on damage:
+    if {skill.%attacker%} is "tyuuni":
+        if {tyuuni.kakusei.%attacker%} is "true":
+            if attacker is holding dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+                damage victim by 100 hearts
+
+on inventory click:
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        cancel event
+    if event-item is chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒":
+        cancel event
+    if event-item is chorus plant named "&r&5チャージは完了済みです":
+        cancel event

@@ -187,12 +187,14 @@ on join:
     execute console command "scoreboard players set online：%online player count%人 admin -1"
     set {team.openingchest.%player%} to "false"
     set {skill.openingchest.%player%} to "false"
+
     if {status} is 0:
         set player's gamemode to adventure
         set {sidebar.%player%} to 0
         set {kills.%player%} to 0
         set {rank.%player%} to "--"
         clear {killranking::*}
+        clear {skill.%player%}
         wait 3 tick
         if {team.which.%player%} is "red":
             remove player from {team.red::*}

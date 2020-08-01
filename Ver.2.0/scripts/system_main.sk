@@ -563,6 +563,13 @@ on craft of crafting table:
     message "&b[システム] &r作業台の作成はできません" to player
 
 
+on inventory click:
+    if event-item is barrier named "クールタイム":
+        cancel event
+
+on right click with barrier:
+    if {status} is 1:
+        cancel event
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ショップ展開トリガー
@@ -582,71 +589,11 @@ on inventory click:
 
 
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 雪玉爆弾
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-on right click with snowball:
-    if {cooltime.snowball.%player%} is 0:
-        set {use.snowball.%player%} to 1
-        set {cooltime.snowball.%player%} to 5
-        loop 5 times:
-            send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
-            wait 1 seconds
-            reduce {cooltime.snowball.%player%} by 1
-            if {cooltime.snowball.%player%} is 0:
-                send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
-    else:
-        cancel event
-
-on projectile hit:
-    if {use.snowball.%shooter%} is 1:
-        if {mode.yukidama} is "true":
-            create an explosion of force 2 at the projectile
-        else:
-            create an explosion of force 1 at the projectile
-    set {use.snowball.%shooter%} to 0
-    set {lastuse.snowball} to shooter
-
-on item spawn:
-    if event-item is snowball:
-        cancel event
 
 
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# グラップリングフック useは0で使用不可，1で使用可能
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-on fishing:
-    if {cooltime.grappling.%player%} is 0:
-        if {use.grappling.%player%} is 0:
-            set {use.grappling.%player%} to 1
-            stop
-        if {use.grappling.%player%} is 1:
-            set {cooltime.grappling.%player%} to 5
-            set {use.grappling.%player%} to 0
-            push player upwards at speed 1
-            push player forwards at speed 3
-            loop 5 times:
-                send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
-                wait 1 seconds
-                reduce {cooltime.grappling.%player%} by 1
-                if {cooltime.grappling.%player%} is 0:
-                    send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
-        else:
-            cancel event
-    if {cooltime.grappling.%player%} is not 0:
-        cancel event
 
-on damage:
-    if damage cause is fall:
-        if {cooltime.grappling.%victim%} is not 0:
-            cancel event
 
-every 1 tick in "world":
-    loop all players:
-        if {use.grappling.%loop-player%} is 1:
-            if loop-player is not holding fishing rod:
-                set {use.grappling.%loop-player%} to 0
 
 
 

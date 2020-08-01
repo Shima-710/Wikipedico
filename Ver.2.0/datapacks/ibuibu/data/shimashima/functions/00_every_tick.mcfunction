@@ -34,5 +34,42 @@ execute if score on_game on_game matches 1 run clear @a[team=!admin] written_boo
 
 
 # -----------------
-# ---game system---
+# ---charas---
 #
+
+# ninja
+effect give @a[tag=ninja] jump_boost 1000000 3 true
+effect give @a[tag=ninja] speed 1000000 3 true
+
+# gorilla
+effect give @a[tag=gorilla] slowness 1000000 1 true
+effect give @a[tag=gorilla] health_boost 1000000 10 true
+effect give @a[tag=gorilla] hunger 1000000 1 true
+
+# healer
+effect give @a[tag=healer] resistance 1000000 2 true
+effect give @a[tag=healer] regeneration 1000000 3 true
+
+# neet
+#effect give @a[tag=neet] resistance 1000000 -3 true
+#effect give @a[tag=neet] speed 1000000 -3 true
+
+# tyuuni-before
+#effect give @a[tag=tyuuni-bef] resistance 1000000 -3 true
+#effect give @a[tag=tyuuni-bef] resistance 1000000 -3 true
+
+# tyuuni-after
+effect give @a[tag=tyuuni-aft] speed 1000000 3 true
+effect give @a[tag=tyuuni-aft] resistance 1000000 3 true
+effect give @a[tag=tyuuni-aft] health_boost 1000000 20 true
+effect give @a[tag=tyuuni-aft] strength 1000000 3 true
+
+# tank
+effect give @a[tag=tank] resistance 1000000 3 true
+effect give @a[tag=tank] health_boost 1000000 100 true
+effect give @a[tag=tank] slowness 1000000 3 true
+
+# robot
+effect give @a[tag=robot] strength 1000000 2 true
+effect give @a[tag=robot] resistance 1000000 2 true
+effect give @a[tag=robot] slowness 1000000 2 true
