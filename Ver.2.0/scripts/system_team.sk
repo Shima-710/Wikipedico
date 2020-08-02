@@ -144,6 +144,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join red %player%"
                 execute console command "/chara choise %player%"
 
@@ -154,6 +155,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join blue %player%"
                 execute console command "/chara choise %player%"
 
@@ -164,6 +166,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join yellow %player%"
                 execute console command "/chara choise %player%"
 
@@ -174,6 +177,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join green %player%"
                 execute console command "/chara choise %player%"
 
@@ -184,6 +188,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join orange %player%"
                 execute console command "/chara choise %player%"
 
@@ -194,6 +199,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join purple %player%"
                 execute console command "/chara choise %player%"
 
@@ -204,6 +210,7 @@ on inventory click:
                 message "&b[システム] &rそのチームはすでに満員です！" to player
                 stop
             else:
+                execute console command "chara clear %player%"
                 execute console command "/join gray %player%"
                 execute console command "/chara choise %player%"
 

@@ -606,6 +606,7 @@ on quit:
 
 
     if {status} is 0:
+        execute console command "chara clear %player%"
         if {team.which.%player%} is "red":
             reduce {qua.team.red} by 1
             remove player from {team.red::*}

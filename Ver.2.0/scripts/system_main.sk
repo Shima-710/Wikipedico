@@ -568,10 +568,27 @@ on craft of crafting table:
 on inventory click:
     if event-item is barrier named "クールタイム":
         cancel event
+    if {status} is 0:
+        if event-item is sword:
+            cancel event
 
 on right click with barrier:
     if {status} is 1:
         cancel event
+
+on item spawn:
+    if event-item is cooked beef:
+        stop
+    if event-item is golden apple:
+        stop
+    if event-item is enchanted golden apple:
+        stop
+    if event-item is emerald:
+        stop
+    else:
+        cancel event
+
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ショップ展開トリガー
@@ -588,6 +605,8 @@ on inventory click:
         cancel event
         play sound "block.stone_button.click_on" to player
         close player's inventory
+
+
 
 
 

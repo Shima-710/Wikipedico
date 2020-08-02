@@ -67,9 +67,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.blue} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.blue} named "&r%{skill.selected.robot.blue}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.blue} named "&r%{skill.selected.robot.blue}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
                 if {team.which.%loop-player%} is "yellow":
                     if {skill.selected.ninja.yellow} is set:
@@ -97,9 +97,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.yellow} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.yellow} named "&r%{skill.selected.robot.yellow}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.yellow} named "&r%{skill.selected.robot.yellow}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
                 if {team.which.%loop-player%} is "green":
                     if {skill.selected.ninja.green} is set:
@@ -127,9 +127,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.green} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.green} named "&r%{skill.selected.robot.green}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.green} named "&r%{skill.selected.robot.green}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
                 if {team.which.%loop-player%} is "orange":
                     if {skill.selected.ninja.orange} is set:
@@ -157,9 +157,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.orange} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.orange} named "&r%{skill.selected.robot.orange}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.orange} named "&r%{skill.selected.robot.orange}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
                 if {team.which.%loop-player%} is "purple":
                     if {skill.selected.ninja.purple} is set:
@@ -187,9 +187,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.purple} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.purple} named "&r%{skill.selected.robot.purple}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.purple} named "&r%{skill.selected.robot.purple}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
                 if {team.which.%loop-player%} is "gray":
                     if {skill.selected.ninja.gray} is set:
@@ -217,9 +217,9 @@ every 1 tick in "world":
                     else:
                         set slot 14 of loop-player's current inventory to air
                     if {skill.selected.robot.gray} is set:
-                        set slot 16 of loop-player's current inventory to skull of {skill.selected.robot.gray} named "&r%{skill.selected.robot.gray}%"
+                        set slot 15 of loop-player's current inventory to skull of {skill.selected.robot.gray} named "&r%{skill.selected.robot.gray}%"
                     else:
-                        set slot 16 of loop-player's current inventory to air
+                        set slot 15 of loop-player's current inventory to air
 
 
 

@@ -22,7 +22,7 @@ on right click with fire charge:
         if {skill.%player%} is "gorilla":
             if {cooltime.explo.%player%} is 0:
                 set {cooltime.explo.%player%} to 30
-                create a fake explosion at player
+                create a safe explosion of force 3 at player
                 wait 3 ticks
                 set slot 0 of player's inventory to barrier named "クールタイム"
                 loop {cooltime.explo.%player%} times:

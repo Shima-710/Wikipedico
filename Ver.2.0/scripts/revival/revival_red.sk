@@ -36,6 +36,21 @@ on inventory click:
             set gamemode of {team.red::1} to survival
             teleport {team.red::1} to player
             play sound "entity.player.levelup" to player
+            play sound "entity.player.levelup" to {team.red::1}
+            if {skill.%{team.red::1}%} is "ninja":
+                execute console command "chara ninja %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "gorilla":
+                execute console command "chara gorilla %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "healer":
+                execute console command "chara healer %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "neet":
+                execute console command "chara neet %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "tyuuni":
+                execute console command "chara tyuuni %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "tank":
+                execute console command "chara tank %{team.red::1}%"
+            if {skill.%{team.red::1}%} is "robot":
+                execute console command "chara robot %{team.red::1}%"
             broadcast "&b[運営] &r%{team.red::1}%が復活しました"
             remove 1 cyan glazed terracotta from player
         else:
@@ -69,6 +84,21 @@ on inventory click:
             set gamemode of {team.red::2} to survival
             teleport {team.red::2} to player
             play sound "entity.player.levelup" to player
+            play sound "entity.player.levelup" to {team.red::2}
+            if {skill.%{team.red::2}%} is "ninja":
+                execute console command "chara ninja %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "gorilla":
+                execute console command "chara gorilla %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "healer":
+                execute console command "chara healer %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "neet":
+                execute console command "chara neet %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "tyuuni":
+                execute console command "chara tyuuni %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "tank":
+                execute console command "chara tank %{team.red::2}%"
+            if {skill.%{team.red::2}%} is "robot":
+                execute console command "chara robot %{team.red::2}%"
             broadcast "&b[運営] &r%{team.red::2}%が復活しました"
             remove 1 cyan glazed terracotta from player
         else:
@@ -102,6 +132,21 @@ on inventory click:
             set gamemode of {team.red::3} to survival
             teleport {team.red::3} to player
             play sound "entity.player.levelup" to player
+            play sound "entity.player.levelup" to {team.red::3}
+            if {skill.%{team.red::3}%} is "ninja":
+                execute console command "chara ninja %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "gorilla":
+                execute console command "chara gorilla %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "healer":
+                execute console command "chara healer %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "neet":
+                execute console command "chara neet %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "tyuuni":
+                execute console command "chara tyuuni %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "tank":
+                execute console command "chara tank %{team.red::3}%"
+            if {skill.%{team.red::3}%} is "robot":
+                execute console command "chara robot %{team.red::3}%"
             broadcast "&b[運営] &r%{team.red::3}%が復活しました"
             remove 1 cyan glazed terracotta from player
         else:

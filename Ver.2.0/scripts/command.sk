@@ -681,6 +681,34 @@ command /chara <text> <player>:
                     clear {skill.selected.tank.gray}
                 if {skill.%arg-2%} is "robot":
                     clear {skill.selected.robot.gray}
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+
+            execute console command "tag %arg-2% remove ninja-2"
+            execute console command "tag %arg-2% remove gorilla-2"
+            execute console command "tag %arg-2% remove healer-2"
+            execute console command "tag %arg-2% remove neet-2"
+            execute console command "tag %arg-2% remove tank-2"
+            execute console command "tag %arg-2% remove robot-2"
+
+            execute console command "tag %arg-2% remove ninja-3"
+            execute console command "tag %arg-2% remove gorilla-3"
+            execute console command "tag %arg-2% remove healer-3"
+            execute console command "tag %arg-2% remove neet-3"
+            execute console command "tag %arg-2% remove tank-3"
+            execute console command "tag %arg-2% remove robot-3"
+
+            execute console command "effect clear %arg-2%"
+
+            set slot 0 of arg-2's inventory to air
+            set slot 1 of arg-2's inventory to air
+            set slot 2 of arg-2's inventory to air
 
         if arg-1 is "ninja":
             execute console command "chara clear %arg-2%"
@@ -703,17 +731,20 @@ command /chara <text> <player>:
             set {cooltime.invisible.%arg-2%} to 0
             set slot 0 of arg-2's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
             set slot 1 of arg-2's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to wooden sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
-            execute console command "tag %arg-2% add ninja"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add ninja-1"
+            set {level.%arg-2%} to 1
             set arg-2's max health to 5
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""忍者""&rを選択しました" to arg-2
 
@@ -739,17 +770,20 @@ command /chara <text> <player>:
             set {skill.gorilla.drumming.%arg-2%} to 0
             set slot 0 of arg-2's inventory to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒"
             set slot 1 of arg-2's inventory to composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to iron sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
-            execute console command "tag %arg-2% add gorilla"
-            set arg-2's max health to 15
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add gorilla-1"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 10
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""ゴリラ""&rを選択しました" to arg-2
 
@@ -774,16 +808,20 @@ command /chara <text> <player>:
             set {cooltime.resistance.%arg-2%} to 0
             set slot 0 of arg-2's inventory to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒"
             set slot 1 of arg-2's inventory to end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to wooden sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
-            execute console command "tag %arg-2% add healer"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add healer-1"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 10
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""ヒーラー""&rを選択しました" to arg-2
 
@@ -806,15 +844,20 @@ command /chara <text> <player>:
                 set {skill.selected.neet.gray} to arg-2
             set slot 0 of arg-2's inventory to air
             set slot 1 of arg-2's inventory to air
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to wooden sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add neet-1"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 5
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""ニート""&rを選択しました" to arg-2
 
@@ -842,16 +885,20 @@ command /chara <text> <player>:
             set {skill.tyuuni.charge.%arg-2%} to 0
             set slot 0 of arg-2's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
             set slot 1 of arg-2's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to wooden sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
             execute console command "tag %arg-2% add tyuuni-bef"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 5
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""厨二病""&rを選択しました" to arg-2
 
@@ -876,15 +923,20 @@ command /chara <text> <player>:
             set {cooltime.protect.%arg-2%} to 0
             set slot 0 of arg-2's inventory to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒"
             set slot 1 of arg-2's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to stone sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add tank-1"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 20
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""タンク""&rを選択しました" to arg-2
 
@@ -909,16 +961,20 @@ command /chara <text> <player>:
             set {cooltime.snowball.%arg-2%} to 0
             set slot 0 of arg-2's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
             set slot 1 of arg-2's inventory to fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒"
-            execute console command "effect clear %arg-2%"
-            execute console command "tag %arg-2% remove ninja"
-            execute console command "tag %arg-2% remove gorilla"
-            execute console command "tag %arg-2% remove healer"
-            execute console command "tag %arg-2% remove neet"
+            set slot 2 of arg-2's inventory to stone sword
+            execute console command "tag %arg-2% remove ninja-1"
+            execute console command "tag %arg-2% remove gorilla-1"
+            execute console command "tag %arg-2% remove healer-1"
+            execute console command "tag %arg-2% remove neet-1"
             execute console command "tag %arg-2% remove tyuuni-bef"
             execute console command "tag %arg-2% remove tyuuni-aft"
-            execute console command "tag %arg-2% remove tank"
-            execute console command "tag %arg-2% remove robot"
-            execute console command "tag %arg-2% add robot"
+            execute console command "tag %arg-2% remove tank-1"
+            execute console command "tag %arg-2% remove robot-1"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% add robot-1"
+            set {level.%arg-2%} to 1
+            set arg-2's max health to 20
+            heal arg-2 by 100 hearts
             play sound "entity.player.levelup" to arg-2
             message "&b[システム] &r&l""ロボット""&rを選択しました" to arg-2
 

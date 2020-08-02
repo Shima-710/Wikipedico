@@ -37,39 +37,82 @@ execute if score on_game on_game matches 1 run clear @a[team=!admin] written_boo
 # ---charas---
 #
 
-# ninja
-effect give @a[tag=ninja] jump_boost 1000000 3 true
-effect give @a[tag=ninja] speed 1000000 3 true
+# ninja-1
+effect give @a[tag=ninja-1] jump_boost 1000000 0 true
+effect give @a[tag=ninja-1] speed 1000000 1 true
 
-# gorilla
-effect give @a[tag=gorilla] slowness 1000000 1 true
-effect give @a[tag=gorilla] health_boost 1000000 10 true
-effect give @a[tag=gorilla] hunger 1000000 1 true
+# ninja-2
+effect give @a[tag=ninja-2] jump_boost 1000000 1 true
+effect give @a[tag=ninja-2] speed 1000000 2 true
 
-# healer
-effect give @a[tag=healer] resistance 1000000 2 true
-effect give @a[tag=healer] regeneration 1000000 3 true
+# ninja-3
+effect give @a[tag=ninja-3] jump_boost 1000000 2 true
+effect give @a[tag=ninja-3] speed 1000000 3 true
 
-# neet
-#effect give @a[tag=neet] resistance 1000000 -3 true
-#effect give @a[tag=neet] speed 1000000 -3 true
+
+# gorilla-1
+effect give @a[tag=gorilla-1] slowness 1000000 0 true
+effect give @a[tag=gorilla-1] hunger 1000000 1 true
+
+# gorilla-2
+effect give @a[tag=gorilla-2] slowness 1000000 0 true
+effect give @a[tag=gorilla-2] hunger 1000000 1 true
+
+# gorilla-3
+effect give @a[tag=gorilla-3] slowness 1000000 0 true
+effect give @a[tag=gorilla-3] hunger 1000000 1 true
+
+
+# healer-1
+effect give @a[tag=healer-1] resistance 1000000 2 true
+effect give @a[tag=healer-1] regeneration 1000000 3 true
+
+# healer-2
+effect give @a[tag=healer-2] resistance 1000000 2 true
+effect give @a[tag=healer-2] regeneration 1000000 3 true
+
+# healer-3
+effect give @a[tag=healer-3] resistance 1000000 2 true
+effect give @a[tag=healer-3] regeneration 1000000 3 true
+effect give @a[tag=healer-3] speed 1000000 0 true
+
+# neet-1
+
+# neet-2
+
+# neet-3
+effect give @a[tag=neet-3] speed 1000000 1 true
+
 
 # tyuuni-before
-#effect give @a[tag=tyuuni-bef] resistance 1000000 -3 true
-#effect give @a[tag=tyuuni-bef] resistance 1000000 -3 true
+effect give @a[tag=tyuuni-bef] slowness 1000000 0 true
 
 # tyuuni-after
-effect give @a[tag=tyuuni-aft] speed 1000000 3 true
+effect give @a[tag=tyuuni-aft] speed 1000000 2 true
 effect give @a[tag=tyuuni-aft] resistance 1000000 3 true
-effect give @a[tag=tyuuni-aft] health_boost 1000000 20 true
 effect give @a[tag=tyuuni-aft] strength 1000000 3 true
 
-# tank
-effect give @a[tag=tank] resistance 1000000 3 true
-effect give @a[tag=tank] health_boost 1000000 100 true
-effect give @a[tag=tank] slowness 1000000 3 true
+# tank-1
+effect give @a[tag=tank-1] resistance 1000000 3 true
+effect give @a[tag=tank-1] slowness 1000000 0 true
 
-# robot
-effect give @a[tag=robot] strength 1000000 2 true
-effect give @a[tag=robot] resistance 1000000 2 true
-effect give @a[tag=robot] slowness 1000000 2 true
+# tank-2
+effect give @a[tag=tank-2] resistance 1000000 3 true
+effect give @a[tag=tank-2] slowness 1000000 0 true
+
+# tank-3
+effect give @a[tag=tank-3] resistance 1000000 3 true
+effect give @a[tag=tank-3] slowness 1000000 0 true
+
+
+# robot-1
+effect give @a[tag=robot-1] strength 1000000 2 true
+effect give @a[tag=robot-1] resistance 1000000 2 true
+
+# robot-2
+effect give @a[tag=robot-2] strength 1000000 2 true
+effect give @a[tag=robot-2] resistance 1000000 2 true
+
+# robot-3
+effect give @a[tag=robot-3] strength 1000000 2 true
+effect give @a[tag=robot-3] resistance 1000000 2 true
