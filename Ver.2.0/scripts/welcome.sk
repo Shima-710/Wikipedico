@@ -110,9 +110,67 @@ on skript load:
     clear {ranking.teamkills.5}
     clear {ranking.teamkills.6}
     clear {ranking.teamkills.7}
+    clear {skill.selected.ninja.red}
+    clear {skill.selected.ninja.blue}
+    clear {skill.selected.ninja.yellow}
+    clear {skill.selected.ninja.green}
+    clear {skill.selected.ninja.orange}
+    clear {skill.selected.ninja.purple}
+    clear {skill.selected.ninja.gray}
+    clear {skill.selected.gorilla.red}
+    clear {skill.selected.gorilla.blue}
+    clear {skill.selected.gorilla.yellow}
+    clear {skill.selected.gorilla.green}
+    clear {skill.selected.gorilla.orange}
+    clear {skill.selected.gorilla.purple}
+    clear {skill.selected.gorilla.gray}
+    clear {skill.selected.healer.red}
+    clear {skill.selected.healer.blue}
+    clear {skill.selected.healer.yellow}
+    clear {skill.selected.healer.green}
+    clear {skill.selected.healer.orange}
+    clear {skill.selected.healer.purple}
+    clear {skill.selected.healer.gray}
+    clear {skill.selected.neet.red}
+    clear {skill.selected.neet.blue}
+    clear {skill.selected.neet.yellow}
+    clear {skill.selected.neet.green}
+    clear {skill.selected.neet.orange}
+    clear {skill.selected.neet.purple}
+    clear {skill.selected.neet.gray}
+    clear {skill.selected.tyuuni.red}
+    clear {skill.selected.tyuuni.blue}
+    clear {skill.selected.tyuuni.yellow}
+    clear {skill.selected.tyuuni.green}
+    clear {skill.selected.tyuuni.orange}
+    clear {skill.selected.tyuuni.purple}
+    clear {skill.selected.tyuuni.gray}
+    clear {skill.selected.tank.red}
+    clear {skill.selected.tank.blue}
+    clear {skill.selected.tank.yellow}
+    clear {skill.selected.tank.green}
+    clear {skill.selected.tank.orange}
+    clear {skill.selected.tank.purple}
+    clear {skill.selected.tank.gray}
+    clear {skill.selected.robot.red}
+    clear {skill.selected.robot.blue}
+    clear {skill.selected.robot.yellow}
+    clear {skill.selected.robot.green}
+    clear {skill.selected.robot.orange}
+    clear {skill.selected.robot.purple}
+    clear {skill.selected.robot.gray}
+
 
     loop all players:
         execute console command "/team leave %loop-player%"
+        execute console command "tag %loop-player% remove ninja"
+        execute console command "tag %loop-player% remove gorilla"
+        execute console command "tag %loop-player% remove healer"
+        execute console command "tag %loop-player% remove neet"
+        execute console command "tag %loop-player% remove tyuuni-bef"
+        execute console command "tag %loop-player% remove tyuuni-aft"
+        execute console command "tag %loop-player% remove tank"
+        execute console command "tag %loop-player% remove robot"
         set {admin.%loop-player%} to "false"
         set {sidebar.%loop-player%} to 0
         set {kills.%loop-player%} to 0
@@ -120,8 +178,12 @@ on skript load:
         set {team.joined.%loop-player%} to "false"
         clear {play.%loop-player%}
         clear {team.which.%loop-player%}
+        clear {skill.%loop-player%}
         set the loop-player's chat name to name of loop-player
         set the loop-player's display name to name of loop-player
+        execute console command "chara clear %loop-player%"
+        set slot 0 of player's inventory to air
+        set slot 1 of player's inventory to air
     if {debugMode} is "true":
         wait 1 seconds
         execute console command "gamerule sendCommandFeedback true"
@@ -195,6 +257,15 @@ on join:
         set {rank.%player%} to "--"
         clear {killranking::*}
         clear {skill.%player%}
+        execute console command "chara clear %player%"
+        execute console command "tag %player% remove ninja"
+        execute console command "tag %player% remove gorilla"
+        execute console command "tag %player% remove healer"
+        execute console command "tag %player% remove neet"
+        execute console command "tag %player% remove tyuuni-bef"
+        execute console command "tag %player% remove tyuuni-aft"
+        execute console command "tag %player% remove tank"
+        execute console command "tag %player% remove robot"
         wait 3 tick
         if {team.which.%player%} is "red":
             remove player from {team.red::*}
@@ -238,6 +309,8 @@ on join:
             set {team.joined.%player%} to "false"
             execute console command "scoreboard players reset %name of player% gray"
             execute console command "team leave %player%"
+        set slot 0 of player's inventory to air
+        set slot 1 of player's inventory to air
         set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
         set slot 8 of player's inventory to a chest named "&dチーム選択"
         message "&b[システム] &f現在""チーム戦""が有効です。チェストを右クリックしてチームへ入ってください。また、チーム所属後にリログした場合は所属状態がリセットされます。その場合は再度入りなおしてください。"

@@ -565,142 +565,362 @@ command /chara <text> <player>:
     permission message:Admin専用コマンドです。
     trigger:
         if arg-1 is "choise":
-            set {skill.openingchest.%arg-2%} to "true"
             open chest inventory with 2 row named "&0キャラクターを選んでください" to arg-2
             set slot 1 of arg-2's current inventory to red dye named "&l忍者"
-            set slot 2 of arg-2's current inventory to lapis lazuli named "&l"
-            set slot 3 of arg-2's current inventory to yellow dye named "&l"
-            set slot 4 of arg-2's current inventory to green dye named "&l"
-            set slot 5 of arg-2's current inventory to orange dye named "&l"
-            set slot 6 of arg-2's current inventory to bone meal named "&l"
-            set slot 7 of arg-2's current inventory to gray stained glass pane named "キャンセルする"
+            set slot 2 of arg-2's current inventory to lapis lazuli named "&lゴリラ"
+            set slot 3 of arg-2's current inventory to yellow dye named "&lヒーラー"
+            set slot 4 of arg-2's current inventory to green dye named "&l厨二病"
+            set slot 5 of arg-2's current inventory to orange dye named "&lタンク"
+            set slot 6 of arg-2's current inventory to bone meal named "&lロボット"
+            set slot 7 of arg-2's current inventory to gray dye named "&lニート"
+            set {skill.openingchest.%arg-2%} to "true"
+
+        if arg-1 is "clear":
+            if {team.which.%arg-2%} is "red":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.red}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.red}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.red}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.red}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.red}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.red}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.red}
+            if {team.which.%arg-2%} is "blue":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.blue}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.blue}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.blue}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.blue}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.blue}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.blue}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.blue}
+            if {team.which.%arg-2%} is "yellow":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.yellow}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.yellow}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.yellow}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.yellow}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.yellow}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.yellow}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.yellow}
+            if {team.which.%arg-2%} is "green":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.green}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.green}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.green}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.green}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.green}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.green}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.blgreene}
+            if {team.which.%arg-2%} is "orange":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.orange}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.orange}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.orange}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.orange}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.orange}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.orange}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.orange}
+            if {team.which.%arg-2%} is "purple":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.purple}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.purple}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.purple}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.purple}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.purple}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.purple}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.purple}
+            if {team.which.%arg-2%} is "gray":
+                if {skill.%arg-2%} is "ninja":
+                    clear {skill.selected.ninja.gray}
+                if {skill.%arg-2%} is "gorilla":
+                    clear {skill.selected.gorilla.gray}
+                if {skill.%arg-2%} is "healer":
+                    clear {skill.selected.healer.gray}
+                if {skill.%arg-2%} is "neet":
+                    clear {skill.selected.neet.gray}
+                if {skill.%arg-2%} is "tyuuni":
+                    clear {skill.selected.tyuuni.gray}
+                if {skill.%arg-2%} is "tank":
+                    clear {skill.selected.tank.gray}
+                if {skill.%arg-2%} is "robot":
+                    clear {skill.selected.robot.gray}
 
         if arg-1 is "ninja":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "ninja"
-            set {cooltime.ender.%player%} to 0
-            set {cooltime.invisible.%player%} to 0
-            set slot 0 of player's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
-            set slot 1 of player's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            execute console command "tag %player% add ninja"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.ninja.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.ninja.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.ninja.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.ninja.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.ninja.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.ninja.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.ninja.gray} to arg-2
+            set {cooltime.ender.%arg-2%} to 0
+            set {cooltime.invisible.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
+            set slot 1 of arg-2's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% add ninja"
             set arg-2's max health to 5
-            message "&b[システム] &r&l""忍者""&rを選択しました"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""忍者""&rを選択しました" to arg-2
 
         if arg-1 is "gorilla":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "gorilla"
-            set {cooltime.explo.%player%} to 0
-            set {during.druming.%player%} to "false"
-            set {skill.gorilla.drumming.%player%} to 0
-            set slot 0 of player's inventory to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒"
-            set slot 1 of player's inventory to composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            execute console command "tag %player% add gorilla"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.gorilla.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.gorilla.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.gorilla.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.gorilla.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.gorilla.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.gorilla.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.gorilla.gray} to arg-2
+            set {cooltime.explo.%arg-2%} to 0
+            set {during.druming.%arg-2%} to "false"
+            set {skill.gorilla.drumming.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒"
+            set slot 1 of arg-2's inventory to composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% add gorilla"
             set arg-2's max health to 15
-            message "&b[システム] &r&l""ゴリラ""&rを選択しました"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""ゴリラ""&rを選択しました" to arg-2
 
         if arg-1 is "healer":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "healer"
-            set {cooltime.heal.%player%} to 0
-            set {cooltime.resistance.%player%} to 0
-            set slot 0 of player's inventory to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒"
-            set slot 1 of player's inventory to end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            execute console command "tag %player% add healer"
-            message "&b[システム] &r&l""ヒーラー""&rを選択しました"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.healer.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.healer.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.healer.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.healer.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.healer.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.healer.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.healer.gray} to arg-2
+            set {cooltime.heal.%arg-2%} to 0
+            set {cooltime.resistance.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒"
+            set slot 1 of arg-2's inventory to end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% add healer"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""ヒーラー""&rを選択しました" to arg-2
 
         if arg-1 is "neet":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "neet"
-
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            message "&b[システム] &r&l""ニート""&rを選択しました"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.neet.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.neet.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.neet.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.neet.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.neet.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.neet.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.neet.gray} to arg-2
+            set slot 0 of arg-2's inventory to air
+            set slot 1 of arg-2's inventory to air
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""ニート""&rを選択しました" to arg-2
 
         if arg-1 is "tyuuni":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "tyuuni"
-            set {cooltime.charge.%player%} to 0
-            set {cooltime.migite.%player%} to 0
-            set {time.charge.%player%} to 0
-            set {during.charge.%player%} to "false"
-            set {skill.tyuuni.charge.%player%} to 0
-            set slot 0 of player's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
-            set slot 1 of player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            execute console command "tag %player% add tyuuni-bef"
-            message "&b[システム] &r&l""厨二病""&rを選択しました"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.tyuuni.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.tyuuni.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.tyuuni.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.tyuuni.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.tyuuni.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.tyuuni.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.tyuuni.gray} to arg-2
+            set {cooltime.charge.%arg-2%} to 0
+            set {cooltime.migite.%arg-2%} to 0
+            set {time.charge.%arg-2%} to 0
+            set {during.charge.%arg-2%} to "false"
+            set {skill.tyuuni.charge.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
+            set slot 1 of arg-2's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% add tyuuni-bef"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""厨二病""&rを選択しました" to arg-2
 
         if arg-1 is "tank":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "tank"
-            set {cooltime.barrier.%player%} to 0
-            set {cooltime.protect.%player%} to 0
-            set slot 0 of player's inventory to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒"
-            set slot 1 of player's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            message "&b[システム] &r&l""タンク""&rを選択しました"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.tank.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.tank.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.tank.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.tank.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.tank.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.tank.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.tank.gray} to arg-2
+            set {cooltime.barrier.%arg-2%} to 0
+            set {cooltime.protect.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒"
+            set slot 1 of arg-2's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""タンク""&rを選択しました" to arg-2
 
         if arg-1 is "robot":
+            execute console command "chara clear %arg-2%"
             set {skill.%arg-2%} to "robot"
-            set {cooltime.grappling.%player%} to 0
-            set {cooltime.snowball.%player%} to 0
-            set slot 0 of player's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
-            set slot 1 of player's inventory to fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒"
-            execute console command "effect clear %player%"
-            execute console command "tag %player% remove ninja"
-            execute console command "tag %player% remove gorilla"
-            execute console command "tag %player% remove healer"
-            execute console command "tag %player% remove neet"
-            execute console command "tag %player% remove tyuuni-bef"
-            execute console command "tag %player% remove tyuuni-aft"
-            execute console command "tag %player% remove tank"
-            execute console command "tag %player% remove robot"
-            execute console command "tag %player% add robot"
-            message "&b[システム] &r&l""ロボット""&rを選択しました"
+            if {team.which.%arg-2%} is "red":
+                set {skill.selected.robot.red} to arg-2
+            if {team.which.%arg-2%} is "blue":
+                set {skill.selected.robot.blue} to arg-2
+            if {team.which.%arg-2%} is "yellow":
+                set {skill.selected.robot.yellow} to arg-2
+            if {team.which.%arg-2%} is "green":
+                set {skill.selected.robot.green} to arg-2
+            if {team.which.%arg-2%} is "orange":
+                set {skill.selected.robot.orange} to arg-2
+            if {team.which.%arg-2%} is "purple":
+                set {skill.selected.robot.purple} to arg-2
+            if {team.which.%arg-2%} is "gray":
+                set {skill.selected.robot.gray} to arg-2
+            set {cooltime.grappling.%arg-2%} to 0
+            set {cooltime.snowball.%arg-2%} to 0
+            set slot 0 of arg-2's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
+            set slot 1 of arg-2's inventory to fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒"
+            execute console command "effect clear %arg-2%"
+            execute console command "tag %arg-2% remove ninja"
+            execute console command "tag %arg-2% remove gorilla"
+            execute console command "tag %arg-2% remove healer"
+            execute console command "tag %arg-2% remove neet"
+            execute console command "tag %arg-2% remove tyuuni-bef"
+            execute console command "tag %arg-2% remove tyuuni-aft"
+            execute console command "tag %arg-2% remove tank"
+            execute console command "tag %arg-2% remove robot"
+            execute console command "tag %arg-2% add robot"
+            play sound "entity.player.levelup" to arg-2
+            message "&b[システム] &r&l""ロボット""&rを選択しました" to arg-2
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -20,9 +20,9 @@ on sneak toggle:
         if {skill.%player%} is "tank":
             if {cooltime.barrier.%player%} is 0:
                 set {cooltime.barrier.%player%} to 20
-
+                set {tank.barrier.locs::*} to locations in radius 10 around player
                 set slot 0 of player's inventory to barrier named "クールタイム"
-                set the block at block around 10 blocks from player to glass
+                set the block around player to glass
                 loop {cooltime.barrier.%player%} times:
                     send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
                     wait 1 seconds
@@ -44,26 +44,33 @@ on right click with anvil:
                 set slot 0 of player's inventory to barrier named "クールタイム"
                 if {team.which.%player%} is "red":
                     execute console command "effect give @a[team=red] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.red::*}
+                    play sound "block.anvil.use" to {team.red::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.red::*}
                 if {team.which.%player%} is "blue":
                     execute console command "effect give @a[team=blue] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.blue::*}
+                    play sound "block.anvil.use" to {team.blue::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.blue::*}
                 if {team.which.%player%} is "yellow":
                     execute console command "effect give @a[team=yellow] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.yellow::*}
+                    play sound "block.anvil.use" to {team.yellow::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.yellow::*}
                 if {team.which.%player%} is "green":
                     execute console command "effect give @a[team=green] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.green::*}
+                    play sound "block.anvil.use" to {team.green::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.green::*}
                 if {team.which.%player%} is "orange":
                     execute console command "effect give @a[team=orange] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.orange::*}
+                    play sound "block.anvil.use" to {team.orange::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.orange::*}
                 if {team.which.%player%} is "purple":
                     execute console command "effect give @a[team=purple] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.purple::*}
+                    play sound "block.anvil.use" to {team.purple::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.purple::*}
                 if {team.which.%player%} is "gray":
                     execute console command "effect give @a[team=gray] resistance 10 3 false"
-                    play sound "block.note_block.bell" to {team.gray::*}
-                message "&b[タンク] &r味方の防御力を向上させました"
+                    play sound "block.anvil.use" to {team.gray::*}
+                    message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.gray::*}
+                message "&b[タンク] &r味方の防御力を向上させました" to player
                 loop {cooltime.protect.%player%} times:
                     send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
                     wait 1 seconds

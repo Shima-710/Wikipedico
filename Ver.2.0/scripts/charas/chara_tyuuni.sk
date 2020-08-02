@@ -82,7 +82,7 @@ on left click with dragon head:
             else:
                 cancel event
         else:
-            if {status} is 1
+            if {status} is 1:
                 cancel event
 
 on damage:

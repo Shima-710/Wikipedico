@@ -45,14 +45,16 @@ on right click with sunflower:
                 set {cooltime.invisible.%player%} to 30
                 set slot 1 of player's inventory to barrier named "クールタイム"
                 hide the player from all players
-                message "&b[忍者] &r姿を消しました"
+                play sound "ui.toast.in" to player
+                message "&b[忍者] &r姿を消しました" to player
                 loop {cooltime.invisible.%player%} times:
                     send action bar "クールタイム：%{cooltime.invisible.%player%}%" to player
                     wait 1 seconds
                     reduce {cooltime.invisible.%player%} by 1
                     if {cooltime.invisible.%player%} is 20:
                         reveal the player
-                        message "&b[忍者] &r姿が現れました"
+                        play sound "ui.toast.out" to player
+                        message "&b[忍者] &r姿が現れました" to player
                     if {cooltime.invisible.%player%} is 0:
                         set slot 1 of player's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
                         send action bar "クールタイム：%{cooltime.invisible.%player%}%" to player
