@@ -549,6 +549,8 @@ on break:
             stop
         if event-block is planks:
             stop
+        if event-block is glass:
+            stop
         else:
             cancel event
 

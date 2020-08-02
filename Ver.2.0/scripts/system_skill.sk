@@ -222,6 +222,7 @@ every 1 tick in "world":
                         set slot 16 of loop-player's current inventory to air
 
 
+
 on inventory close:
     set {skill.openingchest.%player%} to "false"
 

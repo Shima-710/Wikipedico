@@ -182,8 +182,8 @@ on skript load:
         set the loop-player's chat name to name of loop-player
         set the loop-player's display name to name of loop-player
         execute console command "chara clear %loop-player%"
-        set slot 0 of player's inventory to air
-        set slot 1 of player's inventory to air
+        set slot 0 of loop-player's inventory to air
+        set slot 1 of loop-player's inventory to air
     if {debugMode} is "true":
         wait 1 seconds
         execute console command "gamerule sendCommandFeedback true"

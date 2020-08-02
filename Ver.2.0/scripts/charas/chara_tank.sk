@@ -20,14 +20,20 @@ on sneak toggle:
         if {skill.%player%} is "tank":
             if {cooltime.barrier.%player%} is 0:
                 set {cooltime.barrier.%player%} to 20
-                set {tank.barrier.locs::*} to locations in radius 10 around player
                 set slot 0 of player's inventory to barrier named "クールタイム"
-                set the block around player to glass
+                play sound "block.anvil.place" to player
+                loop all blocks in radius 5 around player's location:
+                    if loop-block-1 is air or any flowers or grass:
+                        set loop-block-1 to glass
+                        loop all blocks in radius 4 around player's location:
+                            loop-block-2 is glass:
+                                set loop-block-2 to air
                 loop {cooltime.barrier.%player%} times:
                     send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
                     wait 1 seconds
                     reduce {cooltime.barrier.%player%} by 1
                     if {cooltime.barrier.%player%} is 0:
+                        set slot 0 of player's inventory to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒"
                         send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
             else:
                 cancel event
@@ -41,7 +47,7 @@ on right click with anvil:
         if {skill.%player%} is "tank":
             if {cooltime.protect.%player%} is 0:
                 set {cooltime.protect.%player%} to 30
-                set slot 0 of player's inventory to barrier named "クールタイム"
+                set slot 1 of player's inventory to barrier named "クールタイム"
                 if {team.which.%player%} is "red":
                     execute console command "effect give @a[team=red] resistance 10 3 false"
                     play sound "block.anvil.use" to {team.red::*}
@@ -76,7 +82,7 @@ on right click with anvil:
                     wait 1 seconds
                     reduce {cooltime.protect.%player%} by 1
                     if {cooltime.protect.%player%} is 0:
-                        set slot 0 of player's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
+                        set slot 1 of player's inventory to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒"
                         send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
             else:
                 cancel event
