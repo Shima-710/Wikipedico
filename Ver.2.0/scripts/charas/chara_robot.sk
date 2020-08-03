@@ -21,6 +21,12 @@
 on right click with snowball:
     if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
         if {skill.%player%} is "robot":
+            if {status} is 0:
+                cancel event
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
             if {cooltime.snowball.%player%} is 0:
                 set {use.snowball.%player%} to 1
                 set {cooltime.snowball.%player%} to 15
@@ -55,6 +61,12 @@ on item spawn:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on fishing:
     if {skill.%player%} is "robot":
+        if {status} is 0:
+            cancel event
+            message "&b[システム] &rロビーでは使用できません" to player
+            stop
+        if {sidebar.%player%} is 2:
+            stop
         if {cooltime.grappling.%player%} is 0:
             if {use.grappling.%player%} is 0:
                 set {use.grappling.%player%} to 1

@@ -20,6 +20,12 @@
 on right click with ender pearl:
     if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
         if {skill.%player%} is "ninja":
+            if {status} is 0:
+                cancel event
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
             if {cooltime.ender.%player%} is 0:
                 set {cooltime.ender.%player%} to 15
                 wait 3 ticks
@@ -41,6 +47,11 @@ on right click with ender pearl:
 on right click with sunflower:
     if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
         if {skill.%player%} is "ninja":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
             if {cooltime.invisible.%player%} is 0:
                 set {cooltime.invisible.%player%} to 30
                 set slot 1 of player's inventory to barrier named "クールタイム"

@@ -227,6 +227,14 @@ on inventory close:
     set {skill.openingchest.%player%} to "false"
 
 
+on right click with ender chest:
+    if {status} is 0:
+        if {team.joined.%player%} is "true":
+            execute console command "chara clear %player%"
+            execute console command "/chara choise %player%"
+        else:
+            message "&b[システム] &rチームに入ってください" to player
+
 on inventory click:
     if {status} is 0:
         if event-item is red dye:

@@ -19,6 +19,7 @@ on right click on wandering trader:
     if {skill.%player%} is "tyuuni":
         message "&b[商人] &r悪いがお前さんのレベルはあげられないな..." to player
         stop
+    play sound "block.stone_button.click_on" to player
     open chest inventory with 3 row named "&2スキルアップ" to player
     set slot 11 of player's current inventory to wooden pickaxe named "&lレベル1"
     set slot 13 of player's current inventory to iron pickaxe named "&lレベル2"
@@ -75,9 +76,10 @@ on inventory click:
                     execute console command "tag %player% add robot-2"
                     set player's max health to 15
                     heal player by 100 hearts
-
+                remove {price.levelup.to2} of emerald from player
                 play sound "entity.player.levelup" to player
                 message "&b[商人] &rレベルをあげてやったぞ！" to player
+                stop
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
@@ -131,8 +133,10 @@ on inventory click:
                     set player's max health to 20
                     heal player by 100 hearts
 
+                remove {price.levelup.to3} of emerald from player
                 play sound "entity.player.levelup" to player
                 message "&b[商人] &rレベルをあげてやったぞ！" to player
+                stop
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player

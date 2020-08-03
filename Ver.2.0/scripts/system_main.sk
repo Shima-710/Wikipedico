@@ -70,7 +70,6 @@ command /game <text>:
             reduce {qua.player} by {qua.admin}
             set {surviver} to {qua.player}
             set {rank.alive} to "--"
-            set {status} to 1
 
             execute console command "scoreboard players set {qua.player}：%{qua.player}%人 admin -2"
             execute console command "scoreboard players set {qua.team}：%{qua.team}%チーム admin -3"
@@ -119,6 +118,7 @@ command /game <text>:
                         set loop-player's level to 0
                 reduce {loop_start} by 1
                 wait 1 seconds
+            set {status} to 1
             wait 60 seconds
             set {daruma.count} to "true"
             stop
@@ -527,11 +527,11 @@ on death of player:
 
 on death of player:
     if {status} is 1:
-        if {survive.team} is 2:
-            wait 60 seconds
-            loop all players:
-                if {sidebar.%loop-player%} is 1:
-                    give a snowball to loop-player
+        #if {survive.team} is 2:
+            #wait 60 seconds
+            #loop all players:
+                #if {sidebar.%loop-player%} is 1:
+                    #give a snowball to loop-player
         if {survive.team} is 1:
             execute console command "game end"
             set {survive.team} to 0
@@ -573,7 +573,15 @@ on inventory click:
             cancel event
 
 on right click with barrier:
-    if {status} is 1:
+    if {status} is not 5:
+        cancel event
+
+on right click with composter:
+    if event-item is composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒":
+        cancel event
+
+on right click with glass:
+    if event-item is glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒":
         cancel event
 
 on item spawn:
@@ -588,23 +596,37 @@ on item spawn:
     else:
         cancel event
 
+on drop:
+    if event-item is cooked beef:
+        stop
+    if event-item is golden apple:
+        stop
+    if event-item is enchanted golden apple:
+        stop
+    if event-item is emerald:
+        stop
+    else:
+        cancel event
+
+
+
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # ショップ展開トリガー
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-on rightclick on villager:
-    cancel event
-    open chest inventory with 1 row named "&0Shop" to player
-    set slot 2 of player's current inventory to diamond sword named "&d売る"
-    set slot 6 of player's current inventory to emerald named "&a買う"
-on inventory click:
-    if event-item is black stained glass pane named " ":
-        cancel event
-    if event-item is barrier block named "&r&c閉じる":
-        cancel event
-        play sound "block.stone_button.click_on" to player
-        close player's inventory
+#on rightclick on villager:
+    #cancel event
+    #open chest inventory with 1 row named "&0Shop" to player
+    #set slot 2 of player's current inventory to diamond sword named "&d売る"
+    #set slot 6 of player's current inventory to emerald named "&a買う"
+#on inventory click:
+    #if event-item is black stained glass pane named " ":
+        #cancel event
+    #if event-item is barrier block named "&r&c閉じる":
+        #cancel event
+        #play sound "block.stone_button.click_on" to player
+        #close player's inventory
 
 
 

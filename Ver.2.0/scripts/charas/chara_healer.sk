@@ -18,6 +18,11 @@
 on sneak toggle:
     if player's tool is nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒":
         if {skill.%player%} is "healer":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
             if {cooltime.heal.%player%} is 0:
                 set {cooltime.heal.%player%} to 10
                 set slot 0 of player's inventory to barrier named "クールタイム"
@@ -67,6 +72,11 @@ on right click with end crystal:
     if event-item is end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒":
         cancel event
         if {skill.%player%} is "healer":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
             if {cooltime.resistance.%player%} is 0:
                 set {cooltime.resistance.%player%} to 60
                 set slot 1 of player's inventory to barrier named "クールタイム"

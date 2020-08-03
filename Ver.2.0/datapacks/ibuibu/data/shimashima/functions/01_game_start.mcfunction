@@ -10,6 +10,8 @@ effect clear @a
 
 # さよならTPアイテム
 clear @a player_head
+clear @a chest
+clear @a ender_chest
 
 
 # タイトル

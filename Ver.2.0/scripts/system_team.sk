@@ -146,7 +146,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join red %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is blue wool:
             cancel event
@@ -157,7 +156,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join blue %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is yellow wool:
             cancel event
@@ -168,7 +166,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join yellow %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is green wool:
             cancel event
@@ -179,7 +176,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join green %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is orange wool:
             cancel event
@@ -190,7 +186,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join orange %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is purple wool:
             cancel event
@@ -201,7 +196,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join purple %player%"
-                execute console command "/chara choise %player%"
 
         if event-item is gray wool:
             cancel event
@@ -212,7 +206,6 @@ on inventory click:
             else:
                 execute console command "chara clear %player%"
                 execute console command "/join gray %player%"
-                execute console command "/chara choise %player%"
 
 
         if event-item is red stained glass pane:

@@ -77,8 +77,10 @@ effect give @a[tag=healer-3] regeneration 1000000 3 true
 effect give @a[tag=healer-3] speed 1000000 0 true
 
 # neet-1
+effect give @a[tag=neet-1] slowness 1000000 1 true
 
 # neet-2
+effect give @a[tag=neet-1] slowness 1000000 1 true
 
 # neet-3
 effect give @a[tag=neet-3] speed 1000000 1 true

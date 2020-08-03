@@ -706,6 +706,8 @@ command /chara <text> <player>:
 
             execute console command "effect clear %arg-2%"
 
+            set arg-2's max health to 10
+            heal arg-2 by 100 hearts
             set slot 0 of arg-2's inventory to air
             set slot 1 of arg-2's inventory to air
             set slot 2 of arg-2's inventory to air
