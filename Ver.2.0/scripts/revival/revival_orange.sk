@@ -52,7 +52,12 @@ on inventory click:
             if {skill.%{team.orange::1}%} is "robot":
                 execute console command "chara robot %{team.orange::1}%"
             broadcast "&b[運営] &r%{team.orange::1}%が復活しました"
-            remove 1 cyan glazed terracotta from player
+            if player has cyan glazed terracotta named "&r&l&6復活の石":
+                remove 1 of cyan glazed terracotta named "&r&l&6復活の石" from player
+                stop
+            if player has cyan glazed terracotta:
+                remove 1 of cyan glazed terracotta from player
+                stop
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player
@@ -100,7 +105,12 @@ on inventory click:
             if {skill.%{team.orange::2}%} is "robot":
                 execute console command "chara robot %{team.orange::2}%"
             broadcast "&b[運営] &r%{team.orange::2}%が復活しました"
-            remove 1 cyan glazed terracotta from player
+            if player has cyan glazed terracotta named "&r&l&6復活の石":
+                remove 1 of cyan glazed terracotta named "&r&l&6復活の石" from player
+                stop
+            if player has cyan glazed terracotta:
+                remove 1 of cyan glazed terracotta from player
+                stop
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player
@@ -148,7 +158,12 @@ on inventory click:
             if {skill.%{team.orange::3}%} is "robot":
                 execute console command "chara robot %{team.orange::3}%"
             broadcast "&b[運営] &r%{team.orange::3}%が復活しました"
-            remove 1 cyan glazed terracotta from player
+            if player has cyan glazed terracotta named "&r&l&6復活の石":
+                remove 1 of cyan glazed terracotta named "&r&l&6復活の石" from player
+                stop
+            if player has cyan glazed terracotta:
+                remove 1 of cyan glazed terracotta from player
+                stop
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player

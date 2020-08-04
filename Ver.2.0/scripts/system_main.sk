@@ -605,8 +605,16 @@ on drop:
         stop
     if event-item is emerald:
         stop
+    if event-item is log:
+        stop
+    if event-item is planks:
+        stop
     else:
         cancel event
+
+on craft of cyan glazed terracotta:
+    cancel event
+    give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
 
 
 

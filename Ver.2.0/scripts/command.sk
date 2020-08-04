@@ -55,12 +55,79 @@ command /rirogu:
     trigger:
         if {status} is not 1:
             set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
+            set slot 7 of player's inventory to a ender chest named "&dキャラ選択"
             set slot 8 of player's inventory to a chest named "&dチーム選択"
             play sound "block.note_block.bell" to player
         else:
             broadcast "&b[システム] &r現在利用できません"
             play sound "block.note_block.banjo" to player
 
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# チームメンバーにTPします
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+command /tpa <player>:
+    description:ZE-NN-TYA
+    trigger:
+        if {team.which.%player%} is "red":
+            if {team.which.%arg-1%} is "red":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "blue":
+            if {team.which.%arg-1%} is "blue":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "yellow":
+            if {team.which.%arg-1%} is "yellow":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "green":
+            if {team.which.%arg-1%} is "green":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "orange":
+            if {team.which.%arg-1%} is "orange":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "purple":
+            if {team.which.%arg-1%} is "purple":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+            stop
+        if {team.which.%player%} is "gray":
+            if {team.which.%arg-1%} is "gray":
+                teleport player to arg-1
+                message "&b[システム] &r%arg-1% にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[システム] &r無効なプレイヤーです"
+        else:
+            play sound "block.note_block.banjo" to player
+            message "&b[システム] &rチームに所属してください"
 
 
 
