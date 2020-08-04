@@ -52,7 +52,7 @@ on inventory click:
             if {skill.%{team.red::1}%} is "robot":
                 execute console command "chara robot %{team.red::1}%"
             broadcast "&b[運営] &r%{team.red::1}%が復活しました"
-            remove 1 cyan glazed terracotta from player
+            clear player's tool by 1
         else:
             message "&b[システム] &rそのプレイヤーは復活させられません" to player
             play sound "block.note_block.banjo" to player

@@ -63,6 +63,10 @@ command /rirogu:
 
 
 
+
+
+
+
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 謎解きの回答を送信します。
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -245,6 +249,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.red::*}
             set {team.which.%arg-2%} to "red"
             add 1 to {qua.team.red}
@@ -286,6 +291,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.blue::*}
             set {team.which.%arg-2%} to "blue"
             add 1 to {qua.team.blue}
@@ -327,6 +333,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.yellow::*}
             set {team.which.%arg-2%} to "yellow"
             add 1 to {qua.team.yellow}
@@ -368,6 +375,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.green::*}
             set {team.which.%arg-2%} to "green"
             add 1 to {qua.team.green}
@@ -409,6 +417,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.orange::*}
             set {team.which.%arg-2%} to "orange"
             add 1 to {qua.team.orange}
@@ -450,6 +459,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% gray"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.purple::*}
             set {team.which.%arg-2%} to "purple"
             add 1 to {qua.team.purple}
@@ -491,6 +501,7 @@ command /join <text> <player>:
                 execute console command "scoreboard players reset %name of arg-2% red"
             if {admin.%arg-2%} is "true":
                 make arg-2 execute command "admin leave"
+            execute console command "chara clear %arg-2%"
             add arg-2 to {team.gray::*}
             set {team.which.%arg-2%} to "gray"
             add 1 to {qua.team.gray}
@@ -574,6 +585,50 @@ command /chara <text> <player>:
             set slot 6 of arg-2's current inventory to bone meal named "&lロボット"
             set slot 7 of arg-2's current inventory to gray dye named "&lニート"
             set {skill.openingchest.%arg-2%} to "true"
+
+        if arg-1 is "look":
+            open chest inventory with 6 row named "&0キャラクター一覧" to arg-2
+            set slot 1 of player's current inventory to red wool named "&lRed Team"
+            set slot 10 of player's current inventory to skull of {team.red::1} named "&l%{team.red::1}%" with lore "%{skill.%{team.red::1}%}%"
+            set slot 19 of player's current inventory to skull of {team.red::2} named "&l%{team.red::2}%" with lore "%{skill.%{team.red::2}%}%"
+            set slot 28 of player's current inventory to skull of {team.red::3} named "&l%{team.red::3}%" with lore "%{skill.%{team.red::3}%}%"
+            set slot 37 of player's current inventory to red wool named "&lRed Team"
+
+            set slot 2 of player's current inventory to blue wool named "&lBlue Team"
+            set slot 11 of player's current inventory to skull of {team.blue::1} named "&l%{team.blue::1}%" with lore "%{skill.%{team.blue::1}%}%"
+            set slot 20 of player's current inventory to skull of {team.blue::2} named "&l%{team.blue::2}%" with lore "%{skill.%{team.blue::2}%}%"
+            set slot 29 of player's current inventory to skull of {team.blue::3} named "&l%{team.blue::3}%" with lore "%{skill.%{team.blue::3}%}%"
+            set slot 38 of player's current inventory to blue wool named "&lBlue Team"
+
+            set slot 3 of player's current inventory to yellow wool named "&lYellow Team"
+            set slot 12 of player's current inventory to skull of {team.yellow::1} named "&l%{team.yellow::1}%" with lore "%{skill.%{team.yellow::1}%}%"
+            set slot 21 of player's current inventory to skull of {team.yellow::2} named "&l%{team.yellow::2}%" with lore "%{skill.%{team.yellow::2}%}%"
+            set slot 30 of player's current inventory to skull of {team.yellow::3} named "&l%{team.yellow::3}%" with lore "%{skill.%{team.yellow::3}%}%"
+            set slot 39 of player's current inventory to yellow wool named "&lYellow Team"
+
+            set slot 4 of player's current inventory to green wool named "&lGreen Team"
+            set slot 13 of player's current inventory to skull of {team.green::1} named "&l%{team.green::1}%" with lore "%{skill.%{team.green::1}%}%"
+            set slot 22 of player's current inventory to skull of {team.green::2} named "&l%{team.green::2}%" with lore "%{skill.%{team.green::2}%}%"
+            set slot 31 of player's current inventory to skull of {team.green::3} named "&l%{team.green::3}%" with lore "%{skill.%{team.green::3}%}%"
+            set slot 40 of player's current inventory to green wool named "&lGreen Team"
+
+            set slot 5 of player's current inventory to orange wool named "&lOrange Team"
+            set slot 14 of player's current inventory to skull of {team.orange::1} named "&l%{team.orange::1}%" with lore "%{skill.%{team.orange::1}%}%"
+            set slot 23 of player's current inventory to skull of {team.orange::2} named "&l%{team.orange::2}%" with lore "%{skill.%{team.orange::2}%}%"
+            set slot 32 of player's current inventory to skull of {team.orange::3} named "&l%{team.orange::3}%" with lore "%{skill.%{team.orange::3}%}%"
+            set slot 41 of player's current inventory to orange wool named "&lOrange Team"
+
+            set slot 6 of player's current inventory to purple wool named "&lPurple Team"
+            set slot 15 of player's current inventory to skull of {team.purple::1} named "&l%{team.purple::1}%" with lore "%{skill.%{team.purple::1}%}%"
+            set slot 24 of player's current inventory to skull of {team.purple::2} named "&l%{team.purple::2}%" with lore "%{skill.%{team.purple::2}%}%"
+            set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}%" with lore "%{skill.%{team.purple::3}%}%"
+            set slot 42 of player's current inventory to purple wool named "&lPurple Team"
+
+            set slot 7 of player's current inventory to gray wool named "&lGray Team"
+            set slot 16 of player's current inventory to skull of {team.gray::1} named "&l%{team.gray::1}%" with lore "%{skill.%{team.gray::1}%}%"
+            set slot 25 of player's current inventory to skull of {team.gray::2} named "&l%{team.gray::2}%" with lore "%{skill.%{team.gray::2}%}%"
+            set slot 34 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}%" with lore "%{skill.%{team.gray::3}%}%"
+            set slot 43 of player's current inventory to gray wool named "&lGray Team"
 
         if arg-1 is "clear":
             if {team.which.%arg-2%} is "red":

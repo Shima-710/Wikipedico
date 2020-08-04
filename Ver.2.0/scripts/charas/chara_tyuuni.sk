@@ -112,10 +112,18 @@ on damage:
 
 on inventory click:
     if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is chorus plant named "&r&5チャージは完了済みです":
+        if {status} is not 0:
+            stop
         cancel event

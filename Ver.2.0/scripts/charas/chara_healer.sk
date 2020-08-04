@@ -100,6 +100,10 @@ on right click with end crystal:
 
 on inventory click:
     if event-item is nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：60秒":
+        if {status} is not 0:
+            stop
         cancel event

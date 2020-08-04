@@ -88,6 +88,10 @@ on damage:
 
 on inventory click:
     if event-item is fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒":
+        if {status} is not 0:
+            stop
         cancel event

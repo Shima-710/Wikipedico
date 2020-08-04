@@ -48,7 +48,7 @@ on right click with snowball:
 on projectile hit:
     if {skill.%shooter%} is "robot":
         if {use.snowball.%shooter%} is 1:
-            create an explosion of force 2 at the projectile
+            create an explosion of force 1 at the projectile
         set {use.snowball.%shooter%} to 0
         set {lastuse.snowball} to shooter
 
@@ -106,6 +106,10 @@ every 1 tick in "world":
 
 on inventory click:
     if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒":
+        if {status} is not 0:
+            stop
         cancel event

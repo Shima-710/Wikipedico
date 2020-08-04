@@ -102,6 +102,10 @@ on right click with anvil:
 
 on inventory click:
     if event-item is glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：30秒":
+        if {status} is not 0:
+            stop
         cancel event

@@ -117,8 +117,9 @@ on inventory click:
                     heal player by 100 hearts
 
                 if {skill.%player%} is "neet":
-                    give stone sword to player
+                    give golden sword to player
                     execute console command "tag %player% add neet-3"
+                    set player's max health to 20
                     heal player by 100 hearts
 
                 if {skill.%player%} is "tank":

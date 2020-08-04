@@ -76,9 +76,18 @@ on right click with sunflower:
                 cancel event
 
 
+on damage:
+    if {skill.%victim%} is "ninja":
+        if damage cause is fall:
+            cancel event
+
 
 on inventory click:
     if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
+        if {status} is not 0:
+            stop
         cancel event
     if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
+        if {status} is not 0:
+            stop
         cancel event
