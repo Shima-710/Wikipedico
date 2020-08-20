@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:prismarine_shard"
+        },
+        {
+            "item": "minecraft:prismarine_shard"
+        },
+        {
+            "item": "minecraft:prismarine_shard"
+        },
+        {
+            "item": "minecraft:prismarine_shard"
+        }
+    ],
+    "result": {
+        "item": "minecraft:cyan_glazed_terracotta",
+        "count": 1
+    }
+}

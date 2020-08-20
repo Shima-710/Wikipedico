@@ -1,0 +1,115 @@
+# ===============================================================================================================================================================================================
+# Chara_robot
+# ロボット
+# ===============================================================================================================================================================================================
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 特徴
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキル
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 雪玉爆弾
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on right click with snowball:
+    if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
+        if {skill.%player%} is "robot":
+            if {status} is 0:
+                cancel event
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
+            if {cooltime.snowball.%player%} is 0:
+                set {use.snowball.%player%} to 1
+                set {cooltime.snowball.%player%} to 15
+                wait 3 tick
+                set slot 0 of player's inventory to barrier named "クールタイム"
+                loop {cooltime.snowball.%player%} times:
+                    send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.snowball.%player%} by 1
+                    if {cooltime.snowball.%player%} is 0:
+                        set slot 0 of player's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
+                        send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on projectile hit:
+    if {skill.%shooter%} is "robot":
+        if {use.snowball.%shooter%} is 1:
+            create an explosion of force 1 at the projectile
+        set {use.snowball.%shooter%} to 0
+        set {lastuse.snowball} to shooter
+
+on item spawn:
+    if event-item is snowball:
+        cancel event
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# グラップリングフック useは0で使用不可，1で使用可能
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on fishing:
+    if {skill.%player%} is "robot":
+        if {status} is 0:
+            cancel event
+            message "&b[システム] &rロビーでは使用できません" to player
+            stop
+        if {sidebar.%player%} is 2:
+            stop
+        if {cooltime.grappling.%player%} is 0:
+            if {use.grappling.%player%} is 0:
+                set {use.grappling.%player%} to 1
+                stop
+            if {use.grappling.%player%} is 1:
+                set {cooltime.grappling.%player%} to 10
+                set {use.grappling.%player%} to 0
+                push player upwards at speed 1
+                push player forwards at speed 3
+                loop {cooltime.grappling.%player%} times:
+                    send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.grappling.%player%} by 1
+                    if {cooltime.grappling.%player%} is 0:
+                        send action bar "クールタイム：%{cooltime.grappling.%player%}%" to player
+            else:
+                cancel event
+        else:
+            cancel event
+    else:
+        if {status} is 1:
+            cancel event
+
+on damage:
+    if {skill.%victim%} is "robot":
+        if damage cause is fall:
+            if {cooltime.grappling.%victim%} is not 0:
+                cancel event
+
+every 1 tick in "world":
+    loop all players:
+        if {skill.%loop-player%} is "robot":
+            if {use.grappling.%loop-player%} is 1:
+                if loop-player is not holding fishing rod:
+                    set {use.grappling.%loop-player%} to 0
+
+
+on inventory click:
+    if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
+        if {status} is not 0:
+            stop
+        cancel event
+    if event-item is fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒":
+        if {status} is not 0:
+            stop
+        cancel event
