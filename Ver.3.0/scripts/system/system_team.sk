@@ -1,4 +1,4 @@
-# =====================================================================================================================================================================================
+# ====================================================================================================================================================================================
 # System for Team
 # チェスト右クリ
 # ====================================================================================================================================================================================
@@ -8,7 +8,7 @@
 # チェスト右クリ
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click with chest:
-    if {status} is 0:
+    if {gameStatus} is 0:
         cancel event
         open chest inventory with 6 row named "&0チームを選んでください" to player
         set {team.openingchest.%player%} to "true"
@@ -28,7 +28,7 @@ on right click with chest:
         set slot 52 of player's current inventory to gray stained glass pane named " "
 
 every 1 tick:
-    if {status} is 0:
+    if {gameStatus} is 0:
         loop all players:
             if {team.openingchest.%loop-player%} is "true":
                 set slot 10 of loop-player's current inventory to red wool named "&lJoin Red Team" with lore "&5%{qua.team.red}%/3" and "&7%{team.red::1}%" and "&7%{team.red::2}%" and "&7%{team.red::3}%"
@@ -136,94 +136,59 @@ on inventory close:
 
 
 on inventory click:
-    if {status} is 0:
-        if event-item is red wool:
-            cancel event
-            if {qua.team.red} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+    if {gameStatus} is 0:
+        loop {Natto.qua.Team} times:
+            add 1 to {_loop}
+            set {_c} to {Natto.teamName::%{_loop}%}
+            if event-item is red wool:
+                cancel event
+                teamJoin(player,red)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join red %player%"
-
-        if event-item is blue wool:
-            cancel event
-            if {qua.team.blue} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is blue wool:
+                cancel event
+                teamJoin(player,blue)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join blue %player%"
-
-        if event-item is yellow wool:
-            cancel event
-            if {qua.team.yellow} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is yellow wool:
+                cancel event
+                teamJoin(player,yellow)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join yellow %player%"
-
-        if event-item is green wool:
-            cancel event
-            if {qua.team.green} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is green wool:
+                cancel event
+                teamJoin(player,green)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join green %player%"
-
-        if event-item is orange wool:
-            cancel event
-            if {qua.team.orange} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is orange wool:
+                cancel event
+                teamJoin(player,orange)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join orange %player%"
-
-        if event-item is purple wool:
-            cancel event
-            if {qua.team.purple} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is purple wool:
+                cancel event
+                teamJoin(player,purple)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join purple %player%"
-
-        if event-item is gray wool:
-            cancel event
-            if {qua.team.gray} is larger than 3:
-                play sound "block.note_block.banjo" to player
-                message "&b[システム] &rそのチームはすでに満員です！" to player
+            if event-item is gray wool:
+                cancel event
+                teamJoin(player,gray)
                 stop
-            else:
-                execute console command "chara clear %player%"
-                execute console command "/join gray %player%"
-
-
-        if event-item is red stained glass pane:
-            cancel event
-        if event-item is blue stained glass pane:
-            cancel event
-        if event-item is yellow stained glass pane:
-            cancel event
-        if event-item is green stained glass pane:
-            cancel event
-        if event-item is purple stained glass pane:
-            cancel event
-        if event-item is orange stained glass pane:
-            cancel event
-        if event-item is gray stained glass pane:
-            cancel event
-        if event-item is gray stained glass pane:
-            cancel event
+            if event-item is red stained glass pane:
+                cancel event
+                stop
+            if event-item is blue stained glass pane:
+                cancel event
+                stop
+            if event-item is yellow stained glass pane:
+                cancel event
+                stop
+            if event-item is green stained glass pane:
+                cancel event
+                stop
+            if event-item is orange stained glass pane:
+                cancel event
+                stop
+            if event-item is purple stained glass pane:
+                cancel event
+                stop
+            if event-item is gray stained glass pane:
+                cancel event
+                stop
         if event-item is player skull:
             cancel event
 
@@ -232,21 +197,6 @@ on inventory click:
 # チームチャット
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on chat:
-    if {status} is 1:
+    if {gameStatus} is 1:
         cancel event
-        if {team.which.%player%} is "red":
-            message "&7[Team Chat] <%player% -> &cRed> &r%message%" to {team.red::*}
-        if {team.which.%player%} is "blue":
-            message "&7[Team Chat] <%player% -> &9Blue> &r%message%" to {team.blue::*}
-        if {team.which.%player%} is "yellow":
-            message "&7[Team Chat] <%player% -> &eYellow> &r%message%" to {team.yellow::*}
-        if {team.which.%player%} is "green":
-            message "&7[Team Chat] <%player% -> &aGreen> &r%message%" to {team.green::*}
-        if {team.which.%player%} is "orange":
-            message "&7[Team Chat] <%player% -> &6Orange> &r%message%" to {team.orange::*}
-        if {team.which.%player%} is "purple":
-            message "&7[Team Chat] <%player% -> &dPurple> &r%message%" to {team.purple::*}
-        if {team.which.%player%} is "gray":
-            message "&7[Team Chat] <%player% -> &7Gray> &r%message%" to {team.gray::*}
-        if {admin.%player%} is "true":
-            broadcast "&7[Admin] &r<%player%> &r%message%"
+        teamChat(player,message)

@@ -1,14 +1,27 @@
-# ===============================================================================================================================================================================================
+# ====================================================================================================================================================================================
 # Chara_robot
-# ロボット
-# ===============================================================================================================================================================================================
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 特徴
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
+# ====================================================================================================================================================================================
+function chararobot(p:player):
+    set {cooltime.grappling.%{_p}%} to 0
+    set {cooltime.snowball.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.grappling}
+    set slot 1 of inventory of {_p} to {Natto.skill.snowball}
+    set slot 2 of inventory of {_p} to {Natto.weapon.robot.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add robot-1"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.robot.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""ロボット""&rを選択しました" to {_p}
 
 
 
@@ -19,7 +32,7 @@
 # 雪玉爆弾
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click with snowball:
-    if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
+    if event-item is {Natto.skill.snowball}:
         if {skill.%player%} is "robot":
             if {status} is 0:
                 cancel event
@@ -29,7 +42,7 @@ on right click with snowball:
                 stop
             if {cooltime.snowball.%player%} is 0:
                 set {use.snowball.%player%} to 1
-                set {cooltime.snowball.%player%} to 15
+                set {cooltime.snowball.%player%} to {Natto.cooltime.snowball}
                 wait 3 tick
                 set slot 0 of player's inventory to barrier named "クールタイム"
                 loop {cooltime.snowball.%player%} times:
@@ -37,7 +50,7 @@ on right click with snowball:
                     wait 1 seconds
                     reduce {cooltime.snowball.%player%} by 1
                     if {cooltime.snowball.%player%} is 0:
-                        set slot 0 of player's inventory to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒"
+                        set slot 0 of player's inventory to {Natto.skill.snowball}
                         send action bar "クールタイム：%{cooltime.snowball.%player%}%" to player
             else:
                 cancel event
@@ -48,7 +61,7 @@ on right click with snowball:
 on projectile hit:
     if {skill.%shooter%} is "robot":
         if {use.snowball.%shooter%} is 1:
-            create an explosion of force 1 at the projectile
+            create an explosion of force {Natto.skill.snowball.power} at the projectile
         set {use.snowball.%shooter%} to 0
         set {lastuse.snowball} to shooter
 
@@ -72,7 +85,7 @@ on fishing:
                 set {use.grappling.%player%} to 1
                 stop
             if {use.grappling.%player%} is 1:
-                set {cooltime.grappling.%player%} to 10
+                set {cooltime.grappling.%player%} to {Natto.cooltime.grappling}
                 set {use.grappling.%player%} to 0
                 push player upwards at speed 1
                 push player forwards at speed 3
@@ -105,11 +118,11 @@ every 1 tick in "world":
 
 
 on inventory click:
-    if event-item is snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：15秒":
+    if event-item is {Natto.skill.snowball}:
         if {status} is not 0:
             stop
         cancel event
-    if event-item is fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：10秒":
+    if event-item is {Natto.skill.grappling}:
         if {status} is not 0:
             stop
         cancel event

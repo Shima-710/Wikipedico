@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 販売価格・販売量 ここで変えると全て一括で変更されます
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-on server start:
+on skript load:
 
     set {price.levelup.to2} to 64
     set {price.levelup.to3} to 64
@@ -41,41 +41,11 @@ on inventory click:
         if {level.%player%} is 1:
             if player has {price.levelup.to2} of emerald:
                 set {level.%player%} to 2
-
-                if {skill.%player%} is "ninja":
-                    give stone sword to player
-                    execute console command "tag %player% add ninja-2"
-                    set player's max health to 7
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "gorilla":
-                    give golden sword to player
-                    execute console command "tag %player% add gorilla-2"
-                    set player's max health to 15
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "healer":
-                    give stone sword to player
-                    execute console command "tag %player% add healer-2"
-                    set player's max health to 12
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "neet":
-                    give stone sword to player
-                    execute console command "tag %player% add neet-2"
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "tank":
-                    give stone sword to player
-                    execute console command "tag %player% add tank-2"
-                    set player's max health to 30
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "robot":
-                    give iron sword to player
-                    execute console command "tag %player% add robot-2"
-                    set player's max health to 15
-                    heal player by 100 hearts
+                set {_cn} to {skill.%player%}
+                give {Natto.weapon.%{_cn}%.2} to player
+                execute console command "tag %player% add %{_cn}%-2"
+                set player's max health to {Natto.maxHealth.%{_cn}%.2}
+                heal player by 100 hearts
                 remove {price.levelup.to2} of emerald from player
                 play sound "entity.player.levelup" to player
                 message "&b[商人] &rレベルをあげてやったぞ！" to player
@@ -97,42 +67,11 @@ on inventory click:
         if {level.%player%} is 2:
             if player has {price.levelup.to3} of emerald:
                 set {level.%player%} to 3
-
-                if {skill.%player%} is "ninja":
-                    give iron sword to player
-                    execute console command "tag %player% add ninja-3"
-                    set player's max health to 10
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "gorilla":
-                    give diamond sword to player
-                    execute console command "tag %player% add gorilla-3"
-                    set player's max health to 20
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "healer":
-                    give stone sword to player
-                    execute console command "tag %player% add healer-3"
-                    set player's max health to 15
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "neet":
-                    give golden sword to player
-                    execute console command "tag %player% add neet-3"
-                    set player's max health to 20
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "tank":
-                    give iron sword to player
-                    execute console command "tag %player% add tank-3"
-                    set player's max health to 40
-                    heal player by 100 hearts
-
-                if {skill.%player%} is "robot":
-                    give golden sword to player
-                    execute console command "tag %player% add robot-3"
-                    set player's max health to 20
-                    heal player by 100 hearts
+                set {_cn} to {skill.%player%}
+                give {Natto.weapon.%{_cn}%.3} to player
+                execute console command "tag %player% add %{_cn}%-3"
+                set player's max health to {Natto.maxHealth.%{_cn}%.3}
+                heal player by 100 hearts
 
                 remove {price.levelup.to3} of emerald from player
                 play sound "entity.player.levelup" to player

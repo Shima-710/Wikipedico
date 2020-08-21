@@ -1,0 +1,436 @@
+function resetTeamVariables():
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        set {_c} to {Natto.teamName::%{_loop}%}
+        delete {team.%{_c}%::*}
+        delete {admin::*}
+        set {qua.surviveTeam.%{_c}%} to 0
+        set {teamStatus.%{_c}%} to "death"
+        set {qua.player.team.%{_c}%} to 0
+        set {qua.surviver.team.%{_c}%} to 0
+        set {teamRank.%{_loop}%} to 0
+
+function resetPlayerVariables(p: player):
+    set {playerJoined.%{_p}%} to false
+    set {playerRank.%{_p}%} to 0
+    set {kills.%{_p}%} to 0
+    set {playerStatus.%{_p}%} to "alive"
+    set {admin.%{_p}%} to false
+    set {spectator.%{_p}%} to false
+
+function resetRankingVariables():
+    loop {qua.player} times:
+        add 1 to {_loop}
+        clear {soloRanking.name.%{_loop}%}
+        clear {soloRanking.kills.%{_loop}%}
+    delete {killRanking::*}
+    delete {killRanking.sorted::*}
+
+function resetGameVariables():
+    set {gameStatus} to 0
+    set {mode.team} to false
+    set {qua.playTeam} to 0
+    set {qua.surviveTeam} to 0
+    # set {qua.online} to 0
+    set {qua.player} to 0
+    set {qua.surviver} to 0
+    set {qua.admin} to 0
+    set {qua.spectator} to 0
+
+
+function gameStart():
+    if {mode.team} is true:
+        loop all players:
+            if {playerJoined.%loop-player%} is false:
+                broadcast "&c&l>Error &rチームに所属してないプレイヤーがいるためゲームを開始できませんでした"
+                stop
+        loop {Natto.qua.Team} times:
+            add 1 to {_loop}
+            applyTeam({Natto.teamName::%{_loop}%})
+
+        setQuas()
+        refreshTeamSidebar()
+
+    else:
+        setQuas()
+
+    broadcast "&b&l>Game &r%{Natto.prepareTime}%秒後にゲームを開始します..."
+    execute console command "scoreboard players set on_game on_game 1"
+    execute console command "function shimashima:01_goodbye_item"
+    execute console command "function shimashima:01_toggle_nametag"
+    execute console command "effect give @a[team=!admin] glowing %{Natto.prepareTime}% 255 true"
+    teleport all players to {Natto.locaSky}
+    set {_loop} to {Natto.prepareTime}
+    loop {Natto.prepareTime} times:
+        loop all players:
+            set loop-player's level to {_loop}
+        if {_loop} is 3:
+            execute console command "function shimashima:cd_3"
+            play sound "block.note_block.harp" to all players
+        if {_loop} is 2:
+            execute console command "function shimashima:cd_2"
+            play sound "block.note_block.harp" to all players
+        if {_loop} is 1:
+            execute console command "function shimashima:cd_1"
+            play sound "block.note_block.harp" to all players
+        if {_loop} is 3:
+            execute console command "function shimashima:01_game_start"
+            play sound "entity.enderman.teleport" to all players
+        reduce {_loop} by 1
+        wait 1 second
+    set {gameStatus} to 1
+
+    if {mode.daruma} is true:
+        set {daruma.count} to true
+
+
+function gameEnd():
+    play sound "ui.toast.challenge_complete" with volume 0.8 to all players
+    execute console command "function shimashima:01_game_end"
+    execute console command "spawnpoint @a %{Natto.locaLobbySpawn}%"
+
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}%"
+        execute console command "scoreboard players reset 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}%"
+
+    set {gameStatus} to 2
+    if {mode.daruma} is true:
+        set {daruma.count} to false
+
+    wait 12 seconds
+    broadcast "&b&l>Game &r試合結果を集計しています..."
+    if {mdoe.team} is true:
+        calTeamRanking()
+    else:
+        calSoloRanking()
+    wait 4 seconds
+    broadcast "&b&l>Game &rキル数ランキングを集計しています..."
+    wait 3 seconds
+    calKillRanking()
+    resetRankingVariables()
+    loop all players:
+        if {admin.%loop-player%} is true:
+            adminLeave(loop-player)
+
+
+
+function winTeam(c: object):
+    set {teamStatus.%{_c}%} to "death"
+    set {teamRank.1} to {_c}
+    execute console command "scoreboard players set 順位：%{teamRank.%{qua.surviveTeam}%}%位 %{_c}% -3"
+    send title "&e&l勝利 &8| &r[%{_c}% team]" to all players
+    gameEnd()
+
+function winPlayer(p: player):
+    set {playerStatus.%{_p}%} to "death"
+    set {playerRank.%{_p}%} to 1
+    send title "&e&l勝利 &8| &6%{_p}%" to all players
+    gameEnd()
+
+
+
+function adminJoin(p: player):
+    teamLeave({_p})
+    execute console command "op %{_p}%"
+    set gamemode of {_p} to creative
+    make {_p} execute command "/team join admin %{_p}%"
+    make {_p} execute command "/book"
+    execute console command "lp user %{_p}% parent add skript.admin"
+    set {admin.%{_p}%} to "true"
+    add {_p} to {admin::*}
+    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+    add 1 to {qua.admin}
+    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+    set {playerJoined.%{_p}%} to "admin"
+    set {playerStatus.%{_p}%} to "admin"
+
+function adminLeave(p: player):
+    teamLeave({_p})
+    set gamemode of {_p} to adventure
+    make {_p} execute command "/team leave %{_p}%"
+    make {_p} execute command "/effect clear %{_p}% minecraft:night_vision"
+    set {admin.%{_p}%} to "false"
+    remove {_p} from {admin::*}
+    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
+    reduce {qua.admin} by 1
+    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+    set {playerJoined.%{_p}%} to "false"
+    set {playerStatus.%{_p}%} to "alive"
+
+function teamJoin(p: player, c: object):
+    if {qua.player.team.%{_c}%} is larger than {Natto.teamMaxPlayer}:
+        message "&c&l>Error すでに満員です" to {_p}
+        stop
+    else:
+        teamLeave({_p})
+        add {_p} to {team.%{_c}%::*}
+        add 1 to {qua.player.team.%{_c}%}
+        add 1 to {qua.surviver.team.%{_c}%}
+        set {playerJoined.%{_p}%} to {_c}
+        execute console command "chara clear %{_p}%"
+        execute console command "scoreboard players set %name of {_p}% %{_c}% 1"
+        execute console command "team join %{_c}% %{_p}%"
+        play sound "entity.player.levelup" to {_p}
+        message "&b&l>System &r%{_c}%チームに入りました！" to {_p}
+
+function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカラー(old color)
+    if {playerJoined.%{_p}%} is false:
+        stop
+    else:
+        set {_oc} to {playerJoined.%{_p}%}
+        remove {_p} from {team.%{_oc}%::*}
+        reduce {qua.player.team.%{_oc}%} by 1
+        reduce {qua.surviver.team.%{_c}%} by 1
+        set {playerJoined.%{_p}%} to false
+
+function existTeam(c: object) :: boolean:
+    if amount of {team.%{_c}%::*} is 0:
+        return false
+    else:
+        return true
+
+function applyTeam(c: object):
+    if existTeam({_c}) is true:
+        add 1 to {qua.playTeam}
+        add 1 to {qua.surviveTeam}
+        set {teamStatus.%{_c}%} to "alive"
+    else:
+        set {teamStatus.%{_c}%} to "death"
+
+
+function teamChat(p:player, t: text):
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    message "&7[Team Chat] <%{_p}% -> %{_c}%> &r%{_t}%" to {team.%{_c}%::*} and {admin::*} and {spectator::*}
+
+
+function calTeamRanking(): # %{teamrank.%{_loop}%}%の中身は色
+    loop all players:
+        add {kills.%loop-player%} to {teamKills.%{playerJoined.%loop-player%}%}
+    broadcast "&7====================================================="
+    broadcast "&b&l[試合結果]"
+    set {_loop} to {qua.playTeam}
+    loop {qua.playTeam} times:
+        broadcast "&6%{_loop}%位  &8-- &r[%{teamRank.%{_loop}%}%] : %{team.%{teamRank.%{_loop}%}%::*}% &8-- &6計%{teamKills.%{teamRank.%{_loop}%}%}%kill"
+        reduce {_loop} by 1
+    broadcast "&7====================================================="
+
+function calSoloRanking():
+    loop all players:
+        set {soloRanking.name.%{playerRank.%loop-player%}%} to name of loop-player
+        set {soloRanking.kills.%{playerRank.%loop-player%}%} to {kills.%loop-player%}
+    broadcast "&7====================================================="
+    broadcast "&b&l[試合結果]"
+    loop {qua.player} times:
+        add 1 to {_loop}
+        broadcast "&6%{_loop}%位  &8--%{soloRanking.name.%{_loop}%}% &r &8-- &6計%{soloRanking.kills.%{_loop}%}%kill"
+    broadcast "&7====================================================="
+
+function calKillRanking():
+    loop all players:
+        add "&6%{kills.%loop-player%}%kill &8-- &6%name of loop-player%" to {killRanking::*}
+    set {killRanking.sorted::*} to sorted {killRanking::*}
+    broadcast "&7====================================================="
+    broadcast "&b&l[個人別キルランキング] &r<上位%{Natto.KillRankingTimes}%名>"
+    set {_loop.down} to amount of {killRanking.sorted::*}
+    set {_loop.up} to 1
+    loop {Natto.KillRankingTimes} times:
+        broadcast "&6%{_loop.up}%位 &8-- %{killranking.sorted::%{_loop.down}%}%"
+        reduce {_loop.down} by 1
+        add 1 to {_loop.up}
+    broadcast "&7====================================================="
+
+
+function deathPlayer(p: player):
+    set {playerStatus.%{_p}%} to "death"
+    set gamemode of {_p} to spectator
+    execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
+    if {mode.team} is false:
+        set {playerRank.%{_p}%} to {qua.surviver}
+    else:
+        if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    reduce {qua.surviver.team.%{_c}%} by 1
+    if {qua.surviver.team.%{_c}%} is 0:
+        deathTeam({_c})
+    reduce {qua.surviver} by 1
+    refreshTeamSidebar()
+
+function deathTeam(c: object):
+    set {teamStatus.%{_c}%} to "death"
+    set {teamRank.%{qua.surviveTeam}%} to {_c}
+    execute console command "scoreboard players set 順位：%{teamRank.%{qua.surviveTeam}%}%位 %{_c}% -3"
+    reduce {qua.surviveTeam} by 1
+    wait 1 tick
+    broadcast "&b&l>Game %{_c}% チームが全滅しました"
+
+
+function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    if {playerStatus.%{_p}%} is "death":
+        if {mode.team} is true:
+            if {teamStatus.%{_c}%} is "death":
+                message "&c&l>Error &rすでに全滅したチームのプレイヤーは復活させられません" to {_pp}
+        add 1 to {qua.surviver}
+        add 1 to {qua.surviver.team.%{_p}%}
+        reset {playerRank.%{_p}%}
+        set gamemode of {_p} to survival
+        teleport {_p} to {_pp}
+        play sound "entity.player.levelup" to {_p} and {_pp}
+        refreshTeamSidebar()
+    else:
+        message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
+
+
+function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる人
+    if {playerJoined.%{_pp}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_pp}%}
+    loop {Natto.teamMaxPlayer} times:
+        add 1 to {_loop}
+        set slot 3 of current inventory of {_p} to skull of {team.%{_c}%::%{_loop}%} named "&l%{team.%{_c}%::%{_loop}%}% &rを復活"
+
+
+
+function setQuas():
+    set {qua.online} to online player count
+    set {qua.player} to {qua.online}
+    reduce {qua.player} by {qua.admin}
+    reduce {qua.player} by {qua.spectator}
+    set {qua.surviver} to {qua.player}
+
+function refreshTeamSidebar():
+    execute console command "scoreboard players reset {qua.player}：%{qua.player}%人 admin"
+    execute console command "scoreboard players reset {qua.playTeam}：%{qua.playTeam}%チーム admin"
+    execute console command "scoreboard players reset {qua.surviver}：%{qua.surviver}%人 admin"
+    execute console command "scoreboard players reset {qua.surviveTeam}：%{qua.surviveTeam}%チーム admin"
+
+    execute console command "scoreboard players set {qua.player}：%{qua.player}%人 admin -2"
+    execute console command "scoreboard players set {qua.team}：%{qua.team}%チーム admin -3"
+    execute console command "scoreboard players set {surviver}：%{qua.surviver}%人 admin -4"
+    execute console command "scoreboard players set {qua.surviveTeam}：%{qua.surviveTeam}%チーム admin -5"
+
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}%"
+        execute console command "scoreboard players reset 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}%"
+        execute console command "scoreboard players set 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}% -1"
+        execute console command "scoreboard players set 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}% -2"
+
+
+
+function openCharaSelect(p: player):
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    open chest inventory with 2 row named "&0キャラクターを選んでください" to {_p}
+    set slot 1 of current inventory of {_p} to red dye named "&l忍者"
+    set slot 2 of current inventory of {_p} to lapis lazuli named "&lゴリラ"
+    set slot 3 of current inventory of {_p} to yellow dye named "&lヒーラー"
+    set slot 4 of current inventory of {_p} to green dye named "&l厨二病"
+    set slot 5 of current inventory of {_p} to orange dye named "&lタンク"
+    set slot 6 of current inventory of {_p} to bone meal named "&lロボット"
+    set slot 7 of current inventory of {_p} to gray dye named "&lニート"
+    set {_loop.slot} to 10
+    loop {Natto.qua.Chara} times:
+        add 1 to {_loop}
+        if {skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%} is set:
+            set slot {_loop.slot} of current inventory of {_p} to skull of {skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%} named "&r%{skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%}%"
+        else:
+            set slot {_loop.slot} of current inventory of {_p} to air
+        add 1 to {_loop.slot}
+
+function selectChara(p: player, cn: object): # cn=chara name
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    if {skill.%{_p}%} is not false:
+        set {_ocn} to {skill.%{_p}%}
+        resetChara({_p},{_ocn})
+    if {skillSelected.%{_c}%.%{_cn}%} is set:
+        play sound "block.note_block.banjo" to {_p}
+        message "&c&l>Error &rそのキャラクターはすでに使われています" to {_p}
+        stop
+    else:
+        setChara({_p},{_cn})
+
+function setChara(p: player, cn: object):
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    set {skillSelected.%{_c}%.%{_cn}%} to {_p}
+    set {skill.%{_p}%} to {_cn}
+    if {_cn} is {Natto.charaName::1}:
+        charaninja({_p})
+    if {_cn} is {Natto.charaName::2}:
+        charagorilla({_p})
+    if {_cn} is {Natto.charaName::3}:
+        charahealer({_p})
+    if {_cn} is {Natto.charaName::5}:
+        charatyuuni({_p})
+    if {_cn} is {Natto.charaName::6}:
+        charatank({_p})
+    if {_cn} is {Natto.charaName::7}:
+        chararobot({_p})
+    if {_cn} is {Natto.charaName::4}:
+        charaneet({_p})
+
+
+function resetChara(p: player, skill: object):
+    if {playerJoined.%{_p}%} is false:
+        stop
+    set {_c} to {playerJoined.%{_p}%}
+    clear {skill.selected.%{_cn}%.%{_c}%}
+    set {skill.%{_p}%} to false
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+
+    execute console command "tag %{_p}% remove ninja-2"
+    execute console command "tag %{_p}% remove gorilla-2"
+    execute console command "tag %{_p}% remove healer-2"
+    execute console command "tag %{_p}% remove neet-2"
+    execute console command "tag %{_p}% remove tank-2"
+    execute console command "tag %{_p}% remove robot-2"
+
+    execute console command "tag %{_p}% remove ninja-3"
+    execute console command "tag %{_p}% remove gorilla-3"
+    execute console command "tag %{_p}% remove healer-3"
+    execute console command "tag %{_p}% remove neet-3"
+    execute console command "tag %{_p}% remove tank-3"
+    execute console command "tag %{_p}% remove robot-3"
+
+    execute console command "effect clear %{_p}%"
+
+    set max health of {_p} to 10
+    heal {_p} by 100 hearts
+    set slot 0 of inventory of {_p} to air
+    set slot 1 of inventory of {_p} to air
+    set slot 2 of inventory of {_p} to air
+
+
+
+
+function debugMode(b: boolean):
+    if {_b} is true:
+        execute console command "gamerule sendCommandFeedback true"
+        execute console command "gamerule reducedDebugInfo false"
+
+
+
+function reloadConfig():
+    delete {Natto.teamName::*}
+    delete {Natto.charaName::*}
+    gameConfig()
+    set {Natto.qua.Team} to amount of {Natto.teamName::*}
+    set {Natto.qua.Chara} to amount of {Natto.charaName::*}

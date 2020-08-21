@@ -1,14 +1,27 @@
-# ===============================================================================================================================================================================================
-# Chara_ninja
-# 忍者
-# ===============================================================================================================================================================================================
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 特徴
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
+# ====================================================================================================================================================================================
+# Chara_gorrila
+# ====================================================================================================================================================================================
+function charagorilla(p:player):
+    set {cooltime.explo.%{_p}%} to 0
+    set {cooltime.drumming.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.explo}
+    set slot 1 of inventory of {_p} to {Natto.skill.drumming}
+    set slot 2 of inventory of {_p} to {Natto.weapon.gorilla.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add gorilla-1"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.gorilla.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""ゴリラ""&rを選択しました" to {_p}
 
 
 
@@ -17,7 +30,7 @@
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 on right click with fire charge:
-    if event-item is fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒":
+    if event-item is {Natto.skill.explo}:
         cancel event
         if {skill.%player%} is "gorilla":
             if {status} is 0:
@@ -26,7 +39,7 @@ on right click with fire charge:
             if {sidebar.%player%} is 2:
                 stop
             if {cooltime.explo.%player%} is 0:
-                set {cooltime.explo.%player%} to 30
+                set {cooltime.explo.%player%} to {Natto.cooltime.explo}
                 create a safe explosion of force 3 at player
                 wait 3 ticks
                 set slot 0 of player's inventory to barrier named "クールタイム"
@@ -35,7 +48,7 @@ on right click with fire charge:
                     wait 1 seconds
                     reduce {cooltime.explo.%player%} by 1
                     if {cooltime.explo.%player%} is 0:
-                        set slot 0 of player's inventory to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒"
+                        set slot 0 of player's inventory to {Natto.skill.explo}
                         send action bar "クールタイム：%{cooltime.explo.%player%}%" to player
             else:
                 cancel event
@@ -44,18 +57,18 @@ on right click with fire charge:
                 cancel event
 
 
-
+# FIXME:これクールタイムなくない？
 every 1 second:
     loop all players:
         if {skill.%loop-player%} is "gorilla":
-            if loop-player's tool is composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒":
+            if loop-player's tool is {Natto.skill.drumming}:
                 if loop-player is sneaking:
                     if {status} is 0:
                         message "&b[システム] &rロビーでは使用できません" to loop-player
                         stop
                     if {sidebar.%loop-player%} is 2:
                         stop
-                    set {during.druming.%loop-player%} to "true"
+                    set {during.drumming.%loop-player%} to "true"
                     add 1 to {skill.gorilla.drumming.%loop-player%}
                     send action bar "ドラミング：%{skill.gorilla.drumming.%loop-player%}%" to loop-player
                     if {skill.gorilla.drumming.%loop-player%} is 10:
@@ -69,15 +82,15 @@ every 1 second:
                         message "&b[ゴリラ] &rドラミングの効果が終了しました" to loop-player
                         stop
                 else:
-                    set {during.druming.%loop-player%} to "false"
+                    set {during.drumming.%loop-player%} to "false"
                     set {skill.gorilla.drumming.%loop-player%} to 0
             else:
-                set {during.druming.%loop-player%} to "false"
+                set {during.drumming.%loop-player%} to "false"
                 set {skill.gorilla.drumming.%loop-player%} to 0
 
 on any movement:
     if {skill.%player%} is "gorilla":
-        if {during.druming.%player%} is "true":
+        if {during.drumming.%player%} is "true":
             cancel event
 
 on damage:
@@ -87,11 +100,11 @@ on damage:
             damage victim by 5 hearts
 
 on inventory click:
-    if event-item is fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：30秒":
+    if event-item is {Natto.skill.explo}:
         if {status} is not 0:
             stop
         cancel event
-    if event-item is composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒":
+    if event-item is {Natto.skill.drumming}:
         if {status} is not 0:
             stop
         cancel event

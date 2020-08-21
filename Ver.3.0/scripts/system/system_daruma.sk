@@ -8,7 +8,7 @@
 # 動いたら食らうよ
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on any movement:
-    if {status} is 1:
+    if {gameStatus} is 1:
         if {mode.daruma} is "true":
             if {daruma.da} is "true":
                 damage player by 3 hearts
@@ -19,7 +19,7 @@ on any movement:
 # 「だるまさんがころんだ」
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 every 52 seconds:
-    if {status} is 1:
+    if {gameStatus} is 1:
         if {mode.daruma} is "true":
             if {daruma.count} is "true":
                 send subtitle "だ" to all players

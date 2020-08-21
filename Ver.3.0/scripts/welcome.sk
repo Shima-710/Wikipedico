@@ -1,0 +1,61 @@
+on skript load:
+    broadcast "&6&l>Plugin &2Reloading..."
+    set {defineloca} to false
+    reloadConfig()
+    resetTeamVariables()
+    resetRankingVariables()
+    resetGameVariables()
+    debugMode({debugMode})
+    loop all players:
+        resetPlayerVariables(loop-player)
+        teamLeave(loop-player)
+
+    wait 1 tick
+    execute console command "natto---teamgoodbye"
+    wait 1 tick
+    execute console command "function shimashima:00_load"
+    wait 10 ticks
+    execute console command "scoreboard players set ============== admin 0"
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        set {_c} to {Natto.teamName::%{_loop}%}
+        execute console command "scoreboard players set ============== %{_c}% 0"
+    execute console command "scoreboard players set online：%online player count%人 admin -1"
+    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+    broadcast ">Plugin &2Reloaded Successfully!"
+
+on first join:
+    set the join message to "&6>First Join! &e%player% joined the game"
+    add 1 to {joinCount}
+
+on join:
+    message " " to player
+    message "&l&7[注意事項]" to player
+    message " " to player
+    message "&7 ・軽量化MOD以外のMODの導入は認められていません。" to player
+    message "&7 ・ゲーム開始前に確実にルールを把握してください。" to player
+    message " " to player
+    message "&7 ルール： （クリックで開きます）&r&n&7https://www.notion.so/Wikipedico-9aeaf0fdd14d45e6b3e08991e895d430" to player
+    message " " to player
+    message "&l&7[ver.]" to player
+    message "&7 %{ver}%" to player
+    message " " to player
+    if {gameStatus} is 0:
+        if {admin.%player%} is true:
+            adminLeave(player)
+            message "&l&a>System &radminから脱退しました" to player
+        resetPlayerVariables(player)
+    if {gameStatus} is 1:
+        if {playerStatus.%player%} is false:
+            message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
+        if {playerStatus.%player%} is "death":
+            message "&l&a>Game &rステータスが死亡に設定されました" to player
+    if {gameStatus} is 2:
+
+
+on quit:
+    if {gameStatus} is 0:
+        teamLeave(player)
+    if {gameStatus} is 1:
+        if {playerStatus.%player%} is "alive":
+            deathPlayer(player)

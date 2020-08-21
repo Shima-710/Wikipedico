@@ -1,0 +1,54 @@
+# ====================================================================================================================================================================================
+# System for Skill
+#
+# ====================================================================================================================================================================================
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# erabuyo
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+every 1 tick in "world":
+    if {status} is 0:
+        loop all players:
+            if {skill.openingchest.%loop-player%} is "true":
+                openCharaSelect(loop-player)
+
+on inventory close:
+    set {skill.openingchest.%player%} to "false"
+
+on right click with ender chest:
+    if {status} is 0:
+        if {playerJoined.%player%} is false:
+            message "&c&l>Error &rチームに入ってください" to player
+        else:
+            execute console command "/chara choise %player%"
+
+on inventory click:
+    if {status} is 0:
+        if event-item is red dye:
+            cancel event
+            selectChara(player,{Natto.charaName::1})
+
+        if event-item is lapis lazuli:
+            cancel event
+            selectChara(player,{Natto.charaName::2})
+
+        if event-item is yellow dye:
+            cancel event
+            selectChara(player,{Natto.charaName::3})
+
+        if event-item is green dye:
+            cancel event
+            selectChara(player,{Natto.charaName::5})
+
+        if event-item is orange dye:
+            cancel event
+            selectChara(player,{Natto.charaName::6})
+
+        if event-item is bone meal:
+            cancel event
+            selectChara(player,{Natto.charaName::7})
+
+        if event-item is gray dye:
+            cancel event
+            selectChara(player,{Natto.charaName::4})

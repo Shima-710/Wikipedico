@@ -1,14 +1,27 @@
-# ===============================================================================================================================================================================================
+# ====================================================================================================================================================================================
 # Chara_tyuuni
-# 厨二病
-# ===============================================================================================================================================================================================
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 特徴
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
+# ====================================================================================================================================================================================
+function charatyuuni(p:player):
+    set {cooltime.charge.%{_p}%} to 0
+    set {cooltime.migite.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.charge}
+    set slot 1 of inventory of {_p} to {Natto.skill.migite.mae}
+    set slot 2 of inventory of {_p} to {Natto.weapon.tyuuni.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add tyuuni-bef"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.tyuuni.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""厨二病""&rを選択しました" to {_p}
 
 
 
@@ -18,7 +31,7 @@
 every 1 second in "world":
     loop all players:
         if {skill.%loop-player%} is "tyuuni":
-            if loop-player's tool is chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒":
+            if loop-player's tool is {Natto.skill.charge}:
                 if loop-player is sneaking:
                     if {status} is 0:
                         message "&b[システム] &rロビーでは使用できません" to loop-player
@@ -36,15 +49,15 @@ every 1 second in "world":
                             play sound "entity.player.levelup" to loop-player
                             execute console command "tag %loop-player% remove tyuuni-bef"
                             execute console command "tag %loop-player% add tyuuni-aft"
-                            set loop-player's max health to 30
+                            set loop-player's max health to {Natto.maxHealth.tyuuni.2}
                             heal loop-player by 100 hearts
-                            give diamond sword to loop-player
+                            give {Natto.weapon.tyuuni.2} to loop-player
                             set {tyuuni.kakusei.%loop-player%} to "true"
                             set slot 0 of loop-player's inventory to chorus plant named "&r&5チャージは完了済みです"
-                            set slot 1 of loop-player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+                            set slot 1 of loop-player's inventory to {Natto.skill.migite.ato}
                             stop
                         play sound "block.note_block.bell" to loop-player
-                        set {cooltime.charge.%loop-player%} to 10
+                        set {cooltime.charge.%loop-player%} to {Natto.cooltime.charge}
                         set slot 0 of loop-player's inventory to barrier named "クールタイム"
                         wait 1 second
                         loop {cooltime.charge.%loop-player%} times:
@@ -52,7 +65,7 @@ every 1 second in "world":
                             wait 1 seconds
                             reduce {cooltime.charge.%loop-player%} by 1
                             if {cooltime.charge.%loop-player%} is 0:
-                                set slot 0 of loop-player's inventory to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒"
+                                set slot 0 of loop-player's inventory to {Natto.skill.migite}
                                 send action bar "クールタイム：%{cooltime.charge.%loop-player%}%" to loop-player
                                 stop
                 else:
@@ -60,27 +73,27 @@ every 1 second in "world":
                     set {skill.tyuuni.charge.%loop-player%} to 0
 
 on right click with dragon head:
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.mae}:
         cancel event
         if {sidebar.%player%} is 2:
             stop
         message "&b[厨二病] &r左クリックで殴って使用してください" to player
         message "&b[厨二病] &rチャージが完了していません" to player
 
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.ato}:
         cancel event
         if {sidebar.%player%} is 2:
             stop
         message "&b[厨二病] &r左クリックで殴って使用してください" to player
 
 on left click with dragon head:
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.mae}:
         cancel event
         if {sidebar.%player%} is 2:
             stop
         message "&b[厨二病] &rチャージが完了していません" to player
 
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.ato}:
         cancel event
         if {skill.%player%} is "tyuuni":
             if {status} is 0:
@@ -89,14 +102,14 @@ on left click with dragon head:
             if {sidebar.%player%} is 2:
                 stop
             if {cooltime.migite.%player%} is 0:
-                set {cooltime.migite.%player%} to 100
+                set {cooltime.migite.%player%} to {Natto.cooltime.migite}
                 set slot 1 of player's inventory to barrier named "クールタイム"
                 loop {cooltime.migite.%player%} times:
                     send action bar "クールタイム：%{cooltime.migite.%player%}%" to player
                     wait 1 seconds
                     reduce {cooltime.migite.%player%} by 1
                     if {cooltime.migite.%player%} is 0:
-                        set slot 1 of player's inventory to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒"
+                        set slot 1 of player's inventory to {Natto.skill.migite.ato}
                         send action bar "クールタイム：%{cooltime.migite.%player%}%" to player
             else:
                 cancel event
@@ -107,19 +120,19 @@ on left click with dragon head:
 on damage:
     if {skill.%attacker%} is "tyuuni":
         if {tyuuni.kakusei.%attacker%} is "true":
-            if attacker is holding dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+            if attacker is holding {Natto.skill.migite.ato}:
                 damage victim by 100 hearts
 
 on inventory click:
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.mae}:
         if {status} is not 0:
             stop
         cancel event
-    if event-item is dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：100秒":
+    if event-item is {Natto.skill.migite.ato}:
         if {status} is not 0:
             stop
         cancel event
-    if event-item is chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：10秒":
+    if event-item is {Natto.skill.charge}:
         if {status} is not 0:
             stop
         cancel event

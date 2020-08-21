@@ -1,0 +1,98 @@
+# ====================================================================================================================================================================================
+# Chara_healer
+# ====================================================================================================================================================================================
+function charahealer(p:player):
+    set {cooltime.heal.%{_p}%} to 0
+    set {cooltime.resistance.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.heal}
+    set slot 1 of inventory of {_p} to {Natto.skill.resistance}
+    set slot 2 of inventory of {_p} to {Natto.weapon.healer.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add healer-1"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.healer.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""ヒーラー""&rを選択しました" to {_p}
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキル
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on sneak toggle:
+    if player's tool is {Natto.skill.heal}:
+        if {skill.%player%} is "healer":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
+            if {cooltime.heal.%player%} is 0:
+                set {cooltime.heal.%player%} to {Natto.cooltime.heal}
+                set slot 0 of player's inventory to barrier named "クールタイム"
+                set {_c} to {playerJoined.%player%}
+                heal {team.%{_c}%::*} by {Natto.skill.heal.healAmount} hearts
+                play sound "block.note_block.bell" to {team.%{_c}%::*}
+                message "&b&l>Game &rヒーラーがあなたを回復しました" to {team.%{_c}%::*}
+                message "&b[ヒーラー] &r味方を回復しました" to player
+                loop {cooltime.heal.%player%} times:
+                    send action bar "クールタイム：%{cooltime.heal.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.heal.%player%} by 1
+                    if {cooltime.heal.%player%} is 0:
+                        set slot 0 of player's inventory to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：10秒"
+                        send action bar "クールタイム：%{cooltime.heal.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on right click with end crystal:
+    if event-item is {Natto.skill.resistance}:
+        cancel event
+        if {skill.%player%} is "healer":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
+            if {cooltime.resistance.%player%} is 0:
+                set {cooltime.resistance.%player%} to {Natto.cooltime.resistance}
+                set slot 1 of player's inventory to barrier named "クールタイム"
+                execute console command "effect give %player% resistance 10 255 false"
+                play sound "block.anvil.use" to player
+                message "&b[ヒーラー] &r無敵状態になりました"
+                loop {cooltime.resistance.%player%} times:
+                    send action bar "クールタイム：%{cooltime.resistance.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.resistance.%player%} by 1
+                    if {cooltime.resistance.%player%} is 50:
+                        message "&b[ヒーラー] &r無敵状態が解除されました" to player
+                    if {cooltime.resistance.%player%} is 0:
+                        set slot 1 of player's inventory to {Natto.skill.resistance}
+                        send action bar "クールタイム：%{cooltime.resistance.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on inventory click:
+    if event-item is {Natto.skill.resistance}:
+        if {status} is not 0:
+            stop
+        cancel event
+    if event-item is {Natto.skill.resistance}:
+        if {status} is not 0:
+            stop
+        cancel event

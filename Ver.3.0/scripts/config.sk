@@ -1,0 +1,164 @@
+# ====================================================================================================================================================================================
+#
+# Config
+#
+function gameConfig():
+# ====================================================================================================================================================================================
+# ---------------------------------------------------------------------------------------
+#
+    # バージョン情報
+    set {ver} to "3.0.0 (beta)"
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # デバッグモード
+    set {debugMode} to false
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # チーム数・チーム名
+    add "red" to {Natto.teamName::*}
+    add "blue" to {Natto.teamName::*}
+    add "yellow" to {Natto.teamName::*}
+    add "green" to {Natto.teamName::*}
+    add "orange" to {Natto.teamName::*}
+    add "purple" to {Natto.teamName::*}
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # 各チーム最大人数
+    set {Natto.teamMaxPlayer} to 3
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # 開始前待機時間
+    set {Natto.prepareTime} to 30
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # キルランキング表示順位数（上位〜位）
+    set {Natto.KillRankingTimes} to 3
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # キャラ数・キャラ名
+    add "ninja" to {Natto.charaName::*}
+    add "gorilla" to {Natto.charaName::*}
+    add "healer" to {Natto.charaName::*}
+    add "neet" to {Natto.charaName::*}
+    add "tyuuni" to {Natto.charaName::*}
+    add "tank" to {Natto.charaName::*}
+    add "robot" to {Natto.charaName::*}
+#
+# ---------------------------------------------------------------------------------------
+# 以下各キャラのパラメータ.
+# ※体力について、ディスコの体力の値を２で割って定義すること
+# ---------------------------------------------------------------------------------------
+#
+    # 忍者
+    set {Natto.cooltime.ender} to 15
+    set {Natto.skill.ender} to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：%{Natto.cooltime.ender}%秒"
+    set {Natto.cooltime.invisible} to 30
+    set {Natto.skill.invisible} to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：%{Natto.cooltime.invisible}%秒"
+    set {Natto.weapon.ninja.1} to wooden sword
+    set {Natto.weapon.ninja.2} to stone sword
+    set {Natto.weapon.ninja.3} to iron sword
+    set {Natto.maxHealth.ninja.1} to 5
+    set {Natto.maxHealth.ninja.2} to 7
+    set {Natto.maxHealth.ninja.3} to 10
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # ゴリラ
+    set {Natto.cooltime.explo} to 30
+    set {Natto.skill.explo} to fire charge named "&r&5爆風" with lore "&r&f右クリックで爆風を起こす" and "&r&bクールタイム：%{Natto.cooltime.explo}%秒"
+    set {Natto.cooltime.drumming} to 30
+    set {Natto.skill.drumming} to composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：%{Natto.cooltime.drumming}%秒"
+    set {Natto.weapon.gorilla.1} to iron sword
+    set {Natto.weapon.gorilla.2} to golden sword
+    set {Natto.weapon.gorilla.3} to diamond sword
+    set {Natto.maxHealth.gorilla.1} to 10
+    set {Natto.maxHealth.gorilla.2} to 15
+    set {Natto.maxHealth.gorilla.3} to 20
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # ヒーラー
+    set {Natto.cooltime.heal} to 10
+    set {Natto.skill.heal} to nether star named "&r&5ヒール" with lore "&r&fシフトで味方を回復" and "&r&bクールタイム：%{Natto.cooltime.heal}%秒"
+    set {Natto.skill.heal.healAmount} to 2
+    set {Natto.cooltime.resistance} to 60
+    set {Natto.skill.resistance} to end crystal named "&r&5無敵" with lore "&r&f右クリックで10秒間無敵" and "&r&bクールタイム：%{Natto.cooltime.resistance}%秒"
+    set {Natto.weapon.healer.1} to wooden sword
+    set {Natto.weapon.healer.2} to stone sword
+    set {Natto.weapon.healer.3} to stone sword
+    set {Natto.maxHealth.healer.1} to 20
+    set {Natto.maxHealth.healer.2} to 12
+    set {Natto.maxHealth.healer.3} to 15
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # 厨二病
+    set {Natto.cooltime.charge} to 10
+    set {Natto.skill.charge} to chorus plant named "&r&5チャージ" with lore "&r&fシフトでチャージする" and "&r&f10回チャージで覚醒" and "&r&bクールタイム：%{Natto.cooltime.charge}%秒"
+    set {Natto.cooltime.migite} to 100
+    set {Natto.skill.migite.mae} to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f覚醒後に使用可能" and "&r&f相手を一撃で倒せる" and "&r&bクールタイム：%{Natto.cooltime.migite}%秒"
+    set {Natto.skill.migite.ato} to dragon head named "&r&5ɫ封印されし我が右手いまこそ解き放てɫ" with lore "&r&f相手を一撃で倒せる" and "&r&bクールタイム：%{Natto.cooltime.migite}%秒"
+    set {Natto.weapon.tyuuni.1} to wooden sword
+    set {Natto.weapon.tyuuni.2} to diamond sword
+    set {Natto.maxHealth.tyuuni.1} to 5
+    set {Natto.maxHealth.tyuuni.2} to 30
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # タンク
+    set {Natto.cooltime.barrier} to 20
+    set {Natto.skill.barrier} to glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：%{Natto.cooltime.barrier}%秒"
+    set {Natto.skill.barrier.distance} to 5
+    set {Natto.cooltime.protect} to 30
+    set {Natto.skill.protect} to anvil named "&r&5プロテクト" with lore "&r&f右クリックで味方の防御力を上げる" and "&r&bクールタイム：%{Natto.cooltime.protect}%秒"
+    set {Natto.weapon.tank.1} to stone sword
+    set {Natto.weapon.tank.2} to stone sword
+    set {Natto.weapon.tank.3} to iron sword
+    set {Natto.maxHealth.tank.1} to 20
+    set {Natto.maxHealth.tank.2} to 30
+    set {Natto.maxHealth.tank.3} to 40
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # ロボット
+    set {Natto.cooltime.grappling} to 15
+    set {Natto.skill.grappling} to snowball named "&r&5グレネード" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：%{Natto.cooltime.grappling}%秒"
+    set {Natto.cooltime.snowball} to 10
+    set {Natto.skill.snowball.power} to 1
+    set {Natto.skill.snowball} to fishing rod named "&r&5グラップリングフック" with lore "&r&f右クリックで投擲" and "&r&bクールタイム：%{Natto.cooltime.snowball}%秒"
+    set {Natto.weapon.robot.1} to stone sword
+    set {Natto.weapon.robot.2} to iron sword
+    set {Natto.weapon.robot.3} to golden sword
+    set {Natto.maxHealth.robot.1} to 10
+    set {Natto.maxHealth.robot.2} to 15
+    set {Natto.maxHealth.robot.3} to 20
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # ニート
+    set {Natto.weapon.neet.1} to wooden sword
+    set {Natto.weapon.neet.2} to wooden sword
+    set {Natto.weapon.neet.3} to golden sword
+    set {Natto.maxHealth.neet.1} to 5
+    set {Natto.maxHealth.neet.2} to 5
+    set {Natto.maxHealth.neet.3} to 20
+#
+# ---------------------------------------------------------------------------------------

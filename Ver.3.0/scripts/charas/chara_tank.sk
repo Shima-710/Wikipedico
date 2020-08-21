@@ -1,0 +1,99 @@
+# ====================================================================================================================================================================================
+# Chara_tank
+# ====================================================================================================================================================================================
+function charatank(p:player):
+    set {cooltime.barrier.%{_p}%} to 0
+    set {cooltime.protect.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.barrier}
+    set slot 1 of inventory of {_p} to {Natto.skill.protect}
+    set slot 2 of inventory of {_p} to {Natto.weapon.tank.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add tank-1"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.tank.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""タンク""&rを選択しました" to {_p}
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# スキル
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+on sneak toggle:
+    if player's tool is {Natto.skill.barrier}:
+        if {skill.%player%} is "tank":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
+            if {cooltime.barrier.%player%} is 0:
+                set {cooltime.barrier.%player%} to {Natto.cooltime.barrier}
+                set slot 0 of player's inventory to {Natto.skill.barrier}
+                loop all blocks in radius {Natto.skill.barrier.distance} around player's location:
+                    if loop-block-1 is air or any flowers or grass:
+                        set loop-block-1 to glass
+                        loop all blocks in radius 4 around player's location:
+                            loop-block-2 is glass:
+                                set loop-block-2 to air
+                loop {cooltime.barrier.%player%} times:
+                    send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.barrier.%player%} by 1
+                    if {cooltime.barrier.%player%} is 0:
+                        set slot 0 of player's inventory to {Natto.skill.barrier}
+                        send action bar "クールタイム：%{cooltime.barrier.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on right click with anvil:
+    if player's tool is {Natto.skill.protect}:
+        cancel event
+        if {skill.%player%} is "tank":
+            if {status} is 0:
+                message "&b[システム] &rロビーでは使用できません" to player
+                stop
+            if {sidebar.%player%} is 2:
+                stop
+            if {cooltime.protect.%player%} is 0:
+                set {cooltime.protect.%player%} to 30
+                set slot 1 of player's inventory to barrier named "クールタイム"
+                set {_c} to {playerJoined.%player%}
+                execute console command "effect give @a[team=%{_c}%] resistance 10 3 false"
+                play sound "block.anvil.use" to {team.%{_c}%::*}
+                message "&b[ゲーム] &rタンクがあなたの防御力を10秒間向上させました" to {team.%{_c}%::*}
+                message "&b[タンク] &r味方の防御力を向上させました" to player
+                loop {cooltime.protect.%player%} times:
+                    send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
+                    wait 1 seconds
+                    reduce {cooltime.protect.%player%} by 1
+                    if {cooltime.protect.%player%} is 0:
+                        set slot 1 of player's inventory to {Natto.skill.protect}
+                        send action bar "クールタイム：%{cooltime.protect.%player%}%" to player
+            else:
+                cancel event
+        else:
+            if {status} is 1:
+                cancel event
+
+on inventory click:
+    if event-item is {Natto.skill.barrier}:
+        if {status} is not 0:
+            stop
+        cancel event
+    if event-item is {Natto.skill.protect}:
+        if {status} is not 0:
+            stop
+        cancel event

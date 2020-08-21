@@ -1,14 +1,27 @@
-# ===============================================================================================================================================================================================
+# ====================================================================================================================================================================================
 # Chara_ninja
-# 忍者
-# ===============================================================================================================================================================================================
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 特徴
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
+# ====================================================================================================================================================================================
+function charaninja(p:player):
+    set {cooltime.ender.%{_p}%} to 0
+    set {cooltime.invisible.%{_p}%} to 0
+    set slot 0 of inventory of {_p} to {Natto.skill.ender}
+    set slot 1 of inventory of {_p} to {Natto.skill.invisible}
+    set slot 2 of inventory of {_p} to {Natto.weapon.ninja.1}
+    execute console command "tag %{_p}% remove ninja-1"
+    execute console command "tag %{_p}% remove gorilla-1"
+    execute console command "tag %{_p}% remove healer-1"
+    execute console command "tag %{_p}% remove neet-1"
+    execute console command "tag %{_p}% remove tyuuni-bef"
+    execute console command "tag %{_p}% remove tyuuni-aft"
+    execute console command "tag %{_p}% remove tank-1"
+    execute console command "tag %{_p}% remove robot-1"
+    execute console command "effect clear %{_p}%"
+    execute console command "tag %{_p}% add ninja-1"
+    set {level.%{_p}%} to 1
+    set max health of {_p} to {Natto.maxHealth.ninja.1}
+    heal {_p} by 100 hearts
+    play sound "entity.player.levelup" to {_p}
+    message "&b&l>Game &r&l""忍者""&rを選択しました" to {_p}
 
 
 
@@ -18,7 +31,7 @@
 
 # エンダー
 on right click with ender pearl:
-    if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
+    if event-item is {Natto.skill.ender}:
         if {skill.%player%} is "ninja":
             if {status} is 0:
                 cancel event
@@ -27,7 +40,7 @@ on right click with ender pearl:
             if {sidebar.%player%} is 2:
                 stop
             if {cooltime.ender.%player%} is 0:
-                set {cooltime.ender.%player%} to 15
+                set {cooltime.ender.%player%} to {Natto.cooltime.ender}
                 wait 3 ticks
                 set slot 0 of player's inventory to barrier named "クールタイム"
                 loop {cooltime.ender.%player%} times:
@@ -35,7 +48,7 @@ on right click with ender pearl:
                     wait 1 seconds
                     reduce {cooltime.ender.%player%} by 1
                     if {cooltime.ender.%player%} is 0:
-                        set slot 0 of player's inventory to ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒"
+                        set slot 0 of player's inventory to {Natto.skill.ender}
                         send action bar "クールタイム：%{cooltime.ender.%player%}%" to player
             else:
                 cancel event
@@ -45,7 +58,7 @@ on right click with ender pearl:
 
 
 on right click with sunflower:
-    if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
+    if event-item is {Natto.skill.invisible}:
         if {skill.%player%} is "ninja":
             if {status} is 0:
                 message "&b[システム] &rロビーでは使用できません" to player
@@ -53,7 +66,7 @@ on right click with sunflower:
             if {sidebar.%player%} is 2:
                 stop
             if {cooltime.invisible.%player%} is 0:
-                set {cooltime.invisible.%player%} to 30
+                set {cooltime.invisible.%player%} to {Natto.cooltime.invisible}
                 set slot 1 of player's inventory to barrier named "クールタイム"
                 hide the player from all players
                 play sound "ui.toast.in" to player
@@ -67,7 +80,7 @@ on right click with sunflower:
                         play sound "ui.toast.out" to player
                         message "&b[忍者] &r姿が現れました" to player
                     if {cooltime.invisible.%player%} is 0:
-                        set slot 1 of player's inventory to sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒"
+                        set slot 1 of player's inventory to {Natto.skill.invisible}
                         send action bar "クールタイム：%{cooltime.invisible.%player%}%" to player
             else:
                 cancel event
@@ -83,11 +96,11 @@ on damage:
 
 
 on inventory click:
-    if event-item is ender pearl named "&r&5瞬間移動" with lore "&r&f投げて使用" and "&r&bクールタイム：15秒":
+    if event-item is {Natto.skill.invisible}:
         if {status} is not 0:
             stop
         cancel event
-    if event-item is sunflower named "&r&5かくれみの術" with lore "&r&f右クリックで10秒間透明" and "&r&bクールタイム：30秒":
+    if event-item is {Natto.skill.invisible}:
         if {status} is not 0:
             stop
         cancel event

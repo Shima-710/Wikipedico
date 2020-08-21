@@ -8,7 +8,7 @@
 # チェクポイント設定
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click on oak sign:
-    if {status} is not 1:
+    if {gameStatus} is not 1:
         if block below location of player is air:
             message "&6[アスレ] &r空中ではチェックポイントを設定できません" to player
         else:
@@ -22,7 +22,7 @@ on right click on oak sign:
 # チェクポイントへTP
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click with player skull:
-    if {status} is not 1:
+    if {gameStatus} is not 1:
         if {asure.sign.%player%} is set:
             cancel event
             teleport player to {asure.sign.%player%}
@@ -38,7 +38,7 @@ on right click with player skull:
 # クリアー看板
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click on birch sign:
-    if {status} is not 1:
+    if {gameStatus} is not 1:
         execute console command "tp %player% -27598.50 95 37043.53"
         execute console command "effect give %player% glowing 10 255 true"
         add 1 to {asure.clearcount.%player%}

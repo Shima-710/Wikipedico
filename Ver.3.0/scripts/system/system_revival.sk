@@ -1,0 +1,24 @@
+# ====================================================================================================================================================================================
+# System for Revival
+# 右クリ
+# ====================================================================================================================================================================================
+
+on right click with cyan glazed terracotta:
+    cancel event
+    if {playerJoined.%{_p}%} is not false:
+        open chest inventory with 1 row named "&0復活させる人を選んでください" to player
+        selectRevivePlayer(player)
+    else:
+        message "&c&l>Error &rあなたは現在チームに所属していません" to player
+
+
+on inventory click:
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        set {_c} to {Natto.teamName::%{_loop}%}
+        loop {Natto.teamMaxPlayer} times:
+            add 1 to {_loop2}
+            if event-item is skull of {team.%{_c}%::%{_loop2}%} named "&l%{team.%{_c}%::%{_loop2}%}% &rを復活":
+                cancel event
+                revivePlayer({team.%{_c}%::%{_loop2}%},player)
+                stop
