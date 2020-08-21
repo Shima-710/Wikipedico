@@ -4,9 +4,10 @@
 function charatank(p:player):
     set {cooltime.barrier.%{_p}%} to 0
     set {cooltime.protect.%{_p}%} to 0
-    set slot 0 of inventory of {_p} to {Natto.skill.barrier}
-    set slot 1 of inventory of {_p} to {Natto.skill.protect}
-    set slot 2 of inventory of {_p} to {Natto.weapon.tank.1}
+    # set slot 0 of inventory of {_p} to {Natto.skill.barrier}
+    # set slot 1 of inventory of {_p} to {Natto.skill.protect}
+    # set slot 2 of inventory of {_p} to {Natto.weapon.tank.1}
+    execute console command "chara tank %{_p}%"
     execute console command "tag %{_p}% remove ninja-1"
     execute console command "tag %{_p}% remove gorilla-1"
     execute console command "tag %{_p}% remove healer-1"
@@ -22,6 +23,7 @@ function charatank(p:player):
     heal {_p} by 100 hearts
     play sound "entity.player.levelup" to {_p}
     message "&b&l>Game &r&l""タンク""&rを選択しました" to {_p}
+    set {skill.%{_p}%} to "tank"
 
 
 
@@ -31,7 +33,7 @@ function charatank(p:player):
 on sneak toggle:
     if player's tool is {Natto.skill.barrier}:
         if {skill.%player%} is "tank":
-            if {status} is 0:
+            if {gameStatus} is 0:
                 message "&b[システム] &rロビーでは使用できません" to player
                 stop
             if {sidebar.%player%} is 2:
@@ -55,14 +57,14 @@ on sneak toggle:
             else:
                 cancel event
         else:
-            if {status} is 1:
+            if {gameStatus} is 1:
                 cancel event
 
 on right click with anvil:
     if player's tool is {Natto.skill.protect}:
         cancel event
         if {skill.%player%} is "tank":
-            if {status} is 0:
+            if {gameStatus} is 0:
                 message "&b[システム] &rロビーでは使用できません" to player
                 stop
             if {sidebar.%player%} is 2:
@@ -85,15 +87,15 @@ on right click with anvil:
             else:
                 cancel event
         else:
-            if {status} is 1:
+            if {gameStatus} is 1:
                 cancel event
 
 on inventory click:
     if event-item is {Natto.skill.barrier}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event
     if event-item is {Natto.skill.protect}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event

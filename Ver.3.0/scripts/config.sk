@@ -48,13 +48,13 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # キャラ数・キャラ名
-    add "ninja" to {Natto.charaName::*}
-    add "gorilla" to {Natto.charaName::*}
-    add "healer" to {Natto.charaName::*}
-    add "neet" to {Natto.charaName::*}
-    add "tyuuni" to {Natto.charaName::*}
-    add "tank" to {Natto.charaName::*}
-    add "robot" to {Natto.charaName::*}
+    set {Natto.charaName::1} to "ninja"
+    set {Natto.charaName::2} to "gorilla"
+    set {Natto.charaName::3} to "healer"
+    set {Natto.charaName::4} to "neet"
+    set {Natto.charaName::5} to "tyuuni"
+    set {Natto.charaName::6} to "tank"
+    set {Natto.charaName::7} to "robot"
 #
 # ---------------------------------------------------------------------------------------
 # 以下各キャラのパラメータ.

@@ -36,7 +36,6 @@ command /rirogu:
             set slot 8 of player's inventory to a chest named "&dチーム選択"
             play sound "block.note_block.bell" to player
         else:
-            broadcast "&b&l>System &r現在利用できません"
             play sound "block.note_block.banjo" to player
 
 

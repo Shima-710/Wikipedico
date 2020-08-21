@@ -4,9 +4,10 @@
 function chararobot(p:player):
     set {cooltime.grappling.%{_p}%} to 0
     set {cooltime.snowball.%{_p}%} to 0
-    set slot 0 of inventory of {_p} to {Natto.skill.grappling}
-    set slot 1 of inventory of {_p} to {Natto.skill.snowball}
-    set slot 2 of inventory of {_p} to {Natto.weapon.robot.1}
+    # set slot 0 of inventory of {_p} to {Natto.skill.grappling}
+    # set slot 1 of inventory of {_p} to {Natto.skill.snowball}
+    # set slot 2 of inventory of {_p} to {Natto.weapon.robot.1}
+    execute console command "chara robot %{_p}%"
     execute console command "tag %{_p}% remove ninja-1"
     execute console command "tag %{_p}% remove gorilla-1"
     execute console command "tag %{_p}% remove healer-1"
@@ -22,7 +23,7 @@ function chararobot(p:player):
     heal {_p} by 100 hearts
     play sound "entity.player.levelup" to {_p}
     message "&b&l>Game &r&l""ロボット""&rを選択しました" to {_p}
-
+    set {skill.%{_p}%} to "robot"
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ function chararobot(p:player):
 on right click with snowball:
     if event-item is {Natto.skill.snowball}:
         if {skill.%player%} is "robot":
-            if {status} is 0:
+            if {gameStatus} is 0:
                 cancel event
                 message "&b[システム] &rロビーでは使用できません" to player
                 stop
@@ -55,7 +56,7 @@ on right click with snowball:
             else:
                 cancel event
         else:
-            if {status} is 1:
+            if {gameStatus} is 1:
                 cancel event
 
 on projectile hit:
@@ -74,7 +75,7 @@ on item spawn:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on fishing:
     if {skill.%player%} is "robot":
-        if {status} is 0:
+        if {gameStatus} is 0:
             cancel event
             message "&b[システム] &rロビーでは使用できません" to player
             stop
@@ -100,7 +101,7 @@ on fishing:
         else:
             cancel event
     else:
-        if {status} is 1:
+        if {gameStatus} is 1:
             cancel event
 
 on damage:
@@ -119,10 +120,10 @@ every 1 tick in "world":
 
 on inventory click:
     if event-item is {Natto.skill.snowball}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event
     if event-item is {Natto.skill.grappling}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event

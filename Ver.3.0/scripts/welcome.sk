@@ -9,6 +9,7 @@ on skript load:
     loop all players:
         resetPlayerVariables(loop-player)
         teamLeave(loop-player)
+        resetChara(loop-player)
 
     wait 1 tick
     execute console command "natto---teamgoodbye"
@@ -22,7 +23,7 @@ on skript load:
         execute console command "scoreboard players set ============== %{_c}% 0"
     execute console command "scoreboard players set online：%online player count%人 admin -1"
     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-    broadcast ">Plugin &2Reloaded Successfully!"
+    broadcast "&6&l>Plugin &2Reloaded Successfully!"
 
 on first join:
     set the join message to "&6>First Join! &e%player% joined the game"
@@ -45,6 +46,7 @@ on join:
             adminLeave(player)
             message "&l&a>System &radminから脱退しました" to player
         resetPlayerVariables(player)
+        make player execute command "rirogu"
     if {gameStatus} is 1:
         if {playerStatus.%player%} is false:
             message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
@@ -56,6 +58,7 @@ on join:
 on quit:
     if {gameStatus} is 0:
         teamLeave(player)
+        resetChara(player)
     if {gameStatus} is 1:
         if {playerStatus.%player%} is "alive":
             deathPlayer(player)

@@ -4,9 +4,10 @@
 function charatyuuni(p:player):
     set {cooltime.charge.%{_p}%} to 0
     set {cooltime.migite.%{_p}%} to 0
-    set slot 0 of inventory of {_p} to {Natto.skill.charge}
-    set slot 1 of inventory of {_p} to {Natto.skill.migite.mae}
-    set slot 2 of inventory of {_p} to {Natto.weapon.tyuuni.1}
+    # set slot 0 of inventory of {_p} to {Natto.skill.charge}
+    # set slot 1 of inventory of {_p} to {Natto.skill.migite.mae}
+    # set slot 2 of inventory of {_p} to {Natto.weapon.tyuuni.1}
+    execute console command "chara tyuuni %{_p}%"
     execute console command "tag %{_p}% remove ninja-1"
     execute console command "tag %{_p}% remove gorilla-1"
     execute console command "tag %{_p}% remove healer-1"
@@ -22,6 +23,7 @@ function charatyuuni(p:player):
     heal {_p} by 100 hearts
     play sound "entity.player.levelup" to {_p}
     message "&b&l>Game &r&l""厨二病""&rを選択しました" to {_p}
+    set {skill.%{_p}%} to "tyuuni"
 
 
 
@@ -33,7 +35,7 @@ every 1 second in "world":
         if {skill.%loop-player%} is "tyuuni":
             if loop-player's tool is {Natto.skill.charge}:
                 if loop-player is sneaking:
-                    if {status} is 0:
+                    if {gameStatus} is 0:
                         message "&b[システム] &rロビーでは使用できません" to loop-player
                         stop
                     if {sidebar.%loop-player%} is 2:
@@ -96,7 +98,7 @@ on left click with dragon head:
     if event-item is {Natto.skill.migite.ato}:
         cancel event
         if {skill.%player%} is "tyuuni":
-            if {status} is 0:
+            if {gameStatus} is 0:
                 message "&b[システム] &rロビーでは使用できません" to player
                 stop
             if {sidebar.%player%} is 2:
@@ -114,7 +116,7 @@ on left click with dragon head:
             else:
                 cancel event
         else:
-            if {status} is 1:
+            if {gameStatus} is 1:
                 cancel event
 
 on damage:
@@ -125,18 +127,18 @@ on damage:
 
 on inventory click:
     if event-item is {Natto.skill.migite.mae}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event
     if event-item is {Natto.skill.migite.ato}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event
     if event-item is {Natto.skill.charge}:
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event
     if event-item is chorus plant named "&r&5チャージは完了済みです":
-        if {status} is not 0:
+        if {gameStatus} is not 0:
             stop
         cancel event

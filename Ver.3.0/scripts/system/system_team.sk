@@ -10,22 +10,25 @@
 on right click with chest:
     if {gameStatus} is 0:
         cancel event
-        open chest inventory with 6 row named "&0チームを選んでください" to player
-        set {team.openingchest.%player%} to "true"
-        set slot 1 of player's current inventory to red stained glass pane named " "
-        set slot 2 of player's current inventory to blue stained glass pane named " "
-        set slot 3 of player's current inventory to yellow stained glass pane named " "
-        set slot 4 of player's current inventory to green stained glass pane named " "
-        set slot 5 of player's current inventory to orange stained glass pane named " "
-        set slot 6 of player's current inventory to purple stained glass pane named " "
-        set slot 7 of player's current inventory to gray stained glass pane named " "
-        set slot 46 of player's current inventory to red stained glass pane named " "
-        set slot 47 of player's current inventory to blue stained glass pane named " "
-        set slot 48 of player's current inventory to yellow stained glass pane named " "
-        set slot 49 of player's current inventory to green stained glass pane named " "
-        set slot 50 of player's current inventory to orange stained glass pane named " "
-        set slot 51 of player's current inventory to purple stained glass pane named " "
-        set slot 52 of player's current inventory to gray stained glass pane named " "
+        if {mode.team} is true:
+            open chest inventory with 6 row named "&0チームを選んでください" to player
+            set {team.openingchest.%player%} to "true"
+            set slot 1 of player's current inventory to red stained glass pane named " "
+            set slot 2 of player's current inventory to blue stained glass pane named " "
+            set slot 3 of player's current inventory to yellow stained glass pane named " "
+            set slot 4 of player's current inventory to green stained glass pane named " "
+            set slot 5 of player's current inventory to orange stained glass pane named " "
+            set slot 6 of player's current inventory to purple stained glass pane named " "
+            set slot 7 of player's current inventory to gray stained glass pane named " "
+            set slot 46 of player's current inventory to red stained glass pane named " "
+            set slot 47 of player's current inventory to blue stained glass pane named " "
+            set slot 48 of player's current inventory to yellow stained glass pane named " "
+            set slot 49 of player's current inventory to green stained glass pane named " "
+            set slot 50 of player's current inventory to orange stained glass pane named " "
+            set slot 51 of player's current inventory to purple stained glass pane named " "
+            set slot 52 of player's current inventory to gray stained glass pane named " "
+        else:
+            message "&c&l>Error &r現在チーム戦は無効です" to player
 
 every 1 tick:
     if {gameStatus} is 0:

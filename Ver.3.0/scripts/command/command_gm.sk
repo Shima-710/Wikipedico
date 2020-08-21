@@ -176,6 +176,41 @@ command /chara <text> [<player>]:
             set slot 34 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}%" with lore "%{skill.%{team.gray::3}%}%"
             set slot 43 of player's current inventory to gray wool named "&lGray Team"
 
+        if arg-1 is "ninja":
+            set slot 0 of arg-2's inventory to {Natto.skill.ender}
+            set slot 1 of arg-2's inventory to {Natto.skill.invisible}
+            set slot 2 of arg-2's inventory to {Natto.weapon.ninja.1}
+        if arg-1 is "gorilla":
+            set slot 0 of arg-2's inventory to {Natto.skill.explo}
+            set slot 1 of arg-2's inventory to {Natto.skill.drumming}
+            set slot 2 of arg-2's inventory to {Natto.weapon.gorilla.1}
+        if arg-1 is "healer":
+            set slot 0 of arg-2's inventory to {Natto.skill.heal}
+            set slot 1 of arg-2's inventory to {Natto.skill.resistance}
+            set slot 2 of arg-2's inventory to {Natto.weapon.healer.1}
+        if arg-1 is "tyuuni":
+            set slot 0 of arg-2's inventory to {Natto.skill.charge}
+            set slot 1 of arg-2's inventory to {Natto.skill.migite.mae}
+            set slot 2 of arg-2's inventory to {Natto.weapon.tyuuni.1}
+        if arg-1 is "tank":
+            set slot 0 of arg-2's inventory to {Natto.skill.barrier}
+            set slot 1 of arg-2's inventory to {Natto.skill.protect}
+            set slot 2 of arg-2's inventory to {Natto.weapon.tank.1}
+        if arg-1 is "robot":
+            set slot 0 of arg-2's inventory to {Natto.skill.grappling}
+            set slot 1 of arg-2's inventory to {Natto.skill.snowball}
+            set slot 2 of arg-2's inventory to {Natto.weapon.robot.1}
+        if arg-1 is "neet":
+            set slot 0 of arg-2's inventory to air
+            set slot 1 of arg-2's inventory to air
+            set slot 2 of arg-2's inventory to {Natto.weapon.neet.1}
+
+
+        if arg-1 is "reset":
+            set slot 0 of arg-2's inventory to air
+            set slot 1 of arg-2's inventory to air
+            set slot 2 of arg-2's inventory to air
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # admin権限でプレイヤーを復活させます。一般ユーザーによる復活はこのコマンドに依存しません。
@@ -342,6 +377,26 @@ command /mode <text>:
     permission:op
     permission message:You Don't have permission.
     trigger:
+
+
+        if arg-1 is "team":
+            if {mode.team} is true:
+                set {mode.team} to false
+                broadcast "&b&l>Game &rチーム戦がオフになりました"
+                stop
+            else:
+                set {mode.team} to true
+                broadcast "&b&l>Game &rチーム戦がオンになりました"
+
+        if arg-1 is "skill":
+            if {mode.skill} is true:
+                set {mode.skill} to false
+                broadcast "&b&l>Game &rキャラがオフになりました"
+                stop
+            else:
+                set {mode.skill} to true
+                broadcast "&b&l>Game &rキャラがオンになりました"
+
         if arg-1 is "ibuibu":
             if {mode.ibuibu} is "true":
                 set {mode.ibuibu} to "false"

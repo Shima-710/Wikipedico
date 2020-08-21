@@ -9,6 +9,10 @@ function resetTeamVariables():
         set {qua.player.team.%{_c}%} to 0
         set {qua.surviver.team.%{_c}%} to 0
         set {teamRank.%{_loop}%} to 0
+        set {_loop2} to 0
+        loop {Natto.qua.Chara} times:
+            add 1 to {_loop2}
+            set {skillSelected.%{_c}%.%{Natto.charaName::%{_loop2}%}%} to false
 
 function resetPlayerVariables(p: player):
     set {playerJoined.%{_p}%} to false
@@ -29,6 +33,7 @@ function resetRankingVariables():
 function resetGameVariables():
     set {gameStatus} to 0
     set {mode.team} to false
+    set {mode.skill} to false
     set {qua.playTeam} to 0
     set {qua.surviveTeam} to 0
     # set {qua.online} to 0
@@ -73,9 +78,12 @@ function gameStart():
         if {_loop} is 1:
             execute console command "function shimashima:cd_1"
             play sound "block.note_block.harp" to all players
-        if {_loop} is 3:
+            wait 1 second
             execute console command "function shimashima:01_game_start"
             play sound "entity.enderman.teleport" to all players
+            loop all players:
+                set loop-player's level to 0
+            stop
         reduce {_loop} by 1
         wait 1 second
     set {gameStatus} to 1
@@ -163,6 +171,7 @@ function teamJoin(p: player, c: object):
         message "&c&l>Error すでに満員です" to {_p}
         stop
     else:
+        resetChara({_p})
         teamLeave({_p})
         add {_p} to {team.%{_c}%::*}
         add 1 to {qua.player.team.%{_c}%}
@@ -173,6 +182,8 @@ function teamJoin(p: player, c: object):
         execute console command "team join %{_c}% %{_p}%"
         play sound "entity.player.levelup" to {_p}
         message "&b&l>System &r%{_c}%チームに入りました！" to {_p}
+        if {mode.skill} is true:
+            set {skill.openingchest.%{_p}%} to "true"
 
 function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカラー(old color)
     if {playerJoined.%{_p}%} is false:
@@ -324,47 +335,27 @@ function refreshTeamSidebar():
 
 
 
-function openCharaSelect(p: player):
-    if {playerJoined.%{_p}%} is false:
-        stop
-    set {_c} to {playerJoined.%{_p}%}
-    open chest inventory with 2 row named "&0キャラクターを選んでください" to {_p}
-    set slot 1 of current inventory of {_p} to red dye named "&l忍者"
-    set slot 2 of current inventory of {_p} to lapis lazuli named "&lゴリラ"
-    set slot 3 of current inventory of {_p} to yellow dye named "&lヒーラー"
-    set slot 4 of current inventory of {_p} to green dye named "&l厨二病"
-    set slot 5 of current inventory of {_p} to orange dye named "&lタンク"
-    set slot 6 of current inventory of {_p} to bone meal named "&lロボット"
-    set slot 7 of current inventory of {_p} to gray dye named "&lニート"
-    set {_loop.slot} to 10
-    loop {Natto.qua.Chara} times:
-        add 1 to {_loop}
-        if {skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%} is set:
-            set slot {_loop.slot} of current inventory of {_p} to skull of {skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%} named "&r%{skillSelected.%{_c}%.%{Natto.charaName::%{_loop}%}%}%"
-        else:
-            set slot {_loop.slot} of current inventory of {_p} to air
-        add 1 to {_loop.slot}
 
 function selectChara(p: player, cn: object): # cn=chara name
     if {playerJoined.%{_p}%} is false:
         stop
     set {_c} to {playerJoined.%{_p}%}
-    if {skill.%{_p}%} is not false:
-        set {_ocn} to {skill.%{_p}%}
-        resetChara({_p},{_ocn})
-    if {skillSelected.%{_c}%.%{_cn}%} is set:
+    if {skillSelected.%{_c}%.%{_cn}%} is not false:
         play sound "block.note_block.banjo" to {_p}
         message "&c&l>Error &rそのキャラクターはすでに使われています" to {_p}
         stop
     else:
+        resetChara({_p})
         setChara({_p},{_cn})
+        close inventory of {_p}
+
+
 
 function setChara(p: player, cn: object):
     if {playerJoined.%{_p}%} is false:
         stop
     set {_c} to {playerJoined.%{_p}%}
     set {skillSelected.%{_c}%.%{_cn}%} to {_p}
-    set {skill.%{_p}%} to {_cn}
     if {_cn} is {Natto.charaName::1}:
         charaninja({_p})
     if {_cn} is {Natto.charaName::2}:
@@ -381,11 +372,8 @@ function setChara(p: player, cn: object):
         charaneet({_p})
 
 
-function resetChara(p: player, skill: object):
-    if {playerJoined.%{_p}%} is false:
-        stop
-    set {_c} to {playerJoined.%{_p}%}
-    clear {skill.selected.%{_cn}%.%{_c}%}
+function resetChara(p: player):
+    set {skillSelected.%{playerJoined.%{_p}%}%.%{skill.%{_p}%}%} to false
     set {skill.%{_p}%} to false
     execute console command "tag %{_p}% remove ninja-1"
     execute console command "tag %{_p}% remove gorilla-1"
@@ -414,9 +402,7 @@ function resetChara(p: player, skill: object):
 
     set max health of {_p} to 10
     heal {_p} by 100 hearts
-    set slot 0 of inventory of {_p} to air
-    set slot 1 of inventory of {_p} to air
-    set slot 2 of inventory of {_p} to air
+    execute console command "chara reset %{_p}%"
 
 
 
