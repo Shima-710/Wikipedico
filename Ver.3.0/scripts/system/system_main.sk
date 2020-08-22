@@ -29,8 +29,12 @@ on death of player:
         stop
     else:
         if attacker is not set:
-            broadcast "&c%victim% &rは死亡した"
-            stop
+            if {daruma.da} is true:
+                if {mode.daruma} is true:
+                    broadcast "&c%victim% &rはだるまさんに襲われて死亡した"
+            else:
+                broadcast "&c%victim% &rは死亡した"
+                stop
         else:
             broadcast "&b%attacker% &r✈► &c%victim%"
             stop
@@ -108,3 +112,11 @@ on drop:
 on craft of cyan glazed terracotta:
     cancel event
     give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
+
+
+
+
+on consume cooked beef:
+    cancel event
+    heal player by {Natto.oniku.healAmount} hearts
+    remove 1 cooked beef from player

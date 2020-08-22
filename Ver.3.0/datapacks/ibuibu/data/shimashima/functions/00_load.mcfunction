@@ -127,7 +127,7 @@
 
 # players
     team add players
-    team modify players nametagVisibility always
+    team modify players nametagVisibility never
     team modify players collisionRule never
 
 # dead

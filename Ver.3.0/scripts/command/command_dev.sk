@@ -41,15 +41,18 @@ on right click with stick:
     if event-item is stick named "locaLobbySpawn":
         if {defineloca} is true:
             cancel event
-            set {Natto.locaLobbySpawn} to location of clicked block
+            set {Natto.locaLobbySpawn} to location of block above clicked block
+            broadcast "&e&l>Dev &rlocaLobbySpawn を %{Natto.locaLobbySpawn}% に設定しました"
     if event-item is stick named "locaSky":
         if {defineloca} is true:
             cancel event
-            set {Natto.locaSky} to location of clicked block
+            set {Natto.locaSky} to location of block above clicked block
+            broadcast "&e&l>Dev &rlocaSky を %{Natto.locaSky}% に設定しました"
     if event-item is stick named "locaDeathSpawn":
         if {defineloca} is true:
             cancel event
-            set {Natto.locaDeathSpawn} to location of clicked block
+            set {Natto.locaDeathSpawn} to location of block above clicked block
+            broadcast "&e&l>Dev &rlocaDeathSpawn を %{Natto.locaDeathSpawn}% に設定しました"
 
 
 

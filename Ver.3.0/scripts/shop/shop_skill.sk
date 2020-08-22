@@ -16,14 +16,17 @@ on skript load:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click on wandering trader:
     cancel event
-    if {skill.%player%} is "tyuuni":
-        message "&b[商人] &r悪いがお前さんのレベルはあげられないな..." to player
-        stop
-    play sound "block.stone_button.click_on" to player
-    open chest inventory with 3 row named "&2スキルアップ" to player
-    set slot 11 of player's current inventory to wooden pickaxe named "&lレベル1"
-    set slot 13 of player's current inventory to iron pickaxe named "&lレベル2"
-    set slot 15 of player's current inventory to diamond pickaxe named "&lレベル3"
+    if {mode.skill} is true:
+        if {skill.%player%} is "tyuuni":
+            message "&b[商人] &r悪いがお前さんのレベルはあげられないな..." to player
+            stop
+        play sound "block.stone_button.click_on" to player
+        open chest inventory with 3 row named "&2スキルアップ" to player
+        set slot 11 of player's current inventory to wooden pickaxe named "&lレベル1"
+        set slot 13 of player's current inventory to iron pickaxe named "&lレベル2"
+        set slot 15 of player's current inventory to diamond pickaxe named "&lレベル3"
+    else:
+        broadcast "&b[商人] &r悪いが今は休業中なんだ..."
 
 on inventory click:
     if event-item is wooden pickaxe named "&lレベル1":

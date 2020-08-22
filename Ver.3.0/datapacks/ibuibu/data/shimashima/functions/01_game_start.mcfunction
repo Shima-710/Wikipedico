@@ -15,8 +15,8 @@ clear @a ender_chest
 
 
 # タイトル
-title @a times 0 40 20
-title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
+#title @a times 0 40 20
+#title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
 
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra

@@ -5,6 +5,7 @@ on skript load:
     resetTeamVariables()
     resetRankingVariables()
     resetGameVariables()
+    resetGameMode()
     debugMode({debugMode})
     loop all players:
         resetPlayerVariables(loop-player)

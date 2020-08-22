@@ -13,8 +13,3 @@ worldborder set 50000
 
 # そいつ光らすか
 #effect give @a[gamemode=survival] glowing 20 255 true
-
-# 進捗あげりゅ
-
-# ロビー戻ります
-schedule function shimashima:go_lobby 5s

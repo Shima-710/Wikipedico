@@ -372,7 +372,7 @@ command /emerald <number>:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Mode Change
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-command /mode <text>:
+command /mode <text> [<text>]:
     description:Switch Mode
     permission:op
     permission message:You Don't have permission.
@@ -380,22 +380,89 @@ command /mode <text>:
 
 
         if arg-1 is "team":
-            if {mode.team} is true:
+            if arg-2 is "on":
+                set {mode.team} to true
+                broadcast "&b&l>Game &r「チーム戦」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
                 set {mode.team} to false
-                broadcast "&b&l>Game &rチーム戦がオフになりました"
+                broadcast "&b&l>Game &r「チーム戦」が&cオフ&rになりました"
                 stop
             else:
-                set {mode.team} to true
-                broadcast "&b&l>Game &rチーム戦がオンになりました"
+                if {mode.team} is true:
+                    execute console command "mode team off"
+                    stop
+                else:
+                    execute console command "mode team on"
+                    stop
 
         if arg-1 is "skill":
-            if {mode.skill} is true:
+            if arg-2 is "on":
+                set {mode.skill} to true
+                broadcast "&b&l>Game &r「キャラ選択」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
                 set {mode.skill} to false
-                broadcast "&b&l>Game &rキャラがオフになりました"
+                broadcast "&b&l>Game &r「キャラ選択」が&cオフ&rになりました"
                 stop
             else:
-                set {mode.skill} to true
-                broadcast "&b&l>Game &rキャラがオンになりました"
+                if {mode.skill} is true:
+                    execute console command "mode skill off"
+                    stop
+                else:
+                    execute console command "mode skill on"
+                    stop
+
+        if arg-1 is "daruma":
+            if arg-2 is "on":
+                set {mode.daruma} to true
+                broadcast "&b&l>Game &r「だるまさんが転んだモード」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
+                set {mode.daruma} to false
+                broadcast "&b&l>Game &r「だるまさんが転んだモード」が&cオフ&rになりました"
+                stop
+            else:
+                if {mode.daruma} is true:
+                    execute console command "mode daruma off"
+                    stop
+                else:
+                    execute console command "mode daruma on"
+                    stop
+
+        if arg-1 is "yumi":
+            if arg-2 is "on":
+                set {mode.yumi} to true
+                broadcast "&b&l>Game &r「弓のみモード」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
+                set {mode.yumi} to false
+                broadcast "&b&l>Game &r「弓のみモード」が&cオフ&rになりました"
+                stop
+            else:
+                if {mode.yumi} is true:
+                    execute console command "mode yumi off"
+                    stop
+                else:
+                    execute console command "mode yumi on"
+                    stop
+
+        if arg-1 is "yukidama":
+            if arg-2 is "on":
+                set {mode.yukidama} to true
+                broadcast "&b&l>Game &r「雪玉のみモード」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
+                set {mode.yukidama} to false
+                broadcast "&b&l>Game &r「雪玉のみモード」が&cオフ&rになりました"
+                stop
+            else:
+                if {mode.yukidama} is true:
+                    execute console command "mode yukidama off"
+                    stop
+                else:
+                    execute console command "mode yukidama on"
+                    stop
 
         if arg-1 is "ibuibu":
             if {mode.ibuibu} is "true":
@@ -407,46 +474,4 @@ command /mode <text>:
                 execute console command "scoreboard players set ibuibumode ibuibumode 1"
                 broadcast "&b[運営] &r「ibuibu Mode」がオンになりました"
 
-        if arg-1 is "daruma":
-            if {mode.daruma} is "true":
-                set {mode.daruma} to "false"
-                broadcast "&b[運営] &r「だるまさんが転んだモード」がオフになりました"
-                stop
-            else:
-                set {mode.daruma} to "true"
-                broadcast "&b[運営] &r「だるまさんが転んだモード」がオンになりました"
 
-        if arg-1 is "yumi":
-            if {mode.yumi} is "true":
-                set {mode.yumi} to "false"
-                execute console command "datapack disable ""file/ibuibu-yumi-"""
-                execute console command "datapack enable ""file/ibuibu"""
-                broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオフになりました"
-                stop
-            else:
-                set {mode.yumi} to "true"
-                if {mode.yukidama} is "true":
-                    set {mode.yukidama} to "false"
-                    execute console command "datapack disable ""file/ibuibu-yukidama-"""
-                    broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオフになりました"
-                execute console command "datapack disable ""file/ibuibu"""
-                execute console command "datapack enable ""file/ibuibu-yumi-"""
-                broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオンになりました"
-
-        if arg-1 is "yukidama":
-            if {mode.yukidama} is "true":
-                set {mode.yukidama} to "false"
-                execute console command "datapack disable ""file/ibuibu-yukidama-"""
-                execute console command "datapack enable ""file/ibuibu"""
-                broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオフになりました"
-                stop
-            else:
-                set {mode.yukidama} to "true"
-                if {mode.yumi} is "true":
-                    set {mode.yumi} to "false"
-                    execute console command "datapack disable ""file/ibuibu-yumi-"""
-                    execute console command "datapack enable ""file/ibuibu"""
-                    broadcast "&b[運営] &r「武器制限モード-弓のみ-」がオフになりました"
-                execute console command "datapack disable ""file/ibuibu"""
-                execute console command "datapack enable ""file/ibuibu-yukidama-"""
-                broadcast "&b[運営] &r「武器制限モード-雪玉のみ-」がオンになりました"
