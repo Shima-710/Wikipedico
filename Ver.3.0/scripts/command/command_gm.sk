@@ -54,11 +54,13 @@ command /admin [<text>] [<player>]:
                 set the player's display name to "%name of player%"
                 message "&b&l>System &r%player% がadminから脱退しました" to {admin::*}
                 message "&b&l>System &radminから脱退しました" to player
+                stop
             else:
                 adminJoin(player)
                 set the player's chat name to "&4%name of player%"
                 set the player's display name to "&4[運営] %name of player%"
                 message "&b&l>System &r%player% がadminに加入しました" to {admin::*}
+                stop
 
         if arg-1 is "join":
             if arg-2 is set:
@@ -68,16 +70,20 @@ command /admin [<text>] [<player>]:
                     set the arg-2's display name to "&4[運営] %name of arg-2%"
                     message "&b&l>System &r%player% があなたをadminに加入させました" to arg-2
                     message "&b&l>System &r%arg-2% がadminに加入しました" to {admin::*}
+                    stop
                 else:
                     message "&b&l>System &r%arg-2% はすでにadminです" to player
+                    stop
             else:
                 if {admin.%player%} is false:
                     adminJoin(player)
                     set the player's chat name to "&4%name of player%"
                     set the player's display name to "&4[運営] %name of player%"
                     message "&b&l>System &r%player% がadminに加入しました" to {admin::*}
+                    stop
                 else:
                     message "&b&l>System &r%player% はすでにadminです" to player
+                    stop
 
         if arg-1 is "leave":
             if arg-2 is set:
@@ -87,17 +93,21 @@ command /admin [<text>] [<player>]:
                     set the arg-2's display name to "%name of arg-2%"
                     message "&b&l>System &r%player% があなたをadminから脱退させました" to arg-2
                     message "&b&l>System &r%arg-2% がadminから脱退しました" to {admin::*}
+                    stop
                 else:
                     message "&b&l>System &r%arg-2% はすでにadminではありません" to player
+                    stop
             else:
-                if {admin.%arg-2%} is true:
+                if {admin.%player%} is true:
                     adminLeave(player)
                     set the player's chat name to "%name of player%"
                     set the player's display name to "%name of player%"
                     message "&b&l>System &r%player% がadminから脱退しました" to {admin::*}
                     message "&b&l>System &radminから脱退しました" to player
+                    stop
                 else:
                     message "&b&l>System &r%player% はすでにadminではありません" to player
+                    stop
 
 
 

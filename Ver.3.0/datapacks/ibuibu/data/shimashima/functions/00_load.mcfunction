@@ -48,7 +48,7 @@
     team modify admin prefix "[Admin]"
     scoreboard objectives add admin dummy
     scoreboard objectives modify admin displayname "Admin"
-    scoreboard objectives setdisplay sidebar.team.dark_red admin
+    #scoreboard objectives setdisplay sidebar.team.dark_red admin
 
 # red
     team add red

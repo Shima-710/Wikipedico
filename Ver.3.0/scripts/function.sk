@@ -62,7 +62,7 @@ function gameStart():
             applyTeam({Natto.teamName::%{_loop}%})
 
         setQuas()
-        refreshTeamSidebar()
+        #refreshTeamSidebar()
 
     else:
         setQuas()
@@ -70,6 +70,7 @@ function gameStart():
 
     set {gameStatus} to 1
     broadcast "&b&l>Game &r%{Natto.prepareTime}%秒後にゲームを開始します..."
+    execute console command "scoreboard objectives setdisplay sidebar"
     execute console command "scoreboard players set on_game on_game 1"
     execute console command "function shimashima:01_goodbye_item"
     execute console command "function shimashima:01_toggle_nametag"
@@ -167,14 +168,22 @@ function checkGameMode() :: boolean:
             stop
 
 
-function winTeam(c: object):
+function winTeam():
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        set {_cc} to {Natto.teamName::%{_loop}%}
+        if {teamStatus.%{_cc}%} is "alive":
+            set {_c} to {_cc}
     set {teamStatus.%{_c}%} to "death"
     set {teamRank.1} to {_c}
     execute console command "scoreboard players set 順位：%{teamRank.%{qua.surviveTeam}%}%位 %{_c}% -3"
     send title "&e&l勝利 &8| &r[%{_c}% team]" to all players
     gameEnd()
 
-function winPlayer(p: player):
+function winPlayer():
+    loop all players:
+        if loop-player's gamemode is adventure:
+            set {_p} to loop-player
     set {playerStatus.%{_p}%} to "death"
     set {playerRank.%{_p}%} to 1
     send title "&e&l勝利 &8| &6%{_p}%" to all players
@@ -189,7 +198,7 @@ function adminJoin(p: player):
     make {_p} execute command "/team join admin %{_p}%"
     make {_p} execute command "/book"
     execute console command "lp user %{_p}% parent add skript.admin"
-    set {admin.%{_p}%} to "true"
+    set {admin.%{_p}%} to true
     add {_p} to {admin::*}
     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
     add 1 to {qua.admin}
@@ -202,12 +211,12 @@ function adminLeave(p: player):
     set gamemode of {_p} to adventure
     make {_p} execute command "/team leave %{_p}%"
     make {_p} execute command "/effect clear %{_p}% minecraft:night_vision"
-    set {admin.%{_p}%} to "false"
+    set {admin.%{_p}%} to false
     remove {_p} from {admin::*}
     execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
     reduce {qua.admin} by 1
     execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
-    set {playerJoined.%{_p}%} to "false"
+    set {playerJoined.%{_p}%} to false
     set {playerStatus.%{_p}%} to "alive"
 
 function teamJoin(p: player, c: object):
@@ -222,7 +231,7 @@ function teamJoin(p: player, c: object):
         add 1 to {qua.surviver.team.%{_c}%}
         set {playerJoined.%{_p}%} to {_c}
         execute console command "chara clear %{_p}%"
-        execute console command "scoreboard players set %name of {_p}% %{_c}% -1"
+        execute console command "scoreboard players set %name of {_p}% %{_c}% 1"
         execute console command "team join %{_c}% %{_p}%"
         play sound "entity.player.levelup" to {_p}
         message "&b&l>System &r%{_c}%チームに入りました！" to {_p}
@@ -310,11 +319,14 @@ function deathPlayer(p: player):
         reduce {qua.surviver.team.%{_c}%} by 1
         if {qua.surviver.team.%{_c}%} is 0:
             deathTeam({_c})
+        reduce {qua.surviver} by 1
     else:
         set {playerRank.%{_p}%} to {qua.surviver}
-    reduce {qua.surviver} by 1
-    refreshTeamSidebar()
-    refreshSoloSidebar()
+        reduce {qua.surviver} by 1
+        if {qua.surviver} is 1:
+            winPlayer()
+    #refreshTeamSidebar()
+    #refreshSoloSidebar()
 
 function deathTeam(c: object):
     set {teamStatus.%{_c}%} to "death"
@@ -323,6 +335,8 @@ function deathTeam(c: object):
     reduce {qua.surviveTeam} by 1
     wait 1 tick
     broadcast "&b&l>Game %{_c}% チームが全滅しました"
+    if {qua.surviveTeam} is 1:
+        winTeam()
 
 
 function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
@@ -339,7 +353,7 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
         set gamemode of {_p} to survival
         teleport {_p} to {_pp}
         play sound "entity.player.levelup" to {_p} and {_pp}
-        refreshTeamSidebar()
+        #refreshTeamSidebar()
     else:
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
 
@@ -361,11 +375,12 @@ function setQuas():
     reduce {qua.player} by {qua.spectator}
     set {qua.surviver} to {qua.player}
 
-function addOneToSurviver():
 
-function reduceSurviverByOne():
-function addOneToSurviveTeam():
-function reduceSurviveTeamByOne():
+
+#function addOneToSurviver():
+#function reduceSurviverByOne():
+#function addOneToSurviveTeam():
+#function reduceSurviveTeamByOne():
 
 
 function refreshTeamSidebar():
@@ -387,7 +402,7 @@ function refreshTeamSidebar():
         execute console command "scoreboard players set 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}% -2"
 
 function refreshSoloSidebar():
-    execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人 "
+    execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人"
 
 
 

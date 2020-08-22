@@ -11,19 +11,20 @@ on skript load:
         resetPlayerVariables(loop-player)
         teamLeave(loop-player)
         resetChara(loop-player)
+        if {admin.%loop-player%} is true:
+            adminLeave(loop-player)
 
     wait 1 tick
     execute console command "natto---teamgoodbye"
     wait 1 tick
     execute console command "function shimashima:00_load"
     wait 10 ticks
-    execute console command "scoreboard players set ============== admin 0"
     loop {Natto.qua.Team} times:
         add 1 to {_loop}
         set {_c} to {Natto.teamName::%{_loop}%}
         execute console command "scoreboard players set ============== %{_c}% 0"
-    execute console command "scoreboard players set online：%online player count%人 admin -1"
-    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
+    execute console command "worldborder set 50000"
+    wait 1 second
     broadcast "&6&l>Plugin &2Reloaded Successfully!"
 
 on first join:
@@ -43,9 +44,6 @@ on join:
     message "&7 %{ver}%" to player
     message " " to player
     if {gameStatus} is 0:
-        if {admin.%player%} is true:
-            adminLeave(player)
-            message "&l&a>System &radminから脱退しました" to player
         resetPlayerVariables(player)
         make player execute command "rirogu"
     if {gameStatus} is 1:
@@ -58,6 +56,8 @@ on join:
 
 on quit:
     if {gameStatus} is 0:
+        if {admin.%player%} is true:
+            adminLeave(player)
         teamLeave(player)
         resetChara(player)
     if {gameStatus} is 1:
