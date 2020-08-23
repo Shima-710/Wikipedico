@@ -32,6 +32,8 @@ command /natto---defineloca:
             give a stick named "locaLobbySpawn" to player
             give a stick named "locaSky" to player
             give a stick named "locaDeathSpawn" to player
+            give a golden hoe named "右クリックでチェスト座標を設定" with lore "クリックしたブロックのひとつ上にチェストが出るようになります" to player
+            give a wooden hoe named "右クリックでチェスト座標を削除" to player
             message "&e&l>Dev &rロケーション変数定義モードに移行しました．離脱する場合は再度実行またはリロードしてください." to player
         else:
             set {defineloca} to false
@@ -54,6 +56,19 @@ on right click with stick:
             set {Natto.locaDeathSpawn} to location of block above clicked block
             broadcast "&e&l>Dev &rlocaDeathSpawn を %{Natto.locaDeathSpawn}% に設定しました"
 
+on right click with golden hoe:
+    if event-item is golden hoe named "右クリックでチェスト座標を設定":
+        if {defineloca} is true:
+            cancel event
+            add location of block above clicked block to {Natto.locaChest::*}
+            broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} に追加しました"
+
+on right click with wooden hoe:
+    if event-item is wooden hoe named "右クリックでチェスト座標を削除":
+        if {defineloca} is true:
+            cancel event
+            remove location of block above clicked block from {Natto.locaChest::*}
+            broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} から削除しました"
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
