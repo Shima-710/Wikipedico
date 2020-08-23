@@ -487,6 +487,7 @@ function debugMode(b: boolean):
 function reloadConfig():
     delete {Natto.teamName::*}
     delete {Natto.charaName::*}
+    delete {Natto.chestRoot.normal::*}
     gameConfig()
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
     set {Natto.qua.Chara} to amount of {Natto.charaName::*}
