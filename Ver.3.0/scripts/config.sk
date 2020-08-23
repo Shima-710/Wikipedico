@@ -70,11 +70,18 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # チェスト中身(モード：ノーマル)
+    add cooked beef to {Natto.chestRoot.normal::*}
+    add emerald to {Natto.chestRoot.normal::*}
     add wooden sword to {Natto.chestRoot.normal::*}
-    add stone sword to {Natto.chestRoot.normal::*}
-    add golden sword to {Natto.chestRoot.normal::*}
-    add diamond sword to {Natto.chestRoot.normal::*}
-    add iron sword to {Natto.chestRoot.normal::*}
+    add bow to {Natto.chestRoot.normal::*}
+    add 5 of arrow to {Natto.chestRoot.normal::*}
+    add wooden axe to {Natto.chestRoot.normal::*}
+    add chaimmail_chestplate to {Natto.chestRoot.normal::*}
+    add chainmail_helmet to {Natto.chestRoot.normal::*}
+    add leather_chestplate to {Natto.chestRoot.normal::*}
+    add leather_helmet to {Natto.chestRoot.normal::*}
+    add iron_chestplate to {Natto.chestRoot.normal::*}
+    add iron_helmet to {Natto.chestRoot.normal::*}
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
