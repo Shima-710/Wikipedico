@@ -70,18 +70,106 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # チェスト中身(モード：ノーマル)
-    add cooked beef to {Natto.chestRoot.normal::*}
-    add emerald to {Natto.chestRoot.normal::*}
-    add wooden sword to {Natto.chestRoot.normal::*}
-    add bow to {Natto.chestRoot.normal::*}
-    add 5 of arrow to {Natto.chestRoot.normal::*}
-    add wooden axe to {Natto.chestRoot.normal::*}
-    add chaimmail_chestplate to {Natto.chestRoot.normal::*}
-    add chainmail_helmet to {Natto.chestRoot.normal::*}
-    add leather_chestplate to {Natto.chestRoot.normal::*}
-    add leather_helmet to {Natto.chestRoot.normal::*}
-    add iron_chestplate to {Natto.chestRoot.normal::*}
-    add iron_helmet to {Natto.chestRoot.normal::*}
+    # その確率
+    #
+    add cooked beef to {Natto.chestItemName.normal::*}
+    add 60 to {Natto.chestItemChance.normal::*}
+    #
+    add 5 of emerald to {Natto.chestItemName.normal::*}
+    add 40 to {Natto.chestItemChance.normal::*}
+    #
+    add wooden sword to {Natto.chestItemName.normal::*}
+    add 30 to {Natto.chestItemChance.normal::*}
+    #
+    add bow to {Natto.chestItemName.normal::*}
+    add 20 to {Natto.chestItemChance.normal::*}
+    #
+    add 5 of arrow to {Natto.chestItemName.normal::*}
+    add 30 to {Natto.chestItemChance.normal::*}
+    #
+    add wooden axe to {Natto.chestItemName.normal::*}
+    add 20 to {Natto.chestItemChance.normal::*}
+    #
+    add chaimmail chestplate to {Natto.chestItemName.normal::*}
+    add 30 to {Natto.chestItemChance.normal::*}
+    #
+    add chainmail helmet to {Natto.chestItemName.normal::*}
+    add 30 to {Natto.chestItemChance.normal::*}
+    #
+    add leather chestplate to {Natto.chestItemName.normal::*}
+    add 60 to {Natto.chestItemChance.normal::*}
+    #
+    add leather helmet to {Natto.chestItemName.normal::*}
+    add 60 to {Natto.chestItemChance.normal::*}
+    #
+    add iron chestplate to {Natto.chestItemName.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
+    #
+    add iron helmet to {Natto.chestItemName.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
+    #
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # チェスト中身(モード：弓のみ)
+    # その確率
+    #
+    add cooked beef to {Natto.chestItemName.yumi::*}
+    add 60 to {Natto.chestItemChance.yumi::*}
+    #
+    add 5 of emerald to {Natto.chestItemName.yumi::*}
+    add 40 to {Natto.chestItemChance.yumi::*}
+    #
+    add bow to {Natto.chestItemName.yumi::*}
+    add 20 to {Natto.chestItemChance.yumi::*}
+    #
+    add 5 of arrow to {Natto.chestItemName.yumi::*}
+    add 30 to {Natto.chestItemChance.yumi::*}
+    #
+    add wooden axe to {Natto.chestItemName.yumi::*}
+    add 20 to {Natto.chestItemChance.yumi::*}
+    #
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # チェスト中身(モード：雪玉のみ)
+    # その確率
+    #
+    add cooked beef to {Natto.chestItemName.yukidama::*}
+    add 60 to {Natto.chestItemChance.yukidama::*}
+    #
+    add 5 of emerald to {Natto.chestItemName.yukidama::*}
+    add 40 to {Natto.chestItemChance.yukidama::*}
+    #
+    add snowball to {Natto.chestItemName.yukidama::*}
+    add 60 to {Natto.chestItemChance.yukidama::*}
+    #
+    add wooden axe to {Natto.chestItemName.yukidama::*}
+    add 20 to {Natto.chestItemChance.yukidama::*}
+    #
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # チェスト中身(モード：キャラあり)
+    # その確率
+    #
+    add cooked beef to {Natto.chestItemName.skill::*}
+    add 60 to {Natto.chestItemChance.skill::*}
+    #
+    add 5 of emerald to {Natto.chestItemName.skill::*}
+    add 40 to {Natto.chestItemChance.skill::*}
+    #
+    add bow to {Natto.chestItemName.skill::*}
+    add 20 to {Natto.chestItemChance.skill::*}
+    #
+    add 5 of arrow to {Natto.chestItemName.skill::*}
+    add 30 to {Natto.chestItemChance.skill::*}
+    #
+    add wooden axe to {Natto.chestItemName.skill::*}
+    add 20 to {Natto.chestItemChance.skill::*}
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------

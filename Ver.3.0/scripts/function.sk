@@ -487,15 +487,57 @@ function debugMode(b: boolean):
 function reloadConfig():
     delete {Natto.teamName::*}
     delete {Natto.charaName::*}
+    delete {Natto.chestItemName.normal::*}
+    delete {Natto.chestItemChance.normal::*}
     delete {Natto.chestRoot.normal::*}
     gameConfig()
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
     set {Natto.qua.Chara} to amount of {Natto.charaName::*}
-    set {Natto.qua.ChestItem.normal} to amount of {Natto.chestRoot.normal::*}
     set {Natto.qua.locaChest} to amount of {Natto.locaChest::*}
+    set {Natto.qua.ChestItemName.normal} to amount of {Natto.chestItemName.normal::*}
+    set {Natto.qua.ChestItemName.yumi} to amount of {Natto.chestItemName.yumi::*}
+    set {Natto.qua.ChestItemName.yukidama} to amount of {Natto.chestItemName.yukidama::*}
+    set {Natto.qua.ChestItemName.skill} to amount of {Natto.chestItemName.skill::*}
+    set {_loop1} to 0
+    loop {Natto.qua.ChestItemName.normal} times:
+        add 1 to {_loop1}
+        defChestRootNormal({_loop1})
+    set {_loop2} to 0
+    loop {Natto.qua.ChestItemName.yumi} times:
+        add 1 to {_loop2}
+        defChestRootYumi({_loop2})
+    set {_loop3} to 0
+    loop {Natto.qua.ChestItemName.yukidama} times:
+        add 1 to {_loop3}
+        defChestRootYukidama({_loop3})
+    set {_loop4} to 0
+    loop {Natto.qua.ChestItemName.skill} times:
+        add 1 to {_loop4}
+        defChestRootSkill({_loop4})
+    set {Natto.qua.ChestItem.normal} to amount of {Natto.chestRoot.normal::*}
+    set {Natto.qua.ChestItem.yumi} to amount of {Natto.chestRoot.yumi::*}
+    set {Natto.qua.ChestItem.yukidama} to amount of {Natto.chestRoot.yukidama::*}
+    set {Natto.qua.ChestItem.skill} to amount of {Natto.chestRoot.skill::*}
 
 
 function spawnChest():
     loop {Natto.qua.locaChest} times:
         add 1 to {_loop}
         set block at {Natto.locaChest::%{_loop}%} to chest
+
+
+function defChestRootNormal(n: number):
+    loop {Natto.chestItemChance.normal::%{_n}%} times:
+        add {Natto.chestItemName.normal::%{_n}%} to {Natto.chestRoot.normal::*}
+
+function defChestRootYumi(n: number):
+    loop {Natto.chestItemChance.yumi::%{_n}%} times:
+        add {Natto.chestItemName.yumi::%{_n}%} to {Natto.chestRoot.yumi::*}
+
+function defChestRootYukidama(n: number):
+    loop {Natto.chestItemChance.yukidama::%{_n}%} times:
+        add {Natto.chestItemName.yukidama::%{_n}%} to {Natto.chestRoot.yukidama::*}
+
+function defChestRootSkill(n: number):
+    loop {Natto.chestItemChance.skill::%{_n}%} times:
+        add {Natto.chestItemName.skill::%{_n}%} to {Natto.chestRoot.skill::*}

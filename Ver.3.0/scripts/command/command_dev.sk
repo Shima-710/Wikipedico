@@ -83,10 +83,9 @@ command /natto---dev:
         execute console command "destroyable true"
         execute console command "gamerule sendCommandFeedback true"
         execute console command "gamerule reducedDebugInfo false"
-        set {status} to 5
+        set {gameStatus} to 5
         loop all players:
             set loop-player's gamemode to creative
-
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

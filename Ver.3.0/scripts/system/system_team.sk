@@ -201,5 +201,6 @@ on inventory click:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on chat:
     if {gameStatus} is 1:
-        cancel event
-        teamChat(player,message)
+        if {mode.team} is true:
+            cancel event
+            teamChat(player,message)
