@@ -57,7 +57,7 @@ on right click with stick:
             broadcast "&e&l>Dev &rlocaDeathSpawn を %{Natto.locaDeathSpawn}% に設定しました"
 
 on right click with golden hoe:
-    if event-item is golden hoe named "右クリックでチェスト座標を設定":
+    if event-item is golden hoe named "右クリックでチェスト座標を設定" with lore "クリックしたブロックのひとつ上にチェストが出るようになります":
         if {defineloca} is true:
             cancel event
             add location of block above clicked block to {Natto.locaChest::*}

@@ -6,6 +6,7 @@ on skript load:
     resetRankingVariables()
     resetGameVariables()
     resetGameMode()
+    spawnChest()
     debugMode({debugMode})
     loop all players:
         resetPlayerVariables(loop-player)

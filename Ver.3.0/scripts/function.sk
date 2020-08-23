@@ -490,9 +490,11 @@ function reloadConfig():
     gameConfig()
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
     set {Natto.qua.Chara} to amount of {Natto.charaName::*}
+    set {Natto.qua.ChestItem.normal} to amount of {Natto.chestRoot.normal::*}
+    set {Natto.qua.locaChest} to amount of {Natto.locaChest::*}
 
 
 function spawnChest():
-    set {Natto.locaChest::*} to chest
-
-fuction
+    loop {Natto.qua.locaChest} times:
+        add 1 to {_loop}
+        set block at {Natto.locaChest::%{_loop}%} to chest

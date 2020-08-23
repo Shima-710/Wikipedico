@@ -73,3 +73,28 @@ command /tpa <player>:
         else:
             play sound "block.note_block.banjo" to player
             message "&b&l>Game &r無効なプレイヤーです"
+
+
+command /openchest <player>:
+    trigger:
+        open chest inventory with 3 row to arg-1
+        play sound "block.chest.open" to arg-1
+        set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
+        loop {_random.chestSlotQua} times:
+            set {_random.chestSlotNum} to random integer between 0 and 26
+            if {mode.skill} is true:
+                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.skill}
+                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.skill::%{_random.itemNumber}%}
+            if {mode.yumi} is true:
+                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yumi}
+                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yumi::%{_random.itemNumber}%}
+            if {mode.yukidama} is true:
+                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yukidama}
+                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yukidama::%{_random.itemNumber}%}
+            else:
+                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
+                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.normal::%{_random.itemNumber}%}
+
+on right click on chest:
+    set the clicked block to air
+    execute console command "openchest %player%"
