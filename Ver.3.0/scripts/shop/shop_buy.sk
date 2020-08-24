@@ -10,28 +10,23 @@
 on server start:
     # 価格
         # 武器
-    set {price.buy.iron_sword} to 30
-    set {price.buy.golden_sword} to 60
-    set {price.buy.diamond_sword} to 100
-    set {price.buy.bow} to 10
-    set {price.buy.arrow} to 10
-    set {price.buy.stone_axe} to 10
-    set {price.buy.golden_axe} to 60
-    set {price.buy.snowball} to 60
+    set {price.buy.bow} to 30
+    set {price.buy.arrow} to 2
+    set {price.buy.wooden_sword} to 30
+    set {price.buy.wooden_axe} to 30
         # 防具
-    set {price.buy.iron_armor} to 30
-    set {price.buy.golden_armor} to 60
-    set {price.buy.diamond_armor} to 100
-    set {price.buy.shield} to 30
-    set {price.buy.elytra} to 20
+    set {price.buy.lether_armor} to 30
+    set {price.buy.chainmail_armor} to 90
+    set {price.buy.iron_armor} to 180
+    set {price.buy.elytra} to 10
         # 食糧
-    set {price.buy.cooked_beef} to 15
-    set {price.buy.golden_apple} to 10
-    set {price.buy.enchanted_golden_apple} to 50
-    set {price.buy.revival} to 100
+    set {price.buy.potion} to 2
+    set {price.buy.cooked_porkchop} to 2
+    set {price.buy.revival} to 200
     # 販売量
-    set {amount.buy.arrow} to 5
-    set {amount.buy.cooked_beef} to 5
+    set {amount.buy.arrow} to 1
+    set {amount.buy.potion} to 1
+    set {amount.buy.cooked_porkchop} to 1
 
 
 
@@ -86,19 +81,15 @@ on inventory click:
             set slot 17 of player's current inventory to black stained glass pane named " "
             set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
 
-            set slot 29 of player's current inventory to iron sword named "&a[$%{price.buy.iron_sword}%] &r鉄の剣を買う"
-            set slot 30 of player's current inventory to golden sword named "&a[$%{price.buy.golden_sword}%] &r金の剣を買う"
-            set slot 31 of player's current inventory to diamond sword named "&a[$%{price.buy.diamond_sword}%] &rダイヤモンドの剣を買う"
-            set slot 32 of player's current inventory to bow named "&a[$%{price.buy.bow}%] &r弓を買う"
-            set slot 33 of player's current inventory to {amount.buy.arrow} of arrow named "&a[$%{price.buy.arrow}%] &r矢を買う"
-            set slot 38 of player's current inventory to stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う"
-            set slot 39 of player's current inventory to golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う"
-            set slot 40 of player's current inventory to snowball named "&a[$%{price.buy.snowball}%] &r雪玉を買う"
+            set slot 29 of player's current inventory to bow named "&a[$%{price.buy.bow}%] &r弓を買う"
+            set slot 30 of player's current inventory to {amount.buy.arrow} of arrow named "&a[$%{price.buy.arrow}%] &r矢を買う"
+            set slot 32 of player's current inventory to wooden sword named "&a[$%{price.buy.wooden_sword}%] &r木の剣を買う"
+            set slot 33 of player's current inventory to wooden axe named "&a[$%{price.buy.wooden_axe}%] &r木の斧を買う"
 
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #　"武器を買う"内の商品
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if event-item is iron sword named "&a[$%{price.buy.iron_sword}%] &r鉄の剣を買う":
+        if event-item is wooden axe named "&a[$%{price.buy.wooden_sword}%] &r木の剣を買う":
             cancel event
             if {mode.yumi} is true:
                 play sound "block.note_block.banjo" to player
@@ -108,46 +99,10 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rすまない売り切れなんだ..." to player
                 stop
-            if player has {price.buy.iron_sword} of emerald:
+            if player has {price.buy.wooden_sword} of emerald:
                 play sound "entity.player.levelup" to player
-                give 1 of iron sword to player
-                remove {price.buy.iron_sword} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden sword named "&a[$%{price.buy.golden_sword}%] &r金の剣を買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_sword} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden sword to player
-                remove {price.buy.golden_sword} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is diamond sword named "&a[$%{price.buy.diamond_sword}%] &rダイヤモンドの剣を買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.diamond_sword} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of diamond sword to player
-                remove {price.buy.diamond_sword} of emerald from player
+                give 1 of wooden sword to player
+                remove {price.buy.wooden_sword} of emerald from player
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
@@ -180,7 +135,7 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
 
-        if event-item is stone axe named "&a[$%{price.buy.stone_axe}%] &r石の斧を買う":
+        if event-item is wooden axe named "&a[$%{price.buy.wooden_axe}%] &r木の斧を買う":
             cancel event
             if {mode.yumi} is true:
                 play sound "block.note_block.banjo" to player
@@ -190,46 +145,13 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rすまない売り切れなんだ..." to player
                 stop
-            if player has {price.buy.stone_axe} of emerald:
+            if player has {price.buy.wooden_axe} of emerald:
                 play sound "entity.player.levelup" to player
-                give 1 of stone axe to player
-                remove {price.buy.stone_axe} of emerald from player
+                give 1 of wooden axe to player
+                remove {price.buy.wooden_axe} of emerald from player
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden axe named "&a[$%{price.buy.golden_axe}%] &r金の斧を買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_axe} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden axe to player
-                remove {price.buy.golden_axe} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is snowball named "&a[$%{price.buy.snowball}%] &r雪玉を買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.snowball} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of snowball to player
-                remove {price.buy.snowball} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
 
 
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -254,29 +176,65 @@ on inventory click:
             set slot 17 of player's current inventory to black stained glass pane named " "
             set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
 
-            set slot 21 of player's current inventory to iron helmet named "&a[$%{price.buy.iron_armor}%] &r鉄のヘルメットを買う"
-            set slot 22 of player's current inventory to golden helmet named "&a[$%{price.buy.golden_armor}%] &r金のヘルメットを買う"
-            set slot 23 of player's current inventory to diamond helmet named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのヘルメットを買う"
 
-            set slot 30 of player's current inventory to iron chestplate named "&a[$%{price.buy.iron_armor}%] &r鉄のチェストプレートを買う"
-            set slot 31 of player's current inventory to golden chestplate named "&a[$%{price.buy.golden_armor}%] &r金のチェストプレートを買う"
-            set slot 32 of player's current inventory to diamond chestplate named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのチェストプレートを買う"
+            set slot 21 of player's current inventory to leather helmet named "&a[$%{price.buy.leather_armor}%] &r革のヘルメットを買う"
+            set slot 22 of player's current inventory to chainmail helmet named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのヘルメットを買う"
+            set slot 23 of player's current inventory to iron helmet named "&a[$%{price.buy.iron_armor}%] &r鉄のヘルメットを買う"
 
-            set slot 39 of player's current inventory to iron leggings named "&a[$%{price.buy.iron_armor}%] &r鉄のレギンスを買う"
-            set slot 40 of player's current inventory to golden leggings named "&a[$%{price.buy.golden_armor}%] &r金のレギンスを買う"
-            set slot 41 of player's current inventory to diamond leggings named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのレギンスを買う"
+            set slot 30 of player's current inventory to leather chestplate named "&a[$%{price.buy.leather_armor}%] &r革のチェストプレートを買う"
+            set slot 31 of player's current inventory to chainmail chestplate named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのチェストプレートを買う"
+            set slot 32 of player's current inventory to iron chestplate named "&a[$%{price.buy.iron_armor}%] &r鉄のチェストプレートを買う"
 
-            set slot 48 of player's current inventory to iron boots named "&a[$%{price.buy.iron_armor}%] &r鉄のブーツを買う"
-            set slot 49 of player's current inventory to golden boots named "&a[$%{price.buy.golden_armor}%] &r金のブーツを買う"
-            set slot 50 of player's current inventory to diamond boots named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのブーツを買う"
+            set slot 39 of player's current inventory to leather leggings named "&a[$%{price.buy.leather_armor}%] &r革のレギンスを買う"
+            set slot 40 of player's current inventory to chainmail leggings named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのレギンスを買う"
+            set slot 41 of player's current inventory to iron leggings named "&a[$%{price.buy.iron_armor}%] &r鉄のレギンスを買う"
 
-            set slot 25 of player's current inventory to a shield named "&a[$%{price.buy.shield}%] &r盾を買う"
+            set slot 48 of player's current inventory to leather boots named "&a[$%{price.buy.leather_armor}%] &r革のブーツを買う"
+            set slot 49 of player's current inventory to chainmail boots named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのブーツを買う"
+            set slot 50 of player's current inventory to iron boots named "&a[$%{price.buy.iron_armor}%] &r鉄のブーツを買う"
+
             set slot 34 of player's current inventory to elytra named "&a[$%{price.buy.elytra}%] &rエリトラを買う"
 
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #　"防具を買う"内の商品
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if event-item is iron helmet named "&a[$%{price.buy.iron_armor}%] &r鉄のヘルメットを買う":
+        if event-item is leather helmet named "&a[$%{price.buy.leather_armor}%] &r革のヘルメットを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.leather_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of leather helmet to player
+                remove {price.buy.leather_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+        if event-item is chainmail helmet named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのヘルメットを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.chainmail_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of chainmail helmet to player
+                remove {price.buy.chainmail_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+        if event-item is iron chestplate named "&a[$%{price.buy.iron_armor}%] &r鉄のチェストプレートを買う":
             cancel event
             if {mode.yumi} is true:
                 play sound "block.note_block.banjo" to player
@@ -293,45 +251,45 @@ on inventory click:
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden helmet named "&a[$%{price.buy.golden_armor}%] &r金のヘルメットを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden helmet to player
-                remove {price.buy.golden_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is diamond helmet named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのヘルメットを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.diamond_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of diamond helmet to player
-                remove {price.buy.diamond_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
         # ヘルメット
         # -------------
         # チェストプレート
+        if event-item is leather chestplate named "&a[$%{price.buy.leather_armor}%] &r革のチェストプレートを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.leather_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of leather chestplate to player
+                remove {price.buy.leather_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+        if event-item is chainmail chestplate named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのチェストプレートを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.chainmail_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of chainmail chestplate to player
+                remove {price.buy.chainmail_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
         if event-item is iron chestplate named "&a[$%{price.buy.iron_armor}%] &r鉄のチェストプレートを買う":
             cancel event
             if {mode.yumi} is true:
@@ -349,45 +307,45 @@ on inventory click:
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden chestplate named "&a[$%{price.buy.golden_armor}%] &r金のチェストプレートを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden chestplate to player
-                remove {price.buy.golden_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is diamond chestplate named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのチェストプレートを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.diamond_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of diamond chestplate to player
-                remove {price.buy.diamond_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
         # チェストプレート
         # -------------
         # レギンス
+        if event-item is leather leggings named "&a[$%{price.buy.leather_armor}%] &r革のレギンスを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.leather_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of leather leggings to player
+                remove {price.buy.leather_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+        if event-item is chainmail leggings named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのレギンスを買う"":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.chainmail_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of chainmail leggings to player
+                remove {price.buy.chainmail_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
         if event-item is iron leggings named "&a[$%{price.buy.iron_armor}%] &r鉄のレギンスを買う":
             cancel event
             if {mode.yumi} is true:
@@ -405,45 +363,45 @@ on inventory click:
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden leggings named "&a[$%{price.buy.golden_armor}%] &r金のレギンスを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden leggings to player
-                remove {price.buy.golden_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is diamond leggings named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのレギンスを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.diamond_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of diamond leggings to player
-                remove {price.buy.diamond_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
         # レギンス
         # -------------
         # ブーツ
+        if event-item is leather boots named "&a[$%{price.buy.leather_armor}%] &r革のブーツを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.leather_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of leather boots to player
+                remove {price.buy.leather_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
+        if event-item is chainmail boots named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのブーツを買う":
+            cancel event
+            if {mode.yumi} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if {mode.yukidama} is true:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rすまない売り切れなんだ..." to player
+                stop
+            if player has {price.buy.chainmail_armor} of emerald:
+                play sound "entity.player.levelup" to player
+                give 1 of chainmail boots to player
+                remove {price.buy.chainmail_armor} of emerald from player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b[商人] &rエメラルドが足りないようだな..." to player
+
         if event-item is iron boots named "&a[$%{price.buy.iron_armor}%] &r鉄のブーツを買う":
             cancel event
             if {mode.yumi} is true:
@@ -461,58 +419,9 @@ on inventory click:
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is golden boots named "&a[$%{price.buy.golden_armor}%] &r金のブーツを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.golden_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of golden boots to player
-                remove {price.buy.golden_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is diamond boots named "&a[$%{price.buy.diamond_armor}%] &rダイヤモンドのブーツを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.diamond_armor} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of diamond boots to player
-                remove {price.buy.diamond_armor} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
         # ブーツ
         # -------------
         # その他
-        if event-item is a shield named "&a[$%{price.buy.shield}%] &r盾を買う":
-            cancel event
-            if player has {price.buy.shield} of emerald:
-                play sound "entity.player.levelup" to player
-                if {mode.yumi} is true:
-                    give a shield with damage value 315 to player
-                else:
-                    give a shield with damage value 330 to player
-                remove {price.buy.shield} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
         if event-item is elytra named "&a[$%{price.buy.elytra}%] &rエリトラを買う":
             cancel event
             if player has {price.buy.elytra} of emerald:
@@ -545,48 +454,29 @@ on inventory click:
             set slot 17 of player's current inventory to black stained glass pane named " "
             set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
 
-            set slot 28 of player's current inventory to {amount.buy.cooked_beef} of cooked beef named "&a[$%{price.buy.cooked_beef}%] &rステーキを買う"
-            set slot 30 of player's current inventory to golden apple named "&a[$%{price.buy.golden_apple}%] &r金のリンゴを買う"
-            set slot 32 of player's current inventory to enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う"
-            set slot 34 of player's current inventory to cyan glazed terracotta named "&a[$%{price.buy.revival}%] &r復活の石を買う"
+            set slot 29 of player's current inventory to potion named "&a[$%{price.buy.potion}%] &r回復薬を買う"
+            set slot 31 of player's current inventory to cooked porkchop named "&a[$%{price.buy.cooked_porkchop}%] &r食糧を買う"
+            set slot 33 of player's current inventory to cyan glazed terracotta named "&a[$%{price.buy.revival}%] &r復活の石を買う"
 
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #　"食糧を買う"内の商品
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if event-item is cooked beef named "&a[$%{price.buy.cooked_beef}%] &rステーキを買う":
+        if event-item is potion named "&a[$%{price.buy.potion}%] &r回復薬を買う":
             cancel event
-            if player has {price.buy.cooked_beef} of emerald:
+            if player has {price.buy.potion} of emerald:
                 play sound "entity.player.levelup" to player
-                give {amount.buy.cooked_beef} of cooked beef to player
-                remove {price.buy.cooked_beef} of emerald from player
+                give 1 of potion named "回復薬" to player
+                remove {price.buy.potion} of emerald from player
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
 
-        if event-item is golden apple named "&a[$%{price.buy.golden_apple}%] &r金のリンゴを買う":
+        if event-item is cooked porkchop named "&a[$%{price.buy.cooked_porkchop}%] &r食糧を買う":
             cancel event
-            if player has {price.buy.golden_apple} of emerald:
+            if player has {price.buy.cooked_porkchop} of emerald:
                 play sound "entity.player.levelup" to player
-                give 1 of golden apple to player
-                remove {price.buy.golden_apple} of emerald from player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rエメラルドが足りないようだな..." to player
-
-        if event-item is enchanted golden apple named "&a[$%{price.buy.enchanted_golden_apple}%] &rエンチャントされた金のリンゴを買う":
-            cancel event
-            if {mode.yumi} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if {mode.yukidama} is true:
-                play sound "block.note_block.banjo" to player
-                message "&b[商人] &rすまない売り切れなんだ..." to player
-                stop
-            if player has {price.buy.enchanted_golden_apple} of emerald:
-                play sound "entity.player.levelup" to player
-                give 1 of enchanted golden apple to player
-                remove {price.buy.enchanted_golden_apple} of emerald from player
+                give 1 of cooked_porkchop named "食糧" to player
+                remove {price.buy.cooked_porkchop} of emerald from player
             else:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player

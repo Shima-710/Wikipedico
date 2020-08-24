@@ -489,8 +489,17 @@ function reloadConfig():
     delete {Natto.teamName::*}
     delete {Natto.charaName::*}
     delete {Natto.chestItemName.normal::*}
+    delete {Natto.chestItemName.yumi::*}
+    delete {Natto.chestItemName.yukidama::*}
+    delete {Natto.chestItemName.skill::*}
     delete {Natto.chestItemChance.normal::*}
+    delete {Natto.chestItemChance.yumi::*}
+    delete {Natto.chestItemChance.yukidama::*}
+    delete {Natto.chestItemChance.skill::*}
     delete {Natto.chestRoot.normal::*}
+    delete {Natto.chestRoot.yumi::*}
+    delete {Natto.chestRoot.yukidama::*}
+    delete {Natto.chestRoot.skill::*}
     gameConfig()
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
     set {Natto.qua.Chara} to amount of {Natto.charaName::*}

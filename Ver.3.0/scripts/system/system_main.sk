@@ -123,6 +123,9 @@ on consume cooked beef:
     heal player by {Natto.oniku.healAmount} hearts
     remove 1 cooked beef from player
 
+on consume potion:
+    heal player by {Natto.oniku.healAmount} hearts
+    remove 1 glass bottle from player
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

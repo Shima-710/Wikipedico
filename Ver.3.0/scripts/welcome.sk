@@ -19,7 +19,7 @@ on skript load:
     execute console command "natto---teamgoodbye"
     wait 1 tick
     execute console command "function shimashima:00_load"
-    wait 10 ticks
+    wait 1 tick
     loop {Natto.qua.Team} times:
         add 1 to {_loop}
         set {_c} to {Natto.teamName::%{_loop}%}

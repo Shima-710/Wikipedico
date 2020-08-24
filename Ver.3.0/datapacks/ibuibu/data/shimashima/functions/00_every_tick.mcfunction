@@ -17,7 +17,7 @@ execute if score on_game on_game matches 0 run effect give @a saturation 1000000
 execute if score on_game on_game matches 0 run effect give @a night_vision 1000000 255 true
 
 
-execute if score on_game on_game matches 1 run effect give @a hunger 1000000 255 true
+execute if score on_game on_game matches 1 run effect give @a hunger 1000000 1 true
 
 # エリトラで飛んだよ検知からの消去
 #execute as @a[scores={fly=1..},limit=1] run scoreboard players set @s flied 1

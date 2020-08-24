@@ -72,10 +72,10 @@ function gameConfig():
     # チェスト中身(モード：ノーマル)
     # その確率
     #
-    add cooked beef to {Natto.chestItemName.normal::*}
+    add potion named "回復薬" to {Natto.chestItemName.normal::*}
     add 30 to {Natto.chestItemChance.normal::*}
     #
-    add cooked porkchop to {Natto.chestItemName.normal::*}
+    add cooked porkchop named "食糧"　to {Natto.chestItemName.normal::*}
     add 20 to {Natto.chestItemChance.normal::*}
     #
     add 10 of emerald to {Natto.chestItemName.normal::*}
