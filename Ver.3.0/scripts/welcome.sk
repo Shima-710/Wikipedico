@@ -53,6 +53,7 @@ on join:
     if {gameStatus} is 0:
         resetPlayerVariables(player)
         make player execute command "rirogu"
+        teleport player to {Natto.locaLobbySpawn}
     if {gameStatus} is 1:
         if {playerStatus.%player%} is false:
             message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
