@@ -328,7 +328,7 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rエメラルドが足りないようだな..." to player
 
-        if event-item is chainmail leggings named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのレギンスを買う"":
+        if event-item is chainmail leggings named "&a[$%{price.buy.chainmail_armor}%] &rチェーンのレギンスを買う":
             cancel event
             if {mode.yumi} is true:
                 play sound "block.note_block.banjo" to player
@@ -475,7 +475,7 @@ on inventory click:
             cancel event
             if player has {price.buy.cooked_porkchop} of emerald:
                 play sound "entity.player.levelup" to player
-                give 1 of cooked_porkchop named "食糧" to player
+                give 1 of cooked porkchop named "食糧" to player
                 remove {price.buy.cooked_porkchop} of emerald from player
             else:
                 play sound "block.note_block.banjo" to player

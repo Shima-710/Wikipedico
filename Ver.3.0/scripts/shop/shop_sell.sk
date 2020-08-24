@@ -535,9 +535,9 @@ on inventory click:
 
         if event-item is cooked porkchop named "&a[$%{price.sell.cooked_porkchop}%] &r食糧を買う":
             cancel event
-            if player has cooked_porkchop named "食糧":
+            if player has cooked porkchop named "食糧":
                 play sound "entity.player.levelup" to player
-                remove 1 of cooked_porkchop named "食糧" from player
+                remove 1 of cooked porkchop named "食糧" from player
                 give {price.sell.cooked_porkchop} of emerald to player
             else:
                 play sound "block.note_block.banjo" to player
