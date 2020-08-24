@@ -1,13 +1,21 @@
 on skript load:
     broadcast "&6&l>Plugin &2Reloading..."
     set {defineloca} to false
+    wait 2 tick
     reloadConfig()
+    wait 2 tick
     resetTeamVariables()
+    wait 2 tick
     resetRankingVariables()
+    wait 2 tick
     resetGameVariables()
+    wait 2 tick
     resetGameMode()
+    wait 2 tick
     spawnChest()
+    wait 2 tick
     debugMode({debugMode})
+    wait 2 tick
     loop all players:
         resetPlayerVariables(loop-player)
         teamLeave(loop-player)
