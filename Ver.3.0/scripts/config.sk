@@ -73,40 +73,43 @@ function gameConfig():
     # その確率
     #
     add cooked beef to {Natto.chestItemName.normal::*}
-    add 60 to {Natto.chestItemChance.normal::*}
+    add 30 to {Natto.chestItemChance.normal::*}
     #
-    add 5 of emerald to {Natto.chestItemName.normal::*}
-    add 40 to {Natto.chestItemChance.normal::*}
+    add cooked porkchop to {Natto.chestItemName.normal::*}
+    add 20 to {Natto.chestItemChance.normal::*}
+    #
+    add 10 of emerald to {Natto.chestItemName.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
     #
     add wooden sword to {Natto.chestItemName.normal::*}
-    add 30 to {Natto.chestItemChance.normal::*}
+    add 5 to {Natto.chestItemChance.normal::*}
     #
     add bow to {Natto.chestItemName.normal::*}
-    add 20 to {Natto.chestItemChance.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
     #
-    add 5 of arrow to {Natto.chestItemName.normal::*}
-    add 30 to {Natto.chestItemChance.normal::*}
+    add 10 of arrow to {Natto.chestItemName.normal::*}
+    add 20 to {Natto.chestItemChance.normal::*}
     #
     add wooden axe to {Natto.chestItemName.normal::*}
-    add 20 to {Natto.chestItemChance.normal::*}
+    add 5 to {Natto.chestItemChance.normal::*}
     #
     add chaimmail chestplate to {Natto.chestItemName.normal::*}
-    add 30 to {Natto.chestItemChance.normal::*}
+    add 3 to {Natto.chestItemChance.normal::*}
     #
     add chainmail helmet to {Natto.chestItemName.normal::*}
-    add 30 to {Natto.chestItemChance.normal::*}
+    add 3 to {Natto.chestItemChance.normal::*}
     #
     add leather chestplate to {Natto.chestItemName.normal::*}
-    add 60 to {Natto.chestItemChance.normal::*}
+    add 6 to {Natto.chestItemChance.normal::*}
     #
     add leather helmet to {Natto.chestItemName.normal::*}
-    add 60 to {Natto.chestItemChance.normal::*}
+    add 6 to {Natto.chestItemChance.normal::*}
     #
     add iron chestplate to {Natto.chestItemName.normal::*}
-    add 10 to {Natto.chestItemChance.normal::*}
+    add 1 to {Natto.chestItemChance.normal::*}
     #
     add iron helmet to {Natto.chestItemName.normal::*}
-    add 10 to {Natto.chestItemChance.normal::*}
+    add 1 to {Natto.chestItemChance.normal::*}
     #
 #
 # ---------------------------------------------------------------------------------------

@@ -542,3 +542,4 @@ function defChestRootYukidama(n: number):
 function defChestRootSkill(n: number):
     loop {Natto.chestItemChance.skill::%{_n}%} times:
         add {Natto.chestItemName.skill::%{_n}%} to {Natto.chestRoot.skill::*}
+
