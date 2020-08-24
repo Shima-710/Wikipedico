@@ -187,7 +187,7 @@ function winTeam():
 
 function winPlayer():
     loop all players:
-        if loop-player's gamemode is adventure:
+        if loop-player's gamemode is survival:
             set {_p} to loop-player
     set {playerStatus.%{_p}%} to "death"
     set {playerRank.%{_p}%} to 1
