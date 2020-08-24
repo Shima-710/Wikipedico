@@ -99,8 +99,11 @@ function gameStart():
         reduce {_loop} by 1
         wait 1 second
 
+
     if {mode.daruma} is true:
         set {daruma.count} to true
+    wait 5 seconds
+    execute console command "fill -242 184 179 -220 184 201 glass"
 
 
 function gameEnd():
@@ -124,6 +127,7 @@ function gameEnd():
 
     execute console command "function shimashima:01_toggle_nametag"
     remove all items from all players
+    execute console command "clear @a"
     set gamemode of all players to adventure
     teleport all players to {Natto.locaLobbySpawn}
 
@@ -291,7 +295,7 @@ function calSoloRanking():
     broadcast "&b&l[試合結果]"
     loop {qua.player} times:
         add 1 to {_loop}
-        broadcast "&6%{_loop}%位  &8--%{soloRanking.name.%{_loop}%}% &r &8-- &6計%{soloRanking.kills.%{_loop}%}%kill"
+        broadcast "&6%{_loop}%位  &8--&r%{soloRanking.name.%{_loop}%}% &8-- &6計%{soloRanking.kills.%{_loop}%}%kill"
     broadcast "&7====================================================="
 
 function calKillRanking():
