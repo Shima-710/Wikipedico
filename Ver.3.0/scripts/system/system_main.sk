@@ -39,6 +39,9 @@ on death of player:
             broadcast "&b%attacker% &r✈► &c%victim%"
             stop
 
+on respawn:
+    if {gameStatus} is 1:
+        teleport player to {Natto.locaDeathSpawn}
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
