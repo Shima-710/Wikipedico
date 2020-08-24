@@ -39,7 +39,7 @@ on right click with player skull:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click on birch sign:
     if {gameStatus} is not 1:
-        execute console command "tp %player% -27598.50 95 37043.53"
+        teleport player to {Natto.locaLobbySpawn}
         execute console command "effect give %player% glowing 10 255 true"
         add 1 to {asure.clearcount.%player%}
         broadcast "&6[アスレ] &r%player% クリアおめでとう!!!（%{asure.clearcount.%player%}%回目）"
