@@ -1,6 +1,6 @@
 # Wikipedico
 
-Latest Update : 16/07/2020 | Written by ShimaShima_710
+Latest Update : 11/09/2020 | Written by ShimaShima_710
 
 [[Notion] Wikipedico](https://www.notion.so/Wikipedico-ed121158337344f88fa6d358f73df56a)
 
