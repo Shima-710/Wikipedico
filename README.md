@@ -1,17 +1,15 @@
-# -DatapackAndSkript-ibuibu-kikaku
+# Wikipedico
+
+[Notion](https://www.notion.so/Wikipedico-9aeaf0fdd14d45e6b3e08991e895d430)
 
 Latest Update : 16/07/2020 | Written by ShimaShima_710
 
-### Overview
+## Overview
 
----
-
-Minecraft Plugins  and Datapack for ibuibu.
+Minecraft Plugins and Datapack for ibuibu.
 
 
-### Developing Environment
-
----
+## Developing Environment
 
 **OS** :
 
