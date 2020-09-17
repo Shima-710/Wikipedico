@@ -1,6 +1,8 @@
 # Wikipedico 開発メモ
-Javadoc作れって話だけどめんどいからMarkDownで。
-技術仕様はREADME記載。
+
+等幅環境で見ないと見栄えが死にます
+
+技術仕様はREADME記載
 
 
 ## ファイル構造
