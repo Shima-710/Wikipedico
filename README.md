@@ -1,43 +1,32 @@
 # Wikipedico
-
 Latest Update : 11/09/2020 | Written by ShimaShima_710
 
 [[Notion] Wikipedico](https://www.notion.so/Wikipedico-ed121158337344f88fa6d358f73df56a)
 
-
 ## Overview
-
-Minecraft Plugins and Datapack for ibuibu.
-
+Minecraft Plugins and Datapack.
 
 ## Developing Environment
-
 **OS** :
 
-macOS 10.15.5 Catalina
+	macOS 10.15.5 Catalina
 
-Windows 10
+	Windows 10
 
 **Language** :
 
-Skript 2.4.1 | Bukkit Plugins
+	Skript 2.4.1
 
-mcfunction | Minecraft
+	mcfunction
 
 **Editor** :
 
-Visual Studio Code | Microsoft
-
-**Editor Extension** :
-
-SkriptVS, Datapack Helper Plus
+	Visual Studio Code
 
 **Required Plugins** :
 
-Skript 2.4.1
+	Skript 2.4.1
 
-LuckPerms 5.1.45
+	LuckPerms 5.1.45
 
-skRayFall 1.9.20
-
-skQuery 3.6.5
+	skQuery 3.6.5
