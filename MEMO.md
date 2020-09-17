@@ -20,7 +20,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 		|	├── bukkit/pack.mcmeta
 		|	└── ibuibu/
 		|		├── data/
-		|		|	├── minecraft/*				# 以下略,デフォルトの進捗及びレシピは無効化済み
+		|		|	├── minecraft/*								# 以下略,デフォルトの進捗及びレシピは無効化済み
 		|		|	└── shimashima/
 		|		|		├── functions/
 		|		|		|	├── wb_range/*						# ワールドボーダー範囲設定用
@@ -37,43 +37,43 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 		|		|		|	└── boarder_set.mcfunction			# ワールドボーダーをセット
 		|		|		|
 		|		|		└── recipes/
-		|		|			└── revival.json	# 復活の石レシピ
+		|		|			└── revival.json					# 復活の石レシピ
 		|		|
 		|		└── pack.mcmeta
 		|
 		└── scripts/
-			├── charas/						# キャラクターごとのファイルが格納
-			|	├── chara_gorilla.sk		# ゴリラ
-			|	├── chara_healer.sk			# ヒーラー
-			|	├── chara_neet.sk			# ニート
-			|	├── chara_ninja.sk			# 忍者
-			|	├── chara_robot.sk			# ロボット
-			|	├── chara_tank.sk			# タンク
-			|	└── chara_tyuuni.sk			# 厨二病
+			├── charas/											# キャラクターごとのファイルが格納
+			|	├── chara_gorilla.sk							# ゴリラ
+			|	├── chara_healer.sk								# ヒーラー
+			|	├── chara_neet.sk								# ニート
+			|	├── chara_ninja.sk								# 忍者
+			|	├── chara_robot.sk								# ロボット
+			|	├── chara_tank.sk								# タンク
+			|	└── chara_tyuuni.sk								# 厨二病
 			|
-			├── command/					# 利用ケース別にコマンドファイルが格納
-			|	├── command_dev.sk			# 開発用コマンド
-			|	├── command_gen.sk			# 一般ユーザー用コマンド
-			|	└── command_gm.sk			# ゲームマスター用コマンド
+			├── command/										# 利用ケース別にコマンドファイルが格納
+			|	├── command_dev.sk								# 開発用コマンド
+			|	├── command_gen.sk								# 一般ユーザー用コマンド
+			|	└── command_gm.sk								# ゲームマスター用コマンド
 			|
-			├── shop/						# モード別にショップ用ファイルが格納
-			|	├── _leg/					# 過去ファイル/バックアップ
-			|	├── shop_buy.sk				# 購入内容
-			|	├── shop_item_chara.sk		# キャラ有効時に購入可能
-			|	├── shop_sell.sk			# 売却内容
-			|	└── shop_skill.sk			# キャラ有効時レベルアップ用
+			├── shop/											# モード別にショップ用ファイルが格納
+			|	├── _leg/										# 過去ファイル/バックアップ
+			|	├── shop_buy.sk									# 購入内容
+			|	├── shop_item_chara.sk							# キャラ有効時に購入可能
+			|	├── shop_sell.sk								# 売却内容
+			|	└── shop_skill.sk								# キャラ有効時レベルアップ用
 			|
-			├── system/						# 各種システム処理用ファイルが格納
-			|	├── system_actionbar.sk		# アクションバー
-			|	├── system_asure.sk			# アスレチック
-			|	├── system_daruma.sk		# だるまさんが転んだ
-			|	├── system_main.sk			# メイン
-			|	├── system_revival.sk		# 復活
-			|	└── system_skill.sk			# キャラ選択
+			├── system/											# 各種システム処理用ファイルが格納
+			|	├── system_actionbar.sk							# アクションバー
+			|	├── system_asure.sk								# アスレチック
+			|	├── system_daruma.sk							# だるまさんが転んだ
+			|	├── system_main.sk								# メイン
+			|	├── system_revival.sk							# 復活
+			|	└── system_skill.sk								# キャラ選択
 			|
-			├── config.sk					# 設定ファイル
-			├── function.sk					# 全functionが記述
-			└── welcome.sk					# join,quit,loadに関する内容
+			├── config.sk										# 設定ファイル
+			├── function.sk										# 全functionが記述
+			└── welcome.sk										# join,quit,loadに関する内容
 ```
 
 
