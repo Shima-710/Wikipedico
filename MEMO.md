@@ -15,7 +15,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 ├── LICENSE
 ├── README.md
 ├── HIKITUGI.md
-└── Ver.3.0/
+└── Ver.4.0/
 		├── datapacks/
 		|	├── bukkit/pack.mcmeta
 		|	└── ibuibu/
