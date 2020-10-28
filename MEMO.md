@@ -95,28 +95,40 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 ### 同時稼働可能
 * だるまさんが転んだモード
 
-	/mode daruma
+	だるまさんが転んだができるモード
+
+	``/mode daruma``
 
 * キャラクター
 
-	/mode skill
+	キャラ選択ができるモード
+
+	``/mode skill``
 
 * チーム戦
 
-	/mode team
+	チーム対抗戦ができるモード
+
+	``/mode team``
 
 * いぶいぶ
 
-	/mode ibuibu
+	いぶいぶモード
+
+	``/mode ibuibu``
 
 ### 同時稼働不可
 * 弓のみ
 
-	/mode yumi
+	弓のみで戦うモード
+
+	``/mode yumi``
 
 * 雪玉のみ
 
-	/mode yukidama
+	雪玉のみで戦うモード
+
+	``/mode yukidama``
 
 ## コマンド
 一般ユーザーコマンドについてはwiki参照
@@ -133,7 +145,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 
 	同接・累接人数を表示
 
-* admin [<join/leave>]  [<player>]
+* admin [\<join/leave>]  [\<player>]
 
 	指定プレイヤーをadminに(adminのみで省略可能)
 
@@ -141,7 +153,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 
 	むりくりプレイヤーをチームに入れる(バグるかも)
 
-* chara <choise/look> [<player>]
+* chara \<choise/look> [\<player>]
 
 	choiseで…ってかずっとchoiceのスペルミスってね？
 	choiceでキャラ選択、lookで各チームのキャラを確認
@@ -151,7 +163,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 	運営特権で指定プレイヤーを復活
 	ただし該当者の所属チームが全滅している場合はバグる
 
-* destroyable [<true/false>]
+* destroyable [\<true/false>]
 
 	破壊の可否を設定
 
