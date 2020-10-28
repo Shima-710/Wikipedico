@@ -137,7 +137,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 
 	指定プレイヤーをadminに(adminのみで省略可能)
 
-* join <team> [<player>]
+* join \<team> [\<player>]
 
 	むりくりプレイヤーをチームに入れる(バグるかも)
 
