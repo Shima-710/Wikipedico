@@ -9,7 +9,9 @@ Minecraft Plugins and Datapack.
 ## Developing Environment
 **OS** :
 
-	macOS 10.15.5 Catalina
+	macOS 10.15.5/6/7 Catalina
+	
+	macOS 11.0.1 RC2
 
 	Windows 10
 
