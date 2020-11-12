@@ -253,6 +253,7 @@ function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカ
         reduce {qua.surviver.team.%{_c}%} by 1
         set {playerJoined.%{_p}%} to false
         execute console command "scoreboard players reset %name of {_p}% %{_oc}%"
+        execute console command "team leave %{_p}%"
 
 function existTeam(c: object) :: boolean:
     if amount of {team.%{_c}%::*} is 0:
