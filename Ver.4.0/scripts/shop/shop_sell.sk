@@ -523,7 +523,7 @@ on inventory click:
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #　"食糧を売る"内の商品
         # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if event-item is potion named "&a[$%{price.sell.potion}%] &r回復薬を買う":
+        if event-item is potion named "&a[$%{price.sell.potion}%] &r回復薬を売る":
             cancel event
             if player has potion named "回復薬":
                 play sound "entity.player.levelup" to player
@@ -533,7 +533,7 @@ on inventory click:
                 play sound "block.note_block.banjo" to player
                 message "&b[商人] &rそのアイテムは持ってないようだな..." to player
 
-        if event-item is cooked porkchop named "&a[$%{price.sell.cooked_porkchop}%] &r食糧を買う":
+        if event-item is cooked porkchop named "&a[$%{price.sell.cooked_porkchop}%] &r食糧を売る":
             cancel event
             if player has cooked porkchop named "食糧":
                 play sound "entity.player.levelup" to player

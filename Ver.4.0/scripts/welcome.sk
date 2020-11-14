@@ -22,6 +22,7 @@ on skript load:
         resetChara(loop-player)
         if {admin.%loop-player%} is true:
             adminLeave(loop-player)
+        make loop-player execute command "rirogu"
 
     wait 1 tick
     execute console command "natto---teamgoodbye"

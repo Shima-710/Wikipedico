@@ -140,59 +140,42 @@ on inventory close:
 
 on inventory click:
     if {gameStatus} is 0:
-        loop {Natto.qua.Team} times:
-            add 1 to {_loop}
-            set {_c} to {Natto.teamName::%{_loop}%}
-            if event-item is red wool:
-                cancel event
-                teamJoin(player,red)
-                stop
-            if event-item is blue wool:
-                cancel event
-                teamJoin(player,blue)
-                stop
-            if event-item is yellow wool:
-                cancel event
-                teamJoin(player,yellow)
-                stop
-            if event-item is green wool:
-                cancel event
-                teamJoin(player,green)
-                stop
-            if event-item is orange wool:
-                cancel event
-                teamJoin(player,orange)
-                stop
-            if event-item is purple wool:
-                cancel event
-                teamJoin(player,purple)
-                stop
-            if event-item is gray wool:
-                cancel event
-                teamJoin(player,gray)
-                stop
-            if event-item is red stained glass pane:
-                cancel event
-                stop
-            if event-item is blue stained glass pane:
-                cancel event
-                stop
-            if event-item is yellow stained glass pane:
-                cancel event
-                stop
-            if event-item is green stained glass pane:
-                cancel event
-                stop
-            if event-item is orange stained glass pane:
-                cancel event
-                stop
-            if event-item is purple stained glass pane:
-                cancel event
-                stop
-            if event-item is gray stained glass pane:
-                cancel event
-                stop
-        if event-item is player skull:
+        if event-item is red wool:
+            cancel event
+            teamJoin(player,red)
+        else if event-item is blue wool:
+            cancel event
+            teamJoin(player,blue)
+        else if event-item is yellow wool:
+            cancel event
+            teamJoin(player,yellow)
+        else if event-item is green wool:
+            cancel event
+            teamJoin(player,green)
+        else if event-item is orange wool:
+            cancel event
+            teamJoin(player,orange)
+        else if event-item is purple wool:
+            cancel event
+            teamJoin(player,purple)
+        else if event-item is gray wool:
+            cancel event
+            teamJoin(player,gray)
+        else if event-item is red stained glass pane:
+            cancel event
+        else if event-item is blue stained glass pane:
+            cancel event
+        else if event-item is yellow stained glass pane:
+            cancel event
+        else if event-item is green stained glass pane:
+            cancel event
+        else if event-item is orange stained glass pane:
+            cancel event
+        else if event-item is purple stained glass pane:
+            cancel event
+        else if event-item is gray stained glass pane:
+            cancel event
+        else if event-item is player skull:
             cancel event
 
 

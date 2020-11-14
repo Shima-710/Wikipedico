@@ -65,6 +65,8 @@ function gameStart():
         setQuas()
         #refreshTeamSidebar()
 
+        message "&2>SysLog-ApplyTeam &r参加チームは %{appliedTeams}% です" to {admin::*}
+
     else:
         setQuas()
         execute console command "team join players @a[team=!admin]"
@@ -266,6 +268,7 @@ function applyTeam(c: object):
         add 1 to {qua.playTeam}
         add 1 to {qua.surviveTeam}
         set {teamStatus.%{_c}%} to "alive"
+        add {_c} to {appliedTeams}
     else:
         set {teamStatus.%{_c}%} to "death"
 
@@ -320,6 +323,7 @@ function deathPlayer(p: player):
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
         if {playerJoined.%{_p}%} is false:
+            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます(CODE-T01)" to {admin::*}
             stop
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1
@@ -337,10 +341,10 @@ function deathPlayer(p: player):
 function deathTeam(c: object):
     set {teamStatus.%{_c}%} to "death"
     set {teamRank.%{qua.surviveTeam}%} to {_c}
-    execute console command "scoreboard players set 順位：%{teamRank.%{qua.surviveTeam}%}%位 %{_c}% -3"
+    execute console command "scoreboard players set 順位：%{qua.surviveTeam}%位 %{_c}% -3"
     reduce {qua.surviveTeam} by 1
     wait 1 tick
-    broadcast "&b&l>Game %{_c}% チームが全滅しました"
+    broadcast "&b&l>Game &r%{_c}% チームが全滅しました"
     if {qua.surviveTeam} is 1:
         winTeam()
 

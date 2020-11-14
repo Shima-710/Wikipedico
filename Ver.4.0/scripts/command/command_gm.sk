@@ -52,14 +52,14 @@ command /admin [<text>] [<player>]:
                 adminLeave(player)
                 set the player's chat name to "%name of player%"
                 set the player's display name to "%name of player%"
-                message "&b&l>System &r%player% がadminから脱退しました" to {admin::*}
-                message "&b&l>System &radminから脱退しました" to player
+                message "&2>SysLog-Admin &r%player% がadminから脱退しました" to {admin::*}
+                message "&2>SysLog-Admin &radminから脱退しました" to player
                 stop
             else:
                 adminJoin(player)
                 set the player's chat name to "&4%name of player%"
                 set the player's display name to "&4[運営] %name of player%"
-                message "&b&l>System &r%player% がadminに加入しました" to {admin::*}
+                message "&2>SysLog-Admin &r%player% がadminに加入しました" to {admin::*}
                 stop
 
         if arg-1 is "join":
@@ -68,21 +68,21 @@ command /admin [<text>] [<player>]:
                     adminJoin(arg-2)
                     set the arg-2's chat name to "&4%name of arg-2%"
                     set the arg-2's display name to "&4[運営] %name of arg-2%"
-                    message "&b&l>System &r%player% があなたをadminに加入させました" to arg-2
-                    message "&b&l>System &r%arg-2% がadminに加入しました" to {admin::*}
+                    message "&2>SysLog-Admin &r%player% があなたをadminに加入させました" to arg-2
+                    message "&2>SysLog-Admin &r%arg-2% がadminに加入しました" to {admin::*}
                     stop
                 else:
-                    message "&b&l>System &r%arg-2% はすでにadminです" to player
+                    message "&2>SysLog-Admin &r%arg-2% はすでにadminです" to player
                     stop
             else:
                 if {admin.%player%} is false:
                     adminJoin(player)
                     set the player's chat name to "&4%name of player%"
                     set the player's display name to "&4[運営] %name of player%"
-                    message "&b&l>System &r%player% がadminに加入しました" to {admin::*}
+                    message "&2>SysLog-Admin &r%player% がadminに加入しました" to {admin::*}
                     stop
                 else:
-                    message "&b&l>System &r%player% はすでにadminです" to player
+                    message "&2>SysLog-Admin &r%player% はすでにadminです" to player
                     stop
 
         if arg-1 is "leave":
@@ -91,22 +91,22 @@ command /admin [<text>] [<player>]:
                     adminLeave(arg-2)
                     set the arg-2's chat name to "%name of arg-2%"
                     set the arg-2's display name to "%name of arg-2%"
-                    message "&b&l>System &r%player% があなたをadminから脱退させました" to arg-2
-                    message "&b&l>System &r%arg-2% がadminから脱退しました" to {admin::*}
+                    message "&2>SysLog-Admin &r%player% があなたをadminから脱退させました" to arg-2
+                    message "&2>SysLog-Admin &r%arg-2% がadminから脱退しました" to {admin::*}
                     stop
                 else:
-                    message "&b&l>System &r%arg-2% はすでにadminではありません" to player
+                    message "&2>SysLog-Admin &r%arg-2% はすでにadminではありません" to player
                     stop
             else:
                 if {admin.%player%} is true:
                     adminLeave(player)
                     set the player's chat name to "%name of player%"
                     set the player's display name to "%name of player%"
-                    message "&b&l>System &r%player% がadminから脱退しました" to {admin::*}
-                    message "&b&l>System &radminから脱退しました" to player
+                    message "&2>SysLog-Admin &r%player% がadminから脱退しました" to {admin::*}
+                    message "&2>SysLog-Admin &radminから脱退しました" to player
                     stop
                 else:
-                    message "&b&l>System &r%player% はすでにadminではありません" to player
+                    message "&2>SysLog-Admin &r%player% はすでにadminではありません" to player
                     stop
 
 
