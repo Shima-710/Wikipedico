@@ -42,7 +42,7 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 	|		└── pack.mcmeta
 	|
 	└── scripts/
-		├── charas/											# キャラクターごとのファイルが格納
+		├── charas/										# キャラクターごとのファイルが格納
 		|	├── chara_gorilla.sk							# ゴリラ
 		|	├── chara_healer.sk								# ヒーラー
 		|	├── chara_neet.sk								# ニート
@@ -51,19 +51,19 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 		|	├── chara_tank.sk								# タンク
 		|	└── chara_tyuuni.sk								# 厨二病
 		|
-		├── command/										# 利用ケース別にコマンドファイルが格納
+		├── command/									# 利用ケース別にコマンドファイルが格納
 		|	├── command_dev.sk								# 開発用コマンド
 		|	├── command_gen.sk								# 一般ユーザー用コマンド
 		|	└── command_gm.sk								# ゲームマスター用コマンド
 		|
-		├── shop/											# モード別にショップ用ファイルが格納
-		|	├── _leg/										# 過去ファイル/バックアップ
+		├── shop/										# モード別にショップ用ファイルが格納
+		|	├── _leg/										# 過去ファイル;バックアップ
 		|	├── shop_buy.sk									# 購入内容
 		|	├── shop_item_chara.sk							# キャラ有効時に購入可能
 		|	├── shop_sell.sk								# 売却内容
 		|	└── shop_skill.sk								# キャラ有効時レベルアップ用
 		|
-		├── system/											# 各種システム処理用ファイルが格納
+		├── system/										# 各種システム処理用ファイルが格納
 		|	├── system_actionbar.sk							# アクションバー
 		|	├── system_asure.sk								# アスレチック
 		|	├── system_daruma.sk							# だるまさんが転んだ

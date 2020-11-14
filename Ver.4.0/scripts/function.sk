@@ -183,7 +183,7 @@ function winTeam():
             set {_c} to {_cc}
     set {teamStatus.%{_c}%} to "death"
     set {teamRank.1} to {_c}
-    execute console command "scoreboard players set 順位：%{teamRank.%{qua.surviveTeam}%}%位 %{_c}% -3"
+    execute console command "scoreboard players set 順位：1位 %{_c}% -3"
     send title "&e&l勝利 &8| &r[%{_c}% team]" to all players
     gameEnd()
 
@@ -323,7 +323,7 @@ function deathPlayer(p: player):
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
         if {playerJoined.%{_p}%} is false:
-            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます(CODE-T01)" to {admin::*}
+            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます (CODE-T01:{_p}=%{_p}%)" to {admin::*}
             stop
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1
@@ -351,14 +351,18 @@ function deathTeam(c: object):
 
 function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
     if {playerJoined.%{_p}%} is false:
+        message "&2>SysLog-revivePlayer &rなんかエラー (CODE-T02:{_p}=%{_p}%)" to {admin::*}
+        message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_p}%}
     if {playerStatus.%{_p}%} is "death":
         if {mode.team} is true:
             if {teamStatus.%{_c}%} is "death":
                 message "&c&l>Error &rすでに全滅したチームのプレイヤーは復活させられません" to {_pp}
+                stop
+            else:
+                add 1 to {qua.surviver.team.%{_p}%}
         add 1 to {qua.surviver}
-        add 1 to {qua.surviver.team.%{_p}%}
         reset {playerRank.%{_p}%}
         set gamemode of {_p} to survival
         teleport {_p} to {_pp}
@@ -370,6 +374,8 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
 
 function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる人
     if {playerJoined.%{_pp}%} is false:
+        message "&2>SysLog-selectRevivePlayer &rなんかエラー (CODE-T03:{_pp}=%{_pp}%)" to {admin::*}
+        message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_pp}%}
     loop {Natto.teamMaxPlayer} times:
@@ -418,6 +424,7 @@ function refreshSoloSidebar():
 
 function selectChara(p: player, cn: object): # cn=chara name
     if {playerJoined.%{_p}%} is false:
+        message "&2>SysLog-selectChara &rなんかエラー (CODE-C01:{_p}=%{_p}%,{_cn}=%{_cn}%)" to {admin::*}
         stop
     set {_c} to {playerJoined.%{_p}%}
     if {skillSelected.%{_c}%.%{_cn}%} is not false:
@@ -433,6 +440,7 @@ function selectChara(p: player, cn: object): # cn=chara name
 
 function setChara(p: player, cn: object):
     if {playerJoined.%{_p}%} is false:
+        message "&2>SysLog-setChara &rなんかエラー (CODE-C01:{_p}=%{_p}%,{_cn}=%{_cn}%)" to {admin::*}
         stop
     set {_c} to {playerJoined.%{_p}%}
     set {skillSelected.%{_c}%.%{_cn}%} to {_p}
