@@ -231,6 +231,7 @@ function teamJoin(p: player, c: object):
         message "&c&l>Error すでに満員です" to {_p}
         stop
     else:
+        adminLeave({_p})
         resetChara({_p})
         teamLeave({_p})
         add {_p} to {team.%{_c}%::*}
@@ -277,7 +278,7 @@ function teamChat(p:player, t: text):
     if {playerJoined.%{_p}%} is false:
         stop
     set {_c} to {playerJoined.%{_p}%}
-    message "&7[Team Chat] <%{_p}% -> %{_c}%> &r%{_t}%" to {team.%{_c}%::*} and {admin::*} and {spectator::*}
+    message "&7[Team Chat] <&r%{_p}% &7-> &r%{_c}%&7> &r%{_t}%" to {team.%{_c}%::*} and {admin::*} and {spectator::*}
 
 
 function calTeamRanking(): # %{teamrank.%{_loop}%}%の中身は色

@@ -7,7 +7,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # バージョン情報
-    set {ver} to "4.1.0 (alpha)"
+    set {ver} to "4.1.3 (alpha)"
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ function gameConfig():
     # その確率
     #
     add potion named "回復薬" to {Natto.chestItemName.normal::*}
-    add 30 to {Natto.chestItemChance.normal::*}
+    add 20 to {Natto.chestItemChance.normal::*}
     #
     add cooked porkchop named "食糧" to {Natto.chestItemName.normal::*}
     add 20 to {Natto.chestItemChance.normal::*}

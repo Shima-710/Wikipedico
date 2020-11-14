@@ -34,6 +34,7 @@ on skript load:
         set {_c} to {Natto.teamName::%{_loop}%}
         execute console command "scoreboard players set ============== %{_c}% 0"
     execute console command "worldborder set 50000"
+    execute console command "kill @e[type=item]"
     wait 1 second
     broadcast "&6&l>Plugin &2Reloaded Successfully!"
 
@@ -54,11 +55,17 @@ on join:
         resetPlayerVariables(player)
         make player execute command "rirogu"
         teleport player to {Natto.locaLobbySpawn}
+        set player's gamemode to adventure
     if {gameStatus} is 1:
         if {playerStatus.%player%} is false:
             message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
+            set player's gamemode to spectator
+        if {playerStatus.%player%} is not set:
+            message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
+            set player's gamemode to spectator
         if {playerStatus.%player%} is "death":
             message "&l&a>Game &rステータスが死亡に設定されました" to player
+            set player's gamemode to spectator
     if {gameStatus} is 2:
 
 

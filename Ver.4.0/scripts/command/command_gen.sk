@@ -34,6 +34,7 @@ command /rirogu:
             set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
             set slot 7 of player's inventory to a ender chest named "&dキャラ選択"
             set slot 8 of player's inventory to a chest named "&dチーム選択"
+            set {count.ans.%player%} to 0
             play sound "block.note_block.bell" to player
         else:
             play sound "block.note_block.banjo" to player
@@ -66,34 +67,38 @@ command /answer <text>:
 command /tpa <player>:
     description:Teleport team player.
     trigger:
-        if {playerJoined.%player%} is {playerJoined.%arg-1%}:
-            teleport player to arg-1
-            play sound "block.note_block.bell" to player
-            message "&b&l>Game %arg-1%にテレポートしました" to player
-        else:
-            play sound "block.note_block.banjo" to player
-            message "&b&l>Game &r無効なプレイヤーです"
+        if {mode.team} is true:
+            if {playerJoined.%player%} is {playerJoined.%arg-1%}:
+                teleport player to arg-1
+                play sound "block.note_block.bell" to player
+                message "&b&l>Game %arg-1%にテレポートしました" to player
+            else:
+                play sound "block.note_block.banjo" to player
+                message "&b&l>Game &r無効なプレイヤーです"
 
 
 command /openchest <player>:
     trigger:
-        open chest inventory with 3 row to arg-1
-        play sound "block.chest.open" to arg-1
-        set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
-        loop {_random.chestSlotQua} times:
-            set {_random.chestSlotNum} to random integer between 0 and 26
-            if {mode.skill} is true:
-                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.skill}
-                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.skill::%{_random.itemNumber}%}
-            if {mode.yumi} is true:
-                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yumi}
-                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yumi::%{_random.itemNumber}%}
-            if {mode.yukidama} is true:
-                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yukidama}
-                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yukidama::%{_random.itemNumber}%}
-            else:
-                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
-                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.normal::%{_random.itemNumber}%}
+        if player's gamemode is spectator:
+            stop
+        else:
+            open chest inventory with 3 row to arg-1
+            play sound "block.chest.open" to arg-1
+            set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
+            loop {_random.chestSlotQua} times:
+                set {_random.chestSlotNum} to random integer between 0 and 26
+                if {mode.skill} is true:
+                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.skill}
+                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.skill::%{_random.itemNumber}%}
+                if {mode.yumi} is true:
+                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yumi}
+                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yumi::%{_random.itemNumber}%}
+                if {mode.yukidama} is true:
+                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yukidama}
+                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yukidama::%{_random.itemNumber}%}
+                else:
+                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
+                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.normal::%{_random.itemNumber}%}
 
 on right click on chest:
     set the clicked block to air
