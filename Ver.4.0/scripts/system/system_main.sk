@@ -8,36 +8,39 @@
 # 死亡時処理
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on death of player:
-    deathPlayer(victim)
-    add 1 to {kills.%attacker%}
+    if {playerStatus.%victim%} is "alive":
+        deathPlayer(victim)
+        add 1 to {kills.%attacker%}
 
-    if damage cause is fall:
-        broadcast "&c%victim% &rは高所から落下して死亡した"
-        stop
-    else if damage cause is suffocation:
-        broadcast "&c%victim% &rは安地へ逃げられずに死亡した"
-        stop
-    else if damage cause is drown:
-        broadcast "&c%victim% &rは溺れて死亡した"
-        stop
-    else if damage cause is a block explosion:
-        broadcast "&c%victim% &rは爆発に巻き込まれて死亡した"
-        add 1 to {kills.%{lastuse.snowball}%}
-        stop
-    else if damage cause is attack:
-        broadcast "&b%attacker% &r✈► &c%victim%"
-        stop
-    else:
-        if attacker is not set:
-            if {daruma.da} is true:
-                if {mode.daruma} is true:
-                    broadcast "&c%victim% &rはだるまさんに襲われて死亡した"
-            else:
-                broadcast "&c%victim% &rは死亡した"
-                stop
-        else:
+        if damage cause is fall:
+            broadcast "&c%victim% &rは高所から落下して死亡した"
+            stop
+        else if damage cause is suffocation:
+            broadcast "&c%victim% &rは安地へ逃げられずに死亡した"
+            stop
+        else if damage cause is drown:
+            broadcast "&c%victim% &rは溺れて死亡した"
+            stop
+        else if damage cause is a block explosion:
+            broadcast "&c%victim% &rは爆発に巻き込まれて死亡した"
+            add 1 to {kills.%{lastuse.snowball}%}
+            stop
+        else if damage cause is attack:
             broadcast "&b%attacker% &r✈► &c%victim%"
             stop
+        else:
+            if attacker is not set:
+                if {daruma.da} is true:
+                    if {mode.daruma} is true:
+                        broadcast "&c%victim% &rはだるまさんに襲われて死亡した"
+                else:
+                    broadcast "&c%victim% &rは死亡した"
+                    stop
+            else:
+                broadcast "&b%attacker% &r✈► &c%victim%"
+                stop
+    else:
+        message "&2>SysLog-OnDeathOfPlayer &rなんで死んだ？(CODE-D01 : victim=%victim%)" to {admin::*}
 
 on respawn:
     if {gameStatus} is 1:
@@ -121,13 +124,14 @@ on craft of cyan glazed terracotta:
 
 
 
-on consume cooked beef:
-    cancel event
-    heal player by {Natto.oniku.healAmount} hearts
-    remove 1 cooked beef from player
+#on consume cooked beef:
+    #cancel event
+    #heal player by {Natto.oniku.healAmount} hearts
+    #remove 1 cooked beef from player
 
 on consume potion:
     heal player by {Natto.oniku.healAmount} hearts
+    wait 0.5 seconds
     remove 1 glass bottle from player
 
 

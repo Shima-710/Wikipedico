@@ -58,14 +58,14 @@ function gameStart():
             if {playerJoined.%loop-player%} is false:
                 broadcast "&c&l>Error &rチームに所属してないプレイヤーがいるためゲームを開始できませんでした"
                 stop
+        set {_loop} to 1
         loop {Natto.qua.Team} times:
-            add 1 to {_loop}
             applyTeam({Natto.teamName::%{_loop}%})
+            add 1 to {_loop}
 
         setQuas()
         #refreshTeamSidebar()
 
-        message "&2>SysLog-ApplyTeam &r参加チームは %{appliedTeams}% です" to {admin::*}
 
     else:
         setQuas()
@@ -118,7 +118,7 @@ function gameEnd():
         execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}%"
         execute console command "scoreboard players reset 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}%"
 
-    set {gameStatus} to 2
+    set {gameStatus} to 0
 
     if {mode.daruma} is true:
         set {daruma.count} to false
@@ -148,6 +148,8 @@ function gameEnd():
     loop all players:
         if {admin.%loop-player%} is true:
             adminLeave(loop-player)
+    wait 3 second
+    reloadPlugin()
 
 
 
@@ -231,7 +233,8 @@ function teamJoin(p: player, c: object):
         message "&c&l>Error すでに満員です" to {_p}
         stop
     else:
-        adminLeave({_p})
+        if {playerStatus.%{_p}%} is "admin":
+            adminLeave({_p})
         resetChara({_p})
         teamLeave({_p})
         add {_p} to {team.%{_c}%::*}
@@ -249,27 +252,23 @@ function teamJoin(p: player, c: object):
 function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカラー(old color)
     if {playerJoined.%{_p}%} is false:
         stop
+    else if {playerJoined.%{_p}%} is not set:
+        stop
     else:
         set {_oc} to {playerJoined.%{_p}%}
         remove {_p} from {team.%{_oc}%::*}
         reduce {qua.player.team.%{_oc}%} by 1
-        reduce {qua.surviver.team.%{_c}%} by 1
+        reduce {qua.surviver.team.%{_oc}%} by 1
         set {playerJoined.%{_p}%} to false
         execute console command "scoreboard players reset %name of {_p}% %{_oc}%"
         execute console command "team leave %{_p}%"
 
-function existTeam(c: object) :: boolean:
-    if amount of {team.%{_c}%::*} is 0:
-        return false
-    else:
-        return true
 
 function applyTeam(c: object):
-    if existTeam({_c}) is true:
+    if amount of {team.%{_c}%::*} is not 0:
         add 1 to {qua.playTeam}
         add 1 to {qua.surviveTeam}
         set {teamStatus.%{_c}%} to "alive"
-        add {_c} to {appliedTeams}
     else:
         set {teamStatus.%{_c}%} to "death"
 
@@ -324,7 +323,7 @@ function deathPlayer(p: player):
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
         if {playerJoined.%{_p}%} is false:
-            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます (CODE-T01:{_p}=%{_p}%)" to {admin::*}
+            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます (CODE-T01 : {_p}=%{_p}%)" to {admin::*}
             stop
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1
@@ -352,7 +351,7 @@ function deathTeam(c: object):
 
 function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
     if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-revivePlayer &rなんかエラー (CODE-T02:{_p}=%{_p}%)" to {admin::*}
+        message "&2>SysLog-revivePlayer &rなんかエラー (CODE-T02 : {_p}=%{_p}%)" to {admin::*}
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_p}%}
@@ -362,7 +361,8 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
                 message "&c&l>Error &rすでに全滅したチームのプレイヤーは復活させられません" to {_pp}
                 stop
             else:
-                add 1 to {qua.surviver.team.%{_p}%}
+                add 1 to {qua.surviver.team.%{_c}%}
+        set {playerStatus.%{_p}%} to "alive"
         add 1 to {qua.surviver}
         reset {playerRank.%{_p}%}
         set gamemode of {_p} to survival
@@ -375,13 +375,16 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
 
 function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる人
     if {playerJoined.%{_pp}%} is false:
-        message "&2>SysLog-selectRevivePlayer &rなんかエラー (CODE-T03:{_pp}=%{_pp}%)" to {admin::*}
+        message "&2>SysLog-selectRevivePlayer &rなんかエラー (CODE-T03 : {_pp}=%{_pp}%)" to {admin::*}
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_pp}%}
+    set {_loop} to 1
+    set {_loop2} to 3
     loop {Natto.teamMaxPlayer} times:
+        set slot {_loop2} of current inventory of {_pp} to skull of {team.%{_c}%::%{_loop}%} named "&l%{team.%{_c}%::%{_loop}%}% &rを復活"
         add 1 to {_loop}
-        set slot 3 of current inventory of {_p} to skull of {team.%{_c}%::%{_loop}%} named "&l%{team.%{_c}%::%{_loop}%}% &rを復活"
+        add 1 to {_loop2}
 
 
 
@@ -425,7 +428,7 @@ function refreshSoloSidebar():
 
 function selectChara(p: player, cn: object): # cn=chara name
     if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-selectChara &rなんかエラー (CODE-C01:{_p}=%{_p}%,{_cn}=%{_cn}%)" to {admin::*}
+        message "&2>SysLog-selectChara &rなんかエラー (CODE-C01 : {_p}=%{_p}%, {_cn}=%{_cn}%)" to {admin::*}
         stop
     set {_c} to {playerJoined.%{_p}%}
     if {skillSelected.%{_c}%.%{_cn}%} is not false:
@@ -441,7 +444,7 @@ function selectChara(p: player, cn: object): # cn=chara name
 
 function setChara(p: player, cn: object):
     if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-setChara &rなんかエラー (CODE-C01:{_p}=%{_p}%,{_cn}=%{_cn}%)" to {admin::*}
+        message "&2>SysLog-setChara &rなんかエラー (CODE-C01 : {_p}=%{_p}%, {_cn}=%{_cn}%)" to {admin::*}
         stop
     set {_c} to {playerJoined.%{_p}%}
     set {skillSelected.%{_c}%.%{_cn}%} to {_p}
@@ -570,3 +573,44 @@ function defChestRootSkill(n: number):
     loop {Natto.chestItemChance.skill::%{_n}%} times:
         add {Natto.chestItemName.skill::%{_n}%} to {Natto.chestRoot.skill::*}
 
+function reloadPlugin():
+    broadcast "&6&l>Plugin &2Reloading..."
+    set {defineloca} to false
+    wait 2 tick
+    reloadConfig()
+    wait 2 tick
+    resetTeamVariables()
+    wait 2 tick
+    resetRankingVariables()
+    wait 2 tick
+    resetGameVariables()
+    wait 2 tick
+    resetGameMode()
+    wait 2 tick
+    spawnChest()
+    wait 2 tick
+    debugMode({debugMode})
+    wait 2 tick
+    loop all players:
+        resetPlayerVariables(loop-player)
+        teamLeave(loop-player)
+        resetChara(loop-player)
+        if {admin.%loop-player%} is true:
+            adminLeave(loop-player)
+
+    wait 1 tick
+    execute console command "natto---teamgoodbye"
+    wait 1 tick
+    execute console command "function shimashima:00_load"
+    wait 1 tick
+    loop {Natto.qua.Team} times:
+        add 1 to {_loop}
+        set {_c} to {Natto.teamName::%{_loop}%}
+        execute console command "scoreboard players set ============== %{_c}% 0"
+    execute console command "worldborder set 50000"
+    execute console command "kill @e[type=item]"
+
+    wait 3 second
+    loop all players:
+        make loop-player execute command "rirogu"
+    broadcast "&6&l>Plugin &2Reloaded Successfully!"

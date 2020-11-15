@@ -19,7 +19,7 @@ every 1 tick in "world":
                     set slot 4 of current inventory of loop-player to green dye named "&l厨二病"
                     set slot 5 of current inventory of loop-player to orange dye named "&lタンク"
                     set slot 6 of current inventory of loop-player to bone meal named "&lロボット"
-                    set slot 7 of current inventory of loop-player to gray dye named "&lニート"
+                    set slot 7 of current inventory of loop-player to black dye named "&lニート"
                     set {_loop.slot} to 10
                     set {_loop} to 0
                     set {_c} to {playerJoined.%loop-player%}
@@ -98,6 +98,6 @@ on inventory click:
             cancel event
             selectChara(player,{Natto.charaName::7})
 
-        if event-item is gray dye:
+        if event-item is black dye:
             cancel event
             selectChara(player,{Natto.charaName::4})

@@ -9,7 +9,7 @@ execute if score on_game on_game matches 1 run team modify yellow nametagVisibil
 execute if score on_game on_game matches 1 run team modify green nametagVisibility hideForOtherTeams
 execute if score on_game on_game matches 1 run team modify orange nametagVisibility hideForOtherTeams
 execute if score on_game on_game matches 1 run team modify purple nametagVisibility hideForOtherTeams
-execute if score on_game on_game matches 1 run team modify gray nametagVisibility hideForOtherTeams
+execute if score on_game on_game matches 1 run team modify black nametagVisibility hideForOtherTeams
 
 execute if score on_game on_game matches 1 run scoreboard objectives setdisplay belowName health
 
@@ -21,6 +21,6 @@ execute if score on_game on_game matches 0 run team modify yellow nametagVisibil
 execute if score on_game on_game matches 0 run team modify green nametagVisibility always
 execute if score on_game on_game matches 0 run team modify orange nametagVisibility always
 execute if score on_game on_game matches 0 run team modify purple nametagVisibility always
-execute if score on_game on_game matches 0 run team modify gray nametagVisibility always
+execute if score on_game on_game matches 0 run team modify black nametagVisibility always
 
 execute if score on_game on_game matches 0 run scoreboard objectives setdisplay belowName

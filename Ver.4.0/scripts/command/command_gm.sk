@@ -180,11 +180,11 @@ command /chara <text> [<player>]:
             set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}%" with lore "%{skill.%{team.purple::3}%}%"
             set slot 42 of player's current inventory to purple wool named "&lPurple Team"
 
-            set slot 7 of player's current inventory to gray wool named "&lGray Team"
-            set slot 16 of player's current inventory to skull of {team.gray::1} named "&l%{team.gray::1}%" with lore "%{skill.%{team.gray::1}%}%"
-            set slot 25 of player's current inventory to skull of {team.gray::2} named "&l%{team.gray::2}%" with lore "%{skill.%{team.gray::2}%}%"
-            set slot 34 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}%" with lore "%{skill.%{team.gray::3}%}%"
-            set slot 43 of player's current inventory to gray wool named "&lGray Team"
+            set slot 7 of player's current inventory to black wool named "&lblack Team"
+            set slot 16 of player's current inventory to skull of {team.black::1} named "&l%{team.black::1}%" with lore "%{skill.%{team.black::1}%}%"
+            set slot 25 of player's current inventory to skull of {team.black::2} named "&l%{team.black::2}%" with lore "%{skill.%{team.black::2}%}%"
+            set slot 34 of player's current inventory to skull of {team.black::3} named "&l%{team.black::3}%" with lore "%{skill.%{team.black::3}%}%"
+            set slot 43 of player's current inventory to black wool named "&lblack Team"
 
         if arg-1 is "ninja":
             set slot 0 of arg-2's inventory to {Natto.skill.ender}
@@ -267,11 +267,11 @@ command /revival:
         set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}% &rを復活"
         set slot 42 of player's current inventory to purple wool named "&lPurple Team"
 
-        set slot 7 of player's current inventory to gray wool named "&lGray Team"
-        set slot 16 of player's current inventory to skull of {team.gray::1} named "&l%{team.gray::1}% &rを復活"
-        set slot 25 of player's current inventory to skull of {team.gray::2} named "&l%{team.gray::2}% &rを復活"
-        set slot 34 of player's current inventory to skull of {team.gray::3} named "&l%{team.gray::3}% &rを復活"
-        set slot 43 of player's current inventory to gray wool named "&lGray Team"
+        set slot 7 of player's current inventory to black wool named "&lblack Team"
+        set slot 16 of player's current inventory to skull of {team.black::1} named "&l%{team.black::1}% &rを復活"
+        set slot 25 of player's current inventory to skull of {team.black::2} named "&l%{team.black::2}% &rを復活"
+        set slot 34 of player's current inventory to skull of {team.black::3} named "&l%{team.black::3}% &rを復活"
+        set slot 43 of player's current inventory to black wool named "&lblack Team"
 
 
 

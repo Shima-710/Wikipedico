@@ -111,15 +111,15 @@ setblock -231 184 190 yellow_stained_glass
     scoreboard objectives modify purple displayname "Purple Team"
     scoreboard objectives setdisplay sidebar.team.light_purple purple
 
-# gray
-    team add gray
-    team modify gray color gray
-    team modify gray friendlyFire false
-    team modify gray collisionRule never
-    team modify gray displayName "Gray Team"
-    scoreboard objectives add gray dummy
-    scoreboard objectives modify gray displayname "Gray Team"
-    scoreboard objectives setdisplay sidebar.team.gray gray
+# black
+    team add black
+    team modify black color black
+    team modify black friendlyFire false
+    team modify black collisionRule never
+    team modify black displayName "black Team"
+    scoreboard objectives add black dummy
+    scoreboard objectives modify black displayname "black Team"
+    scoreboard objectives setdisplay sidebar.team.black black
 
 
 

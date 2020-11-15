@@ -19,14 +19,14 @@ on right click with chest:
             set slot 4 of player's current inventory to green stained glass pane named " "
             set slot 5 of player's current inventory to orange stained glass pane named " "
             set slot 6 of player's current inventory to purple stained glass pane named " "
-            set slot 7 of player's current inventory to gray stained glass pane named " "
+            set slot 7 of player's current inventory to black stained glass pane named " "
             set slot 46 of player's current inventory to red stained glass pane named " "
             set slot 47 of player's current inventory to blue stained glass pane named " "
             set slot 48 of player's current inventory to yellow stained glass pane named " "
             set slot 49 of player's current inventory to green stained glass pane named " "
             set slot 50 of player's current inventory to orange stained glass pane named " "
             set slot 51 of player's current inventory to purple stained glass pane named " "
-            set slot 52 of player's current inventory to gray stained glass pane named " "
+            set slot 52 of player's current inventory to black stained glass pane named " "
         else:
             message "&c&l>Error &r現在チーム戦は無効です" to player
 
@@ -118,21 +118,21 @@ every 1 tick:
                 else:
                     set slot 42 of loop-player's current inventory to air
 
-                set slot 16 of loop-player's current inventory to gray wool named "&lJoin Gray Team" with lore "&5%{qua.player.team.gray}%/3" and "&7%{team.gray::1}%" and "&7%{team.gray::2}%" and "&7%{team.gray::3}%"
-                if {team.gray::1} is set:
-                    set slot 25 of loop-player's current inventory to skull of {team.gray::1} named "&r%{team.gray::1}%"
+                #FIXME
+                set slot 16 of loop-player's current inventory to black wool named "&lJoin Black Team" with lore "&5%{qua.player.team.black}%/3" and "&7%{team.black::1}%" and "&7%{team.black::2}%" and "&7%{team.black::3}%"
+                if {team.black::1} is set:
+                    set slot 25 of loop-player's current inventory to skull of {team.black::1} named "&r%{team.black::1}%"
                 else:
                     set slot 25 of loop-player's current inventory to air
-                if {team.gray::2} is set:
-                    set slot 34 of loop-player's current inventory to skull of {team.gray::2} named "&r%{team.gray::2}%"
+                if {team.black::2} is set:
+                    set slot 34 of loop-player's current inventory to skull of {team.black::2} named "&r%{team.black::2}%"
                 else:
                     set slot 34 of loop-player's current inventory to air
-                if {team.gray::3} is set:
-                    set slot 43 of loop-player's current inventory to skull of {team.gray::3} named "&r%{team.gray::3}%"
+                if {team.black::3} is set:
+                    set slot 43 of loop-player's current inventory to skull of {team.black::3} named "&r%{team.black::3}%"
                 else:
                     set slot 43 of loop-player's current inventory to air
 
-            if {skill.openingchest.%loop-player%} is "true":
 
 on inventory close:
     set {team.openingchest.%player%} to "false"
@@ -158,9 +158,9 @@ on inventory click:
         else if event-item is purple wool:
             cancel event
             teamJoin(player,purple)
-        else if event-item is gray wool:
+        else if event-item is black wool:
             cancel event
-            teamJoin(player,gray)
+            teamJoin(player,black)
         else if event-item is red stained glass pane:
             cancel event
         else if event-item is blue stained glass pane:
@@ -173,7 +173,7 @@ on inventory click:
             cancel event
         else if event-item is purple stained glass pane:
             cancel event
-        else if event-item is gray stained glass pane:
+        else if event-item is black stained glass pane:
             cancel event
         else if event-item is player skull:
             cancel event

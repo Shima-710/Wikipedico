@@ -103,7 +103,7 @@ command /natto---teamgoodbye:
         execute console command "scoreboard objectives remove green"
         execute console command "scoreboard objectives remove orange"
         execute console command "scoreboard objectives remove purple"
-        execute console command "scoreboard objectives remove gray"
+        execute console command "scoreboard objectives remove black"
         execute console command "team remove admin"
         execute console command "team remove red"
         execute console command "team remove blue"
@@ -111,7 +111,7 @@ command /natto---teamgoodbye:
         execute console command "team remove green"
         execute console command "team remove orange"
         execute console command "team remove purple"
-        execute console command "team remove gray"
+        execute console command "team remove black"
         message "&e&l>Goodbye Team &r正常に実行されました" to player
 
 
