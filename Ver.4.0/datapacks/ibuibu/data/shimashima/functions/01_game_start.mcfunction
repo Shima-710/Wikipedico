@@ -33,6 +33,7 @@ gamemode spectator @a[team=admin]
 
 # 上空にTP -> 変更
 # tp @a -27663 309 36470 ~ 90
+#TODO:マップ変更あり
 fill -242 184 179 -220 184 201 air
 
 

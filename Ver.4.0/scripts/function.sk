@@ -105,6 +105,7 @@ function gameStart():
     if {mode.daruma} is true:
         set {daruma.count} to true
     wait 5 seconds
+    #TODO:マップ変更あり
     execute console command "fill -242 184 179 -220 184 201 glass"
 
 

@@ -93,7 +93,7 @@ function gameConfig():
     add wooden axe to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
     #
-    add chaimmail chestplate to {Natto.chestItemName.normal::*}
+    add chaimmail chestplate to {Natto.chestItemName.normal::*} #FIXME:Skriptがエラー吐く
     add 3 to {Natto.chestItemChance.normal::*}
     #
     add chainmail helmet to {Natto.chestItemName.normal::*}
