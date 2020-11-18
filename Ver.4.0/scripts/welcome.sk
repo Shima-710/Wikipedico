@@ -33,7 +33,6 @@ on quit:
         if {admin.%player%} is true:
             adminLeave(player)
         teamLeave(player)
-        resetChara(player)
     if {gameStatus} is 1:
         if {playerStatus.%player%} is "alive":
             deathPlayer(player)

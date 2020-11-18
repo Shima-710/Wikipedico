@@ -87,9 +87,6 @@ command /openchest <player>:
             set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
             loop {_random.chestSlotQua} times:
                 set {_random.chestSlotNum} to random integer between 0 and 26
-                if {mode.skill} is true:
-                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.skill}
-                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.skill::%{_random.itemNumber}%}
                 if {mode.yumi} is true:
                     set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yumi}
                     set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yumi::%{_random.itemNumber}%}

@@ -9,10 +9,6 @@ function resetTeamVariables():
         set {qua.player.team.%{_c}%} to 0
         set {qua.surviver.team.%{_c}%} to 0
         set {teamRank.%{_loop}%} to 0
-        set {_loop2} to 0
-        loop {Natto.qua.Chara} times:
-            add 1 to {_loop2}
-            set {skillSelected.%{_c}%.%{Natto.charaName::%{_loop2}%}%} to false
 
 function resetPlayerVariables(p: player):
     set {playerJoined.%{_p}%} to false
@@ -43,7 +39,6 @@ function resetGameVariables():
 
 function resetGameMode():
     set {mode.team} to {Natto.defaultModeTeam}
-    set {mode.skill} to {Natto.defaultModeSkill}
     set {mode.yumi} to {Natto.defaultModeYumi}
     set {mode.yumidama} to {Natto.defaultModeYukidama}
     set {mode.ibuibu} to {Natto.defaultModeIbuibu}
@@ -155,24 +150,11 @@ function gameEnd():
 
 
 function checkGameMode() :: boolean:
-    if {mode.skill} is true:
-        if {mode.yukidama} is true:
-            return false
-            stop
-        if {mode.yumi} is true:
-            return false
-            stop
     if {mode.yukidama} is true:
-        if {mode.skill} is true:
-            return false
-            stop
         if {mode.yumi} is true:
             return false
             stop
     if {mode.yumi} is true:
-        if {mode.skill} is true:
-            return false
-            stop
         if {mode.yukidama} is true:
             return false
             stop
@@ -236,19 +218,15 @@ function teamJoin(p: player, c: object):
     else:
         if {playerStatus.%{_p}%} is "admin":
             adminLeave({_p})
-        resetChara({_p})
         teamLeave({_p})
         add {_p} to {team.%{_c}%::*}
         add 1 to {qua.player.team.%{_c}%}
         add 1 to {qua.surviver.team.%{_c}%}
         set {playerJoined.%{_p}%} to {_c}
-        execute console command "chara clear %{_p}%"
         execute console command "scoreboard players set %name of {_p}% %{_c}% 1"
         execute console command "team join %{_c}% %{_p}%"
         play sound "entity.player.levelup" to {_p}
         message "&b&l>System &r%{_c}%チームに入りました！" to {_p}
-        if {mode.skill} is true:
-            set {skill.openingchest.%{_p}%} to "true"
 
 function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカラー(old color)
     if {playerJoined.%{_p}%} is false:
@@ -427,78 +405,6 @@ function refreshSoloSidebar():
 
 
 
-function selectChara(p: player, cn: object): # cn=chara name
-    if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-selectChara &rなんかエラー (CODE-C01 : {_p}=%{_p}%, {_cn}=%{_cn}%)" to {admin::*}
-        stop
-    set {_c} to {playerJoined.%{_p}%}
-    if {skillSelected.%{_c}%.%{_cn}%} is not false:
-        play sound "block.note_block.banjo" to {_p}
-        message "&c&l>Error &rそのキャラクターはすでに使われています" to {_p}
-        stop
-    else:
-        resetChara({_p})
-        setChara({_p},{_cn})
-        close inventory of {_p}
-
-
-
-function setChara(p: player, cn: object):
-    if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-setChara &rなんかエラー (CODE-C01 : {_p}=%{_p}%, {_cn}=%{_cn}%)" to {admin::*}
-        stop
-    set {_c} to {playerJoined.%{_p}%}
-    set {skillSelected.%{_c}%.%{_cn}%} to {_p}
-    if {_cn} is {Natto.charaName::1}:
-        charaninja({_p})
-    if {_cn} is {Natto.charaName::2}:
-        charagorilla({_p})
-    if {_cn} is {Natto.charaName::3}:
-        charahealer({_p})
-    if {_cn} is {Natto.charaName::5}:
-        charatyuuni({_p})
-    if {_cn} is {Natto.charaName::6}:
-        charatank({_p})
-    if {_cn} is {Natto.charaName::7}:
-        chararobot({_p})
-    if {_cn} is {Natto.charaName::4}:
-        charaneet({_p})
-
-
-function resetChara(p: player):
-    set {skillSelected.%{playerJoined.%{_p}%}%.%{skill.%{_p}%}%} to false
-    set {skill.%{_p}%} to false
-    execute console command "tag %{_p}% remove ninja-1"
-    execute console command "tag %{_p}% remove gorilla-1"
-    execute console command "tag %{_p}% remove healer-1"
-    execute console command "tag %{_p}% remove neet-1"
-    execute console command "tag %{_p}% remove tyuuni-bef"
-    execute console command "tag %{_p}% remove tyuuni-aft"
-    execute console command "tag %{_p}% remove tank-1"
-    execute console command "tag %{_p}% remove robot-1"
-
-    execute console command "tag %{_p}% remove ninja-2"
-    execute console command "tag %{_p}% remove gorilla-2"
-    execute console command "tag %{_p}% remove healer-2"
-    execute console command "tag %{_p}% remove neet-2"
-    execute console command "tag %{_p}% remove tank-2"
-    execute console command "tag %{_p}% remove robot-2"
-
-    execute console command "tag %{_p}% remove ninja-3"
-    execute console command "tag %{_p}% remove gorilla-3"
-    execute console command "tag %{_p}% remove healer-3"
-    execute console command "tag %{_p}% remove neet-3"
-    execute console command "tag %{_p}% remove tank-3"
-    execute console command "tag %{_p}% remove robot-3"
-
-    execute console command "effect clear %{_p}%"
-
-    set max health of {_p} to 10
-    heal {_p} by 100 hearts
-    execute console command "chara reset %{_p}%"
-
-
-
 
 function debugMode(b: boolean):
     if {_b} is true:
@@ -509,27 +415,21 @@ function debugMode(b: boolean):
 
 function reloadConfig():
     delete {Natto.teamName::*}
-    delete {Natto.charaName::*}
     delete {Natto.chestItemName.normal::*}
     delete {Natto.chestItemName.yumi::*}
     delete {Natto.chestItemName.yukidama::*}
-    delete {Natto.chestItemName.skill::*}
     delete {Natto.chestItemChance.normal::*}
     delete {Natto.chestItemChance.yumi::*}
     delete {Natto.chestItemChance.yukidama::*}
-    delete {Natto.chestItemChance.skill::*}
     delete {Natto.chestRoot.normal::*}
     delete {Natto.chestRoot.yumi::*}
     delete {Natto.chestRoot.yukidama::*}
-    delete {Natto.chestRoot.skill::*}
     gameConfig()
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
-    set {Natto.qua.Chara} to amount of {Natto.charaName::*}
     set {Natto.qua.locaChest} to amount of {Natto.locaChest::*}
     set {Natto.qua.ChestItemName.normal} to amount of {Natto.chestItemName.normal::*}
     set {Natto.qua.ChestItemName.yumi} to amount of {Natto.chestItemName.yumi::*}
     set {Natto.qua.ChestItemName.yukidama} to amount of {Natto.chestItemName.yukidama::*}
-    set {Natto.qua.ChestItemName.skill} to amount of {Natto.chestItemName.skill::*}
     set {_loop1} to 0
     loop {Natto.qua.ChestItemName.normal} times:
         add 1 to {_loop1}
@@ -542,14 +442,9 @@ function reloadConfig():
     loop {Natto.qua.ChestItemName.yukidama} times:
         add 1 to {_loop3}
         defChestRootYukidama({_loop3})
-    set {_loop4} to 0
-    loop {Natto.qua.ChestItemName.skill} times:
-        add 1 to {_loop4}
-        defChestRootSkill({_loop4})
     set {Natto.qua.ChestItem.normal} to amount of {Natto.chestRoot.normal::*}
     set {Natto.qua.ChestItem.yumi} to amount of {Natto.chestRoot.yumi::*}
     set {Natto.qua.ChestItem.yukidama} to amount of {Natto.chestRoot.yukidama::*}
-    set {Natto.qua.ChestItem.skill} to amount of {Natto.chestRoot.skill::*}
 
 
 function spawnChest():
@@ -570,9 +465,6 @@ function defChestRootYukidama(n: number):
     loop {Natto.chestItemChance.yukidama::%{_n}%} times:
         add {Natto.chestItemName.yukidama::%{_n}%} to {Natto.chestRoot.yukidama::*}
 
-function defChestRootSkill(n: number):
-    loop {Natto.chestItemChance.skill::%{_n}%} times:
-        add {Natto.chestItemName.skill::%{_n}%} to {Natto.chestRoot.skill::*}
 
 function reloadPlugin():
     broadcast "&6&l>Plugin &2Reloading..."
@@ -595,7 +487,6 @@ function reloadPlugin():
     loop all players:
         resetPlayerVariables(loop-player)
         teamLeave(loop-player)
-        resetChara(loop-player)
         if {admin.%loop-player%} is true:
             adminLeave(loop-player)
 

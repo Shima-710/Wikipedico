@@ -68,66 +68,14 @@ on craft of crafting table:
     close player'S inventory
     message "&c&l>Error &r作業台の作成はできません" to player
 
-on inventory click:
-    if event-item is barrier named "クールタイム":
-        cancel event
-    if {gameStatus} is 0:
-        if event-item is sword:
-            cancel event
 
-on right click with barrier:
-    if {gameStatus} is not 5:
-        cancel event
 
-on right click with composter:
-    if event-item is composter named "&r&5ドラミング" with lore "&r&f10秒間シフトでドラミングする" and "&r&bクールタイム：30秒":
-        cancel event
-
-on right click with glass:
-    if event-item is glass named "&r&5バリアー" with lore "&r&fシフトで自分中心にバリアーをはる" and "&r&bクールタイム：20秒":
-        cancel event
-
-on item spawn:
-    if {mode.skill} is true:
-        if event-item is cooked beef:
-            stop
-        if event-item is golden apple:
-            stop
-        if event-item is enchanted golden apple:
-            stop
-        if event-item is emerald:
-            stop
-        else:
-            cancel event
-
-on drop:
-    if {mode.skill} is true:
-        if event-item is cooked beef:
-            stop
-        if event-item is golden apple:
-            stop
-        if event-item is enchanted golden apple:
-            stop
-        if event-item is emerald:
-            stop
-        if event-item is log:
-            stop
-        if event-item is planks:
-            stop
-        else:
-            cancel event
 
 on craft of cyan glazed terracotta:
     cancel event
     give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
 
 
-
-
-#on consume cooked beef:
-    #cancel event
-    #heal player by {Natto.oniku.healAmount} hearts
-    #remove 1 cooked beef from player
 
 on consume potion:
     heal player by {Natto.oniku.healAmount} hearts
@@ -140,10 +88,9 @@ on consume potion:
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on rightclick on villager:
     cancel event
-    if {mode.skill} is false:
-        open chest inventory with 1 row named "&0Shop" to player
-        set slot 2 of player's current inventory to diamond sword named "&d売る"
-        set slot 6 of player's current inventory to emerald named "&a買う"
+    open chest inventory with 1 row named "&0Shop" to player
+    set slot 2 of player's current inventory to diamond sword named "&d売る"
+    set slot 6 of player's current inventory to emerald named "&a買う"
 on inventory click:
     if event-item is black stained glass pane named " ":
         cancel event
