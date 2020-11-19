@@ -81,6 +81,9 @@ on inventory click:
 on drop:
     if event-item is player skull:
         cancel event
+    if event-item is chest:
+        if {gameStatus} is 0:
+            cancel event
 
 
 #on consume potion:
