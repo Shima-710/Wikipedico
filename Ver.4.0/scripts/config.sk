@@ -7,7 +7,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # バージョン情報
-    set {ver} to "4.3.5 (beta)"
+    set {ver} to "4.3.6 (beta)"
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -19,12 +19,6 @@ function gameConfig():
     #---------
     # だるま
     set {Natto.defaultModeDaruma} to false
-    #---------
-    # 弓のみ
-    set {Natto.defaultModeYumi} to false
-    #---------
-    # 雪玉のみ
-    set {Natto.defaultModeYukidama} to false
     #---------
     # ibuibu Mode
     set {Natto.defaultModeIbuibu} to false
@@ -117,47 +111,6 @@ function gameConfig():
     #
     add 3 of diamond to {Natto.chestItemName.normal::*}
     add 2 to {Natto.chestItemChance.normal::*}
-    #
-#
-# ---------------------------------------------------------------------------------------
-# ---------------------------------------------------------------------------------------
-#
-    # チェスト中身(モード：弓のみ)
-    # その確率
-    #
-    add cooked beef to {Natto.chestItemName.yumi::*}
-    add 60 to {Natto.chestItemChance.yumi::*}
-    #
-    add 5 of emerald to {Natto.chestItemName.yumi::*}
-    add 40 to {Natto.chestItemChance.yumi::*}
-    #
-    add bow to {Natto.chestItemName.yumi::*}
-    add 20 to {Natto.chestItemChance.yumi::*}
-    #
-    add 5 of arrow to {Natto.chestItemName.yumi::*}
-    add 30 to {Natto.chestItemChance.yumi::*}
-    #
-    add wooden axe to {Natto.chestItemName.yumi::*}
-    add 20 to {Natto.chestItemChance.yumi::*}
-    #
-#
-# ---------------------------------------------------------------------------------------
-# ---------------------------------------------------------------------------------------
-#
-    # チェスト中身(モード：雪玉のみ)
-    # その確率
-    #
-    add cooked beef to {Natto.chestItemName.yukidama::*}
-    add 60 to {Natto.chestItemChance.yukidama::*}
-    #
-    add 5 of emerald to {Natto.chestItemName.yukidama::*}
-    add 40 to {Natto.chestItemChance.yukidama::*}
-    #
-    add snowball to {Natto.chestItemName.yukidama::*}
-    add 60 to {Natto.chestItemChance.yukidama::*}
-    #
-    add wooden axe to {Natto.chestItemName.yukidama::*}
-    add 20 to {Natto.chestItemChance.yukidama::*}
     #
 #
 # ---------------------------------------------------------------------------------------

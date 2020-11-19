@@ -233,8 +233,6 @@ command /mode <text> [<text>]:
                 else:
                     execute console command "mode team on"
                     stop
-        if arg-1 is "skill":
-            message "&c&l>Error &r廃止しました" to player
         if arg-1 is "daruma":
             if arg-2 is "on":
                 set {mode.daruma} to true
@@ -250,38 +248,6 @@ command /mode <text> [<text>]:
                     stop
                 else:
                     execute console command "mode daruma on"
-                    stop
-        if arg-1 is "yumi":
-            if arg-2 is "on":
-                set {mode.yumi} to true
-                broadcast "&b&l>Game &r「弓のみモード」が&aオン&rになりました"
-                stop
-            if arg-2 is "off":
-                set {mode.yumi} to false
-                broadcast "&b&l>Game &r「弓のみモード」が&cオフ&rになりました"
-                stop
-            else:
-                if {mode.yumi} is true:
-                    execute console command "mode yumi off"
-                    stop
-                else:
-                    execute console command "mode yumi on"
-                    stop
-        if arg-1 is "yukidama":
-            if arg-2 is "on":
-                set {mode.yukidama} to true
-                broadcast "&b&l>Game &r「雪玉のみモード」が&aオン&rになりました"
-                stop
-            if arg-2 is "off":
-                set {mode.yukidama} to false
-                broadcast "&b&l>Game &r「雪玉のみモード」が&cオフ&rになりました"
-                stop
-            else:
-                if {mode.yukidama} is true:
-                    execute console command "mode yukidama off"
-                    stop
-                else:
-                    execute console command "mode yukidama on"
                     stop
         if arg-1 is "ibuibu":
             if arg-2 is "on":
@@ -301,6 +267,14 @@ command /mode <text> [<text>]:
                 else:
                     execute console command "mode ibuibu on"
                     stop
+
+        if arg-1 is "skill":
+            message "&c&l>Error &r廃止しました" to player
+        if arg-1 is "yumi":
+            message "&c&l>Error &r廃止しました" to player
+        if arg-1 is "yukidama":
+            message "&c&l>Error &r廃止しました" to player
+
 
 command /lobby:
     description:Teleport player to lobby

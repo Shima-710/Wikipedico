@@ -56,15 +56,8 @@ command /openchest <player>:
             set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
             loop {_random.chestSlotQua} times:
                 set {_random.chestSlotNum} to random integer between 0 and 26
-                if {mode.yumi} is true:
-                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yumi}
-                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yumi::%{_random.itemNumber}%}
-                if {mode.yukidama} is true:
-                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.yukidama}
-                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.yukidama::%{_random.itemNumber}%}
-                else:
-                    set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
-                    set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.normal::%{_random.itemNumber}%}
+                set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
+                set slot {_random.chestSlotNum} of arg-1's current inventory to {Natto.chestRoot.normal::%{_random.itemNumber}%}
 
 on right click on chest:
     set the clicked block to air
