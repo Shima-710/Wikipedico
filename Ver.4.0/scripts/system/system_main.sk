@@ -77,6 +77,9 @@ on craft of cyan glazed terracotta:
 on inventory click:
     if event-item is player skull:
         cancel event
+    if event-item is chest:
+        if {gameStatus} is 0:
+            cancel event
 
 on drop:
     if event-item is player skull:
