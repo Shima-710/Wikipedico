@@ -100,55 +100,69 @@ command /join <text> [<player>]:
                 else:
                     teamJoin(player, arg-1)
                 stop
-        message "&c&l>Error &r%arg-1%は存在しないチーム名です"
+        message "&c&l>Error &r%arg-1%は存在しないチーム名です" to player
 
 command /revival:
     description:Revival Someone
     permission:op
     permission message:You Don't have permission.
     trigger:
-        open chest inventory with 5 row named "&0復活させる人を選んでください" to player
-        set slot 1 of player's current inventory to red wool named "&lRed Team"
-        set slot 10 of player's current inventory to skull of {team.red::1} named "&l%{team.red::1}% &rを復活"
-        set slot 19 of player's current inventory to skull of {team.red::2} named "&l%{team.red::2}% &rを復活"
-        set slot 28 of player's current inventory to skull of {team.red::3} named "&l%{team.red::3}% &rを復活"
-        set slot 37 of player's current inventory to red wool named "&lRed Team"
+        if {mode.team} is true:
+            open chest inventory with 5 row named "&0復活させる人を選んでください" to player
+            set slot 1 of player's current inventory to red wool named "&lRed Team"
+            set slot 10 of player's current inventory to skull of {team.red::1} named "&l%{team.red::1}% &rを復活"
+            set slot 19 of player's current inventory to skull of {team.red::2} named "&l%{team.red::2}% &rを復活"
+            set slot 28 of player's current inventory to skull of {team.red::3} named "&l%{team.red::3}% &rを復活"
+            set slot 37 of player's current inventory to red wool named "&lRed Team"
 
-        set slot 2 of player's current inventory to blue wool named "&lBlue Team"
-        set slot 11 of player's current inventory to skull of {team.blue::1} named "&l%{team.blue::1}% &rを復活"
-        set slot 20 of player's current inventory to skull of {team.blue::2} named "&l%{team.blue::2}% &rを復活"
-        set slot 29 of player's current inventory to skull of {team.blue::3} named "&l%{team.blue::3}% &rを復活"
-        set slot 38 of player's current inventory to blue wool named "&lBlue Team"
+            set slot 2 of player's current inventory to blue wool named "&lBlue Team"
+            set slot 11 of player's current inventory to skull of {team.blue::1} named "&l%{team.blue::1}% &rを復活"
+            set slot 20 of player's current inventory to skull of {team.blue::2} named "&l%{team.blue::2}% &rを復活"
+            set slot 29 of player's current inventory to skull of {team.blue::3} named "&l%{team.blue::3}% &rを復活"
+            set slot 38 of player's current inventory to blue wool named "&lBlue Team"
 
-        set slot 3 of player's current inventory to yellow wool named "&lYellow Team"
-        set slot 12 of player's current inventory to skull of {team.yellow::1} named "&l%{team.yellow::1}% &rを復活"
-        set slot 21 of player's current inventory to skull of {team.yellow::2} named "&l%{team.yellow::2}% &rを復活"
-        set slot 30 of player's current inventory to skull of {team.yellow::3} named "&l%{team.yellow::3}% &rを復活"
-        set slot 39 of player's current inventory to yellow wool named "&lYellow Team"
+            set slot 3 of player's current inventory to yellow wool named "&lYellow Team"
+            set slot 12 of player's current inventory to skull of {team.yellow::1} named "&l%{team.yellow::1}% &rを復活"
+            set slot 21 of player's current inventory to skull of {team.yellow::2} named "&l%{team.yellow::2}% &rを復活"
+            set slot 30 of player's current inventory to skull of {team.yellow::3} named "&l%{team.yellow::3}% &rを復活"
+            set slot 39 of player's current inventory to yellow wool named "&lYellow Team"
 
-        set slot 4 of player's current inventory to green wool named "&lGreen Team"
-        set slot 13 of player's current inventory to skull of {team.green::1} named "&l%{team.green::1}% &rを復活"
-        set slot 22 of player's current inventory to skull of {team.green::2} named "&l%{team.green::2}% &rを復活"
-        set slot 31 of player's current inventory to skull of {team.green::3} named "&l%{team.green::3}% &rを復活"
-        set slot 40 of player's current inventory to green wool named "&lGreen Team"
+            set slot 4 of player's current inventory to green wool named "&lGreen Team"
+            set slot 13 of player's current inventory to skull of {team.green::1} named "&l%{team.green::1}% &rを復活"
+            set slot 22 of player's current inventory to skull of {team.green::2} named "&l%{team.green::2}% &rを復活"
+            set slot 31 of player's current inventory to skull of {team.green::3} named "&l%{team.green::3}% &rを復活"
+            set slot 40 of player's current inventory to green wool named "&lGreen Team"
 
-        set slot 5 of player's current inventory to orange wool named "&lOrange Team"
-        set slot 14 of player's current inventory to skull of {team.orange::1} named "&l%{team.orange::1}% &rを復活"
-        set slot 23 of player's current inventory to skull of {team.orange::2} named "&l%{team.orange::2}% &rを復活"
-        set slot 32 of player's current inventory to skull of {team.orange::3} named "&l%{team.orange::3}% &rを復活"
-        set slot 41 of player's current inventory to orange wool named "&lOrange Team"
+            set slot 5 of player's current inventory to orange wool named "&lOrange Team"
+            set slot 14 of player's current inventory to skull of {team.orange::1} named "&l%{team.orange::1}% &rを復活"
+            set slot 23 of player's current inventory to skull of {team.orange::2} named "&l%{team.orange::2}% &rを復活"
+            set slot 32 of player's current inventory to skull of {team.orange::3} named "&l%{team.orange::3}% &rを復活"
+            set slot 41 of player's current inventory to orange wool named "&lOrange Team"
 
-        set slot 6 of player's current inventory to purple wool named "&lPurple Team"
-        set slot 15 of player's current inventory to skull of {team.purple::1} named "&l%{team.purple::1}% &rを復活"
-        set slot 24 of player's current inventory to skull of {team.purple::2} named "&l%{team.purple::2}% &rを復活"
-        set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}% &rを復活"
-        set slot 42 of player's current inventory to purple wool named "&lPurple Team"
+            set slot 6 of player's current inventory to purple wool named "&lPurple Team"
+            set slot 15 of player's current inventory to skull of {team.purple::1} named "&l%{team.purple::1}% &rを復活"
+            set slot 24 of player's current inventory to skull of {team.purple::2} named "&l%{team.purple::2}% &rを復活"
+            set slot 33 of player's current inventory to skull of {team.purple::3} named "&l%{team.purple::3}% &rを復活"
+            set slot 42 of player's current inventory to purple wool named "&lPurple Team"
 
-        set slot 7 of player's current inventory to black wool named "&lblack Team"
-        set slot 16 of player's current inventory to skull of {team.black::1} named "&l%{team.black::1}% &rを復活"
-        set slot 25 of player's current inventory to skull of {team.black::2} named "&l%{team.black::2}% &rを復活"
-        set slot 34 of player's current inventory to skull of {team.black::3} named "&l%{team.black::3}% &rを復活"
-        set slot 43 of player's current inventory to black wool named "&lblack Team"
+            set slot 7 of player's current inventory to black wool named "&lblack Team"
+            set slot 16 of player's current inventory to skull of {team.black::1} named "&l%{team.black::1}% &rを復活"
+            set slot 25 of player's current inventory to skull of {team.black::2} named "&l%{team.black::2}% &rを復活"
+            set slot 34 of player's current inventory to skull of {team.black::3} named "&l%{team.black::3}% &rを復活"
+            set slot 43 of player's current inventory to black wool named "&lblack Team"
+        else:
+            message "&c&l>Error &r現在実行できません" to player
+on inventory click:
+    if {mode.team} is true:
+        loop {Natto.qua.Team} times:
+            add 1 to {_loop}
+            set {_c} to {Natto.teamName::%{_loop}%}
+            loop {Natto.teamMaxPlayer} times:
+                add 1 to {_loop2}
+                if event-item is skull of {team.%{_c}%::%{_loop2}%} named "&l%{team.%{_c}%::%{_loop2}%}% &rを復活":
+                    cancel event
+                    revivePlayer({team.%{_c}%::%{_loop2}%},player)
+                    stop
 
 command /destroyable [<text>]:
     description:Define destroyable

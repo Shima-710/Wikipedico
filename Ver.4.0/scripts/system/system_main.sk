@@ -61,10 +61,6 @@ on craft of shield:
     close player'S inventory
     message "&c&l>Error &r盾の作成はできません" to player
 
-on craft of cyan glazed terracotta:
-    cancel event
-    give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
-
 on inventory click:
     if event-item is player skull:
         cancel event
