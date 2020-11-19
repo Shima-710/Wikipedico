@@ -1,17 +1,15 @@
-# ====================================================================================================================================================================================
-#
-# Main Game System
-#
-# ====================================================================================================================================================================================
+every 1 tick in "world":
+    if {gameStatus} is 1:
+        if {mode.team} is true:
+            send action bar "&l残りチーム数:&6&l%{qua.surviveTeam}%&r&lチーム  |  &l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
+        else:
+            send action bar "&l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
+    send action bar "online:&6%online player count% &r| admin:&6%{qua.admin}% &r| player:&6%{qua.player}% &r| playTeam:&6%{qua.playTeam}% &r| surviver：&6%{qua.surviver}% &r| surviveTeam:&6%{qua.surviveTeam}%" to {admin::*}
 
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 死亡時処理
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on death of player:
     if {playerStatus.%victim%} is "alive":
         deathPlayer(victim)
         add 1 to {kills.%attacker%}
-
         if damage cause is fall:
             broadcast "&c%victim% &rは高所から落下して死亡した"
             stop
@@ -46,10 +44,6 @@ on respawn:
     if {gameStatus} is 1:
         teleport player to {Natto.locaDeathSpawn}
 
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 禁止処理
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on break:
     if {destroyable} is true:
         stop
@@ -67,12 +61,9 @@ on craft of shield:
     close player'S inventory
     message "&c&l>Error &r盾の作成はできません" to player
 
-
-
 on craft of cyan glazed terracotta:
     cancel event
     give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
-
 
 on inventory click:
     if event-item is player skull:
@@ -88,16 +79,11 @@ on drop:
         if {gameStatus} is 0:
             cancel event
 
-
 #on consume potion:
     #heal player by {Natto.oniku.healAmount} hearts
     #wait 0.5 seconds
     #remove 1 glass bottle from player
 
-
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# ショップ展開トリガー
-# ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on rightclick on villager:
     cancel event
     open chest inventory with 1 row named "&0Shop" to player
