@@ -93,6 +93,7 @@ function gameStart():
             play sound "block.note_block.harp" to all players
             wait 1 second
             execute console command "function shimashima:01_game_start"
+            delSkyLobby()
             send title "&e&lSTART" to all players
             play sound "entity.enderman.teleport" to all players
             loop all players:
@@ -103,9 +104,7 @@ function gameStart():
 
     if {mode.daruma} is true:
         set {daruma.count} to true
-    wait 5 seconds
-    #TODO:マップ変更あり
-    execute console command "fill -242 184 179 -220 184 201 glass"
+
 
 
 function gameEnd():
@@ -408,6 +407,24 @@ function refreshSoloSidebar():
     execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人"
 
 
+function delSkyLobby():
+    #TODO:マップによる変動あり
+    execute console command "fill 329 175 330 307 175 308 air"
+
+function fillSkyLobby():
+    #TODO:マップによる変動あり
+    wait 1 tick
+    # execute console command "fill 329 178 330 307 175 308 light_gray_stained_glass hollow"
+    # wait 1 tick
+    # execute console command "fill 328 178 329 308 175 309 air"
+    # wait 1 tick
+    execute console command "fill 329 175 330 307 175 308 light_gray_stained_glass"
+    wait 1 tick
+    execute console command "setblock 318 175 319 yellow_stained_glass"
+    wait 1 tick
+
+
+
 
 
 function debugMode(b: boolean):
@@ -488,6 +505,8 @@ function reloadPlugin():
     wait 2 tick
     debugMode({debugMode})
     wait 2 tick
+    fillSkyLobby()
+    wait 2 tick
     loop all players:
         resetPlayerVariables(loop-player)
         teamLeave(loop-player)
@@ -514,3 +533,4 @@ function reloadPlugin():
     loop all players:
         make loop-player execute command "rirogu"
     broadcast "&6&l>Plugin &2Reloaded Successfully!"
+
