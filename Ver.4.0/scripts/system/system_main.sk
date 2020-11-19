@@ -58,14 +58,14 @@ on break:
 
 on place:
     if {gameStatus} is 1:
-        wait 10 seconds
-        cancel event
+        loop {Natto.delBlockTime} times:
+            wait 1 seconds
+        delete event-block
 
-on craft of crafting table:
+on craft of shield:
     cancel event
     close player'S inventory
-    message "&c&l>Error &r作業台の作成はできません" to player
-
+    message "&c&l>Error &r盾の作成はできません" to player
 
 
 
@@ -75,10 +75,10 @@ on craft of cyan glazed terracotta:
 
 
 
-on consume potion:
-    heal player by {Natto.oniku.healAmount} hearts
-    wait 0.5 seconds
-    remove 1 glass bottle from player
+#on consume potion:
+    #heal player by {Natto.oniku.healAmount} hearts
+    #wait 0.5 seconds
+    #remove 1 glass bottle from player
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -89,6 +89,7 @@ on rightclick on villager:
     open chest inventory with 1 row named "&0Shop" to player
     set slot 2 of player's current inventory to diamond sword named "&d売る"
     set slot 6 of player's current inventory to emerald named "&a買う"
+
 on inventory click:
     if event-item is black stained glass pane named " ":
         cancel event

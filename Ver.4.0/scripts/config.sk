@@ -1,4 +1,4 @@
-# ========================================================================================
+# =======================================================================================
 #
 # Config
 #
@@ -7,7 +7,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # バージョン情報
-    set {ver} to "4.3.1 (beta)"
+    set {ver} to "4.3.2 (beta)"
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -66,47 +66,54 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
 #
+    # ブロック設置後消えるまでの時間（秒）
+    set {Natto.delBlockTime} to 10
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
     # チェスト中身(モード：ノーマル)
     # その確率
     #
-    add potion named "回復薬" to {Natto.chestItemName.normal::*}
-    add 20 to {Natto.chestItemChance.normal::*}
-    #
-    add cooked porkchop named "食糧" to {Natto.chestItemName.normal::*}
-    add 20 to {Natto.chestItemChance.normal::*}
-    #
-    add 10 of emerald to {Natto.chestItemName.normal::*}
+    add 3 of apple to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
     #
-    add wooden sword to {Natto.chestItemName.normal::*}
+    add 2 of firework rocket to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
     #
-    add bow to {Natto.chestItemName.normal::*}
+    add 3 of emerald to {Natto.chestItemName.normal::*}
+    add 5 to {Natto.chestItemChance.normal::*}
+    #
+    add 3 of lapis lazuli to {Natto.chestItemName.normal::*}
+    add 2 to {Natto.chestItemChance.normal::*}
+    #
+    add 10 of experience bottle to {Natto.chestItemName.normal::*}
+    add 3 to {Natto.chestItemChance.normal::*}
+    #
+    add 2 of oak log to {Natto.chestItemName.normal::*}
+    add 15 to {Natto.chestItemChance.normal::*}
+    #
+    add 2 of stone to {Natto.chestItemName.normal::*}
+    add 15 to {Natto.chestItemChance.normal::*}
+    #
+    add 2 of string to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
     #
-    add 10 of arrow to {Natto.chestItemName.normal::*}
-    add 20 to {Natto.chestItemChance.normal::*}
+    #ここ負傷の矢(即時ダメージ1)にしてほすいいいいいいいいいいいいいいいいいいい
+    add 5 of arrow to {Natto.chestItemName.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
     #
-    add wooden axe to {Natto.chestItemName.normal::*}
+    add 3 of leather to {Natto.chestItemName.normal::*}
+    add 10 to {Natto.chestItemChance.normal::*}
+    #
+    add 3 of iron ingot to {Natto.chestItemName.normal::*}
+    add 8 to {Natto.chestItemChance.normal::*}
+    #
+    add 3 of gold ingot to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
     #
-    add chaimmail chestplate to {Natto.chestItemName.normal::*} #FIXME:Skriptがエラー吐く
-    add 3 to {Natto.chestItemChance.normal::*}
-    #
-    add chainmail helmet to {Natto.chestItemName.normal::*}
-    add 3 to {Natto.chestItemChance.normal::*}
-    #
-    add leather chestplate to {Natto.chestItemName.normal::*}
-    add 6 to {Natto.chestItemChance.normal::*}
-    #
-    add leather helmet to {Natto.chestItemName.normal::*}
-    add 6 to {Natto.chestItemChance.normal::*}
-    #
-    add iron chestplate to {Natto.chestItemName.normal::*}
-    add 1 to {Natto.chestItemChance.normal::*}
-    #
-    add iron helmet to {Natto.chestItemName.normal::*}
-    add 1 to {Natto.chestItemChance.normal::*}
+    add 3 of diamond to {Natto.chestItemName.normal::*}
+    add 2 to {Natto.chestItemChance.normal::*}
     #
 #
 # ---------------------------------------------------------------------------------------
