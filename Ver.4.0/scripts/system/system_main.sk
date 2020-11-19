@@ -74,6 +74,14 @@ on craft of cyan glazed terracotta:
     give 1 of cyan glazed terracotta named "&r&l&6復活の石" to player
 
 
+on inventory click:
+    if event-item is player skull:
+        cancel event
+
+on drop:
+    if event-item is player skull:
+        cancel event
+
 
 #on consume potion:
     #heal player by {Natto.oniku.healAmount} hearts

@@ -66,6 +66,9 @@ function gameStart():
         setQuas()
         execute console command "team join players @a[team=!admin]"
 
+    if {mode.ibuibu} is true:
+        execute console command "replaceitem entity @a[team=!admin] armor.head minecraft:player_head{SkullOwner:iibukuro}"
+
     set {gameStatus} to 1
     broadcast "&b&l>Game &r%{Natto.prepareTime}%秒後にゲームを開始します..."
     execute console command "scoreboard objectives setdisplay sidebar"

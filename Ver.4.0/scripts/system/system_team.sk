@@ -176,8 +176,7 @@ on inventory click:
             cancel event
         else if event-item is black stained glass pane:
             cancel event
-        else if event-item is player skull:
-            cancel event
+
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

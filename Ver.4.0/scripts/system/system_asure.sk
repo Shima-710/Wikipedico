@@ -22,7 +22,10 @@ on right click on oak sign:
 # チェクポイントへTP
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on right click with player skull:
-    if {gameStatus} is not 1:
+
+    if {gameStatus} is 1:
+        cancel event
+    else:
         if {asure.sign.%player%} is set:
             cancel event
             teleport player to {asure.sign.%player%}
@@ -31,6 +34,7 @@ on right click with player skull:
             cancel event
             message "&6[アスレ] &rチェックポイントが設定されていません" to player
             play sound "block.note_block.banjo" to player
+
 
 
 
