@@ -4,4 +4,3 @@
 # さよならTPアイテム
 clear @a player_head
 clear @a[team=!admin] chest
-clear @a[team=!admin] ender_chest

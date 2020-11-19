@@ -195,18 +195,18 @@ command /destroyable [<text>]:
     aliases:/des
     trigger:
         if arg-1 is "true":
-            set {destroyable} to "true"
+            set {destroyable} to true
             broadcast "&b[運営] &rブロックの破壊が可能になりました"
         if arg-1 is "false":
-            set {destroyable} to "false"
+            set {destroyable} to false
             broadcast "&b[運営] &rブロックの破壊が不可能になりました"
         if arg-1 is not set:
-            if {destroyable} is "false":
+            if {destroyable} is false:
                 set {destroyable} to "true"
                 broadcast "&b[運営] &rブロックの破壊が可能になりました"
                 stop
-            if {destroyable} is "true":
-                set {destroyable} to "false"
+            if {destroyable} is true:
+                set {destroyable} to false
                 broadcast "&b[運営] &rブロックの破壊が不可能になりました"
 
 

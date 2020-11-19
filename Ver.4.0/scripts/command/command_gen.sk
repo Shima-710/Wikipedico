@@ -32,7 +32,6 @@ command /rirogu:
     trigger:
         if {gameStatus} is not 1:
             set slot 4 of player's inventory to 1 of skull of player named "&d右クリックでチェックポイントへTP"
-            set slot 7 of player's inventory to a ender chest named "&dキャラ選択"
             set slot 8 of player's inventory to a chest named "&dチーム選択"
             set {count.ans.%player%} to 0
             play sound "block.note_block.bell" to player

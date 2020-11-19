@@ -35,7 +35,7 @@ function resetGameVariables():
     set {qua.surviver} to 0
     set {qua.admin} to 0
     set {qua.spectator} to 0
-    set {destroyable} to "false"
+    set {destroyable} to false
 
 function resetGameMode():
     set {mode.team} to {Natto.defaultModeTeam}

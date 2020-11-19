@@ -51,17 +51,15 @@ on respawn:
 # 禁止処理
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 on break:
-    if {destroyable} is "true":
+    if {destroyable} is true:
         stop
     else:
-        if event-block is log:
-            stop
-        if event-block is planks:
-            stop
-        if event-block is glass:
-            stop
-        else:
-            cancel event
+        cancel event
+
+on place:
+    if {gameStatus} is 1:
+        wait 10 seconds
+        cancel event
 
 on craft of crafting table:
     cancel event
