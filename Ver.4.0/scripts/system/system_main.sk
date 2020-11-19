@@ -97,3 +97,6 @@ on inventory click:
         cancel event
         play sound "block.stone_button.click_on" to player
         close player's inventory
+
+on walking on diamond block:
+    push the player upwards at speed 5

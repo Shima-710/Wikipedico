@@ -158,18 +158,18 @@ command /destroyable [<text>]:
     trigger:
         if arg-1 is "true":
             set {destroyable} to true
-            broadcast "&b[運営] &rブロックの破壊が可能になりました"
+            broadcast "&b&l>Game &rブロックの破壊が可能になりました"
         if arg-1 is "false":
             set {destroyable} to false
-            broadcast "&b[運営] &rブロックの破壊が不可能になりました"
+            broadcast "&&b&l>Game &rブロックの破壊が不可能になりました"
         if arg-1 is not set:
             if {destroyable} is false:
-                set {destroyable} to "true"
-                broadcast "&b[運営] &rブロックの破壊が可能になりました"
+                set {destroyable} to true
+                broadcast "&b&l>Game &rブロックの破壊が可能になりました"
                 stop
             if {destroyable} is true:
                 set {destroyable} to false
-                broadcast "&b[運営] &rブロックの破壊が不可能になりました"
+                broadcast "&b&l>Game &rブロックの破壊が不可能になりました"
 
 command /anntirange <number> <number>:
     description:Define SafeZone range and speed
