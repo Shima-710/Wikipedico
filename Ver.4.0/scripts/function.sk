@@ -42,6 +42,7 @@ function resetGameMode():
     set {mode.yumi} to {Natto.defaultModeYumi}
     set {mode.yumidama} to {Natto.defaultModeYukidama}
     set {mode.ibuibu} to {Natto.defaultModeIbuibu}
+    set {mode.daruma} to {Natto.defaultModeDaruma}
 
 
 function gameStart():
@@ -66,17 +67,17 @@ function gameStart():
         setQuas()
         execute console command "team join players @a[team=!admin]"
 
-    if {mode.ibuibu} is true:
-        execute console command "replaceitem entity @a[team=!admin] armor.head minecraft:player_head{SkullOwner:iibukuro}"
 
     set {gameStatus} to 1
     broadcast "&b&l>Game &r%{Natto.prepareTime}%秒後にゲームを開始します..."
+    teleport all players to {Natto.locaSky}
     execute console command "scoreboard objectives setdisplay sidebar"
     execute console command "scoreboard players set on_game on_game 1"
     execute console command "function shimashima:01_goodbye_item"
     execute console command "function shimashima:01_toggle_nametag"
     execute console command "effect give @a[team=!admin] glowing %{Natto.prepareTime}% 255 true"
-    teleport all players to {Natto.locaSky}
+    if {mode.ibuibu} is true:
+        execute console command "replaceitem entity @a[team=!admin] armor.head minecraft:player_head{SkullOwner:iibukuro}"
     set {_loop} to {Natto.prepareTime}
     loop {Natto.prepareTime} times:
         loop all players:

@@ -11,6 +11,7 @@ command /start:
     description:Start game.
     permission:op
     permission message:You Don't have permission.
+    aliases:/st
     trigger:
         gameStart()
 
@@ -23,6 +24,7 @@ command /end:
     description:End game.
     permission:op
     permission message:You Don't have permission.
+    aliases:/en
     trigger:
         gameEnd()
 
@@ -359,14 +361,24 @@ command /mode <text> [<text>]:
                     stop
 
         if arg-1 is "ibuibu":
-            if {mode.ibuibu} is true:
-                set {mode.ibuibu} to false
-                execute console command "scoreboard players set ibuibumode ibuibumode 0"
-                broadcast "&b[運営] &r「ibuibu Mode」がオフになりました"
-            else:
+            if arg-2 is "on":
                 set {mode.ibuibu} to true
                 execute console command "scoreboard players set ibuibumode ibuibumode 1"
-                broadcast "&b[運営] &r「ibuibu Mode」がオンになりました"
+                broadcast "&b[運営] &r「ibuibu Mode」が&aオン&rなりました"
+                stop
+            if arg-2 is "off":
+                set {mode.ibuibu} to false
+                execute console command "scoreboard players set ibuibumode ibuibumode 0"
+                broadcast "&b[運営] &r「ibuibu Mode」が&cオフ&rになりました"
+                stop
+            else:
+                if {mode.ibuibu} is true:
+                    execute console command "mode ibuibu off"
+                    stop
+                else:
+                    execute console command "mode ibuibu on"
+                    stop
+
 
 
 

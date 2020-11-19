@@ -9,8 +9,6 @@ scoreboard players set @a[team=!admin] play 1
 effect clear @a
 
 # さよならTPアイテム
-clear @a player_head
-clear @a chest
 
 
 # タイトル

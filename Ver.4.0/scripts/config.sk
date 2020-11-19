@@ -17,6 +17,9 @@ function gameConfig():
     # チーム戦
     set {Natto.defaultModeTeam} to false
     #---------
+    # だるま
+    set {Natto.defaultModeDaruma} to false
+    #---------
     # 弓のみ
     set {Natto.defaultModeYumi} to false
     #---------
