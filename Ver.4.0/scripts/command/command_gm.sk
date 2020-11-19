@@ -364,12 +364,12 @@ command /mode <text> [<text>]:
             if arg-2 is "on":
                 set {mode.ibuibu} to true
                 execute console command "scoreboard players set ibuibumode ibuibumode 1"
-                broadcast "&b[運営] &r「ibuibu Mode」が&aオン&rなりました"
+                broadcast "&b&l>Game &r「ibuibu Mode」が&aオン&rなりました"
                 stop
             if arg-2 is "off":
                 set {mode.ibuibu} to false
                 execute console command "scoreboard players set ibuibumode ibuibumode 0"
-                broadcast "&b[運営] &r「ibuibu Mode」が&cオフ&rになりました"
+                broadcast "&b&l>Game &r「ibuibu Mode」が&cオフ&rになりました"
                 stop
             else:
                 if {mode.ibuibu} is true:
