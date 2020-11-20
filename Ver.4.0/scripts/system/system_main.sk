@@ -56,6 +56,22 @@ on place:
             wait 1 seconds
         delete event-block
 
+on right click on brewing stand:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on barrel:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on minecart:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on furnace:
+    if {gameStatus} is 1:
+        cancel event
+
 on craft of shield:
     cancel event
     close player'S inventory
