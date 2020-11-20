@@ -3,8 +3,6 @@
 #=========================================================================================================================
 #=========================================================================================================================
 
-fill -242 184 179 -220 184 201 glass
-setblock -231 184 190 yellow_stained_glass
 #=========================================================================================================================
 #ゲームルール設定
 
@@ -122,10 +120,6 @@ setblock -231 184 190 yellow_stained_glass
     scoreboard objectives setdisplay sidebar.team.black black
 
 
-
-# spread
-    team add spread
-
 # players
     team add players
     team modify players nametagVisibility never
@@ -149,13 +143,6 @@ setblock -231 184 190 yellow_stained_glass
     scoreboard objectives add death deathCount
     scoreboard players set @a death 0
 
-# エリトラ使用検知
-    scoreboard objectives add fly custom:aviate_one_cm
-    scoreboard objectives add flied dummy
-
-# エリトラ使用後に歩いたこと検知
-    scoreboard objectives add walk custom:walk_one_cm
-
 # ワールドボーダーの範囲決定用のスコアぼ
     scoreboard objectives add wb_range dummy
     scoreboard players set wb_range wb_range 0
@@ -167,10 +154,6 @@ setblock -231 184 190 yellow_stained_glass
 # ibuibu mode
     scoreboard objectives add ibuibumode dummy
     scoreboard players set ibuibumode ibuibumode 0
-
-# 雪玉爆弾
-    scoreboard objectives add sb used:snowball
-    scoreboard players set @a sb 0
 
 # なんかリストに表示されよるからぐっばい
     scoreboard objectives setdisplay list
@@ -184,9 +167,6 @@ setblock -231 184 190 yellow_stained_glass
 # 体力表示
     scoreboard objectives add health health
     scoreboard objectives modify health displayname "Health"
-
-
-
 
 
 #=========================================================================================================================

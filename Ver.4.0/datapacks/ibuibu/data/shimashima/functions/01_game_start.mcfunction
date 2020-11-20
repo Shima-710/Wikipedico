@@ -5,15 +5,8 @@
 scoreboard players set on_game on_game 1
 scoreboard players set @a[team=!admin] play 1
 
-# 参加者のエフェクトをクリアー
+# エフェクトをクリアー
 effect clear @a
-
-# さよならTPアイテム
-
-
-# タイトル
-#title @a times 0 40 20
-#title @a title ["",{"text":"\u22d9 ","bold":true},{"text":"START","bold":true,"color":"yellow"},{"text":" \u22d8","bold":true}]
 
 # エリトラあげりゅ
 replaceitem entity @a[team=!admin] armor.chest elytra
@@ -27,15 +20,9 @@ effect give @a[team=!admin] glowing 10 255 true
 gamemode survival @a[team=!admin,team=!dead]
 gamemode spectator @a[team=admin]
 
-
-# 上空にTP -> 変更
-# tp @a -27663 309 36470 ~ 90
-# 床抜ける
-# fill -242 184 179 -220 184 201 air
-
-
 # ワールドボーダーをとりあえず作る
-worldborder center -27663 36470
+#TODO:マップによる変動あり
+worldborder center 318 319
 worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 15s
