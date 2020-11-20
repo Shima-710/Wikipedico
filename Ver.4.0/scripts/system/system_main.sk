@@ -45,10 +45,9 @@ on respawn:
         teleport player to {Natto.locaDeathSpawn}
 
 on break:
-    if {destroyable} is true:
-        stop
-    else:
-        cancel event
+    if {gameStatus} is 1:
+        if {destroyable} is false:
+            cancel event
 
 on place:
     if {gameStatus} is 1:
@@ -116,10 +115,18 @@ on right click on fence gate:
     if {gameStatus} is 1:
         cancel event
 
+on right click on flower pot:
+    if {gameStatus} is 1:
+        cancel event
+
 on craft of shield:
     cancel event
     close player'S inventory
     message "&c&l>Error &r盾の作成はできません" to player
+
+on bed enter:
+    if {gameStatus} is 1:
+        cancel event
 
 on inventory click:
     if event-item is player skull:
