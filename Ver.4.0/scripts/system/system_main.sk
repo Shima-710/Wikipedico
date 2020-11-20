@@ -72,6 +72,42 @@ on right click on furnace:
     if {gameStatus} is 1:
         cancel event
 
+on right click on loom:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on smoker:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on blast furnace:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on cartography table:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on cartography table:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on fletching table:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on grindstone:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on smithing table:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on stonecutter:
+    if {gameStatus} is 1:
+        cancel event
+
 on craft of shield:
     cancel event
     close player'S inventory
