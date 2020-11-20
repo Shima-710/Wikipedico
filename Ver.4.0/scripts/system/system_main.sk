@@ -108,6 +108,14 @@ on right click on stonecutter:
     if {gameStatus} is 1:
         cancel event
 
+on right click on trapdoor:
+    if {gameStatus} is 1:
+        cancel event
+
+on right click on fence gate:
+    if {gameStatus} is 1:
+        cancel event
+
 on craft of shield:
     cancel event
     close player'S inventory
