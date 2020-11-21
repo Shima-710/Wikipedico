@@ -47,13 +47,19 @@ on right click:
         if {defineloca} is true:
             cancel event
             add location of block above clicked block to {Natto.locaChest::*}
+            set block above clicked block to chest
             broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} に追加しました"
 
     if event-item is wooden hoe named "右クリックでチェスト座標を削除":
         if {defineloca} is true:
-            cancel event
-            remove location of block above clicked block from {Natto.locaChest::*}
-            broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} から削除しました"
+            if {Natto.locaChest::*} contain location of block above clicked block:
+                cancel event
+                remove location of block above clicked block from {Natto.locaChest::*}
+                set block above clicked block to air
+                broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} から削除しました"
+            else:
+                cancel event
+                message "&e&l>Dev &rError:当該の座標は設定されていません"
 
 command /natto---dev:
     description:Move to Development Mode
