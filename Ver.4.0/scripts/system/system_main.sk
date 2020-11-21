@@ -51,9 +51,10 @@ on break:
 
 on place:
     if {gameStatus} is 1:
-        loop {Natto.delBlockTime} times:
-            wait 1 seconds
-        delete event-block
+        if player's gamemode is not creative:
+            loop {Natto.delBlockTime} times:
+                wait 1 seconds
+            delete event-block
 
 on right click on brewing stand:
     if {gameStatus} is 1:
@@ -117,6 +118,10 @@ on right click on fence gate:
 
 on right click on flower pot:
     if {gameStatus} is 1:
+        cancel event
+
+on right click on door:
+    if {gameStatus} is 0:
         cancel event
 
 on craft of shield:
