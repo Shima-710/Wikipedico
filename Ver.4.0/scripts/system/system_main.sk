@@ -161,10 +161,6 @@ on rightclick on villager:
 on inventory click:
     if event-item is black stained glass pane named " ":
         cancel event
-    if event-item is barrier block named "&r&c閉じる":
-        cancel event
-        play sound "block.stone_button.click_on" to player
-        close player's inventory
 
 on walking on diamond block:
     push the player upwards at speed 5

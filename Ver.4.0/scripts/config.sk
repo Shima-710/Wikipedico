@@ -7,7 +7,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # バージョン情報
-    set {ver} to "4.3.7 (beta)"
+    set {ver} to "4.4.0"
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -58,13 +58,13 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # 一つのチェストから出るアイテム量（チェストインベントリーにおけるスロット占有量）
-    set {Natto.maxChestSlotQua} to 5
+    set {Natto.maxChestSlotQua} to 10
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
 #
     # ブロック設置後消えるまでの時間（秒）
-    set {Natto.delBlockTime} to 10
+    set {Natto.delBlockTime} to 15
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -96,7 +96,6 @@ function gameConfig():
     add 2 of string to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
     #
-    #ここ負傷の矢(即時ダメージ1)にしてほすいいいいいいいいいいいいいいいいいいい
     add 5 of arrow to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
     #
@@ -109,7 +108,7 @@ function gameConfig():
     add 3 of gold ingot to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
     #
-    add 3 of diamond to {Natto.chestItemName.normal::*}
+    add 1 of diamond to {Natto.chestItemName.normal::*}
     add 2 to {Natto.chestItemChance.normal::*}
     #
 #

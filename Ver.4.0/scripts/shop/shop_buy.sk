@@ -37,7 +37,6 @@ on inventory click:
         set slot 15 of player's current inventory to black stained glass pane named " "
         set slot 16 of player's current inventory to black stained glass pane named " "
         set slot 17 of player's current inventory to black stained glass pane named " "
-        set slot 53 of player's current inventory to barrier block named "&r&c閉じる"
 
         set slot 19 of player's current inventory to leather named "&a[$%{price.buy.leather}%] &r革を買う"
         set slot 21 of player's current inventory to iron ingot named "&a[$%{price.buy.iron}%] &r鉄鉱石を買う"
