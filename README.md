@@ -10,7 +10,7 @@ Minecraft Plugins and Datapack.
 **OS** :
 
 	macOS 10.15.5/6/7 Catalina
-	
+
 	macOS 11.0.1 RC2
 
 	Windows 10

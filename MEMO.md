@@ -30,7 +30,6 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 	|		|		|	├── 01_game_end.mcfunction			# ゲーム終了時実行
 	|		|		|	├── 01_game_start.mcfunction		# ゲームスタート時実行
 	|		|		|	├── 01_goodbye_item.mcfunction		# ゲーム中所持禁止アイテムをクリアー
-	|		|		|	├── 01_replay.mcfunction			# 未使用
 	|		|		|	├── 01_toggle_nametag.mcfunction	# ネームタグの表示非表示
 	|		|		|	├── 02_admin-book.mcfunction		# admin用の本を渡す
 	|		|		|	├── 02_murabito.mcfunction			# 商人召喚用スポーンエッグ
@@ -42,34 +41,20 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 	|		└── pack.mcmeta
 	|
 	└── scripts/
-		├── charas/										# キャラクターごとのファイルが格納
-		|	├── chara_gorilla.sk							# ゴリラ
-		|	├── chara_healer.sk								# ヒーラー
-		|	├── chara_neet.sk								# ニート
-		|	├── chara_ninja.sk								# 忍者
-		|	├── chara_robot.sk								# ロボット
-		|	├── chara_tank.sk								# タンク
-		|	└── chara_tyuuni.sk								# 厨二病
-		|
 		├── command/									# 利用ケース別にコマンドファイルが格納
 		|	├── command_dev.sk								# 開発用コマンド
 		|	├── command_gen.sk								# 一般ユーザー用コマンド
 		|	└── command_gm.sk								# ゲームマスター用コマンド
 		|
 		├── shop/										# モード別にショップ用ファイルが格納
-		|	├── _leg/										# 過去ファイル;バックアップ
 		|	├── shop_buy.sk									# 購入内容
-		|	├── shop_item_chara.sk							# キャラ有効時に購入可能
 		|	├── shop_sell.sk								# 売却内容
-		|	└── shop_skill.sk								# キャラ有効時レベルアップ用
 		|
 		├── system/										# 各種システム処理用ファイルが格納
-		|	├── system_actionbar.sk							# アクションバー
 		|	├── system_asure.sk								# アスレチック
 		|	├── system_daruma.sk							# だるまさんが転んだ
 		|	├── system_main.sk								# メイン
-		|	├── system_revival.sk							# 復活
-		|	└── system_skill.sk								# キャラ選択
+		|	├── system_team.sk								# チーム戦
 		|
 		├── config.sk										# 設定ファイル
 		├── function.sk										# 全functionが記述
@@ -78,32 +63,25 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 
 
 ## 導入
-1. Skript. skQuaryを導入
-2. Ver.3.0/datapacksをworld/datapacksと入れ替え
-3. Ver.3.0/scriptsをplugins_Skript_scriptsと入れ替え
+1. Skript, skQuaryを導入
+2. Ver.4.0/datapacksをworld/datapacksと入れ替え
+3. Ver.4.0/scriptsをplugins/Skript/scriptsと入れ替え
 4. “/natto—defineloca”で各種ロケーション変数を指定
-5. 00_game_start.mcfunctionの36行目の座標を上空待機所の座標に書き換え
+5. ファイル内の #TODO: を確認（主にマップ依存座標）
 
 ## 始め方
 1. adminで進行する場合は”/admin”
 2. モード選択
-3. “_start”コマンドまたは本(_book)でゲームスタート
+3. “/start”コマンドまたは本でゲームスタート
 4. 強制終了は”/end”
-5. 次の試合に移る場合はリロード
+5. 2戦目以降は前回試合終了時に自動リロードが入るのでそのまま何もせずに"/start"
 
 ## ゲームモード
-### 同時稼働可能
 * だるまさんが転んだモード
 
 	だるまさんが転んだができるモード
 
 	``/mode daruma``
-
-* キャラクター
-
-	キャラ選択ができるモード
-
-	``/mode skill``
 
 * チーム戦
 
@@ -116,19 +94,6 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 	いぶいぶモード
 
 	``/mode ibuibu``
-
-### 同時稼働不可
-* 弓のみ
-
-	弓のみで戦うモード
-
-	``/mode yumi``
-
-* 雪玉のみ
-
-	雪玉のみで戦うモード
-
-	``/mode yukidama``
 
 ## コマンド
 一般ユーザーコマンドについてはwiki参照
@@ -152,11 +117,6 @@ GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 * join \<team> [\<player>]
 
 	むりくりプレイヤーをチームに入れる(バグるかも)
-
-* chara \<choise/look> [\<player>]
-
-	choiseで…ってかずっとchoiceのスペルミスってね？
-	choiceでキャラ選択、lookで各チームのキャラを確認
 
 * revival
 
