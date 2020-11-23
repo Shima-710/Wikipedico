@@ -168,3 +168,15 @@ on inventory click:
 
 on walking on diamond block:
     push the player upwards at speed 5
+
+
+
+on chat:
+    if {gameStatus} is 1:
+        if {mode.team} is true:
+            cancel event
+            teamChat(player,message)
+        else:
+            if {playerStatus.%player%} is "death":
+                cancel event
+                message "&a[観戦] &7<%player%> &r%message%" to {admin::*} and {death::*}

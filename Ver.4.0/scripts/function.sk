@@ -36,6 +36,7 @@ function resetGameVariables():
     set {qua.admin} to 0
     set {qua.spectator} to 0
     set {destroyable} to false
+    delete {death::*}
 
 function resetGameMode():
     set {mode.team} to {Natto.defaultModeTeam}
@@ -71,6 +72,7 @@ function gameStart():
     execute console command "function shimashima:01_goodbye_item"
     execute console command "function shimashima:01_toggle_nametag"
     execute console command "effect give @a[team=!admin] glowing %{Natto.prepareTime}% 255 true"
+    execute console command "kill @e[type=item]"
     if {mode.ibuibu} is true:
         execute console command "replaceitem entity @a[team=!admin] armor.head minecraft:player_head{SkullOwner:iibukuro}"
     set {_loop} to {Natto.prepareTime}
@@ -89,6 +91,7 @@ function gameStart():
             wait 1 second
             execute console command "function shimashima:01_game_start"
             delSkyLobby()
+            execute console command "kill @e[type=item]"
             send title "&e&lSTART" to all players
             play sound "entity.enderman.teleport" to all players
             loop all players:
@@ -106,6 +109,9 @@ function gameEnd():
     play sound "ui.toast.challenge_complete" with volume 0.8 to all players
     execute console command "function shimashima:01_game_end"
     execute console command "spawnpoint @a %{Natto.locaLobbySpawn}%"
+    execute console command "kill @e[type=item]"
+
+    fillSkyLobby()
 
     loop {Natto.qua.Team} times:
         add 1 to {_loop}
@@ -125,6 +131,7 @@ function gameEnd():
     remove all items from all players
     execute console command "clear @a"
     set gamemode of all players to adventure
+    spawnChest()
     teleport all players to {Natto.locaLobbySpawn}
 
     wait 5 seconds
@@ -284,6 +291,7 @@ function calKillRanking():
 
 function deathPlayer(p: player):
     set {playerStatus.%{_p}%} to "death"
+    add {_p} to {death::*}
     set gamemode of {_p} to spectator
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
@@ -446,7 +454,6 @@ function defChestRootNormal(n: number):
 
 
 function reloadPlugin():
-    broadcast "&6&l>Plugin &2Reloading..."
     set {defineloca} to false
     wait 2 tick
     reloadConfig()
@@ -490,5 +497,4 @@ function reloadPlugin():
     wait 3 second
     loop all players:
         make loop-player execute command "rirogu"
-    broadcast "&6&l>Plugin &2Reloaded Successfully!"
 

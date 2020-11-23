@@ -175,7 +175,7 @@ command /destroyable [<text>]:
             broadcast "&b&l>Game &rブロックの破壊が可能になりました"
         if arg-1 is "false":
             set {destroyable} to false
-            broadcast "&&b&l>Game &rブロックの破壊が不可能になりました"
+            broadcast "&b&l>Game &rブロックの破壊が不可能になりました"
         if arg-1 is not set:
             if {destroyable} is false:
                 set {destroyable} to true
