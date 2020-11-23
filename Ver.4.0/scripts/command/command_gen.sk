@@ -6,7 +6,7 @@ command /ver:
 command /z <text>:
     description:ZE-NN-TYA
     trigger:
-        broadcast "&7[-ZENNTYA-] &r<%player%> %arg-1%"
+        broadcast "&a[-ZENNTYA-] &r<%player%> %arg-1%"
 
 command /rirogu:
     description:Give Player Head and Chest.
