@@ -139,7 +139,7 @@ function gameEnd():
     wait 5 seconds
     broadcast "&b&l>Game &r試合結果を集計しています..."
     wait 3 seconds
-    if {mdoe.team} is true:
+    if {mode.team} is true:
         calTeamRanking()
     else:
         calSoloRanking()
