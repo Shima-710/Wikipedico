@@ -28,7 +28,7 @@ every 1 tick:
     if {gameStatus} is 0:
         loop all players:
             if {team.openingchest.%loop-player%} is "true":
-                set slot 10 of loop-player's current inventory to red wool named "&lJoin Red Team" with lore "&5%{qua.player.team.red}%/3" and "&7%{team.red::1}%" and "&7%{team.red::2}%" and "&7%{team.red::3}%"
+                set slot 10 of loop-player's current inventory to red wool named "&lJoin Red Team" with lore "&5%{qua.player.team.red}%/%{Natto.teamMaxPlayer}%" and "&7%{team.red::1}%" and "&7%{team.red::2}%" and "&7%{team.red::3}%"
                 if {team.red::1} is set:
                     set slot 19 of loop-player's current inventory to skull of {team.red::1} named "&r%{team.red::1}%"
                 else:
@@ -42,7 +42,7 @@ every 1 tick:
                 else:
                     set slot 37 of loop-player's current inventory to air
 
-                set slot 11 of loop-player's current inventory to blue wool named "&lJoin Blue Team" with lore "&5%{qua.player.team.blue}%/3" and "&7%{team.blue::1}%" and "&7%{team.blue::2}%" and "&7%{team.blue::3}%"
+                set slot 11 of loop-player's current inventory to blue wool named "&lJoin Blue Team" with lore "&5%{qua.player.team.blue}%/%{Natto.teamMaxPlayer}%" and "&7%{team.blue::1}%" and "&7%{team.blue::2}%" and "&7%{team.blue::3}%"
                 if {team.blue::1} is set:
                     set slot 20 of loop-player's current inventory to skull of {team.blue::1} named "&r%{team.blue::1}%"
                 else:
@@ -56,7 +56,7 @@ every 1 tick:
                 else:
                     set slot 38 of loop-player's current inventory to air
 
-                set slot 12 of loop-player's current inventory to yellow wool named "&lJoin Yellow Team" with lore "&5%{qua.player.team.yellow}%/3" and "&7%{team.yellow::1}%" and "&7%{team.yellow::2}%" and "&7%{team.yellow::3}%"
+                set slot 12 of loop-player's current inventory to yellow wool named "&lJoin Yellow Team" with lore "&5%{qua.player.team.yellow}%/%{Natto.teamMaxPlayer}%" and "&7%{team.yellow::1}%" and "&7%{team.yellow::2}%" and "&7%{team.yellow::3}%"
                 if {team.yellow::1} is set:
                     set slot 21 of loop-player's current inventory to skull of {team.yellow::1} named "&r%{team.yellow::1}%"
                 else:
@@ -70,7 +70,7 @@ every 1 tick:
                 else:
                     set slot 39 of loop-player's current inventory to air
 
-                set slot 13 of loop-player's current inventory to green wool named "&lJoin Green Team" with lore "&5%{qua.player.team.green}%/3" and "&7%{team.green::1}%" and "&7%{team.green::2}%" and "&7%{team.green::3}%"
+                set slot 13 of loop-player's current inventory to green wool named "&lJoin Green Team" with lore "&5%{qua.player.team.green}%/%{Natto.teamMaxPlayer}%" and "&7%{team.green::1}%" and "&7%{team.green::2}%" and "&7%{team.green::3}%"
                 if {team.green::1} is set:
                     set slot 22 of loop-player's current inventory to skull of {team.green::1} named "&r%{team.green::1}%"
                 else:
@@ -84,7 +84,7 @@ every 1 tick:
                 else:
                     set slot 40 of loop-player's current inventory to air
 
-                set slot 14 of loop-player's current inventory to orange wool named "&lJoin Orange Team" with lore "&5%{qua.player.team.orange}%/3" and "&7%{team.orange::1}%" and "&7%{team.orange::2}%" and "&7%{team.orange::3}%"
+                set slot 14 of loop-player's current inventory to orange wool named "&lJoin Orange Team" with lore "&5%{qua.player.team.orange}%/%{Natto.teamMaxPlayer}%" and "&7%{team.orange::1}%" and "&7%{team.orange::2}%" and "&7%{team.orange::3}%"
                 if {team.orange::1} is set:
                     set slot 23 of loop-player's current inventory to skull of {team.orange::1} named "&r%{team.orange::1}%"
                 else:
@@ -98,7 +98,7 @@ every 1 tick:
                 else:
                     set slot 41 of loop-player's current inventory to air
 
-                set slot 15 of loop-player's current inventory to purple wool named "&lJoin Purple Team" with lore "&5%{qua.player.team.purple}%/3" and "&7%{team.purple::1}%" and "&7%{team.purple::2}%" and "&7%{team.purple::3}%"
+                set slot 15 of loop-player's current inventory to purple wool named "&lJoin Purple Team" with lore "&5%{qua.player.team.purple}%/%{Natto.teamMaxPlayer}%" and "&7%{team.purple::1}%" and "&7%{team.purple::2}%" and "&7%{team.purple::3}%"
                 if {team.purple::1} is set:
                     set slot 24 of loop-player's current inventory to skull of {team.purple::1} named "&r%{team.purple::1}%"
                 else:
@@ -114,7 +114,7 @@ every 1 tick:
 
                 #FIXME:grayでエラー
                 #CHANGED:blackに全範囲において置換済み
-                set slot 16 of loop-player's current inventory to black wool named "&lJoin Black Team" with lore "&5%{qua.player.team.black}%/3" and "&7%{team.black::1}%" and "&7%{team.black::2}%" and "&7%{team.black::3}%"
+                set slot 16 of loop-player's current inventory to black wool named "&lJoin Black Team" with lore "&5%{qua.player.team.black}%/%{Natto.teamMaxPlayer}%" and "&7%{team.black::1}%" and "&7%{team.black::2}%" and "&7%{team.black::3}%"
                 if {team.black::1} is set:
                     set slot 25 of loop-player's current inventory to skull of {team.black::1} named "&r%{team.black::1}%"
                 else:

@@ -125,10 +125,12 @@ function gameEnd():
 
     wait 5 seconds
     broadcast "&b&l>Game &r5秒後にロビーへ戻ります..."
+    execute console command "kill @e[type=item]"
     wait 5 seconds
 
     execute console command "function shimashima:01_toggle_nametag"
     remove all items from all players
+    execute console command "kill @e[type=item]"
     execute console command "clear @a"
     set gamemode of all players to adventure
     spawnChest()
