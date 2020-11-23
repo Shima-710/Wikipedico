@@ -1,7 +1,7 @@
 # Wikipedico
 Latest Update : 11/09/2020 | Written by ShimaShima_710
 
-[[Notion] Wikipedico](https://www.notion.so/Wikipedico-ed121158337344f88fa6d358f73df56a)
+[[HP] Wikipedico](https://wikipedico.studio.site)
 
 ## Overview
 Minecraft Plugins and Datapack.
