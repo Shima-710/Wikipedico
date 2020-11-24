@@ -25,8 +25,6 @@ Minecraft Plugins and Datapack.
 
 **Required Plugins** :
 
-	Skript 2.4.1
+	Skript 2.5.1
 
-	LuckPerms 5.1.45
-
-	skQuery 3.6.5
+	skQuery 4.1.4
