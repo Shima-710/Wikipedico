@@ -15,7 +15,7 @@ Minecraft Plugins and Datapack.
 
 **Language** :
 
-	Skript 2.4.1
+	Skript
 
 	mcfunction
 
