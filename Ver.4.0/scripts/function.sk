@@ -56,7 +56,6 @@ function gameStart():
             add 1 to {_loop}
 
         setQuas()
-        #refreshTeamSidebar()
 
 
     else:
@@ -147,10 +146,13 @@ function gameEnd():
     broadcast "&b&l>Game &rキル数ランキングを集計しています..."
     wait 3 seconds
     calKillRanking()
+
     resetRankingVariables()
     loop all players:
         if {admin.%loop-player%} is true:
             adminLeave(loop-player)
+        if {playerStatus.%{_p}%} is "spectator":
+            spcLeave(loop-player)
     wait 3 second
     reloadPlugin()
 
@@ -180,16 +182,12 @@ function winPlayer():
 
 function adminJoin(p: player):
     teamLeave({_p})
-    execute console command "op %{_p}%"
     set gamemode of {_p} to creative
     make {_p} execute command "/team join admin %{_p}%"
     make {_p} execute command "/book"
-    execute console command "lp user %{_p}% parent add skript.admin"
     set {admin.%{_p}%} to true
     add {_p} to {admin::*}
-    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
     add 1 to {qua.admin}
-    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
     set {playerJoined.%{_p}%} to "admin"
     set {playerStatus.%{_p}%} to "admin"
 
@@ -200,11 +198,30 @@ function adminLeave(p: player):
     make {_p} execute command "/effect clear %{_p}% minecraft:night_vision"
     set {admin.%{_p}%} to false
     remove {_p} from {admin::*}
-    execute console command "scoreboard players reset {qua.admin}：%{qua.admin}%人 admin"
     reduce {qua.admin} by 1
-    execute console command "scoreboard players set {qua.admin}：%{qua.admin}%人 admin -6"
     set {playerJoined.%{_p}%} to false
     set {playerStatus.%{_p}%} to "alive"
+
+
+function spcJoin(p: player):
+    teamLeave({_p})
+    set gamemode of {_p} to spectator
+    make {_p} execute command "/team join admin %{_p}%"
+    add {_p} to {spectator::*}
+    add 1 to {qua.spectator}
+    set {playerJoined.%{_p}%} to "spectator"
+    set {playerStatus.%{_p}%} to "spectator"
+
+function spcLeave(p: player):
+    teamLeave({_p})
+    set gamemode of {_p} to adventure
+    make {_p} execute command "/team leave %{_p}%"
+    make {_p} execute command "/effect clear %{_p}% minecraft:night_vision"
+    remove {_p} from {spectator::*}
+    reduce {qua.spectator} by 1
+    set {playerJoined.%{_p}%} to false
+    set {playerStatus.%{_p}%} to "spectator"
+
 
 function teamJoin(p: player, c: object):
     if {qua.player.team.%{_c}%} is larger than {Natto.teamMaxPlayer}:
@@ -213,6 +230,8 @@ function teamJoin(p: player, c: object):
     else:
         if {playerStatus.%{_p}%} is "admin":
             adminLeave({_p})
+        if {playerStatus.%{_p}%} is "spectator":
+            spcLeave({_p})
         teamLeave({_p})
         add {_p} to {team.%{_c}%::*}
         add 1 to {qua.player.team.%{_c}%}
@@ -237,7 +256,6 @@ function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカ
         execute console command "scoreboard players reset %name of {_p}% %{_oc}%"
         execute console command "team leave %{_p}%"
 
-
 function applyTeam(c: object):
     if amount of {team.%{_c}%::*} is not 0:
         add 1 to {qua.playTeam}
@@ -245,7 +263,6 @@ function applyTeam(c: object):
         set {teamStatus.%{_c}%} to "alive"
     else:
         set {teamStatus.%{_c}%} to "death"
-
 
 function teamChat(p:player, t: text):
     if {playerJoined.%{_p}%} is false:
@@ -310,8 +327,6 @@ function deathPlayer(p: player):
         reduce {qua.surviver} by 1
         if {qua.surviver} is 1:
             winPlayer()
-    #refreshTeamSidebar()
-    #refreshSoloSidebar()
 
 function deathTeam(c: object):
     set {teamStatus.%{_c}%} to "death"
@@ -343,10 +358,8 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
         set gamemode of {_p} to survival
         teleport {_p} to {_pp}
         play sound "entity.player.levelup" to {_p} and {_pp}
-        #refreshTeamSidebar()
     else:
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
-
 
 function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる人
     if {playerJoined.%{_pp}%} is false:
@@ -361,44 +374,12 @@ function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる�
         add 1 to {_loop}
         add 1 to {_loop2}
 
-
-
 function setQuas():
     set {qua.online} to online player count
     set {qua.player} to {qua.online}
     reduce {qua.player} by {qua.admin}
     reduce {qua.player} by {qua.spectator}
     set {qua.surviver} to {qua.player}
-
-
-
-#function addOneToSurviver():
-#function reduceSurviverByOne():
-#function addOneToSurviveTeam():
-#function reduceSurviveTeamByOne():
-
-
-function refreshTeamSidebar():
-    execute console command "scoreboard players reset {qua.player}：%{qua.player}%人 admin"
-    execute console command "scoreboard players reset {qua.playTeam}：%{qua.playTeam}%チーム admin"
-    execute console command "scoreboard players reset {qua.surviver}：%{qua.surviver}%人 admin"
-    execute console command "scoreboard players reset {qua.surviveTeam}：%{qua.surviveTeam}%チーム admin"
-
-    execute console command "scoreboard players set {qua.player}：%{qua.player}%人 admin -2"
-    execute console command "scoreboard players set {qua.team}：%{qua.team}%チーム admin -3"
-    execute console command "scoreboard players set {surviver}：%{qua.surviver}%人 admin -4"
-    execute console command "scoreboard players set {qua.surviveTeam}：%{qua.surviveTeam}%チーム admin -5"
-
-    loop {Natto.qua.Team} times:
-        add 1 to {_loop}
-        execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}%"
-        execute console command "scoreboard players reset 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}%"
-        execute console command "scoreboard players set 残り人数：%{qua.surviver}%人 %{Natto.teamName::%{_loop}%}% -1"
-        execute console command "scoreboard players set 残りチーム数：%{qua.surviveTeam}%チーム %{Natto.teamName::%{_loop}%}% -2"
-
-function refreshSoloSidebar():
-    execute console command "scoreboard players reset 残り人数：%{qua.surviver}%人"
-
 
 function delSkyLobby():
     #TODO:マップによる変動あり
@@ -418,14 +399,19 @@ function fillSkyLobby():
 
 
 
-
-
 function debugMode(b: boolean):
     if {_b} is true:
         execute console command "gamerule sendCommandFeedback true"
         execute console command "gamerule reducedDebugInfo false"
 
+function spawnChest():
+    loop {Natto.qua.locaChest} times:
+        add 1 to {_loop}
+        set block at {Natto.locaChest::%{_loop}%} to chest
 
+function defChestRootNormal(n: number):
+    loop {Natto.chestItemChance.normal::%{_n}%} times:
+        add {Natto.chestItemName.normal::%{_n}%} to {Natto.chestRoot.normal::*}
 
 function reloadConfig():
     delete {Natto.teamName::*}
@@ -441,19 +427,6 @@ function reloadConfig():
         add 1 to {_loop1}
         defChestRootNormal({_loop1})
     set {Natto.qua.ChestItem.normal} to amount of {Natto.chestRoot.normal::*}
-
-
-function spawnChest():
-    loop {Natto.qua.locaChest} times:
-        add 1 to {_loop}
-        set block at {Natto.locaChest::%{_loop}%} to chest
-
-
-function defChestRootNormal(n: number):
-    loop {Natto.chestItemChance.normal::%{_n}%} times:
-        add {Natto.chestItemName.normal::%{_n}%} to {Natto.chestRoot.normal::*}
-
-
 
 function reloadPlugin():
     set {defineloca} to false

@@ -296,3 +296,20 @@ command /lobby:
     permission message:You Don't have permission.
     trigger:
         teleport player to {Natto.locaLobbySpawn}
+
+
+command /spectator <player>:
+    description:Toggle spectator.
+    permission:op
+    permission message:You Don't have permission.
+    trigger:
+        if {playerStatus.%arg-1%} is "spectator":
+            spcLeave(arg-1)
+            message "&2>SysLog-spc &r%player% があなたを spectaotr から脱退させました" to arg-1
+            message "&2>SysLog-spc &r%arg-2% が spectator から脱退しました" to {admin::*}
+            stop
+        else:
+            spcJoin(arg-1)
+            message "&2>SysLog-spc &r%player% があなたを spectaotr に加入させました" to arg-1
+            message "&2>SysLog-spc &r%arg-2% が spectator に加入しました" to {admin::*}
+            stop
