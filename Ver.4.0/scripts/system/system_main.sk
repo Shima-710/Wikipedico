@@ -4,7 +4,8 @@ every 1 tick in "world":
             send action bar "&l残りチーム数:&6&l%{qua.surviveTeam}%&r&lチーム  |  &l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
         else:
             send action bar "&l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
-    send action bar "online:&6%online player count% &r| admin:&6%{qua.admin}% &r| player:&6%{qua.player}% &r| playTeam:&6%{qua.playTeam}% &r| surviver：&6%{qua.surviver}% &r| surviveTeam:&6%{qua.surviveTeam}%" to {admin::*}
+
+    send action bar "online:&6%online player count% &r| admin:&6%{qua.admin}% &r| spectator:&6%{qua.spectator}% &r| player:&6%{qua.player}% &r| surviver：&6%{qua.surviver}% &r| playTeam:&6%{qua.playTeam}% &r| surviveTeam:&6%{qua.surviveTeam}%" to {admin::*}
 
 on death of player:
     if {playerStatus.%victim%} is "alive":
