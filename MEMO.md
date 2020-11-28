@@ -2,11 +2,8 @@
 
 等幅環境で見ないと見栄えが死にます.indentはtabで4.
 
-技術仕様はREADME記載
-
 
 ## ファイル構造
-GitHub Repository - [Wikipedico](https://github.com/Shima-710/Wikipedico)
 
 ```
 .

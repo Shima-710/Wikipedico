@@ -1,10 +1,5 @@
 # Wikipedico エラーコード一覧
 
-等幅環境で見ないと見栄えが死にます.indentはtabで4.
-
-技術仕様はREADME記載
-
-その他メモはMEMO参照
 
 CODE-T01
 
@@ -22,4 +17,6 @@ CODE-C01
 
 	キャラクター選択時にそのプレイヤーのplayerJoinedが未定義
 
-CODE-
+CODE-D01
+
+	意味わからん奴が死亡

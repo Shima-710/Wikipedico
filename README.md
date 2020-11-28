@@ -1,10 +1,10 @@
 # Wikipedico
-Latest Update : 11/09/2020 | Written by ShimaShima_710
+Latest Update : 28/11/2020 | Written by ShimaShima_710
 
 [wikipedico.studio.site](https://wikipedico.studio.site)
 
 ## Overview
-Minecraft Plugins and Datapack.
+Minecraft Plugin and Datapack.
 
 ## Developing Environment
 **OS** :
@@ -19,11 +19,7 @@ Minecraft Plugins and Datapack.
 
 	mcfunction
 
-**Editor** :
-
-	Visual Studio Code
-
-**Required Plugins** :
+**External Plugins** :
 
 	Skript 2.5.1
 
