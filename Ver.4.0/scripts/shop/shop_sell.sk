@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------------------
 # 買取価格 ここで変えると全て一括で変更されます
 
-on server start:
+on skript load:
     set {price.sell.leather} to 1
     set {price.sell.iron} to 5
     set {price.sell.gold} to 10

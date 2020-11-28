@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------------------
 # 販売価格 ここで変えると全て一括で変更されます
 
-on server start:
+on skript load:
     set {price.buy.leather} to 5
     set {price.buy.iron} to 15
     set {price.buy.gold} to 30

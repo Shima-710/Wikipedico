@@ -306,10 +306,10 @@ command /spectator <player>:
         if {playerStatus.%arg-1%} is "spectator":
             spcLeave(arg-1)
             message "&2>SysLog-spc &r%player% があなたを spectaotr から脱退させました" to arg-1
-            message "&2>SysLog-spc &r%arg-2% が spectator から脱退しました" to {admin::*}
+            message "&2>SysLog-spc &r%arg-1% が spectator から脱退しました" to {admin::*}
             stop
         else:
             spcJoin(arg-1)
             message "&2>SysLog-spc &r%player% があなたを spectaotr に加入させました" to arg-1
-            message "&2>SysLog-spc &r%arg-2% が spectator に加入しました" to {admin::*}
+            message "&2>SysLog-spc &r%arg-1% が spectator に加入しました" to {admin::*}
             stop
