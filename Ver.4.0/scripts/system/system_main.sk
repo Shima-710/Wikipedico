@@ -176,4 +176,4 @@ on chat:
         else:
             if {playerStatus.%player%} is "death":
                 cancel event
-                message "&a[観戦] &7<%player%> &r%message%" to {admin::*} and {death::*}
+                message "&a[観戦] &7<%player%> &r%message%" to {admin::*} and {death::*} and {spectator::*}
