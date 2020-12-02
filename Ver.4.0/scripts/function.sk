@@ -270,15 +270,19 @@ function teamChat(p:player, t: text):
     message "&7[Team Chat] <&r%{_p}% &7-> &r%{_c}%&7> &r%{_t}%" to {team.%{_c}%::*} and {admin::*} and {spectator::*}
 
 
+#FIXME:昇順に
 function calTeamRanking(): # %{teamrank.%{_loop}%}%の中身は色
     loop all players:
         add {kills.%loop-player%} to {teamKills.%{playerJoined.%loop-player%}%}
     broadcast "&7====================================================="
     broadcast "&b&l[試合結果]"
-    set {_loop} to {qua.playTeam}
-    loop {qua.playTeam} times:
+    set {_loop} to 1
+    set {teamRankLoop} to true
+    while {teamRankLoop} is true:
         broadcast "&6%{_loop}%位  &8-- &r[%{teamRank.%{_loop}%}%] : %{team.%{teamRank.%{_loop}%}%::*}% &8-- &6計%{teamKills.%{teamRank.%{_loop}%}%}%kill"
-        reduce {_loop} by 1
+        if {_loop} is {qua.playTeam}:
+            set {teamRankLoop} to false
+        add 1 to {_loop}
     broadcast "&7====================================================="
 
 function calSoloRanking():
@@ -468,7 +472,7 @@ function reloadPlugin():
     execute console command "worldborder set 50000"
     execute console command "kill @e[type=item]"
 
-    wait 3 second
+    wait 3 tick
     loop all players:
         make loop-player execute command "rirogu"
 

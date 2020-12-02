@@ -164,8 +164,8 @@
 #
     scoreboard objectives remove Info
     scoreboard objectives add Info dummy
-    scoreboard objectives setdisplay sidebar Info
-    scoreboard players set 状態：準備中 Info 0
+    # scoreboard objectives setdisplay sidebar Info
+    # scoreboard players set 状態：準備中 Info 0
 
 # 体力表示
     scoreboard objectives add health health
