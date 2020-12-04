@@ -1,0 +1,20 @@
+name: Wikipedico
+version: ${project.version}
+main: com.github.shima710.wikipedico.Wikipedico
+api-version: 1.16
+authors: [ ShimaShima_710 ]
+description: Wikipedico installer
+website: wikipedico.studio.site
+commands:
+  update:
+    description: Update Wikipedico
+    permission: wiki.update
+    permission-message: You don't have permission:<permission>.
+  setup:
+    description: First setup of Wikipedico.This include Plugin install.
+    permission: wiki.setup
+    permission-message: You don't have permission:<permission>.
+  backup:
+    description: Back up variables.csv
+    permission: wiki.backup
+    permission-message: You don't have permission:<permission>.

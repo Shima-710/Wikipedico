@@ -1,0 +1,7 @@
+name: Wikipedico
+version: ${project.version}
+main: com.github.shima710.wikipedico.Wikipedico
+api-version: 1.14
+authors: [ ShimaShima_710 ]
+description: Wikipedico installer
+website: https://shimashima.studio.site
