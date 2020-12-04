@@ -34,13 +34,6 @@ public final class Wikipedico extends JavaPlugin {
             saveDefaultConfig();
         }
 
-        /*
-        try {
-            rewriteVersion();
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        */
     }
 
     @Override
@@ -53,16 +46,33 @@ public final class Wikipedico extends JavaPlugin {
 
     public static void update() throws Exception {
         delDir("./plugins/Skript/scripts");
-        copyResrcDir("scripts","./plugins/Skript/scripts");
+        copyResrcDir("scripts", "./plugins/Skript/scripts");
 
         delDir("./world/datapacks");
-        copyResrcDir("datapacks","./world/datapacks");
+        copyResrcDir("datapacks", "./world/datapacks");
 
-        Bukkit.getLogger().info("[Wikipedico] Updated Successfully!");
-        Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
-        Bukkit.reload();
+        try {
+            BufferedReader file = new BufferedReader(new FileReader("./plugins/Skript/scripts/config.sk"));
+            StringBuffer inputBuffer = new StringBuffer();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                if(line.contains("set {ver} to")){
+                    line = "    set {ver} to \"v" + version + "\"";
+                }
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            file.close();
+
+            FileOutputStream fileOut = new FileOutputStream("./plugins/Skript/scripts/config.sk");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
     }
-
 
 
     public static void loadVaris() throws IOException, URISyntaxException {
@@ -133,17 +143,6 @@ public final class Wikipedico extends JavaPlugin {
 
 
 
-    /*
-    public static void copyResrcFile(String fileName, String destPath) throws IOException {
-        InputStream file = Wikipedico.class.getResourceAsStream(fileName);
-        Bukkit.getLogger().info("wow:"+file);
-        Path target = Paths.get(destPath);
-        assert file != null;
-        Files.copy(file, target);
-    }
-    */
-
-
 
 
 
@@ -171,22 +170,40 @@ public final class Wikipedico extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 
-        // update
         if(cmd.getName().equalsIgnoreCase("update")){
             try {
                 update();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Success! Current version is " + version);
+                Bukkit.getLogger().info("[Wikipedico] Updated Successfully!");
+                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
+                Bukkit.reload();
+                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Updated! Current version is v" + version);
             } catch (Exception e) {
                 e.printStackTrace();
                 sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
             }
             return true;
         }
-        else if(cmd.getName().equalsIgnoreCase("setup")){
+        else if(cmd.getName().equalsIgnoreCase("install")){
             try {
                 loadVaris();
                 update();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Success! Current version is " + version);
+                Bukkit.getLogger().info("[Wikipedico] Installed Successfully!");
+                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
+                Bukkit.reload();
+                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Installed! Current version is v" + version);
+            } catch (Exception e) {
+                e.printStackTrace();
+                sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
+            }
+            return true;
+        }
+        else if(cmd.getName().equalsIgnoreCase("loadvaris")){
+            try {
+                loadVaris();
+                Bukkit.getLogger().info("[Wikipedico] Reloading variables.csv wes Succeed!");
+                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
+                Bukkit.reload();
+                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "variables.csv was Reloaded! Current version is v" + version);
             } catch (Exception e) {
                 e.printStackTrace();
                 sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
