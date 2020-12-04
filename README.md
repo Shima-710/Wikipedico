@@ -15,6 +15,8 @@ Minecraft Plugin and Datapack.
 
 **Language** :
 
+	Java
+
 	Skript
 
 	mcfunction
