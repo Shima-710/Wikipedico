@@ -63,11 +63,10 @@
 
 
 ## 導入
-1. Skript, skQuaryを導入
-2. Ver.4.0/datapacksをworld/datapacksと入れ替え
-3. Ver.4.0/scriptsをplugins/Skript/scriptsと入れ替え
-4. “/natto—defineloca”で各種ロケーション変数を指定
-5. ファイル内の #TODO: を確認（主にマップ依存座標）
+1. Wikipedico,Skript,skQuaryを導入
+2. /install を実行
+3. “/natto—defineloca”で各種ロケーション変数を指定
+4. ファイル内の #TODO: を確認（主にマップ依存座標）
 
 ## 始め方
 1. adminで進行する場合は”/admin”
