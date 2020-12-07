@@ -141,6 +141,16 @@ on craft of shield:
     close player'S inventory
     message "&c&l>Error &r盾の作成はできません" to player
 
+on craft of chest:
+    cancel event
+    close player'S inventory
+    message "&c&l>Error &rチェストの作成はできません" to player
+
+on craft of bucket:
+    cancel event
+    close player'S inventory
+    message "&c&l>Error &rバケツの作成はできません" to player
+
 on bed enter:
     if {gameStatus} is 1:
         cancel event

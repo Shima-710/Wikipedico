@@ -34,17 +34,7 @@ command /answer <text>:
             message "&6&l>謎解き &r回答出来るのは一試合につき一回までです" to player
             play sound "block.note_block.banjo" to player
 
-command /tpa <player>:
-    description:Teleport team player.
-    trigger:
-        if {mode.team} is true:
-            if {playerJoined.%player%} is {playerJoined.%arg-1%}:
-                teleport player to arg-1
-                play sound "block.note_block.bell" to player
-                message "&b&l>Game %arg-1%にテレポートしました" to player
-            else:
-                play sound "block.note_block.banjo" to player
-                message "&b&l>Game &r無効なプレイヤーです"
+
 
 command /openchest <player>:
     trigger:
