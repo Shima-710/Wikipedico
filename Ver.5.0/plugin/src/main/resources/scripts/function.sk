@@ -318,7 +318,7 @@ function deathPlayer(p: player):
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
         if {playerJoined.%{_p}%} is false:
-            message "&2>SysLog-deathTeam &rたぶんやばいエラーが起きてます (CODE-T01 : {_p}=%{_p}%)" to {admin::*}
+            message "&2>SysLog-deathTeam &rなんかエラー (CODE-T01 : {_p}=%{_p}%)" to {admin::*}
             stop
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1

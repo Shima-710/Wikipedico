@@ -13,7 +13,8 @@
 ├── .gitignore
 ├── LICENSE
 ├── README.md
-├── HIKITUGI.md
+├── ErrorCode.md
+├── MEMO.md
 └── Ver.5.0/
 	└──plugin/src/main/resources
 		├── datapacks/
@@ -48,13 +49,13 @@
 			|
 			├── shop/										# モード別にショップ用ファイルが格納
 			|	├── shop_buy.sk									# 購入内容
-			|	├── shop_sell.sk								# 売却内容
+			|	└── shop_sell.sk								# 売却内容
 			|
 			├── system/										# 各種システム処理用ファイルが格納
 			|	├── system_asure.sk								# アスレチック
 			|	├── system_daruma.sk							# だるまさんが転んだ
 			|	├── system_main.sk								# メイン
-			|	├── system_team.sk								# チーム戦
+			|	└── system_team.sk								# チーム戦
 			|
 			├── config.sk										# 設定ファイル
 			├── function.sk										# 全functionが記述
