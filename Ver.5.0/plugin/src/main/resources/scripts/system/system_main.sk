@@ -151,6 +151,12 @@ on craft of bucket:
     close player'S inventory
     message "&c&l>Error &rバケツの作成はできません" to player
 
+on craft of bow:
+    close player's inventory
+    remove 3 of stick from player
+    remove 3 of string from player
+    give bow of Power 5 to player
+
 on bed enter:
     if {gameStatus} is 1:
         cancel event

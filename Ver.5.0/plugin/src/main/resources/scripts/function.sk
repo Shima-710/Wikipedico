@@ -270,7 +270,7 @@ function teamChat(p:player, t: text):
     message "&7[Team Chat] <&r%{_p}% &7-> &r%{_c}%&7> &r%{_t}%" to {team.%{_c}%::*} and {admin::*} and {spectator::*}
 
 
-#FIXME:昇順に
+#FIXME:okasii
 function calTeamRanking(): # %{teamrank.%{_loop}%}%の中身は色
     loop all players:
         add {kills.%loop-player%} to {teamKills.%{playerJoined.%loop-player%}%}
@@ -296,6 +296,7 @@ function calSoloRanking():
         broadcast "&6%{_loop}%位  &8--&r%{soloRanking.name.%{_loop}%}% &8-- &6計%{soloRanking.kills.%{_loop}%}%kill"
     broadcast "&7====================================================="
 
+#FIXME:チーム戦でバグり？
 function calKillRanking():
     loop all players:
         add "&6%{kills.%loop-player%}%kill &8-- &6%name of loop-player%" to {killRanking::*}
