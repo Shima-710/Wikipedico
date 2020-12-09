@@ -226,20 +226,37 @@ command /emerald <number>:
     trigger:
         give arg-1 of emerald to player
 
-command /mode <text> [<text>]:
+command /mode <text> [<text>] [<text>]:
     description:Switch Mode
     permission:op
     permission message:You Don't have permission.
     trigger:
         if arg-1 is "team":
-            if arg-2 is "on":
+            if arg-2 is "on":       #/mode team on
                 set {mode.team} to true
+                set {mode.2team} to true
+                set {Natto.teamMaxPlayer} to 3
                 broadcast "&b&l>Game &r「チーム戦」が&aオン&rになりました"
                 stop
-            if arg-2 is "off":
+            if arg-2 is "off":      #/mode team off
                 set {mode.team} to false
+                set {mode.2team} to false
+                set {Natto.teamMaxPlayer} to 3
                 broadcast "&b&l>Game &r「チーム戦」が&cオフ&rになりました"
                 stop
+            if arg-2 is "2":
+                if arg-3 is "on":   #/mode team 2 on
+                    set {mode.team} to true
+                    set {mode.2team} to true
+                    set {Natto.teamMaxPlayer} to 20
+                    broadcast "&b&l>Game &r「紅白戦」が&aオン&rになりました"
+                    stop
+                if arg-3 is "off":  #/mode team 2 off
+                    set {mode.2team} to false
+                    set {mode.team} to false
+                    set {Natto.teamMaxPlayer} to 3
+                    broadcast "&b&l>Game &r「紅白戦」が&aオフ&rになりました"
+                    stop
             else:
                 if {mode.team} is true:
                     execute console command "mode team off"

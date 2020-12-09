@@ -17,6 +17,8 @@ function resetPlayerVariables(p: player):
     set {playerStatus.%{_p}%} to "alive"
     set {admin.%{_p}%} to false
     set {spectator.%{_p}%} to false
+    set {team.openingchest.%{_p}%} to false
+    set {team.openingchest2.%{_p}%} to false
 
 function resetRankingVariables():
     loop {qua.player} times:

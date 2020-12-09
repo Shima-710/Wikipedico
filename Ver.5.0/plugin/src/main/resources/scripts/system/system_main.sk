@@ -1,7 +1,9 @@
 every 5 tick in "world":
     if {gameStatus} is 0:
         if {mode.team} is true:
-            set {actbartmp.mode.team} to "&aON&r"
+            set {actbartmp.mode.team} to "&aON(ノーマル)&r"
+        if {mode.2team} is true:
+            set {actbartmp.mode.team} to "&aON(紅白戦)&r"#TODO
         else:
             set {actbartmp.mode.team} to "&cOFF&r"
         if {mode.daruma} is true:

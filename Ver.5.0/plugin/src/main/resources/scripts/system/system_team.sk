@@ -5,29 +5,37 @@ on right click with chest:
     if {gameStatus} is 0:
         cancel event
         if {mode.team} is true:
-            open chest inventory with 6 row named "&0チームを選んでください" to player
-            set {team.openingchest.%player%} to "true"
-            set slot 1 of player's current inventory to red stained glass pane named " "
-            set slot 2 of player's current inventory to blue stained glass pane named " "
-            set slot 3 of player's current inventory to yellow stained glass pane named " "
-            set slot 4 of player's current inventory to green stained glass pane named " "
-            set slot 5 of player's current inventory to orange stained glass pane named " "
-            set slot 6 of player's current inventory to purple stained glass pane named " "
-            set slot 7 of player's current inventory to black stained glass pane named " "
-            set slot 46 of player's current inventory to red stained glass pane named " "
-            set slot 47 of player's current inventory to blue stained glass pane named " "
-            set slot 48 of player's current inventory to yellow stained glass pane named " "
-            set slot 49 of player's current inventory to green stained glass pane named " "
-            set slot 50 of player's current inventory to orange stained glass pane named " "
-            set slot 51 of player's current inventory to purple stained glass pane named " "
-            set slot 52 of player's current inventory to black stained glass pane named " "
+            if {mode.2team} is true:
+                open chest inventory with 6 row named "&0チームを選んでください" to player
+                set {team.openingchest2.%player%} to true
+                set {_loop} to 4
+                loop 6 times:
+                    set slot {_loop} of player's current inventory to black stained glass pane named " "
+                    add 9 to {_loop}
+            else:
+                open chest inventory with 6 row named "&0チームを選んでください" to player
+                set {team.openingchest.%player%} to true
+                set slot 1 of player's current inventory to red stained glass pane named " "
+                set slot 2 of player's current inventory to blue stained glass pane named " "
+                set slot 3 of player's current inventory to yellow stained glass pane named " "
+                set slot 4 of player's current inventory to green stained glass pane named " "
+                set slot 5 of player's current inventory to orange stained glass pane named " "
+                set slot 6 of player's current inventory to purple stained glass pane named " "
+                set slot 7 of player's current inventory to black stained glass pane named " "
+                set slot 46 of player's current inventory to red stained glass pane named " "
+                set slot 47 of player's current inventory to blue stained glass pane named " "
+                set slot 48 of player's current inventory to yellow stained glass pane named " "
+                set slot 49 of player's current inventory to green stained glass pane named " "
+                set slot 50 of player's current inventory to orange stained glass pane named " "
+                set slot 51 of player's current inventory to purple stained glass pane named " "
+                set slot 52 of player's current inventory to black stained glass pane named " "
         else:
             message "&c&l>Error &r現在チーム戦は無効です" to player
 
 every 1 tick:
     if {gameStatus} is 0:
         loop all players:
-            if {team.openingchest.%loop-player%} is "true":
+            if {team.openingchest.%loop-player%} is true:
                 set slot 10 of loop-player's current inventory to red wool named "&lJoin Red Team" with lore "&5%{qua.player.team.red}%/%{Natto.teamMaxPlayer}%" and "&7%{team.red::1}%" and "&7%{team.red::2}%" and "&7%{team.red::3}%"
                 if {team.red::1} is set:
                     set slot 19 of loop-player's current inventory to skull of {team.red::1} named "&r%{team.red::1}%"
@@ -129,8 +137,39 @@ every 1 tick:
                     set slot 43 of loop-player's current inventory to air
 
 
+            if {team.openingchest2.%loop-player%} is true:
+                set slot 0 of loop-player's current inventory to red wool named "&lJoin Red Team"
+                set {_loop} to 1
+                set {_loop2} to 1
+                loop {Natto.teamMaxPlayer} times:
+                    if {team.red::%{_loop}%} is set:
+                        set slot {_loop2} of loop-player's current inventory to skull of {team.red::%{_loop}%} named "&r%{team.red::%{_loop}%}%"
+                    else:
+                        set slot {_loop2} of loop-player's current inventory to air
+                    add 1 to {_loop}
+                    if {_loop2} is 3 or 12 or 21 or 30 or 39 or 48:
+                        add 6 to {_loop2}
+                    else:
+                        add 1 to {_loop2}
+
+                set slot 5 of loop-player's current inventory to blue wool named "&lJoin Blue Team"
+                set {_loop3} to 1
+                set {_loop4} to 6
+                loop {Natto.teamMaxPlayer} times:
+                    if {team.blue::%{_loop3}%} is set:
+                        set slot {_loop4} of loop-player's current inventory to skull of {team.blue::%{_loop3}%} named "&r%{team.blue::%{_loop3}%}%"
+                    else:
+                        set slot {_loop4} of loop-player's current inventory to air
+                    add 1 to {_loop3}
+                    if {_loop4} is 8 or 17 or 26 or 35 or 44 or 53:
+                        add 6 to {_loop4}
+                    else:
+                        add 1 to {_loop4}
+
+
 on inventory close:
-    set {team.openingchest.%player%} to "false"
+    set {team.openingchest.%player%} to false
+    set {team.openingchest2.%player%} to false
 
 
 on inventory click:
