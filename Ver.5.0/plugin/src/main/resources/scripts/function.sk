@@ -47,6 +47,9 @@ function resetGameMode():
 
 
 function gameStart():
+    if {defineloca} is true:
+        broadcast "&c&l>Error &r現在デバッグモードです.リロードして終了してください."
+        stop
     if {mode.team} is true:
         loop all players:
             if {playerJoined.%loop-player%} is false:
@@ -322,7 +325,6 @@ function deathPlayer(p: player):
     execute console command "spawnpoint %{_p}% %{Natto.locaDeathSpawn}%"
     if {mode.team} is true:
         if {playerJoined.%{_p}%} is false:
-            message "&2>SysLog-deathTeam &rなんかエラー (CODE-T01 : {_p}=%{_p}%)" to {admin::*}
             stop
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1
@@ -348,7 +350,8 @@ function deathTeam(c: object):
 
 function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
     if {playerJoined.%{_p}%} is false:
-        message "&2>SysLog-revivePlayer &rなんかエラー (CODE-T02 : {_p}=%{_p}%)" to {admin::*}
+        message "&2>SysLog-revivePlayer &rError occured." to {admin::*}
+        message "CODE-T02 : {_p}=%{_p}%" to {admin::*}
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_p}%}
@@ -370,7 +373,8 @@ function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活�
 
 function selectRevivePlayer(pp: player): # p:復活する人 pp:復活させる人
     if {playerJoined.%{_pp}%} is false:
-        message "&2>SysLog-selectRevivePlayer &rなんかエラー (CODE-T03 : {_pp}=%{_pp}%)" to {admin::*}
+        message "&2>SysLog-selectRevivePlayer &rError occured." to {admin::*}
+        message "CODE-T03 : {_pp}=%{_pp}%" to {admin::*}
         message "&c&l>Error &rそのプレイヤーは復活させられません" to {_pp}
         stop
     set {_c} to {playerJoined.%{_pp}%}

@@ -6,6 +6,7 @@ command /natto---asureclear:
         loop all players:
             clear {asure.clearcount.%loop-player%}
         clear {asure.clearcount.%offline players%}
+        message "&e&l>AsureClear &r正常に実行されました" to player and {admin::*}
 
 command /natto---defineloca:
     description:define location variables
@@ -14,41 +15,49 @@ command /natto---defineloca:
     trigger:
         if {defineloca} is false:
             set {defineloca} to true
+            execute console command "destroyable true"
+            set {debugMode} to true
+            execute console command "gamerule sendCommandFeedback true"
+            execute console command "gamerule reducedDebugInfo false"
             give a stick named "locaLobbySpawn" to player
             give a stick named "locaSky" to player
             give a stick named "locaDeathSpawn" to player
             give a golden hoe named "右クリックでチェスト座標を設定" with lore "クリックしたブロックのひとつ上にチェストが出るようになります" to player
             give a wooden hoe named "右クリックでチェスト座標を削除" to player
-            message "&e&l>Dev &rロケーション変数定義モードに移行しました．離脱する場合は再度実行またはリロードしてください." to player
+            message "&e&l>Dev &rロケーション変数定義モードに移行しました．終了する場合はリロードしてください." to player and {admin::*}
         else:
             set {defineloca} to false
-            message "&e&l>Dev &rロケーション変数定義モードを終了しました．" to player
+            message "&e&l>Dev &r終了しました．" to player and {admin::*}
 
 on right click:
     if event-item is stick named "locaLobbySpawn":
         if {defineloca} is true:
             cancel event
             set {Natto.locaLobbySpawn} to location of block above clicked block
-            broadcast "&e&l>Dev &rlocaLobbySpawn を %{Natto.locaLobbySpawn}% に設定しました"
+            broadcast "&e&l>Dev &rlocaLobbySpawn を &e%{Natto.locaLobbySpawn}% &rに設定しました"
 
     if event-item is stick named "locaSky":
         if {defineloca} is true:
             cancel event
             set {Natto.locaSky} to location of block above clicked block
-            broadcast "&e&l>Dev &rlocaSky を %{Natto.locaSky}% に設定しました"
+            broadcast "&e&l>Dev &rslocaSky を &e%{Natto.locaSky}% &rに設定しました"
 
     if event-item is stick named "locaDeathSpawn":
         if {defineloca} is true:
             cancel event
             set {Natto.locaDeathSpawn} to location of block above clicked block
-            broadcast "&e&l>Dev &rlocaDeathSpawn を %{Natto.locaDeathSpawn}% に設定しました"
+            broadcast "&e&l>Dev &rlocaDeathSpawn を &e%{Natto.locaDeathSpawn}% &rに設定しました"
 
     if event-item is golden hoe named "右クリックでチェスト座標を設定" with lore "クリックしたブロックのひとつ上にチェストが出るようになります":
         if {defineloca} is true:
-            cancel event
-            add location of block above clicked block to {Natto.locaChest::*}
-            set block above clicked block to chest
-            broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} に追加しました"
+            if {Natto.locaChest::*} contain location of block above clicked block:
+                cancel event
+                message "&e&l>Dev &cError &r: すでに設定された座標です" to player
+            else:
+                cancel event
+                add location of block above clicked block to {Natto.locaChest::*}
+                set block above clicked block to chest
+                broadcast "&e&l>Dev &rlocaChest に &e%location of block above clicked block% &rを追加しました"
 
     if event-item is wooden hoe named "右クリックでチェスト座標を削除":
         if {defineloca} is true:
@@ -56,23 +65,22 @@ on right click:
                 cancel event
                 remove location of block above clicked block from {Natto.locaChest::*}
                 set block above clicked block to air
-                broadcast "&e&l>Dev &r%location of block above clicked block% を {Natto.locaChest::*} から削除しました"
+                broadcast "&e&l>Dev &rlocaChest から &e%location of block above clicked block% &rを削除しました"
             else:
                 cancel event
-                message "&e&l>Dev &rError:当該の座標は設定されていません"
+                message "&e&l>Dev &cError &r: リストに存在しない座標です" to player
 
 command /natto---dev:
     description:Move to Development Mode
     permission:op
     permission message:You Don't have permission.
     trigger:
-        broadcast "&e&l>Dev &r開発モードに移行します.終了する際はリロードしてください."
+        broadcast "&e&l>Dev &rデバッグモードに移行します.終了する際はリロードしてください."
         execute console command "destroyable true"
         execute console command "gamerule sendCommandFeedback true"
         execute console command "gamerule reducedDebugInfo false"
         set {gameStatus} to 5
-        loop all players:
-            set loop-player's gamemode to creative
+        set {debugMode} to true
 
 command /natto---teamgoodbye:
     description:Goodbye Team
@@ -95,7 +103,7 @@ command /natto---teamgoodbye:
         execute console command "team remove orange"
         execute console command "team remove purple"
         execute console command "team remove black"
-        message "&e&l>Goodbye Team &r正常に実行されました" to player
+        message "&e&l>GoodbyeTeam &r正常に実行されました" to player and {admin::*}
 
 command /natto---rakutinlp-member:
     description:Show LuckPerms members
@@ -104,14 +112,21 @@ command /natto---rakutinlp-member:
     trigger:
         make player execute command "/lp group skript.admin listmembers"
         make player execute command "/lp group player listmembers"
-        message "&e[RakutinLP Member] &r正常に実行されました" to player
+        message "&e&l>RakutinLP-Member &r正常に実行されました" to player and {admin::*}
 
-command /natto---leaveteam:
+command /natto---leaveteam [<player>]:
     description:Leave Team
     permission:op
     permission message:You Don't have permission.
     trigger:
-        teamLeave(player)
+        if arg-1 is set:
+            teamLeave(arg-1)
+            message "&e&l>LeaveTeam &r正常に実行されました." to player and {admin::*}
+            message "player:%arg-1%" to player and {admin::*}
+        else:
+            teamLeave(player)
+            message "&e&l>LeaveTeam &r正常に実行されました." to player and {admin::*}
+            message "player:%player%" to player and {admin::*}
 
 command /natto---spawnchest:
     description:Spawn Chest
@@ -119,3 +134,4 @@ command /natto---spawnchest:
     permission message:You Don't have permission.
     trigger:
         spawnChest()
+        message "&e&l>SpawnChest &r正常に実行されました." to player and {admin::*}

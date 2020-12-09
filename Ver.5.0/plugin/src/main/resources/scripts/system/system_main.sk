@@ -1,17 +1,21 @@
 every 5 tick in "world":
-    if {gameStatus} is 0:
+    if {gameStatus} is 0 or 5:
+        if {debugMode} is true:
+            set {actbartmp.status} to "&4&lDebug Mode&r"
+        else:
+            set {actbartmp.status} to "&6&l準備中...&r"
         if {mode.2team} is true:
-            set {actbartmp.mode.team} to "&aON(紅白戦)&r"#TODO
+            set {actbartmp.mode.team} to "&a&lON &r(紅白戦)&r"#TODO
         else if {mode.team} is true:
-            set {actbartmp.mode.team} to "&aON(ノーマル)&r"
+            set {actbartmp.mode.team} to "&a&lON &r(ノーマル)&r"
         else:
-            set {actbartmp.mode.team} to "&cOFF&r"
+            set {actbartmp.mode.team} to "&c&lOFF&r"
         if {mode.daruma} is true:
-            set {actbartmp.mode.daruma} to "&aON&r"
+            set {actbartmp.mode.daruma} to "&a&lON&r"
         else:
-            set {actbartmp.mode.daruma} to "&cOFF&r"
+            set {actbartmp.mode.daruma} to "&c&lOFF&r"
 
-        send action bar "&6&l準備中...&r  &l|&r  チーム戦:%{actbartmp.mode.team}% / だるま:%{actbartmp.mode.daruma}%" to all players
+        send action bar "%{actbartmp.status}%  &l|&r  チーム戦 : %{actbartmp.mode.team}% &l/&r だるま : %{actbartmp.mode.daruma}%" to all players
     if {gameStatus} is 1:
         if {mode.team} is true:
             send action bar "&l残りチーム数:&6&l%{qua.surviveTeam}%&r&lチーム  |  &l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
@@ -52,7 +56,8 @@ on death of player:
                 broadcast "&b%attacker% &r✈► &c%victim%"
                 stop
     else:
-        message "&2>SysLog-OnDeathOfPlayer &rなんで死んだ？(CODE-D01 : victim=%victim%)" to {admin::*}
+        message "&2>SysLog-OnDeathOfPlayer &rError occured." to {admin::*}
+        message "CODE-D01 : victim=%victim%" to {admin::*}
 
 on respawn:
     if {gameStatus} is 1:
