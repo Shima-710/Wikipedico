@@ -234,7 +234,7 @@ command /mode <text> [<text>] [<text>]:
         if arg-1 is "team":
             if arg-2 is "on":       #/mode team on
                 set {mode.team} to true
-                set {mode.2team} to true
+                set {mode.2team} to false
                 set {Natto.teamMaxPlayer} to 3
                 broadcast "&b&l>Game &r「チーム戦」が&aオン&rになりました"
                 stop
