@@ -41,6 +41,7 @@ function resetGameVariables():
 
 function resetGameMode():
     set {mode.team} to {Natto.defaultModeTeam}
+    set {mode.2team} to {Natto.defaultMode2Team}
     set {mode.ibuibu} to {Natto.defaultModeIbuibu}
     set {mode.daruma} to {Natto.defaultModeDaruma}
 
