@@ -195,6 +195,7 @@ function adminJoin(p: player):
     add 1 to {qua.admin}
     set {playerJoined.%{_p}%} to "admin"
     set {playerStatus.%{_p}%} to "admin"
+    set prefix of {_p} to "&4[Admin]"
 
 function adminLeave(p: player):
     teamLeave({_p})
@@ -206,6 +207,7 @@ function adminLeave(p: player):
     reduce {qua.admin} by 1
     set {playerJoined.%{_p}%} to false
     set {playerStatus.%{_p}%} to "alive"
+    reset prefix of {_p}
 
 
 function spcJoin(p: player):

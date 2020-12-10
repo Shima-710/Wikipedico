@@ -47,7 +47,6 @@
     team modify admin friendlyFire false
     team modify admin collisionRule never
     team modify admin displayName "Admin"
-    team modify admin prefix "[Admin]"
     scoreboard objectives add admin dummy
     scoreboard objectives modify admin displayname "Admin"
     #scoreboard objectives setdisplay sidebar.team.dark_red admin
