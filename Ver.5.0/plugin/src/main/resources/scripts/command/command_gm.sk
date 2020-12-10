@@ -249,7 +249,7 @@ command /mode <text> [<text>] [<text>]:
                     set {mode.team} to true
                     set {mode.2team} to true
                     set {Natto.teamMaxPlayer} to 20
-                    broadcast "&b&l>Game &r「紅白戦」が&aオン&rになりました"
+                    broadcast "&b&l>Game &r「紅白戦」が&aオン&rになりました" #TODO
                     stop
                 if arg-3 is "off":  #/mode team 2 off
                     set {mode.2team} to false

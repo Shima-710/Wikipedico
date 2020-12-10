@@ -65,6 +65,10 @@ on respawn:
 
 on break:
     if {gameStatus} is 1:
+        if {mode.yuki} is true:
+            if event-item is snow:
+                cancel event
+                give {Natto.yukidamaAmount} of snowball to player
         if {destroyable} is false:
             cancel event
 
