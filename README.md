@@ -1,5 +1,7 @@
 # Wikipedico
+```
 Latest Update : 11/12/2020 | Written by ShimaShima_710
+```
 
 About project and rules : [Official Site](https://wikipedico.studio.site)
 
@@ -88,19 +90,25 @@ Jarにパッケージングされる中身
 
 	だるまさんが転んだができるモード
 
-	``/mode daruma``
+	```
+	/mode daruma
+	```
 
 * チーム戦
 
 	チーム対抗戦ができるモード
 
-	``/mode team``
+	```
+	/mode team
+	```
 
 * いぶいぶ
 
 	いぶいぶモード
 
-	``/mode ibuibu``
+	```
+	/mode ibuibu
+	``
 
 ## コマンド
 一般ユーザーコマンドについてはwiki参照
