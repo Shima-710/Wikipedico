@@ -1,34 +1,25 @@
 # Wikipedico
-Latest Update : 28/11/2020 | Written by ShimaShima_710
+Latest Update : 11/12/2020 | Written by ShimaShima_710
 
-[wikipedico.studio.site](https://wikipedico.studio.site)
+About project and rules : [Official Site](https://wikipedico.studio.site)
+
+Organizer : [iibukuro](https://twitter.com/_ibukuro_)
+
+Developer : [ShimaShima_710](https://twitter.com/ShimaShima_710)
 
 ## Overview
-Minecraft Plugin and Datapack.
+ **Wikipedico**
+-Battle Royale in Minecraft-
 
 ## Developing Environment
-**OS** :
+OS : macOS 11.0.1 Big Sur
 
-	macOS 11.0.1 Big Sur
+Language : Java,Skript,mcfunction
 
-	Windows 10
-
-**Language** :
-
-	Java
-
-	Skript
-
-	mcfunction
-
-**External Plugins** :
-
-	Skript 2.5.1
-
-	skQuery 4.1.4
+External Plugins : Skript 2.5.1,skQuery 4.1.4
 
 
-## ファイル構造
+## File Structure
 
 Jarにパッケージングされる中身
 プロジェクトファイル上ではscr/main/resources内のみを記述
