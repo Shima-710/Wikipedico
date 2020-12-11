@@ -30,8 +30,7 @@ Project Management : Apache Maven
 
 ## File Structure
 
-Jarにパッケージングされる中身
-プロジェクトファイル上ではscr/main/resources内のみを記述
+.sk and .mcfunction files are included in resource folder.
 
 ```
 .
