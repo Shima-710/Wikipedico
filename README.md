@@ -15,7 +15,7 @@ Developer : [ShimaShima_710](https://twitter.com/ShimaShima_710)
 
 ## Specification
 
-Minecraft Version : 1.16.4
+Minecraft Version : Minecraft Java Edition 1.16.4
 
 Supported Server : Spigot-1.16.4
 
