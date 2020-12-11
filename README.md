@@ -13,18 +13,20 @@ Organizer : [iibukuro](https://twitter.com/_ibukuro_)
 
 Developer : [ShimaShima_710](https://twitter.com/ShimaShima_710)
 
-
-
-## Developing Environment
-OS : macOS 11.0.1 Big Sur
-
-Language : Java, Skript, mcfunction
+## Specification
 
 Minecraft Version : 1.16.4
 
 Supported Server : Spigot-1.16.4
 
 External Plugins : Skript 2.5.1, skQuery 4.1.4
+
+## Environment
+OS : macOS 11.0.1 Big Sur
+
+Language : Java, Skript, mcfunction
+
+Project Management : Apache Maven
 
 ## File Structure
 
