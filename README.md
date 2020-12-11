@@ -2,6 +2,10 @@
 ```
 Latest Update : 11/12/2020 | Written by ShimaShima_710
 ```
+## Overview
+
+ **Wikipedico**
+-Battle Royale in Minecraft-
 
 About project and rules : [Official Site](https://wikipedico.studio.site)
 
@@ -9,9 +13,7 @@ Organizer : [iibukuro](https://twitter.com/_ibukuro_)
 
 Developer : [ShimaShima_710](https://twitter.com/ShimaShima_710)
 
-## Overview
- **Wikipedico**
--Battle Royale in Minecraft-
+
 
 ## Developing Environment
 OS : macOS 11.0.1 Big Sur
