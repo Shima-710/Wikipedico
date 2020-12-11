@@ -21,7 +21,7 @@ Supported Server : Spigot-1.16.4
 
 External Plugins : Skript 2.5.1, skQuery 4.1.4
 
-## Environment
+## Dev. Environment
 OS : macOS 11.0.1 Big Sur
 
 Language : Java, Skript, mcfunction
