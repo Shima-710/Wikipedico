@@ -71,6 +71,7 @@ Jarにパッケージングされる中身
 		|	├── system_daruma.sk			# だるまさんが転んだ
 		|	├── system_main.sk			# メイン
 		|	└── system_team.sk			# チーム戦
+		|	└── system_yukigassen.sk		# 雪合戦
 		|
 		├── config.sk					# 設定ファイル
 		├── function.sk					# 全functionが記述
