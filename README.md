@@ -32,7 +32,7 @@ Project Management : Apache Maven
 
 .sk and .mcfunction files are included in resource folder.
 
-本プロジェクトの最終産物はwikipedico.jarであり、これら.sk,.mcfunctionは同jar内に格納され "/install" または "/update" コマンドにより自動インストールされる。
+本プロジェクトの最終産物はビルド後ファイル(wikipedico.jar)であり、これら.sk,.mcfunctionは同jar内に格納され "/install" または "/update" コマンドにより自動インストールされる。
 
 ```
 .
