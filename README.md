@@ -90,25 +90,25 @@ Project Management : Apache Maven
 ```yaml
 # Config of Wikipedico
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-DefaultMode: 			# デフォルトゲームモード（true or false）
-  Team: 					# チーム戦
-  2Team: 					# 2チーム戦
-  Daruma: 					# だるまさんがころんだ
-  Yukigassen: 				# 雪合戦
-  Ibuibu: 					# いぶいぶ
-TeamMaxPlayer: 			# 1チーム最大人数（2チーム戦では自動で20に設定,通常のチーム戦で3人以上はGUI非対応）
-PreparationTime:		# 試合前上空待機時間（秒）
-CountDownTime: 			# 5...4...3...2...1...START（5の場合こうなる）
-KillRankingTimes: 		# 個人別キル数ランキングの表示順位（上位〜位）
-DarumaDamage: 			# だるまさんがころんだモードでのダメージ量
-MaxChestSlotOccupancy: 	# 一つのチェストから出るアイテム量（チェストインベントリーにおけるスロット占有量）
-BlockDestroyTime: 		# ブロック消滅までの時間（秒）
-YukidamaAmount: 		# 雪を掘った時に出る雪玉の量
+DefaultMode: # デフォルトゲームモード（true or false）
+  Team: # チーム戦
+  2Team: # 2チーム戦
+  Daruma: # だるまさんがころんだ
+  Yukigassen: # 雪合戦
+  Ibuibu: # いぶいぶ
+TeamMaxPlayer: # 1チーム最大人数（2チーム戦では自動で20に設定,通常のチーム戦で3人以上はGUI非対応）
+PreparationTime: # 試合前上空待機時間（秒）
+CountDownTime: # 5...4...3...2...1...START（5の場合こうなる）
+KillRankingTimes: # 個人別キル数ランキングの表示順位（上位〜位）
+DarumaDamage: # だるまさんがころんだモードでのダメージ量
+MaxChestSlotOccupancy: # 一つのチェストから出るアイテム量（チェストインベントリーにおけるスロット占有量）
+BlockDestroyTime: # ブロック消滅までの時間（秒）
+YukidamaAmount: # 雪を掘った時に出る雪玉の量
 YukidamaExplosionPower: # 雪玉爆弾の威力
 Shop:
-  Buy: 					# 販売価格
+  Buy: # 販売価格
     #（略）
-  Sell: 				# 買取価格
+  Sell: # 買取価格
     #（略）
 ```
 
