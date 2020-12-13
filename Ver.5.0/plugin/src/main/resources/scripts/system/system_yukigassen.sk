@@ -3,10 +3,6 @@ on right click with snowball:
 
 on projectile hit:
     if {use.snowball.%shooter%} is 1:
-        create an explosion of force {Natto.snowball.power} at the projectile
+        create a safe explosion of force {Natto.snowball.power} at the projectile
     set {use.snowball.%shooter%} to 0
     set {lastuse.snowball} to shooter
-    deathPlayer(victim)
-
-on projectile hit:
-    set projectile bounce mode of event-projectile to true

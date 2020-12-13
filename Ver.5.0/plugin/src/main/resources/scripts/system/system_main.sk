@@ -5,7 +5,7 @@ every 5 tick in "world":
         else:
             set {actbartmp.status} to "&6&l準備中...&r"
         if {mode.2team} is true:
-            set {actbartmp.mode.team} to "&a&lON &r(紅白戦)&r"#TODO
+            set {actbartmp.mode.team} to "&a&lON &r(紅白戦)&r"#TODO:名称未定
         else if {mode.team} is true:
             set {actbartmp.mode.team} to "&a&lON &r(ノーマル)&r"
         else:
@@ -14,13 +14,21 @@ every 5 tick in "world":
             set {actbartmp.mode.daruma} to "&a&lON&r"
         else:
             set {actbartmp.mode.daruma} to "&c&lOFF&r"
+        if {mode.yuki} is true:
+            set {actbartmp.mode.yuki} to "&a&lON&r"
+        else:
+            set {actbartmp.mode.yuki} to "&c&lOFF&r"
 
-        send action bar "%{actbartmp.status}%  &l|&r  チーム戦 : %{actbartmp.mode.team}% &l/&r だるま : %{actbartmp.mode.daruma}%" to all players
+        if {endingTime} is true:
+            loop all players:
+                send action bar "&l順位 : &e&l%{playerRank.%loop-player%}%&r&l位  &l|  キル数 : &e&l%{kills.%loop-player%}%&r&lキル" to loop-player
+        else:
+            send action bar "%{actbartmp.status}%  &l|&r  チーム戦 : %{actbartmp.mode.team}% &l/&r だるま : %{actbartmp.mode.daruma}%" to all players #TODO:雪合戦未実装
     if {gameStatus} is 1:
         if {mode.team} is true:
-            send action bar "&l残りチーム数:&6&l%{qua.surviveTeam}%&r&lチーム  |  &l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
+            send action bar "&l残りチーム数 : &6&l%{qua.surviveTeam}%&r&lチーム  |  &l残り人数 ： &6&l%{qua.surviver}%&r&l人" to all players
         else:
-            send action bar "&l残り人数：&6&l%{qua.surviver}%&r&l人" to all players
+            send action bar "&l残り人数 ： &6&l%{qua.surviver}%&r&l人" to all players
 
     send action bar "online:&6%online player count% &r| admin:&6%{qua.admin}% &r| spectator:&6%{qua.spectator}% &r| player:&6%{qua.player}% &r| surviver：&6%{qua.surviver}% &r| playTeam:&6%{qua.playTeam}% &r| surviveTeam:&6%{qua.surviveTeam}%" to {admin::*}
 

@@ -274,6 +274,22 @@ command /mode <text> [<text>] [<text>]:
                 else:
                     execute console command "mode daruma on"
                     stop
+        if arg-1 is "yuki":
+            if arg-2 is "on":
+                set {mode.yuki} to true
+                broadcast "&b&l>Game &r「雪合戦」が&aオン&rになりました"
+                stop
+            if arg-2 is "off":
+                set {mode.yuki} to false
+                broadcast "&b&l>Game &r「雪合戦」が&cオフ&rになりました"
+                stop
+            else:
+                if {mode.yuki} is true:
+                    execute console command "mode yuki off"
+                    stop
+                else:
+                    execute console command "mode yuki on"
+                    stop
         if arg-1 is "ibuibu":
             if arg-2 is "on":
                 set {mode.ibuibu} to true
