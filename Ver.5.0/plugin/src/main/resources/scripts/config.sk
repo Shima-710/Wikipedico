@@ -7,7 +7,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # バージョン情報
-    set {ver} to "v5.1.3 pre2"
+    set {ver} to "v5.1.5b5"
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ function gameConfig():
 # ---------------------------------------------------------------------------------------
 #
     # 回復薬での体力回復量
-    set {Natto.oniku.healAmount} to 3
+    #set {Natto.oniku.healAmount} to 3
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
@@ -130,6 +130,75 @@ function gameConfig():
     add 1 of diamond to {Natto.chestItemName.normal::*}
     add 2 to {Natto.chestItemChance.normal::*}
     #
+#
+# ---------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
+#
+    # 販売価格
+    #
+    set {price.buy.leather} to 5
+    set {price.buy.iron} to 15
+    set {price.buy.gold} to 30
+    set {price.buy.diamond} to 50
+
+    set {price.buy.planks} to 5
+    set {price.buy.stone} to 10
+    set {price.buy.string} to 5
+    set {price.buy.arrow} to 5
+
+    set {price.buy.apple} to 5
+    set {price.buy.firework} to 10
+    set {price.buy.lapis} to 10
+    set {price.buy.enchant} to 10
+
+    #
+    # 買取価格
+    #
+
+    set {price.sell.leather} to 1
+    set {price.sell.iron} to 5
+    set {price.sell.gold} to 10
+    set {price.sell.diamond} to 20
+
+    set {price.sell.planks} to 1
+    set {price.sell.stone} to 5
+    set {price.sell.string} to 1
+    set {price.sell.arrow} to 1
+
+    set {price.sell.apple} to 1
+    set {price.sell.firework} to 5
+    set {price.sell.lapis} to 5
+    set {price.sell.enchant} to 5
+
+    set {price.sell.leather_helmet} to 5
+    set {price.sell.leather_chestplate} to 5
+    set {price.sell.leather_leggings} to 5
+    set {price.sell.leather_boots} to 5
+
+    set {price.sell.iron_helmet} to 7
+    set {price.sell.iron_chestplate} to 7
+    set {price.sell.iron_leggings} to 7
+    set {price.sell.iron_boots} to 7
+
+    set {price.sell.golden_helmet} to 10
+    set {price.sell.golden_chestplate} to 10
+    set {price.sell.golden_leggings} to 10
+    set {price.sell.golden_boots} to 10
+
+    set {price.sell.diamond_helmet} to 20
+    set {price.sell.diamond_chestplate} to 20
+    set {price.sell.diamond_leggings} to 20
+    set {price.sell.diamond_boots} to 20
+
+    set {price.sell.wooden_sword} to 3
+    set {price.sell.stone_sword} to 5
+    set {price.sell.iron_sword} to 7
+    set {price.sell.golden_sword} to 10
+
+    set {price.sell.diamond_sword} to 20
+    set {price.sell.bow} to 5
+    set {price.sell.crossbow} to 10
+    set {price.sell.elytra} to 5
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------

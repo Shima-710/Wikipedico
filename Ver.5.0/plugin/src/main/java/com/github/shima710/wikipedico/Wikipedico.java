@@ -29,10 +29,11 @@ public final class Wikipedico extends JavaPlugin {
         getLogger().info("Hello!");
         getLogger().info("Current version is v"+version);
 
-        File con = new File("./plugins/Wikipedico/config.yml");
-        if(!con.exists()){
+        File exconfig = new File("./plugins/Wikipedico/config.yml");
+        if(!exconfig.exists()){
             saveDefaultConfig();
         }
+        wikiConfigReload();
 
     }
 
@@ -42,6 +43,213 @@ public final class Wikipedico extends JavaPlugin {
     }
 
 
+    public void wikiConfigReload(){
+        FileConfiguration config = getConfig();
+        try {
+            BufferedReader file = new BufferedReader(new FileReader("./plugins/Skript/scripts/config.sk"));
+            StringBuffer inputBuffer = new StringBuffer();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                if(line.contains("set {Natto.defaultModeTeam} to")){
+                    line = "    set {Natto.defaultModeTeam} to " + config.getString("DefaultMode.Team");
+                }
+                if(line.contains("set {Natto.defaultMode2Team} to")){
+                    line = "    set {Natto.defaultMode2Team} to " + config.getString("DefaultMode.2Team");
+                }
+                if(line.contains("set {Natto.defaultModeDaruma} to")){
+                    line = "    set {Natto.defaultModeDaruma} to " + config.getString("DefaultMode.Daruma");
+                }
+                if(line.contains("set {Natto.defaultModeYuki} to")){
+                    line = "    set {Natto.defaultModeYuki} to " + config.getString("DefaultMode.Yukigassen");
+                }
+                if(line.contains("set {Natto.defaultModeIbuibu} to")){
+                    line = "    set {Natto.defaultModeIbuibu} to " + config.getString("DefaultMode.Ibuibu");
+                }
+                if(line.contains("set {Natto.teamMaxPlayer} to")){
+                    line = "    set {Natto.teamMaxPlayer} to " + config.getString("TeamMaxPlayer");
+                }
+                if(line.contains("set {Natto.prepareTime} to")){
+                    line = "    set {Natto.prepareTime} to " + config.getString("PreparationTime");
+                }
+                if(line.contains("set {Natto.countdownTimes} to")){
+                    line = "    set {Natto.countdownTimes} to " + config.getString("CountDownTime");
+                }
+                if(line.contains("set {Natto.KillRankingTimes} to")){
+                    line = "    set {Natto.KillRankingTimes} to " + config.getString("KillRankingTimes");
+                }
+                if(line.contains("set {Natto.daruma.damage} to")){
+                    line = "    set {Natto.daruma.damage} to " + config.getString("DarumaDamage");
+                }
+                if(line.contains("set {Natto.maxChestSlotQua} to")){
+                    line = "    set {Natto.maxChestSlotQua} to " + config.getString("MaxChestSlotOccupancy");
+                }
+                if(line.contains("set {Natto.delBlockTime} to")){
+                    line = "    set {Natto.delBlockTime} to " + config.getString("BlockDestroyTime");
+                }
+                if(line.contains("set {Natto.yukidamaAmount} to")){
+                    line = "    set {Natto.yukidamaAmount} to " + config.getString("YukidamaAmount");
+                }
+                if(line.contains("set {Natto.snowball.power} to")) {
+                    line = "    set {Natto.snowball.power} to " + config.getString("YukidamaExplosionPower");
+                }
+                if(line.contains("set {price.buy.leather} to")) {
+                    line = "    set {price.buy.leather} to " + config.getString("Shop.Buy.leather");
+                }
+                if(line.contains("set {price.buy.iron} to")) {
+                    line = "    set {price.buy.iron} to " + config.getString("Shop.Buy.iron");
+                }
+                if(line.contains("set {price.buy.gold} to")) {
+                    line = "    set {price.buy.gold} to " + config.getString("Shop.Buy.gold");
+                }
+                if(line.contains("set {price.buy.diamond} to")) {
+                    line = "    set {price.buy.diamond} to " + config.getString("Shop.Buy.diamond");
+                }
+                if(line.contains("set {price.buy.planks} to")) {
+                    line = "    set {price.buy.planks} to " + config.getString("Shop.Buy.planks");
+                }
+                if(line.contains("set {price.buy.stone} to")) {
+                    line = "    set {price.buy.stone} to " + config.getString("Shop.Buy.stone");
+                }
+                if(line.contains("set {price.buy.string} to")) {
+                    line = "    set {price.buy.string} to " + config.getString("Shop.Buy.string");
+                }
+                if(line.contains("set {price.buy.arrow} to")) {
+                    line = "    set {price.buy.arrow} to " + config.getString("Shop.Buy.arrow");
+                }
+                if(line.contains("set {price.buy.apple} to")) {
+                    line = "    set {price.buy.apple} to " + config.getString("Shop.Buy.apple");
+                }
+                if(line.contains("set {price.buy.firework} to")) {
+                    line = "    set {price.buy.firework} to " + config.getString("Shop.Buy.firework");
+                }
+                if(line.contains("set {price.buy.lapis} to")) {
+                    line = "    set {price.buy.lapis} to " + config.getString("Shop.Buy.lapislazuli");
+                }
+                if(line.contains("set {price.buy.enchant} to")) {
+                    line = "    set {price.buy.enchant} to " + config.getString("Shop.Buy.enchant_bottle");
+                }
+                if(line.contains("set {price.sell.leather} to")) {
+                    line = "    set {price.sell.leather} to " + config.getString("Shop.Sell.leather");
+                }
+                if(line.contains("set {price.sell.iron} to")) {
+                    line = "    set {price.sell.iron} to " + config.getString("Shop.Sell.iron");
+                }
+                if(line.contains("set {price.sell.gold} to")) {
+                    line = "    set {price.sell.gold} to " + config.getString("Shop.Sell.gold");
+                }
+                if(line.contains("set {price.sell.diamond} to")) {
+                    line = "    set {price.sell.diamond} to " + config.getString("Shop.Sell.diamond");
+                }
+                if(line.contains("set {price.sell.planks} to")) {
+                    line = "    set {price.sell.planks} to " + config.getString("Shop.Sell.planks");
+                }
+                if(line.contains("set {price.sell.stone} to")) {
+                    line = "    set {price.sell.stone} to " + config.getString("Shop.Sell.stone");
+                }
+                if(line.contains("set {price.sell.string} to")) {
+                    line = "    set {price.sell.string} to " + config.getString("Shop.Sell.string");
+                }
+                if(line.contains("set {price.sell.arrow} to")) {
+                    line = "    set {price.sell.arrow} to " + config.getString("Shop.Sell.arrow");
+                }
+                if(line.contains("set {price.sell.apple} to")) {
+                    line = "    set {price.sell.apple} to " + config.getString("Shop.Sell.apple");
+                }
+                if(line.contains("set {price.sell.firework} to")) {
+                    line = "    set {price.sell.firework} to " + config.getString("Shop.Sell.firework");
+                }
+                if(line.contains("set {price.sell.lapis} to")) {
+                    line = "    set {price.sell.lapis} to " + config.getString("Shop.Sell.lapislazuli");
+                }
+                if(line.contains("set {price.sell.enchant} to")) {
+                    line = "    set {price.sell.enchant} to " + config.getString("Shop.Sell.enchant_bottle");
+                }
+                if(line.contains("set {price.sell.leather_helmet} to")) {
+                    line = "    set {price.sell.leather_helmet} to " + config.getString("Shop.Sell.leather_armors");
+                }
+                if(line.contains("set {price.sell.leather_chestplate} to")) {
+                    line = "    set {price.sell.leather_chestplate} to " + config.getString("Shop.Sell.leather_armors");
+                }
+                if(line.contains("set {price.sell.leather_leggings} to")) {
+                    line = "    set {price.sell.leather_leggings} to " + config.getString("Shop.Sell.leather_armors");
+                }
+                if(line.contains("set {price.sell.leather_boots} to")) {
+                    line = "    set {price.sell.leather_boots} to " + config.getString("Shop.Sell.leather_armors");
+                }
+                if(line.contains("set {price.sell.iron_helmet} to")) {
+                    line = "    set {price.sell.iron_helmet} to " + config.getString("Shop.Sell.iron_armors");
+                }
+                if(line.contains("set {price.sell.iron_chestplate} to")) {
+                    line = "    set {price.sell.iron_chestplate} to " + config.getString("Shop.Sell.iron_armors");
+                }
+                if(line.contains("set {price.sell.iron_leggings} to")) {
+                    line = "    set {price.sell.iron_leggings} to " + config.getString("Shop.Sell.iron_armors");
+                }
+                if(line.contains("set {price.sell.iron_boots} to")) {
+                    line = "    set {price.sell.iron_boots} to " + config.getString("Shop.Sell.iron_armors");
+                }
+                if(line.contains("set {price.sell.golden_helmet} to")) {
+                    line = "    set {price.sell.golden_helmet} to " + config.getString("Shop.Sell.golden_armors");
+                }
+                if(line.contains("set {price.sell.golden_chestplate} to")) {
+                    line = "    set {price.sell.golden_chestplate} to " + config.getString("Shop.Sell.golden_armors");
+                }
+                if(line.contains("set {price.sell.golden_leggings} to")) {
+                    line = "    set {price.sell.golden_leggings} to " + config.getString("Shop.Sell.golden_armors");
+                }
+                if(line.contains("set {price.sell.golden_boots} to")) {
+                    line = "    set {price.sell.golden_boots} to " + config.getString("Shop.Sell.golden_armors");
+                }
+                if(line.contains("set {price.sell.diamond_helmet} to")) {
+                    line = "    set {price.sell.diamond_helmet} to " + config.getString("Shop.Sell.diamond_armors");
+                }
+                if(line.contains("set {price.sell.diamond_chestplate} to")) {
+                    line = "    set {price.sell.diamond_chestplate} to " + config.getString("Shop.Sell.diamond_armors");
+                }
+                if(line.contains("set {price.sell.diamond_leggings} to")) {
+                    line = "    set {price.sell.diamond_leggings} to " + config.getString("Shop.Sell.diamond_armors");
+                }
+                if(line.contains("set {price.sell.diamond_boots} to")) {
+                    line = "    set {price.sell.diamond_boots} to " + config.getString("Shop.Sell.diamond_armors");
+                }
+                if(line.contains("set {price.sell.wooden_sword} to")) {
+                    line = "    set {price.sell.wooden_sword} to " + config.getString("Shop.Sell.wooden_sword");
+                }
+                if(line.contains("set {price.sell.stone_sword} to")) {
+                    line = "    set {price.sell.stone_sword} to " + config.getString("Shop.Sell.stone_sword");
+                }
+                if(line.contains("set {price.sell.iron_sword} to")) {
+                    line = "    set {price.sell.iron_sword} to " + config.getString("Shop.Sell.iron_sword");
+                }
+                if(line.contains("set {price.sell.golden_sword} to")) {
+                    line = "    set {price.sell.golden_sword} to " + config.getString("Shop.Sell.golden_sword");
+                }
+                if(line.contains("set {price.sell.diamond_sword} to")) {
+                    line = "    set {price.sell.diamond_sword} to " + config.getString("Shop.Sell.diamond_sword");
+                }
+                if(line.contains("set {price.sell.bow} to")) {
+                    line = "    set {price.sell.bow} to " + config.getString("Shop.Sell.bow");
+                }
+                if(line.contains("set {price.sell.crossbow} to")) {
+                    line = "    set {price.sell.crossbow} to " + config.getString("Shop.Sell.crossbow");
+                }
+                if(line.contains("set {price.sell.elytra} to")) {
+                    line = "    set {price.sell.elytra} to " + config.getString("Shop.Sell.elytra");
+                }
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            file.close();
+
+            FileOutputStream fileOut = new FileOutputStream("./plugins/Skript/scripts/config.sk");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+    }
 
 
     public static void update() throws Exception {
@@ -51,6 +259,11 @@ public final class Wikipedico extends JavaPlugin {
         delDir("./world/datapacks");
         copyResrcDir("datapacks", "./world/datapacks");
 
+        rewriteVer();
+
+    }
+
+    public static void rewriteVer(){
         try {
             BufferedReader file = new BufferedReader(new FileReader("./plugins/Skript/scripts/config.sk"));
             StringBuffer inputBuffer = new StringBuffer();
@@ -185,6 +398,7 @@ public final class Wikipedico extends JavaPlugin {
         }
         else if(cmd.getName().equalsIgnoreCase("install")){
             try {
+                delFile("./plugins/Wikipedico/config.yml");
                 loadVaris();
                 update();
                 Bukkit.getLogger().info("[Wikipedico] Installed Successfully!");

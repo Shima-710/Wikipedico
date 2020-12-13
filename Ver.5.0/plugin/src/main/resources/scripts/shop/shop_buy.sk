@@ -4,24 +4,7 @@
 # =========================================================================================
 
 # -----------------------------------------------------------------------------------------
-# 販売価格 ここで変えると全て一括で変更されます
-
-on skript load:
-    set {price.buy.leather} to 5
-    set {price.buy.iron} to 15
-    set {price.buy.gold} to 30
-    set {price.buy.diamond} to 50
-
-    set {price.buy.planks} to 5
-    set {price.buy.stone} to 10
-    set {price.buy.string} to 5
-    set {price.buy.arrow} to 5
-
-    set {price.buy.apple} to 5
-    set {price.buy.firework} to 10
-    set {price.buy.lapis} to 10
-    set {price.buy.enchant} to 10
-
+# 販売価格 -> 内部処理はconfig.skに移動, 直接編集は wikipedico/config.yml で
 # -----------------------------------------------------------------------------------------
 
 on inventory click:

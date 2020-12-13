@@ -4,54 +4,7 @@
 # =========================================================================================
 
 # -----------------------------------------------------------------------------------------
-# 買取価格 ここで変えると全て一括で変更されます
-
-on skript load:
-    set {price.sell.leather} to 1
-    set {price.sell.iron} to 5
-    set {price.sell.gold} to 10
-    set {price.sell.diamond} to 20
-
-    set {price.sell.planks} to 1
-    set {price.sell.stone} to 5
-    set {price.sell.string} to 1
-    set {price.sell.arrow} to 1
-
-    set {price.sell.apple} to 1
-    set {price.sell.firework} to 5
-    set {price.sell.lapis} to 5
-    set {price.sell.enchant} to 5
-
-    set {price.sell.leather_helmet} to 5
-    set {price.sell.leather_chestplate} to 5
-    set {price.sell.leather_leggings} to 5
-    set {price.sell.leather_boots} to 5
-
-    set {price.sell.iron_helmet} to 7
-    set {price.sell.iron_chestplate} to 7
-    set {price.sell.iron_leggings} to 7
-    set {price.sell.iron_boots} to 7
-
-    set {price.sell.golden_helmet} to 10
-    set {price.sell.golden_chestplate} to 10
-    set {price.sell.golden_leggings} to 10
-    set {price.sell.golden_boots} to 10
-
-    set {price.sell.diamond_helmet} to 20
-    set {price.sell.diamond_chestplate} to 20
-    set {price.sell.diamond_leggings} to 20
-    set {price.sell.diamond_boots} to 20
-
-    set {price.sell.wooden_sword} to 3
-    set {price.sell.stone_sword} to 5
-    set {price.sell.iron_sword} to 7
-    set {price.sell.golden_sword} to 10
-
-    set {price.sell.diamond_sword} to 20
-    set {price.sell.bow} to 5
-    set {price.sell.crossbow} to 10
-    set {price.sell.elytra} to 5
-
+# 買取価格 -> 内部処理はconfig.skに移動, 直接編集は wikipedico/config.yml で
 # -----------------------------------------------------------------------------------------
 
 on inventory click:
