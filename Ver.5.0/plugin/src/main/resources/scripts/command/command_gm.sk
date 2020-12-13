@@ -28,14 +28,12 @@ command /admin [<text>] [<player>]:
         if arg-1 is not set:
             if {admin.%player%} is true:
                 adminLeave(player)
-                set the player's chat name to "%name of player%"
                 set the player's display name to "%name of player%"
                 message "&2>SysLog-Admin &r%player% がadminから脱退しました" to {admin::*}
                 message "&2>SysLog-Admin &radminから脱退しました" to player
                 stop
             else:
                 adminJoin(player)
-                set the player's chat name to "&4%name of player%"
                 set the player's display name to "&4[運営] %name of player%"
                 message "&2>SysLog-Admin &r%player% がadminに加入しました" to {admin::*}
                 stop
@@ -44,7 +42,6 @@ command /admin [<text>] [<player>]:
             if arg-2 is set:
                 if {admin.%arg-2%} is false:
                     adminJoin(arg-2)
-                    set the arg-2's chat name to "&4%name of arg-2%"
                     set the arg-2's display name to "&4[運営] %name of arg-2%"
                     message "&2>SysLog-Admin &r%player% があなたをadminに加入させました" to arg-2
                     message "&2>SysLog-Admin &r%arg-2% がadminに加入しました" to {admin::*}
@@ -55,7 +52,6 @@ command /admin [<text>] [<player>]:
             else:
                 if {admin.%player%} is false:
                     adminJoin(player)
-                    set the player's chat name to "&4%name of player%"
                     set the player's display name to "&4[運営] %name of player%"
                     message "&2>SysLog-Admin &r%player% がadminに加入しました" to {admin::*}
                     stop
@@ -67,7 +63,6 @@ command /admin [<text>] [<player>]:
             if arg-2 is set:
                 if {admin.%arg-2%} is true:
                     adminLeave(arg-2)
-                    set the arg-2's chat name to "%name of arg-2%"
                     set the arg-2's display name to "%name of arg-2%"
                     message "&2>SysLog-Admin &r%player% があなたをadminから脱退させました" to arg-2
                     message "&2>SysLog-Admin &r%arg-2% がadminから脱退しました" to {admin::*}
@@ -78,7 +73,6 @@ command /admin [<text>] [<player>]:
             else:
                 if {admin.%player%} is true:
                     adminLeave(player)
-                    set the player's chat name to "%name of player%"
                     set the player's display name to "%name of player%"
                     message "&2>SysLog-Admin &r%player% がadminから脱退しました" to {admin::*}
                     message "&2>SysLog-Admin &radminから脱退しました" to player

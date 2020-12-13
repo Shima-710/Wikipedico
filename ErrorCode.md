@@ -20,5 +20,5 @@ CODE-C01 - Legacy(v4.0)
 CODE-D01
 
 	意味わからん奴が死亡
-
+	
 	原因はvictimの{playerStatus}が未定義またはdeath
