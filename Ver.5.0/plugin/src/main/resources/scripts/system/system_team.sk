@@ -176,25 +176,25 @@ on inventory click:
     if {gameStatus} is 0:
         if event-item is red wool:
             cancel event
-            teamJoin(player,red)
+            teamJoin(player,"red")
         else if event-item is blue wool:
             cancel event
-            teamJoin(player,blue)
+            teamJoin(player,"blue")
         else if event-item is yellow wool:
             cancel event
-            teamJoin(player,yellow)
+            teamJoin(player,"yellow")
         else if event-item is green wool:
             cancel event
-            teamJoin(player,green)
+            teamJoin(player,"green")
         else if event-item is orange wool:
             cancel event
-            teamJoin(player,orange)
+            teamJoin(player,"orange")
         else if event-item is purple wool:
             cancel event
-            teamJoin(player,purple)
+            teamJoin(player,"purple")
         else if event-item is black wool:
             cancel event
-            teamJoin(player,black)
+            teamJoin(player,"black")
         else if event-item is red stained glass pane:
             cancel event
         else if event-item is blue stained glass pane:

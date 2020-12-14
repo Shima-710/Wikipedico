@@ -1,4 +1,5 @@
 function resetTeamVariables():
+
     loop {Natto.qua.Team} times:
         add 1 to {_loop}
         set {_c} to {Natto.teamName::%{_loop}%}
@@ -170,7 +171,8 @@ function winTeam():
     set {teamStatus.%{_c}%} to "death"
     set {teamRank.1} to {_c}
     execute console command "scoreboard players set 順位：1位 %{_c}% -3"
-    send title "&e&l勝利 &8| &r[%{_c}% team]" to all players
+    set {_dispc} to low2up({_c})
+    send title "&e&l勝利 &8| &r[%{_dispc}% &r&lTeam&r]" to all players
     gameEnd()
 
 function winPlayer():
@@ -227,7 +229,7 @@ function spcLeave(p: player):
     set {playerStatus.%{_p}%} to "spectator"
 
 
-function teamJoin(p: player, c: object):
+function teamJoin(p: player, c: text):
     if {qua.player.team.%{_c}%} is larger than {Natto.teamMaxPlayer}:
         message "&c&l>Error すでに満員です" to {_p}
         stop
@@ -244,7 +246,8 @@ function teamJoin(p: player, c: object):
         execute console command "scoreboard players set %name of {_p}% %{_c}% 1"
         execute console command "team join %{_c}% %{_p}%"
         play sound "entity.player.levelup" to {_p}
-        message "&b&l>System &r%{_c}%チームに入りました！" to {_p}
+        set {_dispc} to low2up({_c})
+        message "&b&l>System &r%{_dispc}% チームに入りました！" to {_p}
 
 function teamLeave(p: player):  #{_oc}は抜ける前に入ってたチームカラー(old color)
     if {playerJoined.%{_p}%} is false:
@@ -284,7 +287,8 @@ function calTeamRanking(): # %{teamrank.%{_loop}%}%の中身は色
     set {_loop} to 1
     set {teamRankLoop} to true
     while {teamRankLoop} is true:
-        broadcast "&6%{_loop}%位  &8-- &r[%{teamRank.%{_loop}%}%] : %{team.%{teamRank.%{_loop}%}%::*}% &8-- &6計%{teamKills.%{teamRank.%{_loop}%}%}%kill"
+        set {_dispc} to low2up({teamRank.%{_loop}%})
+        broadcast "&6%{_loop}%位  &8-- &r[%{_dispc}%] : %{team.%{teamRank.%{_loop}%}%::*}% &8-- &6計%{teamKills.%{teamRank.%{_loop}%}%}%kill"
         if {_loop} is {qua.playTeam}:
             set {teamRankLoop} to false
         add 1 to {_loop}
@@ -328,7 +332,7 @@ function deathPlayer(p: player):
         set {_c} to {playerJoined.%{_p}%}
         reduce {qua.surviver.team.%{_c}%} by 1
         if {qua.surviver.team.%{_c}%} is 0:
-            deathTeam({_c})
+            deathTeam("%{_c}%")
         reduce {qua.surviver} by 1
     else:
         set {playerRank.%{_p}%} to {qua.surviver}
@@ -336,15 +340,34 @@ function deathPlayer(p: player):
         if {qua.surviver} is 1:
             winPlayer()
 
-function deathTeam(c: object):
+function deathTeam(c: text):
     set {teamStatus.%{_c}%} to "death"
     set {teamRank.%{qua.surviveTeam}%} to {_c}
-    execute console command "scoreboard players set 順位：%{qua.surviveTeam}%位 %{_c}% -3"
     reduce {qua.surviveTeam} by 1
     wait 1 tick
-    broadcast "&b&l>Game &r%{_c}% チームが全滅しました"
+    set {_dispc} to low2up({_c})
+    broadcast "&b&l>Game &r%{_dispc}% チームが全滅しました"
     if {qua.surviveTeam} is 1:
         winTeam()
+
+
+function low2up(c: text) :: text:
+    if {_c} is "red":
+        set {_rt} to "&c&lRed&r"
+    else if {_c} is "blue":
+        set {_rt} to "&9&lBlue&r"
+    else if {_c} is "yellow":
+        set {_rt} to "&e&lYellow&r"
+    else if {_c} is "green":
+        set {_rt} to "&a&lGreen&r"
+    else if {_c} is "orange":
+        set {_rt} to "&6&lOrange&r"
+    else if {_c} is "purple":
+        set {_rt} to "&d&lPurple&r"
+    else if {_c} is "black":
+        set {_rt} to "&0&lBlack&r"
+
+    return {_rt}
 
 
 function revivePlayer(p: player, pp: player): # p:復活する本人 pp:復活させる人
@@ -429,6 +452,13 @@ function reloadConfig():
     delete {Natto.chestItemChance.normal::*}
     delete {Natto.chestRoot.normal::*}
     gameConfig()
+    add "red" to {Natto.teamName::*}
+    add "blue" to {Natto.teamName::*}
+    add "yellow" to {Natto.teamName::*}
+    add "green" to {Natto.teamName::*}
+    add "orange" to {Natto.teamName::*}
+    add "purple" to {Natto.teamName::*}
+    add "black" to {Natto.teamName::*}
     set {Natto.qua.Team} to amount of {Natto.teamName::*}
     set {Natto.qua.locaChest} to amount of {Natto.locaChest::*}
     set {Natto.qua.ChestItemName.normal} to amount of {Natto.chestItemName.normal::*}
