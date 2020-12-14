@@ -8,7 +8,7 @@ Latest Update : 11/12/2020 | Written by ShimaShima_710
  **Wikipedico**
 -Battle Royale in Minecraft-
 
-About project and rules : [Official Site](https://wikipedico.studio.site)
+About me : [Official Site](https://wikipedico.studio.site)
 
 Organizer : [iibukuro](https://twitter.com/_ibukuro_)
 
