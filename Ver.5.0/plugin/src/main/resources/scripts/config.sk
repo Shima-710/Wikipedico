@@ -90,46 +90,46 @@ function gameConfig():
 #
     # チェスト中身(モード：ノーマル)
     # その確率
-    #
+#
     add 3 of apple to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 2 of firework rocket to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 3 of emerald to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 3 of lapis lazuli to {Natto.chestItemName.normal::*}
     add 2 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 10 of experience bottle to {Natto.chestItemName.normal::*}
     add 3 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 2 of oak log to {Natto.chestItemName.normal::*}
     add 15 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 2 of stone to {Natto.chestItemName.normal::*}
     add 15 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 2 of string to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 5 of arrow to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 3 of leather to {Natto.chestItemName.normal::*}
     add 10 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 3 of iron ingot to {Natto.chestItemName.normal::*}
     add 8 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 3 of gold ingot to {Natto.chestItemName.normal::*}
     add 5 to {Natto.chestItemChance.normal::*}
-    #
+#
     add 1 of diamond to {Natto.chestItemName.normal::*}
     add 2 to {Natto.chestItemChance.normal::*}
-    #
+#
 #
 # ---------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------

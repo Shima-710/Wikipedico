@@ -55,3 +55,56 @@ Shop:
     bow: 5
     crossbow: 10
     elytra: 5
+Chest:
+  apple:
+    spawn: true
+    amount: 3
+    chance: 10
+  firework:
+    spawn: true
+    amount: 2
+    chance: 5
+  emerald:
+    spawn: true
+    amount: 3
+    chance: 5
+  lapislazuli:
+    spawn: true
+    amount: 3
+    chance: 2
+  experience_bottle:
+    spawn: true
+    amount: 10
+    chance: 3
+  oak:
+    spawn: true
+    amount: 2
+    chance: 15
+  stone:
+    spawn: true
+    amount: 2
+    chance: 15
+  string:
+    spawn: true
+    amount: 2
+    chance: 10
+  arrow:
+    spawn: true
+    amount: 5
+    chance: 10
+  leather:
+    spawn: true
+    amount: 3
+    chance: 10
+  iron:
+    spawn: true
+    amount: 3
+    chance: 8
+  gold:
+    spawn: true
+    amount: 3
+    chance: 5
+  diamond:
+    spawn: true
+    amount: 1
+    chance: 2

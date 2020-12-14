@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
@@ -26,14 +27,20 @@ public final class Wikipedico extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("Hello!");
-        getLogger().info("Current version is v"+version);
+
+        Objects.requireNonNull(getCommand("install")).setExecutor(new command());
+        Objects.requireNonNull(getCommand("update")).setExecutor(new command());
+        Objects.requireNonNull(getCommand("backup")).setExecutor(new command());
+        Objects.requireNonNull(getCommand("loadvaris")).setExecutor(new command());
 
         File exconfig = new File("./plugins/Wikipedico/config.yml");
         if(!exconfig.exists()){
             saveDefaultConfig();
         }
         wikiConfigReload();
+
+        getLogger().info("Hello!");
+        getLogger().info("Current version is v"+version);
 
     }
 
@@ -42,15 +49,17 @@ public final class Wikipedico extends JavaPlugin {
         getLogger().info("Goodbye!");
     }
 
-
     public void wikiConfigReload(){
         FileConfiguration config = getConfig();
         try {
             BufferedReader file = new BufferedReader(new FileReader("./plugins/Skript/scripts/config.sk"));
             StringBuffer inputBuffer = new StringBuffer();
             String line;
+            String line2;
 
             while ((line = file.readLine()) != null) {
+                line2 = null;
+
                 if(line.contains("set {Natto.defaultModeTeam} to")){
                     line = "    set {Natto.defaultModeTeam} to " + config.getString("DefaultMode.Team");
                 }
@@ -237,7 +246,120 @@ public final class Wikipedico extends JavaPlugin {
                 if(line.contains("set {price.sell.elytra} to")) {
                     line = "    set {price.sell.elytra} to " + config.getString("Shop.Sell.elytra");
                 }
+                if(line.contains("of apple to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.apple.spawn")){
+                        line = "    add "+ config.getString("Chest.apple.amount") +" of apple to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.apple.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of firework rocket to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.firework.spawn")){
+                        line = "    add "+ config.getString("Chest.firework.amount") +" of firework rocket to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.firework.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of emerald to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.emerald.spawn")){
+                        line = "    add "+ config.getString("Chest.emerald.amount") +" of emerald to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.emerald.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of lapis lazuli to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.lapislazuli.spawn")){
+                        line = "    add "+ config.getString("Chest.lapislazuli.amount") +" of lapis lazuli to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.lapislazuli.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of experience bottle to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.experience_bottle.spawn")){
+                        line = "    add "+ config.getString("Chest.experience_bottle.amount") +" of experience bottle to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.experience_bottle.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of oak log to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.oak.spawn")){
+                        line = "    add "+ config.getString("Chest.oak.amount") +" of oak log to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.oak.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of stone to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.stone.spawn")){
+                        line = "    add "+ config.getString("Chest.stone.amount") +" of stone to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.stone.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of string to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.string.spawn")){
+                        line = "    add "+ config.getString("Chest.string.amount") +" of string to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.string.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of arrow to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.arrow.spawn")){
+                        line = "    add "+ config.getString("Chest.arrow.amount") +" of arrow to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.arrow.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of leather to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.leather.spawn")){
+                        line = "    add "+ config.getString("Chest.leather.amount") +" of leather to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.leather.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of iron ingot to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.iron.spawn")){
+                        line = "    add "+ config.getString("Chest.iron.amount") +" of iron ingot to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.iron.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of gold ingot to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.gold.spawn")){
+                        line = "    add "+ config.getString("Chest.gold.amount") +" of gold ingot to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.gold.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+                if(line.contains("of diamond to {Natto.chestItemName.normal::*}")) {
+                    if(config.getBoolean("Chest.diamond.spawn")){
+                        line = "    add "+ config.getString("Chest.diamond.amount") +" of diamond to {Natto.chestItemName.normal::*}";
+                        line2 = "    add " + config.getString("Chest.diamond.chance") + " to {Natto.chestItemChance.normal::*}";
+                    }else{
+                        line = makeComment(line);
+                    }
+                }
+
+                if(line.contains("{Natto.chestItemChance.normal::*}")) {
+                    line = "";
+                }
+
                 inputBuffer.append(line);
+                if(line2!=null){
+                    inputBuffer.append('\n');
+                    inputBuffer.append(line2);
+                }
                 inputBuffer.append('\n');
             }
             file.close();
@@ -251,6 +373,15 @@ public final class Wikipedico extends JavaPlugin {
         }
     }
 
+    public static String makeComment(String str){
+        if(!str.contains("#")) {
+            StringBuilder linesb = new StringBuilder(str);
+            linesb.insert(4, "#");
+            str = linesb.toString();
+            return str;
+        }
+        return str;
+    }
 
     public static void update() throws Exception {
         delDir("./plugins/Skript/scripts");
@@ -356,9 +487,6 @@ public final class Wikipedico extends JavaPlugin {
 
 
 
-
-
-
     /**
      * 対象のファイルオブジェクトの削除を行う.
      * ディレクトリの場合は再帰処理を行い、削除する。
@@ -379,65 +507,6 @@ public final class Wikipedico extends JavaPlugin {
         // 対象がファイルもしくは配下が空のディレクトリの場合は削除する
         file.delete();
     }
-
-
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-
-        if(cmd.getName().equalsIgnoreCase("update")){
-            try {
-                update();
-                Bukkit.getLogger().info("[Wikipedico] Updated Successfully!");
-                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
-                Bukkit.reload();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Updated! Current version is v" + version);
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
-            }
-            return true;
-        }
-        else if(cmd.getName().equalsIgnoreCase("install")){
-            try {
-                delFile("./plugins/Wikipedico/config.yml");
-                loadVaris();
-                update();
-                Bukkit.getLogger().info("[Wikipedico] Installed Successfully!");
-                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
-                Bukkit.reload();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Installed! Current version is v" + version);
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
-            }
-            return true;
-        }
-        else if(cmd.getName().equalsIgnoreCase("loadvaris")){
-            try {
-                loadVaris();
-                Bukkit.getLogger().info("[Wikipedico] Reloading variables.csv wes Succeed!");
-                Bukkit.getLogger().info("[Wikipedico] Server will be reloaded.");
-                Bukkit.reload();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "variables.csv was Reloaded! Current version is v" + version);
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
-            }
-            return true;
-        }
-        else if(cmd.getName().equalsIgnoreCase("backup")){
-            try {
-                backupVaris();
-                sender.sendMessage(ChatColor.GREEN + ">Wikipedico [INFO] " + ChatColor.WHITE + "Success! variables.csv is backed up.");
-            } catch (Exception e) {
-                e.printStackTrace();
-                sender.sendMessage(ChatColor.RED + ">Wikipedico [ERROR] " + ChatColor.WHITE + "Some error occurred.");
-            }
-            return true;
-        }
-        return false;
-    }
-
-
 
 }
 
