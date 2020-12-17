@@ -26,7 +26,7 @@ on join:
             message "&l&a>Game &r現在ゲーム進行中のため観戦モードに移行しました" to player
             set {kills.%player%} to 0
             add player to {death::*}
-            set player's gamemode to spectator
+        set player's gamemode to spectator
 
 
 on quit:
