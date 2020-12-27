@@ -1,0 +1,7 @@
+name: Wikipedico
+version: ${project.version}
+main: com.shmn7iii.wikipedico.Main
+api-version: 1.16
+authors: [ shmn7iii ]
+description: descr
+website: shmn7iii.com/wikipedico
