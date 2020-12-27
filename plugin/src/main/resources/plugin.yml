@@ -3,5 +3,13 @@ version: ${project.version}
 main: com.shmn7iii.wikipedico.Main
 api-version: 1.16
 authors: [ shmn7iii ]
-description: descr
+description: Wikipedico<Refresh> - BattleRoyaleinMinacraft
 website: shmn7iii.com/wikipedico
+commands:
+  start:
+    description: Start game.
+    permission: wikipedico.GM
+    permission-message: You don't have permission.
+permissions:
+  wikipedico.GM:
+    default: op

@@ -1,17 +1,32 @@
 package com.shmn7iii.wikipedico;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public final class Main extends JavaPlugin {
+    public static Main plugin;
+    public static String version = Main.class.getPackage().getImplementationVersion();
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        plugin = this;
+        getServer().getPluginManager().registerEvents(new Event(this), this);
+        setCommandExecutor();
+        saveDefaultConfig();
+        Bukkit.getLogger().info("Hello!");
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        Bukkit.getLogger().info("GoodBye!");
+    }
+
+
+
+    public void setCommandExecutor(){
+        Commands command = new Commands();
+        Objects.requireNonNull(getCommand("start")).setExecutor(command);
     }
 }

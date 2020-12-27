@@ -1,0 +1,6 @@
+Language: japanese
+JapaneseConversion: true
+DefaultMode:
+    Team: false
+    Daruma: false
+    
