@@ -5,12 +5,12 @@ import com.shmn7iii.wikipedico.Enum.GameStatus;
 import com.shmn7iii.wikipedico.Enum.PlayerStatus;
 import com.shmn7iii.wikipedico.Enum.TimerKind;
 import com.shmn7iii.wikipedico.Prefix.*;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.World;
-import org.bukkit.WorldBorder;
+import com.shmn7iii.wikipedico.SubSystem.SystemTeam;
+import com.shmn7iii.wikipedico.SubSystem.TeamColor;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,11 @@ public class SystemMain {
     public static void gameStart(){
         for(Player p:Bukkit.getOnlinePlayers()){
             if(PlayerMap.playerMap.get(p).get(0).equals(PlayerStatus.PLAY)){//プレイヤーなら
-                //TODO ロビー座標をconfigに保存しよう
+                p.teleport(Main.LOBBY);//TODO ロビー座標をconfigに保存しよう
+                p.setGameMode(GameMode.SURVIVAL);
+                p.getInventory().setChestplate(new ItemStack(Material.ELYTRA));
+                p.teleport(p.getLocation().add(0,0,-2.0));
+                p.setFlying(true);//TODO ugokukana
             }
         }
 
@@ -45,12 +49,15 @@ public class SystemMain {
         for(Player p:Bukkit.getOnlinePlayers()){
             if(p.getGameMode().equals(GameMode.SURVIVAL) || p.getGameMode().equals(GameMode.SPECTATOR)){
                 // 参加
-                PlayerMap.setPlayerMap(p, PlayerStatus.PLAY,0,0,null);
+                p.setGameMode(GameMode.ADVENTURE);
+                PlayerMap.setPlayerMap(p, PlayerStatus.PLAY,0,0, TeamColor.PLAY);
+                SystemTeam.playerAddTeam(p,TeamColor.PLAY);
             }
             else{
                 // 観戦
                 p.setGameMode(GameMode.SPECTATOR);
-                PlayerMap.setPlayerMap(p,PlayerStatus.SPEC,0,0,null);
+                PlayerMap.setPlayerMap(p,PlayerStatus.SPEC,0,0,TeamColor.SPEC);
+                SystemTeam.playerAddTeam(p,TeamColor.SPEC);
             }
         }
     }
@@ -68,5 +75,25 @@ public class SystemMain {
         int random = new Random().nextInt(players.size());
         Player picked = players.get(random);
         wb.setCenter(picked.getLocation());
+    }
+
+
+    public static void deathPlayer(Player victim, Player killer){
+        int nd = (int) PlayerMap.getPlayerMapKey(victim, PlayerMap.PlayerMapKay.DEATHS);
+        nd++;
+        PlayerMap.setPlayerMapKey(victim, PlayerMap.PlayerMapKay.DEATHS,nd);
+
+
+        SystemTeam.playerAddTeam(killer,TeamColor.SPEC);
+        PlayerMap.setPlayerMapKey(killer, PlayerMap.PlayerMapKay.PS, PlayerStatus.SPEC);
+        killer.setGameMode(GameMode.SPECTATOR);
+
+        int nk = (int) PlayerMap.getPlayerMapKey(killer, PlayerMap.PlayerMapKay.KILLS);
+        nk++;
+        PlayerMap.setPlayerMapKey(killer, PlayerMap.PlayerMapKay.KILLS,nk);
+    }
+
+    public static void deathMessage(){
+
     }
 }

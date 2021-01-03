@@ -7,5 +7,7 @@ public class Config {
 
     public static void load(){
         FileConfiguration config = Main.plugin.getConfig();
+
+
     }
 }

@@ -2,6 +2,7 @@ package com.shmn7iii.wikipedico;
 
 import com.shmn7iii.wikipedico.Main.*;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,8 +19,13 @@ public class Commands  implements CommandExecutor {
                 SystemMain.trigStart(sender,Main.GAMESTATUS);
                 return true;
             }
-
+            else{
+                Bukkit.getLogger().info(Prefix.getMessagePrefix(Prefix.MessPref.ERROR)+"Do this command from client!");
+                return false;
+            }
         }
+
+
         return false;
     }
 }

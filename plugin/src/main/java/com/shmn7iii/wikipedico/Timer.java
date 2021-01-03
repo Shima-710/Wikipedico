@@ -35,12 +35,18 @@ public class Timer extends BukkitRunnable {
             }
         }
 
-        if (count == 0) {
-            switch (kind){
-                case PREPARE:
+        switch (kind){
+            case PREPARE:
+                if (count <= 5 && count != 0) {
+                    for (Player p:Bukkit.getOnlinePlayers()){
+                        p.sendTitle(null, String.valueOf(count),20,20,20);
+                    }
+                }
+                if (count == 0) {
+                    this.cancel();
                     SystemMain.gameStart();
-            }
-            this.cancel();
+                }
+                break;
         }
 
         count--;

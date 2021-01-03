@@ -7,5 +7,7 @@ public enum TeamColor {
     GREEN,
     ORANGE,
     PURPLE,
-    GRAY
+    GRAY,
+    PLAY,
+    SPEC
 }
