@@ -7,9 +7,11 @@ import com.shmn7iii.wikipedico.Enum.TimerKind;
 import com.shmn7iii.wikipedico.Prefix.*;
 import com.shmn7iii.wikipedico.SubSystem.SystemTeam;
 import com.shmn7iii.wikipedico.SubSystem.TeamColor;
+import com.sun.istack.internal.Nullable;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -50,13 +52,13 @@ public class SystemMain {
             if(p.getGameMode().equals(GameMode.SURVIVAL) || p.getGameMode().equals(GameMode.SPECTATOR)){
                 // 参加
                 p.setGameMode(GameMode.ADVENTURE);
-                PlayerMap.setPlayerMap(p, PlayerStatus.PLAY,0,0, TeamColor.PLAY);
+                PlayerMap.setPlayerMap(p, PlayerStatus.PLAY,0,0, TeamColor.PLAY,null);
                 SystemTeam.playerAddTeam(p,TeamColor.PLAY);
             }
             else{
                 // 観戦
                 p.setGameMode(GameMode.SPECTATOR);
-                PlayerMap.setPlayerMap(p,PlayerStatus.SPEC,0,0,TeamColor.SPEC);
+                PlayerMap.setPlayerMap(p,PlayerStatus.SPEC,0,0,TeamColor.SPEC,null);
                 SystemTeam.playerAddTeam(p,TeamColor.SPEC);
             }
         }
@@ -78,6 +80,11 @@ public class SystemMain {
     }
 
 
+
+    public static void setRank(){
+
+    }
+
     public static void deathPlayer(Player victim, Player killer){
         int nd = (int) PlayerMap.getPlayerMapKey(victim, PlayerMap.PlayerMapKay.DEATHS);
         nd++;
@@ -93,7 +100,37 @@ public class SystemMain {
         PlayerMap.setPlayerMapKey(killer, PlayerMap.PlayerMapKay.KILLS,nk);
     }
 
-    public static void deathMessage(){
+    public static void deathMessage(Player victim, @Nullable Player killer, @Nullable EntityDamageEvent.DamageCause cause){
+        if(killer != null){
+            Bukkit.broadcastMessage(ChatColor.AQUA+killer.getName()+ChatColor.WHITE+"✈►"+ChatColor.RED+victim.getName());
+        }
+        else{
+            switch (cause){
+                case FALL:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は落下して死亡した");
+                    break;
+                case LAVA:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は溶岩に入って死亡した");
+                    break;
+                case DROWNING:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は溺れて死亡した");
+                    break;
+                case SUFFOCATION:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は安地へ逃げられず死亡した");
+                    break;
+                case BLOCK_EXPLOSION:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は爆発に巻きこまあれて死亡した");
+                    break;
+                default:
+                    Bukkit.broadcastMessage(ChatColor.RED+victim.getName()+"は死亡した");
+                    break;
+            }
 
+        }
+
+    }
+
+
+    public static void resetGame(){
     }
 }

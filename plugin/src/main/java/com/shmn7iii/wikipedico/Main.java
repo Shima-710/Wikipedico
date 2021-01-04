@@ -57,6 +57,7 @@ public final class Main extends JavaPlugin {
         assert manager != null;
         Scoreboard board = manager.getMainScoreboard();
 
+
         TEAM_RED = board.registerNewTeam("RED");
         TEAM_RED.setColor(ChatColor.RED);
         TEAM_RED.setAllowFriendlyFire(false);

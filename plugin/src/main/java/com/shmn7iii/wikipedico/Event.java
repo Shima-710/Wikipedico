@@ -23,7 +23,7 @@ public class Event  implements Listener {
                 PlayerMap.setPlayerMapKey(player, PlayerMap.PlayerMapKay.PS, PlayerStatus.SPEC);
             }
             else{
-                PlayerMap.setPlayerMap(player,PlayerStatus.SPEC,0,0,null);
+                PlayerMap.setPlayerMap(player,PlayerStatus.SPEC,0,0,null,null);
             }
         }
         else{
@@ -36,16 +36,19 @@ public class Event  implements Listener {
     public void onDeathPlayer(PlayerDeathEvent e){
         Player victim = e.getEntity();
         if(!(Main.GAMESTATUS.equals(GameStatus.NONE))){//ゲーム中なら
+            e.setDeathMessage(null);
             if(PlayerMap.playerMap.containsValue(victim)) {//参加者なら
                 if(e.getEntity().getKiller() != null){
                     Player killer = e.getEntity().getKiller();
                     SystemMain.deathPlayer(victim,killer);
+                    SystemMain.deathMessage(victim,killer,null);
                 }
                 else{
                     Entity ent = e.getEntity();
                     EntityDamageEvent ede = ent.getLastDamageCause();
                     assert ede != null;
                     EntityDamageEvent.DamageCause dc = ede.getCause();
+                    SystemMain.deathMessage(victim,null,dc);
                 }
             }
         }
