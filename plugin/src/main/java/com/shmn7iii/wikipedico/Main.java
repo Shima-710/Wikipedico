@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.boss.BossBar;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -22,6 +23,8 @@ public final class Main extends JavaPlugin {
     public static World WORLD;
     public static Location LOBBY;
     public static GameStatus GAMESTATUS = GameStatus.NONE;
+
+    public static BossBar BOSSBAR;
 
     public static Objective objective;
     public static Team TEAM_RED;
@@ -100,5 +103,7 @@ public final class Main extends JavaPlugin {
     public void setCommandExecutor(){
         Commands command = new Commands();
         Objects.requireNonNull(getCommand("start")).setExecutor(command);
+        Objects.requireNonNull(getCommand("end")).setExecutor(command);
+
     }
 }

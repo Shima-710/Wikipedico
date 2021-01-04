@@ -1,5 +1,6 @@
 package com.shmn7iii.wikipedico;
 
+import com.shmn7iii.wikipedico.Enum.GameStatus;
 import com.shmn7iii.wikipedico.Main.*;
 
 import org.bukkit.Bukkit;
@@ -20,8 +21,16 @@ public class Commands  implements CommandExecutor {
                 return true;
             }
             else{
-                Bukkit.getLogger().info(Prefix.getMessagePrefix(Prefix.MessPref.ERROR)+"Do this command from client!");
+                Bukkit.getLogger().warning("Do this command from client!");
                 return false;
+            }
+        }
+        else if (cmd.getName().equalsIgnoreCase("end")) {
+            if(Main.GAMESTATUS.equals(GameStatus.GAMING)){
+                SystemMain.gameEnd();
+            }
+            else{
+                sender.sendMessage("GAME isn't started.");
             }
         }
 

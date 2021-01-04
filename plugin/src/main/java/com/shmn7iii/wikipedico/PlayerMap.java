@@ -1,7 +1,6 @@
 package com.shmn7iii.wikipedico;
 
 import com.shmn7iii.wikipedico.SubSystem.TeamColor;
-import com.sun.istack.internal.Nullable;
 import org.bukkit.entity.Player;
 
 import com.shmn7iii.wikipedico.Enum.PlayerStatus;
@@ -22,7 +21,7 @@ public class PlayerMap {
         RANK
     }
 
-    public static void setPlayerMap(Player player, PlayerStatus playerStatus, int kills, int deaths, TeamColor teamColor,@Nullable Integer rank){
+    public static void setPlayerMap(Player player, PlayerStatus playerStatus, int kills, int deaths, TeamColor teamColor, Integer rank){
         playerMap.put(player,new ArrayList<>());
         playerMap.get(player).add(0,playerStatus);
         playerMap.get(player).add(1,kills);

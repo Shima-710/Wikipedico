@@ -11,6 +11,8 @@ public class Timer extends BukkitRunnable {
     private int count;
     private final Boolean expBar;
 
+    public int bs_count;
+
     /**
      * @param plg_    プラグインメインクラスのインスタンス
      * @param kind_   しゅるい
@@ -47,6 +49,18 @@ public class Timer extends BukkitRunnable {
                     SystemMain.gameStart();
                 }
                 break;
+            case SETWB:
+                if (count == 0) {
+                    this.cancel();
+                    SystemMain.setWorldBorder();
+                }
+                break;
+            case BOSSBAR:
+                SystemMain.setBossBar((double) count/Config.WorldBorderTime);
+                if (count == 0) {
+                    Main.BOSSBAR.setVisible(false);
+                    this.cancel();
+                }
         }
 
         count--;

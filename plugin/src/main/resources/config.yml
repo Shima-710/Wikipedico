@@ -3,4 +3,9 @@ JapaneseConversion: true
 DefaultMode:
     Team: false
     Daruma: false
+WorldBorder:
+    Size:
+    Time:
+    DamageAmount:
+    DamageBuffer:
     
