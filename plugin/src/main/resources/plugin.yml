@@ -10,6 +10,10 @@ commands:
     description: Start game.
     permission: wikipedico.GM
     permission-message: You don't have permission.
+  end:
+    description: End game.
+    permission: wikipedico.GM
+    permission-message: You don't have permission.
 permissions:
   wikipedico.GM:
     default: op

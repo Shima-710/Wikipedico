@@ -15,7 +15,7 @@ import org.bukkit.scoreboard.Team;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
-    public static Main plugin;
+    public static Main plugin = null;
     public static String version = Main.class.getPackage().getImplementationVersion();
 
 
@@ -42,14 +42,28 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         getServer().getPluginManager().registerEvents(new Event(this), this);
+        getServer().getPluginManager().registerEvents(new SystemMain(this), this);
         setCommandExecutor();
         saveDefaultConfig();
         Bukkit.getLogger().info("Hello!");
+
+        setScoreBoard();
     }
 
     @Override
     public void onDisable() {
         Bukkit.getLogger().info("GoodBye!");
+        try{
+            TEAM_RED.unregister();
+            TEAM_BLUE.unregister();
+            TEAM_YELLOW.unregister();
+            TEAM_GREEN.unregister();
+            TEAM_ORANGE.unregister();
+            TEAM_PURPLE.unregister();
+            TEAM_GRAY.unregister();
+            TEAM_PLAYER.unregister();
+            TEAM_SPEC.unregister();
+        }catch (IllegalArgumentException ignored){ }
     }
 
 

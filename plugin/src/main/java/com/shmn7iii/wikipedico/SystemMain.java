@@ -12,6 +12,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,8 +20,9 @@ import java.util.*;
 
 import static com.shmn7iii.wikipedico.Prefix.getMessagePrefix;
 
-public class SystemMain {
+public class SystemMain  implements Listener {
     public static Main plugin;
+    public SystemMain(Main instance) { plugin = instance; }
 
     public static void trigStart(CommandSender sender, GameStatus gs){
         if (gs == GameStatus.NONE) { preStart(); }
@@ -30,10 +32,12 @@ public class SystemMain {
     public static void preStart(){
         registPlayer();
         createBossBar();
+        Bukkit.getLogger().info(String.valueOf(plugin));
         new Timer(plugin, TimerKind.PREPARE,10,true).runTaskTimer(plugin, 10,20);//TODO config ni prepare time
     }
 
     public static void gameStart(){
+        Main.GAMESTATUS = GameStatus.GAMING;
         for(Player p:Bukkit.getOnlinePlayers()){
             if(PlayerMap.playerMap.get(p).get(0).equals(PlayerStatus.PLAY)){//プレイヤーなら
                 p.teleport(Main.LOBBY);//TODO ロビー座標をconfigに保存しよう
@@ -49,7 +53,7 @@ public class SystemMain {
 
     public static void registPlayer(){
         for(Player p:Bukkit.getOnlinePlayers()){
-            if(p.getGameMode().equals(GameMode.SURVIVAL) || p.getGameMode().equals(GameMode.SPECTATOR)){
+            if(p.getGameMode().equals(GameMode.SURVIVAL) || p.getGameMode().equals(GameMode.ADVENTURE)){
                 // 参加
                 p.setGameMode(GameMode.ADVENTURE);
                 PlayerMap.setPlayerMap(p, PlayerStatus.PLAY,0,0, TeamColor.PLAY,null);
@@ -75,7 +79,7 @@ public class SystemMain {
                 players.add(p);
             }
         }
-        int random = new Random().nextInt(players.size());
+        int random = new Random().nextInt(players.size());//FIXME bound must be positive
         Player picked = players.get(random);
         wb.setCenter(picked.getLocation());
     }
@@ -174,7 +178,7 @@ public class SystemMain {
 
 
     public static void gameEnd(){
-
+        Bukkit.broadcastMessage("end");
     }
 
 

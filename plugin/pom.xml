@@ -6,7 +6,7 @@
 
     <groupId>com.shmn7iii</groupId>
     <artifactId>Wikipedico</artifactId>
-    <version>6.0-build1</version>
+    <version>6pre-build10</version>
     <packaging>jar</packaging>
 
     <name>Wikipedico</name>

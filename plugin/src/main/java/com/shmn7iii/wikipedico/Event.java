@@ -21,6 +21,8 @@ public class Event  implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
+
+        player.sendMessage("Wikipedico v"+Main.version);
         if(!(Main.GAMESTATUS.equals(GameStatus.NONE))){//ゲーム中なら
             if(PlayerMap.playerMap.containsValue(player)){//参加者なら
                 PlayerMap.setPlayerMapKey(player, PlayerMap.PlayerMapKay.PS, PlayerStatus.SPEC);
