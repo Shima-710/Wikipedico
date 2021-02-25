@@ -226,8 +226,9 @@ on chat:
 
 on right click on player:
     if player's gamemode is spectator:
-        message " " to player
-        message "&6&l%name of clicked entity%" to player
         set {_healthtmp} to health of clicked entity
-        set {_healthtmp} to {_healthtmp} * 2
-        message "体力：&e%{_healthtmp}% &r| キル数：&e%{kills.%clicked entity%}%" to player
+        loop {_healthtmp} times:
+            add "❤️" to {_hearts}
+        #set {_healthtmp} to {_healthtmp} * 2
+
+        send title "&6&l%name of clicked entity%" with subtitle "体力：&e%{_hearts}% &r| キル数：&e%{kills.%clicked entity%}%" to player

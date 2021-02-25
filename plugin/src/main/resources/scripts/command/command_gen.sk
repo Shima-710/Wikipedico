@@ -51,5 +51,6 @@ on right click on chest:
         cancel event
         stop
     else:
-        set the clicked block to air
-        execute console command "openchest %player%"
+        loop all items in inventory of event-block:
+            drop loop-item at event-block
+        set event-block to air

@@ -440,7 +440,15 @@ function debugMode(b: boolean):
 function spawnChest():
     loop {Natto.qua.locaChest} times:
         add 1 to {_loop}
+        set block at {Natto.locaChest::%{_loop}%} to air
+        wait 1 tick
         set block at {Natto.locaChest::%{_loop}%} to chest
+        set {_chest} to block at {Natto.locaChest::%{_loop}%}
+        set {_random.chestSlotQua} to random integer between 1 and {Natto.maxChestSlotQua}
+        loop {_random.chestSlotQua} times:
+            set {_random.chestSlotNum} to random integer between 0 and 26
+            set {_random.itemNumber} to random integer between 1 and {Natto.qua.ChestItem.normal}
+            add {Natto.chestRoot.normal::%{_random.itemNumber}%} to {_chest}'s inventory
 
 function defChestRootNormal(n: number):
     loop {Natto.chestItemChance.normal::%{_n}%} times:
