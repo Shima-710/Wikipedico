@@ -6,7 +6,7 @@
 
     <groupId>com.github.shima-710</groupId>
     <artifactId>Wikipedico</artifactId>
-    <version>5.1.6-build5</version>
+    <version>5.2.0</version>
     <packaging>jar</packaging>
 
     <name>Wikipedico</name>
