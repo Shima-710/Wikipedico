@@ -1,11 +1,5 @@
 # Wikipedico
 
-```
-Latest Update : 11/12/2020 | Written by ShimaShima_710
-```
-## Overview
-
- **Wikipedico**
 -Battle Royale in Minecraft-
 
 About me : https://wikipedico.studio.site
