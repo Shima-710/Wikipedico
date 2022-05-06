@@ -22,7 +22,7 @@ gamemode spectator @a[team=admin]
 
 # ワールドボーダーをとりあえず作る
 #TODO:マップによる変動あり
-worldborder center 318 319
+worldborder center -27657 36483
 worldborder add 5000000
 # んで狭める中心をランダムで決める
 schedule function shimashima:boarder_set 15s
