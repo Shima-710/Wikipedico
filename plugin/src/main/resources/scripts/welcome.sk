@@ -7,16 +7,14 @@ on first join:
 
 on join:
     message " " to player
-    message "&l&7[注意事項]" to player
-    message "&7 ・軽量化MOD以外のMODの導入は認められていません。" to player
-    message "&7 ・ゲーム開始前に確実にルールを把握してください。" to player
+    message "&a================================================" to player
+    message "&l&a【Wikipedico】" to player
     message " " to player
-    message "&l&7[ver.]" to player
-    message "&7 %{ver}%" to player
-    message " " to player
-    message "&l&7[wiki]" to player
-    message "&7 https://wikipedico.studio.site" to player
-    message " " to player
+    message "&7[ver.]" to player
+    message "&7  %{ver}%" to player
+    message "&7[wiki]" to player
+    message "&7  https://wikipedico.studio.site" to player
+    message "&a================================================" to player
     if {gameStatus} is 0:
         resetPlayerVariables(player)
         make player execute command "rirogu"
