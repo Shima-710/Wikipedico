@@ -151,10 +151,6 @@ on right click on flower pot:
     if {gameStatus} is 1:
         cancel event
 
-on right click on door:
-    if {gameStatus} is 0:
-        cancel event
-
 on craft of shield:
     cancel event
     close player'S inventory
