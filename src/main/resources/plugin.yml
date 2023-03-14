@@ -1,6 +1,5 @@
 name: Wikipedico
 version: '${project.version}'
 main: net.shmn7iii.wikipedico.Wikipedico
-api-version: 1.19
-authors: [shmn7iii]
+authors: [ shmn7iii ]
 website: https://wikipedico.studio.site
